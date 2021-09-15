@@ -8,7 +8,7 @@
     tools:context=".EnterPhoneActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvOccupation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -27,7 +27,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
+        android:layout_below="@id/tvOccupation"
         android:layout_marginTop="50dp"
         android:orientation="horizontal"
         android:padding="15dp"
@@ -67,8 +67,8 @@
         android:text="CONTINUE"
         android:textColor="@color/white"
         android:textSize="21sp"
-        app:cornerRadius="21dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:textStyle="bold"/>
 
 
 </RelativeLayout>

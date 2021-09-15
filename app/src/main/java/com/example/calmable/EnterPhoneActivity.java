@@ -44,6 +44,7 @@ public class EnterPhoneActivity extends AppCompatActivity {
                 Intent intent = new Intent(EnterPhoneActivity.this, VerifyPhoneActivity.class);
                 intent.putExtra("phonenumber", phoneNumber);
                 startActivity(intent);
+
             }
         });
     }
@@ -60,4 +61,4 @@ public class EnterPhoneActivity extends AppCompatActivity {
         }
     }*/
 
-}
+    }

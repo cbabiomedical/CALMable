@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,17 +28,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
-public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
-
-    private TextView banner, registerUser, tvOccupation;
+    private TextView log,registerUser,  tvOccupation;
     private EditText editTextFullname, editTextAge, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
-    private Spinner spinnerOccupation;
-    String occupationSelected;
     Dialog dialog;
-
-    Occupation occupation;
 
     private FirebaseAuth mAuth;
 
@@ -48,10 +42,11 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
+        // Assign variables
         mAuth = FirebaseAuth.getInstance();
 
-        banner = (TextView) findViewById(R.id.banner);
-        banner.setOnClickListener(this);
+        log = (Button) findViewById(R.id.log);
+        log.setOnClickListener(this);
 
         registerUser = (Button) findViewById(R.id.registerUser);
         registerUser.setOnClickListener(this);
@@ -87,7 +82,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
 
                 // Initialize array adapter
-                ArrayAdapter<String> adapterOccupation = new ArrayAdapter<>(RegisterUser.this, android.R.layout.simple_list_item_1, Occupation.occupations);
+                ArrayAdapter<String> adapterOccupation = new ArrayAdapter<>(RegisterUser.this, android.R.layout.simple_list_item_1, OccupationData.occupations);
                 // set adapter
                 listView.setAdapter(adapterOccupation);
 
@@ -108,7 +103,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
                     }
                 });
-                /*
+
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -118,54 +113,21 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
                         dialog.dismiss();
                     }
-                });  */
-
-                listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        occupationSelected = parent.getItemAtPosition(position).toString();
-
-                        //when item selected from list
-                        //set deleted item on text view
-//                        tvOccupation.setText(adapterOccupation.getItem(position));
-
-                        occupationSelected = parent.getItemAtPosition(position).toString();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // Todo :
-                    }
                 });
-
             }
         });
 
-
-//        spinnerOccupation = (Spinner) findViewById(R.id.spinnerOccupation);
-//        //  Occupation in register page
-//        ArrayAdapter<String> adapterOccupation = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Occupation.occupations);
-//        spinnerOccupation.setAdapter(adapterOccupation);
-//
-//        spinnerOccupation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                occupationSelected = parent.getItemAtPosition(position).toString();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                // Todo :
-//            }
-//        });
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.banner:
-                startActivity(new Intent(this, MainActivity.class));
+        switch (v.getId()){
+            case R.id.register:
+                startActivity(new Intent(this,RegisterUser.class));
+                break;
+            case R.id.log:
+                startActivity(new Intent(this,MainActivity.class));
                 break;
             case R.id.registerUser:
                 registerUser();
@@ -180,52 +142,46 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullname.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
-        String occupation = occupationSelected;
 
-        if (fullName.isEmpty()) {
+        if(fullName.isEmpty()){
             editTextFullname.setError("Full Name is Required");
             editTextFullname.requestFocus();
             return;
         }
-        if (age.isEmpty()) {
+        if(age.isEmpty()){
             editTextAge.setError("Age is Required");
             editTextAge.requestFocus();
             return;
         }
-        if (email.isEmpty()) {
+        if(email.isEmpty()){
             editTextEmail.setError("Email is Required");
             editTextEmail.requestFocus();
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editTextEmail.setError("Email is Invalid");
             editTextEmail.requestFocus();
             return;
         }
-        if (password.isEmpty()) {
+        if(password.isEmpty()){
             editTextPassword.setError("Password is Required");
             editTextPassword.requestFocus();
             return;
         }
-        if (password.length() < 6) {
+        if(password.length() < 6){
             editTextPassword.setError("Minimum Password length should be 6 characters!");
             editTextPassword.requestFocus();
             return;
         }
-//        if (occupation.isEmpty()){
-//            editTextOccupation.setError("Occupation is Required");
-//            editTextOccupation.requestFocus();
-//            return;
-//        }
 
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            User user = new User(fullName, age, email, occupation);
+                        if(task.isSuccessful()){
+                            User user= new User(fullName,age,email);
 
                             //startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
 
@@ -235,14 +191,15 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
-                                    if (task.isSuccessful()) {
+                                    if(task.isSuccessful()){
                                         startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
-                                        Toast.makeText(RegisterUser.this, "User has been registered successfully!", Toast.LENGTH_LONG)
+                                        Toast.makeText(RegisterUser.this,"User has been registered successfully!",Toast.LENGTH_LONG)
                                                 .show();
 
                                         //redirect to login layout
-                                    } else {
-                                        Toast.makeText(RegisterUser.this, "Registration Unsuccessful. Try Again!", Toast.LENGTH_LONG)
+                                    }
+                                    else {
+                                        Toast.makeText(RegisterUser.this,"Registration Unsuccessful. Try Again!",Toast.LENGTH_LONG)
                                                 .show();
                                     }
                                     progressBar.setVisibility(View.GONE);

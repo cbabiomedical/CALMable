@@ -43,7 +43,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Travel Music"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -51,7 +52,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Inspiration"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -74,7 +76,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Relax Music"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -83,7 +86,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Classical Music"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -106,7 +110,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Country Music"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -115,7 +120,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Sleep Stories"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -138,7 +144,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Chill out music"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -147,7 +154,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Videos"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -170,7 +178,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Games"
             android:textAllCaps="false"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -179,7 +188,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Breathing Exercise "
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -202,7 +212,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Success Stories"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -211,7 +222,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Yoga"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -234,7 +246,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Nature Sounds"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -243,7 +256,8 @@
             android:backgroundTint="@color/blue_gray_700"
             android:text="Meditate"
             android:textAllCaps="false"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 
@@ -253,12 +267,11 @@
         android:layout_height="55dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="#0ED6B9"
+        android:background="@drawable/gradient_main_btn"
         android:text="CONTINUE"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="21sp"
-        app:cornerRadius="21dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

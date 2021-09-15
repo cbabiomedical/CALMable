@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView register, forgotPassword;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
-    private Button userPf;
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        register = (TextView) findViewById(R.id.register);
+        register = (Button) findViewById(R.id.register);
         register.setOnClickListener(this);
 
         signIn = (Button) findViewById(R.id.signIn);
@@ -51,15 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         forgotPassword = (TextView) findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(this);
-
-
-        userPf = findViewById(R.id.userPreference);
-
-        userPf.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, UserPreferenceTest.class);
-            startActivity(intent);
-        });
-
     }
 
     @Override
@@ -68,7 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.register:
                 startActivity(new Intent(this,RegisterUser.class));
                 break;
-
+            case R.id.log:
+                startActivity(new Intent(this,MainActivity.class));
+                break;
             case R.id.signIn:
                 userLogin();
                 break;
