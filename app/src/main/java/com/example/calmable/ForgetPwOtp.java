@@ -21,7 +21,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class VerifyPhoneActivity extends AppCompatActivity {
+public class ForgetPwOtp extends AppCompatActivity {
 
     private String verificationId;
     private FirebaseAuth mAuth;
@@ -51,12 +51,12 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
                 if (code.isEmpty() || code.length() < 6) {
 
-                    editText.setError("Enter code...");
+                    editText.setError("Enter Valid Code");
                     editText.requestFocus();
                     return;
                 }
                 verifyCode(code);
-                Intent intent = new Intent(VerifyPhoneActivity.this, MainActivity.class);
+                Intent intent = new Intent(ForgetPwOtp.this, EnterNewPwActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                 startActivity(intent);
@@ -85,7 +85,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                             //startActivity(intent);
 
                         } else {
-                            Toast.makeText(VerifyPhoneActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(ForgetPwOtp.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -132,7 +132,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         //if the verification fails
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(VerifyPhoneActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(ForgetPwOtp.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
 

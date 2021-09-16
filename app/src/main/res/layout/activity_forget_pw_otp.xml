@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_bg_register"
-    tools:context=".VerifyPhoneActivity">
+    tools:context=".ForgetPwOtp">
 
 
     <TextView
@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:gravity="center"
-        android:text="Verify your number with OTP sent to you"
+        android:text="Forget Password OTP"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textColor="@color/dark_blue_100"
         android:textSize="18dp"

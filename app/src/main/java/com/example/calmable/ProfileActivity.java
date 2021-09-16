@@ -41,36 +41,36 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
-
-        final TextView greetingTextView = (TextView) findViewById(R.id.greeting);
-        final TextView fullNameTextView = (TextView) findViewById(R.id.fullName);
-        final TextView emailTextView =(TextView) findViewById(R.id.emailAddress);
-
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
-
-                //sending details to user profile
-
-                if (userProfile != null){
-                    String fullName = userProfile.fullName;
-                    String email = userProfile.email;
-
-                    greetingTextView.setText("Hey! " + fullName);
-                    fullNameTextView.setText(fullName);
-                    emailTextView.setText(email);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ProfileActivity.this,"Something went wrong!",Toast.LENGTH_LONG)
-                        .show();
-            }
-        });
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//        reference = FirebaseDatabase.getInstance().getReference("Users");
+//        userID = user.getUid();
+//
+//        final TextView greetingTextView = (TextView) findViewById(R.id.greeting);
+//        final TextView fullNameTextView = (TextView) findViewById(R.id.fullName);
+//        final TextView emailTextView =(TextView) findViewById(R.id.emailAddress);
+//
+//        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User userProfile = snapshot.getValue(User.class);
+//
+//                //sending details to user profile
+//
+//                if (userProfile != null){
+//                    String fullName = userProfile.fullName;
+//                    String email = userProfile.email;
+//
+//                    greetingTextView.setText("Hey! " + fullName);
+//                    fullNameTextView.setText(fullName);
+//                    emailTextView.setText(email);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(ProfileActivity.this,"Something went wrong!",Toast.LENGTH_LONG)
+//                        .show();
+//            }
+//        });
     }
 }

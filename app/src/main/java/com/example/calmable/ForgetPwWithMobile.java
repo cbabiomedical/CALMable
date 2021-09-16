@@ -9,7 +9,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EnterPhoneActivity extends AppCompatActivity {
+public class ForgetPwWithMobile extends AppCompatActivity {
 
     private Spinner spinner;
     private EditText editText;
@@ -40,7 +40,7 @@ public class EnterPhoneActivity extends AppCompatActivity {
 
                 String phoneNumber = "+" + code + number;
 
-                Intent intent = new Intent(EnterPhoneActivity.this, VerifyPhoneActivity.class);
+                Intent intent = new Intent(ForgetPwWithMobile.this, ForgetPwOtp.class);
                 intent.putExtra("phonenumber", phoneNumber);
                 startActivity(intent);
 

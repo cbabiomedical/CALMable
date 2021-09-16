@@ -4,54 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg_register"
-    tools:context=".RegisterUser">
+    tools:context=".RegisterUser"
+    android:background="@drawable/gradient_bg_register">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <Button
+        android:id="@+id/register"
+        android:layout_width="157dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#78909c"
+        android:text="Register"
+        android:textColor="#ffffff"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintLeft_toLeftOf="@+id/log"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="36dp">
+        app:cornerRadius="15dp"
+        android:background="@drawable/mybutton"/>
 
-
-        <Button
-            android:id="@+id/log"
-            android:layout_width="148dp"
-            android:layout_height="55dp"
-            android:backgroundTint="@color/white"
-            android:text="login"
-            android:textColor="#78909c"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            app:layout_goneMarginTop="32dp"/>
-
-        <Button
-            android:id="@+id/register"
-            android:layout_width="157dp"
-            android:layout_height="55dp"
-            android:backgroundTint="#78909c"
-            android:text="Register"
-            android:textColor="@color/white"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            app:cornerRadius="15dp"
-            android:layout_marginStart="-7dp"/>
-
-    </LinearLayout>
-
+    <Button
+        android:id="@+id/log"
+        android:layout_width="148dp"
+        android:layout_height="59dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#ffffff"
+        android:text="login"
+        android:textColor="#78909c"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cornerRadius="15dp"
+        android:background="@drawable/mybutton"/>
 
     <TextView
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-black"
         android:text="Sign in so we can help \nyou better."
         android:textAlignment="center"
@@ -60,7 +53,8 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/log"
+        android:layout_marginTop="45dp"/>
 
     <EditText
         android:id="@+id/fullName"
@@ -148,22 +142,7 @@
 
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/tvOccupation"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/custom_input"
-        android:drawableEnd="@drawable/ic_arrow_drop_down"
-        android:hint="Select occupation"
-        android:padding="12dp"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gender"
-        android:textColor="@color/dark_blue_300"/>
+
 
     <EditText
         android:id="@+id/email"
@@ -179,7 +158,7 @@
         android:textSize="17sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvOccupation"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group"
         android:textColor="@color/dark_blue_300"/>
 
     <EditText
@@ -240,7 +219,7 @@
         android:layout_width="266dp"
         android:layout_height="55dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/gradient_main_btn"
+        android:background="@drawable/mybutton"
         android:text="REGISTER"
         android:textColor="@color/white"
         android:textSize="21sp"
@@ -262,7 +241,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

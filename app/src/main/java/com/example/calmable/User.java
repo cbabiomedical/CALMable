@@ -1,7 +1,6 @@
 package com.example.calmable;
 
 public class User {
-
     public String fullName,age, email;
 
     public User(){
@@ -13,5 +12,4 @@ public class User {
         this.age = age;
         this.email = email;
     }
-
 }

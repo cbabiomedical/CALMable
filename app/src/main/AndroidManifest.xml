@@ -10,31 +10,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
-            android:name=".VerifyPhoneActivity"
-            android:exported="true"
-            android:label="Verify Phone"
-            android:parentActivityName=".EnterPhoneActivity"/>
+            android:name=".EnterNewPwActivity"
+            android:exported="true" />
         <activity
-            android:name=".EnterPhoneActivity"
-            android:exported="true"
-            android:label="@null"
-            android:parentActivityName=".RegisterUser"/>
+            android:name=".ForgetPwOtp"
+            android:exported="true" />
+        <activity
+            android:name=".ForgetPwWithMobile"
+            android:exported="true" />
         <activity
             android:name=".ForgotPassword"
-            android:exported="true"
-            android:label="Forget Password"
-            android:parentActivityName=".MainActivity"/>
+            android:exported="true" />
         <activity
             android:name=".ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".RegisterUser"
+            android:name=".EnterPhoneActivity"
             android:exported="true"
-            android:label="Register"/>
+            android:label="@null"
+            android:parentActivityName=".RegisterUser" />
+        <activity
+            android:name=".VerifyPhoneActivity"
+            android:exported="true"
+            android:label="Verify Phone"
+            android:parentActivityName=".EnterPhoneActivity" />
+        <activity
+            android:name=".RegisterUser"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="Login">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
