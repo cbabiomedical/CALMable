@@ -27,6 +27,7 @@ public class EnterNewPwActivity extends AppCompatActivity {
     FirebaseUser user;
     FirebaseAuth mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,7 @@ public class EnterNewPwActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(EnterNewPwActivity.this, "Password Updated, \nLogin Again", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {

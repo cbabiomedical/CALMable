@@ -51,7 +51,7 @@ public class ForgetPwOtp extends AppCompatActivity {
 
                 if (code.isEmpty() || code.length() < 6) {
 
-                    editText.setError("Enter Valid Code");
+                    editText.setError("Not Valid");
                     editText.requestFocus();
                     return;
                 }

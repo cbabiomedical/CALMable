@@ -22,9 +22,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private FirebaseUser user;
     private DatabaseReference reference;
-    private String userID;
 
-    private Button logout;
+    private Button logout, changePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +31,16 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         logout = (Button) findViewById(R.id.signOut);
+        changePassword = (Button) findViewById(R.id.changePassword);
+
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this, EnterNewPwActivity.class));
+            }
+        });
+
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,36 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        reference = FirebaseDatabase.getInstance().getReference("Users");
-//        userID = user.getUid();
-//
-//        final TextView greetingTextView = (TextView) findViewById(R.id.greeting);
-//        final TextView fullNameTextView = (TextView) findViewById(R.id.fullName);
-//        final TextView emailTextView =(TextView) findViewById(R.id.emailAddress);
-//
-//        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User userProfile = snapshot.getValue(User.class);
-//
-//                //sending details to user profile
-//
-//                if (userProfile != null){
-//                    String fullName = userProfile.fullName;
-//                    String email = userProfile.email;
-//
-//                    greetingTextView.setText("Hey! " + fullName);
-//                    fullNameTextView.setText(fullName);
-//                    emailTextView.setText(email);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(ProfileActivity.this,"Something went wrong!",Toast.LENGTH_LONG)
-//                        .show();
-//            }
-//        });
+
+
     }
 }

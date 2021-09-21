@@ -10,8 +10,8 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="157dp"
-        android:layout_height="59dp"
+        android:layout_width="155dp"
+        android:layout_height="60dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="#78909c"
         android:text="Register"
@@ -216,7 +216,7 @@
 
     <Button
         android:id="@+id/registerUser"
-        android:layout_width="266dp"
+        android:layout_width="265dp"
         android:layout_height="55dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/mybutton"

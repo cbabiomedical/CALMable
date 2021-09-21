@@ -4,39 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EnterNewPwActivity">
+    tools:context=".EnterNewPwActivity"
+    android:background="@drawable/gradient_bg_register">
 
     <EditText
         android:id="@+id/newPw1"
-        android:layout_width="122dp"
-        android:layout_height="37dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:layout_marginTop="216dp"
-        android:text="TextView"
+        android:hint="New Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"/>
 
     <EditText
         android:id="@+id/newPw2"
-        android:layout_width="119dp"
-        android:layout_height="37dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:layout_marginTop="36dp"
-        android:text="TextView"
+        android:hint="Confirm Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newPw1" />
+        app:layout_constraintTop_toBottomOf="@+id/newPw1"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"/>
 
     <Button
         android:id="@+id/buttonChangePw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:background="@drawable/mybutton"
+        android:text="Reset Password"
+        android:textColor="@color/white"
+        android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newPw2"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.847" />
 </androidx.constraintlayout.widget.ConstraintLayout>

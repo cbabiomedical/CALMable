@@ -51,7 +51,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
                 if (code.isEmpty() || code.length() < 6) {
 
-                    editText.setError("Enter code...");
+                    editText.setError("Not Valid");
                     editText.requestFocus();
                     return;
                 }
