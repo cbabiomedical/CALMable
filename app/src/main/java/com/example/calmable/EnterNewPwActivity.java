@@ -1,20 +1,13 @@
 package com.example.calmable;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -57,26 +50,45 @@ public class EnterNewPwActivity extends AppCompatActivity {
                 }
 
                 if(!edNewPw1.getText().toString().equals(edNewPw2.getText().toString())){
-                    edNewPw1.setError("Password Do not Match");
+                    edNewPw1.setError("Password not match");
                 }
 
 
-                user.updatePassword(edNewPw1.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(EnterNewPwActivity.this, "Password Updated, \nLogin Again", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(EnterNewPwActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                // change password in profile
 
+//                user.updatePassword(edNewPw1.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        Toast.makeText(EnterNewPwActivity.this, "Password Updated, \nLogin Again", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+//                        finish();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(EnterNewPwActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+
+
+
+
+                // Forgot password OTP
+
+                String phonenumber = getIntent().getStringExtra("phoneNo");
+                String newPassword = edNewPw2.getText().toString().trim();
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                reference.child("Users/phonenumber/password").setValue(newPassword);
+
+                System.out.println("---------------------------------------------");
+                System.out.println("---------------------------------------------");
+                System.out.println("---------------------------------------------");
+                System.out.println("---------------------------------------------");
+
+                startActivity(new Intent(getApplicationContext(), LoginUserActivity.class));
+                finish();
             }
-
         });
 
 

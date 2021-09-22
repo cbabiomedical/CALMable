@@ -17,4 +17,5 @@
     <!-- user preference topic color-->
     <color name="dark_blue_300">#221C40</color>
     <color name="blue_gray_700">#455a64</color>
+
 </resources>

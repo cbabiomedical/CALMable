@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -23,10 +24,10 @@ import java.util.concurrent.TimeUnit;
 
 public class ForgetPwOtp extends AppCompatActivity {
 
-    private String verificationId;
+    private String verificationId, password, phoneNo, whatToDo;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
-    private EditText editText;
+    private EditText editTextOTP;
 
 
     @Override
@@ -37,7 +38,13 @@ public class ForgetPwOtp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         progressBar = findViewById(R.id.progressBar);
-        editText = findViewById(R.id.editTextCode);
+        editTextOTP = findViewById(R.id.editTextCode);
+
+        // get all the data form intent
+        password = getIntent().getStringExtra("password");
+        phoneNo = getIntent().getStringExtra("phoneNo");
+        whatToDo = getIntent().getStringExtra("whatToDo");
+
 
         String phonenumber = getIntent().getStringExtra("phonenumber");
         sendVerificationCode(phonenumber);
@@ -47,12 +54,12 @@ public class ForgetPwOtp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String code = editText.getText().toString().trim();
+                String code = editTextOTP.getText().toString().trim();
 
                 if (code.isEmpty() || code.length() < 6) {
 
-                    editText.setError("Not Valid");
-                    editText.requestFocus();
+                    editTextOTP.setError("Not Valid");
+                    editTextOTP.requestFocus();
                     return;
                 }
                 verifyCode(code);
@@ -84,11 +91,23 @@ public class ForgetPwOtp extends AppCompatActivity {
 
                             //startActivity(intent);
 
+                            if (whatToDo.equals("updateData")) {
+                                updateOldUserData();
+                            }
+
                         } else {
                             Toast.makeText(ForgetPwOtp.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
+    }
+
+    private void updateOldUserData() {
+
+        Intent intent = new Intent(getApplicationContext(), EnterNewPwActivity.class);
+        intent.putExtra("phoneNo", phoneNo);
+        startActivity(intent);
+        finish();
     }
 
     private void sendVerificationCode(String number) {
@@ -123,7 +142,7 @@ public class ForgetPwOtp extends AppCompatActivity {
             String code = phoneAuthCredential.getSmsCode();
 
             if (code != null) {
-                editText.setText(code);
+                editTextOTP.setText(code);
                 verifyCode(code);
             }
 
@@ -145,7 +164,7 @@ public class ForgetPwOtp extends AppCompatActivity {
 //                        .setPhoneNumber(phoneNumber)       // Phone number to verify
 //                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
 //                        .setActivity(this)                 // Activity (for callback binding)
-//                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+//                        .setCallbacks(mCallBack)          // OnVerificationStateChangedCallbacks
 //                        .setForceResendingToken(token)     // ForceResendingToken from callbacks
 //                        .build();
 //        PhoneAuthProvider.verifyPhoneNumber(options);

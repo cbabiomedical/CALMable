@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.regex.Pattern;
-
 public class ForgotPassword extends AppCompatActivity {
 
     private EditText emailEditText;
@@ -73,7 +71,7 @@ public class ForgotPassword extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            startActivity(new Intent(ForgotPassword.this, MainActivity.class));
+                            startActivity(new Intent(ForgotPassword.this, LoginUserActivity.class));
                         }
                     }, 8000);
                 }
