@@ -1,10 +1,13 @@
 package com.example.calmable;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginUserActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -26,6 +34,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
     private Button signIn , home;
 
     private FirebaseAuth mAuth;
+    DatabaseReference myRef;
     private ProgressBar progressBar;
 
     @Override
@@ -66,12 +75,43 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 userLogin();
                 break;
             case R.id.forgotPassword:
-                startActivity(new Intent(this, ForgotPassword.class));
+                startActivity(new Intent(this, ForgetPwWithMobile.class));
                 break;
             case R.id.homebtn:
+                test();
                 startActivity(new Intent(this, MainActivity.class));
                 break;
         }
+    }
+
+    private void test() {
+
+        myRef = FirebaseDatabase.getInstance().getReference().child("Users").child("7nUpkp29epQ0rQxM20fYWVSfzuB2");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.child("fullName").getValue().toString();
+                String email = snapshot.child("email").getValue().toString();
+                String age = snapshot.child("age").getValue().toString();
+                String phone = snapshot.child("phoneNo").getValue().toString();
+
+                Log.d(TAG, "onDataChange: check-------------" + name);
+                Log.d(TAG, "onDataChange: check-------------" + email);
+                Log.d(TAG, "onDataChange: check-------------" + age);
+                Log.d(TAG, "onDataChange: check-------------" + phone);
+
+                System.out.println(name);
+                System.out.println(email);
+                System.out.println(age);
+                System.out.println(phone);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     //get & display current user's profile
@@ -121,7 +161,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 if (task.isSuccessful()) {
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    startActivity(new Intent(LoginUserActivity.this, ProfileActivity.class));
+                    startActivity(new Intent(LoginUserActivity.this, MainActivity.class));
 
                      /*if (user.isEmailVerified()) {
                         // redirect to user profile

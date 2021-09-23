@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment"
-    android:background="@drawable/homebg">
+    android:background="@drawable/homebg"
+    tools:context=".HomeFragment">
 
 
     <ScrollView
@@ -35,37 +35,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="45dp"
                 android:layout_marginEnd="32dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginTop="45dp"
-                android:layout_marginStart="32dp">
+                android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/happyEmoji_1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/happy01" />
 
                 <ImageView
+                    android:id="@+id/happyEmoji_2"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/happy02" />
 
                 <ImageView
+                    android:id="@+id/happyEmoji_3"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/happy03" />
 
                 <ImageView
+                    android:id="@+id/happyEmoji_4"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/happy04" />
 
                 <ImageView
+                    android:id="@+id/happyEmoji_5"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
@@ -83,16 +88,17 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/stressHomeBtn"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="45dp"
                     android:background="@drawable/home_main_btn"
                     android:padding="16dp"
                     android:text="I'm stressed"
-                    android:textColor="@color/white"
-                    />
+                    android:textColor="@color/white" />
 
                 <Button
+                    android:id="@+id/sleepyHomebtn"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="45dp"
@@ -113,6 +119,7 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/motivateHomeBtn"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="45dp"
@@ -122,6 +129,7 @@
                     android:textColor="@color/white" />
 
                 <Button
+                    android:id="@+id/happyHomeBtn"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="45dp"
@@ -141,6 +149,7 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/breathHomeBtn"
                     android:layout_width="245dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/home_main_btn"
@@ -161,12 +170,13 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/reportHomeBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/home_main_btn"
+                    android:backgroundTint="@color/purple_500"
                     android:text="Report"
-                    android:textColor="@color/white"
-                    android:backgroundTint="@color/purple_500"/>
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 

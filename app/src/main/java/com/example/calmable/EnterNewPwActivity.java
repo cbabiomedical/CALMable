@@ -79,7 +79,7 @@ public class EnterNewPwActivity extends AppCompatActivity {
                 String newPassword = edNewPw2.getText().toString().trim();
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-                reference.child("Users/phonenumber/password").setValue(newPassword);
+                reference.child("Users//password").setValue(newPassword);
 
                 System.out.println("---------------------------------------------");
                 System.out.println("---------------------------------------------");

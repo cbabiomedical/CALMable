@@ -58,7 +58,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonResetPw"
+        android:id="@+id/buttonSignIn"
         android:layout_width="266dp"
         android:layout_height="55dp"
         android:layout_below="@id/linearLayout"
@@ -68,8 +68,8 @@
         android:text="CONTINUE"
         android:textColor="@color/white"
         android:textSize="21sp"
-        tools:ignore="MissingConstraints"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
 
 
 </RelativeLayout>

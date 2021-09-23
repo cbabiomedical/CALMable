@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RelaxFragment"
-    android:background="@drawable/relax_bg">
+    android:background="@drawable/relax_bg"
+    tools:context=".RelaxFragment">
 
 
     <ScrollView
@@ -15,9 +15,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginStart="55dp"
             android:layout_marginEnd="55dp"
+            android:orientation="vertical"
             android:padding="5dp">
 
             <Button
@@ -28,58 +28,53 @@
                 android:text="Deep relax music"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/natureSoundBtn"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/landing_main_btn"
                 android:text="Nature Sounds"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/meditateBtn"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/landing_main_btn"
                 android:text="Meditate"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/painReliefBtn"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/landing_main_btn"
                 android:text="Pain Relief"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/chillOutMusicBtn"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/landing_main_btn"
                 android:text="Chill out music"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
-
+                android:textStyle="bold" />
 
         </LinearLayout>
-
-
-
-
 
     </ScrollView>
 

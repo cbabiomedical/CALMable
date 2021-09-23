@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/home_main_btn.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic__lock_icon.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2712820512820513" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/landing_main_btn.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/mybutton.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.21296296296296297" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_breath.xml" value="0.264" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_enter_new_pw.xml" value="0.2553846153846154" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_enter_phone.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_forget_pw_otp.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_forget_pw_with_mobile.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_forgot_password.xml" value="0.2553846153846154" />
@@ -26,7 +29,7 @@
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_dashboard.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_first.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_first2.xml" value="0.259375" />
-        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_home.xml" value="0.152" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_journal.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_profile.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_relax.xml" value="0.259375" />

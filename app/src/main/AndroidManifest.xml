@@ -16,40 +16,45 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".BreathActivity"
+            android:exported="true"
+            android:label="Breathing Exercises"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".MotivationActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Motivation"/>
         <activity
             android:name=".SleepyActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Sleepy"/>
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name=".NavigationActivity"
-            android:exported="true"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/Theme.CALMable.NoActionBar" />
+<!--        <activity-->
+<!--            android:name=".NavigationActivity"-->
+<!--            android:exported="true"-->
+<!--            android:label="@string/title_activity_navigation"-->
+<!--            android:theme="@style/Theme.CALMable.NoActionBar" />-->
         <activity
             android:name=".EnterNewPwActivity"
             android:exported="true"
             android:label="Password Reset" />
         <activity
             android:name=".ForgetPwOtp"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Enter OTP"/>
         <activity
             android:name=".ForgetPwWithMobile"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Forgot Password"/>
         <activity
             android:name=".ForgotPassword"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Forgot Password"/>
         <activity
             android:name=".ProfileActivity"
             android:exported="true" />
-        <activity
-            android:name=".EnterPhoneActivity"
-            android:exported="true"
-            android:label="@null"
-            android:parentActivityName=".RegisterUser" />
         <activity
             android:name=".VerifyPhoneActivity"
             android:exported="true"
@@ -59,6 +64,10 @@
             android:name=".RegisterUser"
             android:exported="true"
             android:label="Register" />
+        <activity
+            android:name=".EnterPhoneActivity"
+            android:exported="true"
+            android:parentActivityName=".RegisterUser"/>
         <activity
             android:name=".LoginUserActivity"
             android:exported="true"

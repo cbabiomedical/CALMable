@@ -65,7 +65,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="330dp"
         android:background="@drawable/mybutton"
-        android:text="Rest Password"
+        android:text="Reset Password"
         android:textColor="@color/white"
         android:textSize="21sp"
         android:textStyle="bold"
