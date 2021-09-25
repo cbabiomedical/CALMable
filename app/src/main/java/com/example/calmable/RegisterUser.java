@@ -137,6 +137,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullname.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
+        String phoneNumber = "";
 
         if(fullName.isEmpty()){
             editTextFullname.setError("Full Name is Required");
@@ -176,7 +177,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            User user= new User(fullName,age,email);
+                            User user= new User(fullName,age,email,phoneNumber);
 
                             //startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
 
@@ -188,6 +189,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
                                     if(task.isSuccessful()){
                                         startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
+
                                         Toast.makeText(RegisterUser.this,"User has been registered successfully!",Toast.LENGTH_LONG)
                                                 .show();
 

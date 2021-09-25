@@ -52,50 +52,37 @@ public class ForgetPwWithMobile extends AppCompatActivity {
                     return;
                 }
 
-                String phoneNumber = "+" + code + number;
+                String completePhoneNumber = "+" + code + number;
 
 
                 // check phone number exists or not DB
-                Query checkUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("phoneNo").equalTo(number);
+                Query checkUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("phoneNumber").equalTo(completePhoneNumber);
                 checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                        //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
 
-                        // if phone number exists then call OTP to verify phone number
-                        for (DataSnapshot data : snapshot.getChildren()) {
-                            if (data.exists()) {
+                        if (snapshot.exists()) {
+                            editTextPhoneNo.setError(null);
+                            //editTextPhoneNo.setErrorEnabled(false);
 
-                                editTextPhoneNo.setError(null);
+                            Intent intent = new Intent(getApplicationContext(), ForgetPwOtp.class);
+                            intent.putExtra("phoneNumber", completePhoneNumber);
+                            intent.putExtra("whatToDo", "updateData");
 
-                                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
 
-                                System.out.println("----------------------a-----------------------");
-                                System.out.println("----------------------a-----------------------");
-                                System.out.println("----------------------a-----------------------");
-                                System.out.println("----------------------a-----------------------");
+                            Toast.makeText(ForgetPwWithMobile.this, "Verify Success!", Toast.LENGTH_LONG).show();
+                            startActivity(intent);
+                            finish();
 
-                                if (phoneNumber.equals(data)) {
-                                    Intent intent = new Intent(getApplicationContext(), ForgetPwOtp.class);
-                                    intent.putExtra("phoneNo", number);
-                                    intent.putExtra("whatToDo", "updateData");
-
-                                    System.out.println("-------------------b--------------------------");
-                                    System.out.println("--------------------b-------------------------");
-                                    System.out.println("--------------------b-------------------------");
-                                    System.out.println("--------------------b-------------------------");
-
-                                    Toast.makeText(ForgetPwWithMobile.this, "Verify Success!",Toast.LENGTH_LONG).show();
-                                    startActivity(intent);
-                                    finish();
-                                }
-
-                            } else {
-                                Toast.makeText(ForgetPwWithMobile.this, "No such user exist!",Toast.LENGTH_LONG).show();
-                                editTextPhoneNo.setError("No such user exist!");
-                                editTextPhoneNo.requestFocus();
-                            }
+                            System.out.println(snapshot);
+                        }else {
+                            Toast.makeText(ForgetPwWithMobile.this, "No such user exist!", Toast.LENGTH_LONG).show();
+                            editTextPhoneNo.setError("No such user exist!");
+                            editTextPhoneNo.requestFocus();
                         }
+
                     }
 
                     @Override

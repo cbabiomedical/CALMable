@@ -2,22 +2,51 @@ package com.example.calmable;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class EnterPhoneActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private EditText editText;
 
+    FirebaseUser mUser;
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase mDatabase;
+    DatabaseReference databaseReference;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_phone);
+
+
+        DatabaseReference rootdatabaseRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String userKey = user.getUid();
+
 
         // initialize
         spinner = findViewById(R.id.spinnerCountries);
@@ -38,17 +67,33 @@ public class EnterPhoneActivity extends AppCompatActivity {
                     return;
                 }
 
-                String phoneNumber = "+" + code + number;
+                String phoneNo = "+" + code + number;
 
-                Intent intent = new Intent(EnterPhoneActivity.this, VerifyPhoneActivity.class);
-                intent.putExtra("phonenumber", phoneNumber);
+                HashMap<String, Object> hashMap = new HashMap<>();
+
+
+                hashMap.put("phoneNumber", phoneNo);
+                rootdatabaseRef.child(userKey).updateChildren(hashMap)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+
+                                Toast.makeText(EnterPhoneActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                                //Intent intent=new Intent(UserPreferences.this,ProfileActivity.class);
+                                //startActivity(intent);
+                            }
+                        });
+                Toast.makeText(EnterPhoneActivity.this, "Successful !", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EnterPhoneActivity.this, LoginUserActivity.class);
                 startActivity(intent);
 
             }
         });
     }
 
-//    @Override
+
+    //    @Override
 //    protected void onStart() {
 //        super.onStart();
 //
@@ -60,4 +105,10 @@ public class EnterPhoneActivity extends AppCompatActivity {
 //        }
 //    }
 
+
 }
+
+
+
+
+

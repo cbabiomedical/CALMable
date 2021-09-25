@@ -53,10 +53,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/buttonChangePw"
+        android:id="@+id/set_new_password_btn"
         android:layout_width="265dp"
         android:layout_height="55dp"
         android:background="@drawable/mybutton"
+        android:onClick="setNewPasswordBtn"
         android:text="Reset Password"
         android:textColor="@color/white"
         android:textSize="21sp"

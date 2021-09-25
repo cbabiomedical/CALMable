@@ -46,7 +46,7 @@ public class ForgetPwOtp extends AppCompatActivity {
         whatToDo = getIntent().getStringExtra("whatToDo");
 
 
-        String phonenumber = getIntent().getStringExtra("phonenumber");
+        String phonenumber = getIntent().getStringExtra("phoneNumber");
         sendVerificationCode(phonenumber);
 
 
@@ -66,7 +66,7 @@ public class ForgetPwOtp extends AppCompatActivity {
                 Intent intent = new Intent(ForgetPwOtp.this, EnterNewPwActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                startActivity(intent);
+                //startActivity(intent);
             }
         });
 
@@ -92,6 +92,8 @@ public class ForgetPwOtp extends AppCompatActivity {
                             //startActivity(intent);
 
                             if (whatToDo.equals("updateData")) {
+//                                Intent intent = new Intent(getApplicationContext(), EnterNewPwActivity.class);
+//                                intent.putExtra("phoneNo", phoneNo);
                                 updateOldUserData();
                             }
 
@@ -105,7 +107,7 @@ public class ForgetPwOtp extends AppCompatActivity {
     private void updateOldUserData() {
 
         Intent intent = new Intent(getApplicationContext(), EnterNewPwActivity.class);
-        intent.putExtra("phoneNo", phoneNo);
+        intent.putExtra("phoneNumber", phoneNo);
         startActivity(intent);
         finish();
     }
