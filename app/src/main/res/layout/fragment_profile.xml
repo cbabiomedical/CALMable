@@ -6,7 +6,7 @@
     android:background="@drawable/sea_bg"
     tools:context=".ProfileFragment">
 
-    <ImageView
+    <Button
         android:id="@+id/settings"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -147,7 +147,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/logoutBtn"
+                android:id="@+id/logout"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="5dp"

@@ -117,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@id/age">
 
         <RadioButton
-            android:id="@+id/radio_one"
+            android:id="@+id/radio_male"
             android:layout_width="80dp"
             android:layout_height="29dp"
             android:checked="true"
@@ -125,14 +125,14 @@
             android:textColor="@color/dark_blue_300" />
 
         <RadioButton
-            android:id="@+id/radio_two"
+            android:id="@+id/radio_female"
             android:layout_width="90dp"
             android:layout_height="36dp"
             android:text="Female"
             android:textColor="@color/dark_blue_300" />
 
         <RadioButton
-            android:id="@+id/radio_three"
+            android:id="@+id/radio_other"
             android:layout_width="115dp"
             android:layout_height="36dp"
             android:text="Other"
