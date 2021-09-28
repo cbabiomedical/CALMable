@@ -38,10 +38,25 @@
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/test_main.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/testhome.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/menu/bottom_nav_menu.xml" value="0.21296296296296297" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_journal.xml" value="0.2203125" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.2203125" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.2203125" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_profile.xml" value="0.2203125" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_relax_face.xml" value="0.2203125" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/landing_main_btn.xml" value="0.2203125" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/side_nav_bar.xml" value="0.2203125" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_login_user.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_register_user.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/fragment_challengers.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/fragment_journal.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/fragment_relax.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
