@@ -6,9 +6,39 @@
     android:background="@drawable/sea_bg"
     tools:context=".ProfileFragment">
 
-    <ScrollView
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="370dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_settings_icon" />
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="Mahidi Wijayantha "
+        android:textColor="#205072"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="531dp"
         android:layout_marginTop="200dp">
 
         <LinearLayout
@@ -24,11 +54,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@color/white"
-                android:text="My Downloads"
-                android:textColor="#205072"
                 android:drawableStart="@drawable/ic_download_icon"
                 android:drawableEnd="@drawable/ic_arrow"
                 android:paddingStart="12dp"
+                android:text="My Downloads"
+                android:textColor="#205072"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -36,12 +66,12 @@
                 android:id="@+id/myFavouritesBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@color/white"
-                android:text="My Favourites"
                 android:drawableStart="@drawable/ic_favorites_icon"
                 android:drawableEnd="@drawable/ic_arrow"
                 android:paddingStart="12dp"
+                android:text="My Favourites"
                 android:textColor="#205072"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -50,13 +80,13 @@
                 android:id="@+id/remindersBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@color/white"
-                android:text="Reminders"
-                android:textColor="#205072"
                 android:drawableStart="@drawable/ic_reminders_icon"
                 android:drawableEnd="@drawable/ic_arrow"
                 android:paddingStart="12dp"
+                android:text="Reminders"
+                android:textColor="#205072"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -64,13 +94,13 @@
                 android:id="@+id/calenderBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@color/white"
-                android:text="calender"
-                android:textColor="#205072"
                 android:drawableStart="@drawable/ic_calendar_icon"
                 android:drawableEnd="@drawable/ic_arrow"
                 android:paddingStart="12dp"
+                android:text="calender"
+                android:textColor="#205072"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -78,41 +108,44 @@
                 android:id="@+id/premiumBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@color/white"
-                android:text="Premium"
-                android:textColor="#205072"
                 android:drawableStart="@drawable/ic_premium_icon"
                 android:drawableEnd="@drawable/ic_arrow"
                 android:paddingStart="12dp"
+                android:text="Premium"
+                android:textColor="#205072"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+
             <Button
                 android:id="@+id/rateUsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@color/white"
-                android:text="Rate Us"
-                android:textColor="#205072"
                 android:drawableStart="@drawable/ic__rate_icon"
                 android:drawableEnd="@drawable/ic_arrow"
                 android:paddingStart="12dp"
+                android:text="Rate Us"
+                android:textColor="#205072"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+
             <Button
                 android:id="@+id/aboutAppBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@color/white"
-                android:text="About App"
-                android:textColor="#205072"
                 android:drawableStart="@drawable/ic_about_icon"
                 android:drawableEnd="@drawable/ic_arrow"
                 android:paddingStart="12dp"
+                android:text="About App"
+                android:textColor="#205072"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+
             <Button
                 android:id="@+id/logoutBtn"
                 android:layout_width="match_parent"
@@ -132,7 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="660dp"
+        android:layout_marginTop="650dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:orientation="horizontal">

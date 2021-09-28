@@ -3,6 +3,9 @@ package com.example.calmable;
 import java.util.HashMap;
 
 public class User {
+
+    // Creating private variables to store user data
+    // private variables for encapsulation
     public String fullName,age, email , phoneNumber;
 
     public User() {

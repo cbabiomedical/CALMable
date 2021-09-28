@@ -7,11 +7,8 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
-
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -21,26 +18,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".BreathActivity"
             android:exported="true"
             android:label="Breathing Exercises"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MotivationActivity"
             android:exported="true"
-            android:label="Motivation"/>
+            android:label="Motivation" />
         <activity
             android:name=".SleepyActivity"
             android:exported="true"
-            android:label="Sleepy"/>
+            android:label="Sleepy" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".NavigationActivity"-->
-<!--            android:exported="true"-->
-<!--            android:label="@string/title_activity_navigation"-->
-<!--            android:theme="@style/Theme.CALMable.NoActionBar" />-->
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".NavigationActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:label="@string/title_activity_navigation" -->
+        <!-- android:theme="@style/Theme.CALMable.NoActionBar" /> -->
         <activity
             android:name=".EnterNewPwActivity"
             android:exported="true"
@@ -48,15 +47,15 @@
         <activity
             android:name=".ForgetPwOtp"
             android:exported="true"
-            android:label="Enter OTP"/>
+            android:label="Enter OTP" />
         <activity
             android:name=".ForgetPwWithMobile"
             android:exported="true"
-            android:label="Forgot Password"/>
+            android:label="Forgot Password" />
         <activity
             android:name=".ForgotPassword"
             android:exported="true"
-            android:label="Forgot Password"/>
+            android:label="Forgot Password" />
         <activity
             android:name=".ProfileActivity"
             android:exported="true" />
@@ -72,7 +71,7 @@
         <activity
             android:name=".EnterPhoneActivity"
             android:exported="true"
-            android:parentActivityName=".RegisterUser"/>
+            android:parentActivityName=".RegisterUser" />
         <activity
             android:name=".LoginUserActivity"
             android:exported="true"
