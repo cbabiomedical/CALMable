@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //"I'm Sleepy" button
         sleepyHomebtn = (Button) view.findViewById(R.id.sleepyHomebtn);
         sleepyHomebtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //"I wanna motivate" button
         motivateHomeBtn = (Button) view.findViewById(R.id.motivateHomeBtn);
         motivateHomeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -63,6 +65,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //"I'm Happy" button
         happyHomeBtn = (Button) view.findViewById(R.id.happyHomeBtn);
         happyHomeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -73,6 +76,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //"Take a deep breath" button
         breathHomeBtn = (Button) view.findViewById(R.id.breathHomeBtn);
         breathHomeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
