@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".stressHome"
+            android:exported="true" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:label="">
@@ -76,8 +79,7 @@
         <activity
             android:name=".LoginUserActivity"
             android:exported="true"
-            android:label="Login">
-        </activity>
+            android:label="Login"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
