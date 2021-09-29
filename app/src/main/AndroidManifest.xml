@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".breathHome"
+            android:exported="true" />
+        <activity
             android:name=".happyHome"
             android:exported="true" />
         <activity

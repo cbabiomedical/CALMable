@@ -72,6 +72,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        breathHomeBtn = (Button) view.findViewById(R.id.breathHomeBtn);
+        breathHomeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getActivity(),breathHome.class));
+
+            }
+        });
 
         return view;
 
