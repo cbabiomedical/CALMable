@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
+        //"I'm stressed" button
         stressHomeBtn = (Button) view.findViewById(R.id.stressHomeBtn);
         stressHomeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
