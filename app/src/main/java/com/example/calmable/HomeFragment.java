@@ -41,6 +41,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        sleepyHomebtn = (Button) view.findViewById(R.id.sleepyHomebtn);
+        sleepyHomebtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getActivity(),sleepyHome.class));
+
+            }
+        });
 
         return view;
 
