@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -32,7 +34,6 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     PhoneAuthProvider.ForceResendingToken token;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +44,8 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         editText = findViewById(R.id.editTextCode);
 
-        String phonenumber = getIntent().getStringExtra("phonenumber");
-        sendVerificationCode(phonenumber);
+        String phoneNo = getIntent().getStringExtra("phoneNo");
+        sendVerificationCode(phoneNo);
 
         findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
 
@@ -55,15 +56,28 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
                 if (code.isEmpty() || code.length() < 6) {
 
-                    editText.setError("Enter code...");
+                    editText.setError("Enter Valid Code");
                     editText.requestFocus();
                     return;
                 }
                 verifyCode(code);
                 Intent intentSUGGESTIONS = new Intent(VerifyPhoneActivity.this, LoginUserActivity.class);
                 intentSUGGESTIONS.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
                 startActivity(intentSUGGESTIONS);
+                finish();
+            }
+        });
+
+        findViewById(R.id.btnResentOTP).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String phoneNo = getIntent().getStringExtra("phoneNo");
+
+                Log.d("TAG", "Resend OTP");
+
+                resendVerificationCode(phoneNo, token);
+
             }
         });
 
@@ -80,7 +94,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(VerifyPhoneActivity.this,"Authentication is successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VerifyPhoneActivity.this, "Authentication is successful", Toast.LENGTH_SHORT).show();
 
                             //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             //startActivity(new Intent(VerifyPhoneActivity.this, MainActivity.class));
@@ -90,7 +104,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                             //startActivity(intent);
 
                         } else {
-                            Toast.makeText(VerifyPhoneActivity.this,"Authentication is not successful"+ task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(VerifyPhoneActivity.this, "Authentication is not successful" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -99,10 +113,13 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private void sendVerificationCode(String number) {
         progressBar.setVisibility(View.VISIBLE);
 
+        // visible progress bar
+        progressBar.setVisibility(View.VISIBLE);
+
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(number)       // Phone number to verify
-                        .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // Activity (for callback binding)
                         .setCallbacks(mCallBack)          // OnVerificationStateChangedCallbacks
                         .build();
@@ -124,7 +141,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         @Override
         public void onCodeAutoRetrievalTimeOut(@NonNull String s) {
             super.onCodeAutoRetrievalTimeOut(s);
-            Toast.makeText(VerifyPhoneActivity.this,"OTP Expired..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(VerifyPhoneActivity.this, "OTP Expired..", Toast.LENGTH_SHORT).show();
         }
 
         //this method called when the verification is completed
@@ -142,11 +159,24 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         //if the verification fails
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(VerifyPhoneActivity.this,"Cannot create the account"+ e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(VerifyPhoneActivity.this, "Cannot create the account" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
 
 
+    //   resent OTP
+    private void resendVerificationCode(String phoneNumber,
+                                        PhoneAuthProvider.ForceResendingToken token) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber(phoneNumber)       // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(mCallBack)          // OnVerificationStateChangedCallbacks
+                        .setForceResendingToken(token)     // ForceResendingToken from callbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
 
 
 //    public void gotoLandingPage(View view) {

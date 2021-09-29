@@ -1,4 +1,4 @@
-package com.example.calmable;
+package com.example.calmable.forgotpw_otp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.calmable.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,14 +33,14 @@ public class ForgetPwWithMobile extends AppCompatActivity {
 
         // initialize
         spinner = findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryDataOTP.countryNames));
 
         editTextPhoneNo = findViewById(R.id.editTextPhone);
 
         findViewById(R.id.buttonResetPw).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
+                String code = CountryDataOTP.countryAreaCodes[spinner.getSelectedItemPosition()];
 
                 String number = editTextPhoneNo.getText().toString().trim();
 
