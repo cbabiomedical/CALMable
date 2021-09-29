@@ -62,7 +62,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        
+        happyHomeBtn = (Button) view.findViewById(R.id.happyHomeBtn);
+        happyHomeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getActivity(),happyHome.class));
+
+            }
+        });
+
+
         return view;
 
     }
