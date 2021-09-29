@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
         stressHomeBtn = (Button) view.findViewById(R.id.stressHomeBtn);
         stressHomeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -51,6 +52,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        motivateHomeBtn = (Button) view.findViewById(R.id.motivateHomeBtn);
+        motivateHomeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getActivity(),motivateHome.class));
+
+            }
+        });
+
+        
         return view;
 
     }

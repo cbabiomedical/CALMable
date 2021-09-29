@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".motivateHome"
+            android:exported="true" />
+        <activity
             android:name=".sleepyHome"
             android:exported="true" />
         <activity
