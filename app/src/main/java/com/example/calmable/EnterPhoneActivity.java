@@ -85,7 +85,8 @@ public class EnterPhoneActivity extends AppCompatActivity {
                             }
                         });
                 Toast.makeText(EnterPhoneActivity.this, "Successful !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EnterPhoneActivity.this, LoginUserActivity.class);
+                Intent intent = new Intent(EnterPhoneActivity.this, VerifyPhoneActivity.class);
+                intent.putExtra("phoneNo", phoneNo);
                 startActivity(intent);
 
             }
@@ -107,8 +108,3 @@ public class EnterPhoneActivity extends AppCompatActivity {
 
 
 }
-
-
-
-
-

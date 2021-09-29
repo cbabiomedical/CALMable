@@ -2,13 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.calmable">
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:label="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".EditProfileActivity"
             android:exported="true" />
@@ -41,24 +45,21 @@
         <!-- android:label="@string/title_activity_navigation" -->
         <!-- android:theme="@style/Theme.CALMable.NoActionBar" /> -->
         <activity
-            android:name=".EnterNewPwActivity"
+            android:name=".forgotpw_otp.EnterNewPwActivity"
             android:exported="true"
             android:label="Password Reset" />
         <activity
-            android:name=".ForgetPwOtp"
+            android:name=".forgotpw_otp.ForgetPwOtp"
             android:exported="true"
             android:label="Enter OTP" />
         <activity
-            android:name=".ForgetPwWithMobile"
+            android:name=".forgotpw_otp.ForgetPwWithMobile"
             android:exported="true"
             android:label="Forgot Password" />
         <activity
             android:name=".ForgotPassword"
             android:exported="true"
             android:label="Forgot Password" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="true" />
         <activity
             android:name=".VerifyPhoneActivity"
             android:exported="true"
@@ -76,12 +77,11 @@
             android:name=".LoginUserActivity"
             android:exported="true"
             android:label="Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

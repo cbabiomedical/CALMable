@@ -1,4 +1,4 @@
-package com.example.calmable;
+package com.example.calmable.forgotpw_otp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.calmable.ProfileActivity;
+import com.example.calmable.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -146,4 +148,5 @@ public class EnterNewPwActivity extends AppCompatActivity {
 //        startActivity(new Intent(getApplicationContext(), LoginUserActivity.class));
 //        finish();
     }
+
 }
