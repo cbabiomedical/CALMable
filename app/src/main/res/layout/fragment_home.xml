@@ -37,6 +37,7 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_marginBottom="25dp"
                 android:layout_width="match_parent"
+                android:indeterminateDrawable="@drawable/heartratebar1"
                 android:layout_height="wrap_content" />
 
             <LinearLayout
