@@ -49,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
         // set repeat mode
         objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
         //start animation
-        objectAnimator.start();
+        //objectAnimator.start();
 
 
         //set animate text
