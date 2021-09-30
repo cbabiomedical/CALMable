@@ -12,10 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+<<<<<<< HEAD
             android:name=".ChangePasswordActivity"
             android:exported="true" />
         <activity
             android:name=".NoteEditorActivity"
+=======
+            android:name=".breathHome"
+            android:exported="true" />
+        <activity
+            android:name=".happyHome"
+            android:exported="true" />
+        <activity
+            android:name=".motivateHome"
+            android:exported="true" />
+        <activity
+            android:name=".sleepyHome"
+            android:exported="true" />
+        <activity
+            android:name=".stressHome"
+>>>>>>> 77d34787db82e5f113fb6e169cbcb711d129075b
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
@@ -84,9 +100,13 @@
         <activity
             android:name=".LoginUserActivity"
             android:exported="true"
+<<<<<<< HEAD
             android:label="CALMable">
 
         </activity>
+=======
+            android:label="Login" />
+>>>>>>> 77d34787db82e5f113fb6e169cbcb711d129075b
 
         <meta-data
             android:name="preloaded_fonts"

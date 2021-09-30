@@ -35,9 +35,11 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
 
+        //set onclick listener for register button
         register = (Button) findViewById(R.id.register);
         register.setOnClickListener(this);
 
+        //set onclick listener for signin button
         signIn = (Button) findViewById(R.id.signIn);
         signIn.setOnClickListener(this);
 
@@ -46,8 +48,10 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
         progressBar =(ProgressBar) findViewById(R.id.progressBar);
 
+        //firebase authentication instance
         mAuth = FirebaseAuth.getInstance();
 
+        //set onclick listener for forgotpassword button
         forgotPassword = (TextView) findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(this);
 
@@ -58,15 +62,18 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            //go to register page
             case R.id.register:
                 startActivity(new Intent(this,RegisterUser.class));
                 break;
             case R.id.log:
                 startActivity(new Intent(this, LoginUserActivity.class));
                 break;
+            //go to sign in page
             case R.id.signIn:
                 userLogin();
                 break;
+            //go to forget password page
             case R.id.forgotPassword:
                 startActivity(new Intent(this, ForgotPassword.class));
                 break;
@@ -112,6 +119,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
     protected void onStart() {
         super.onStart();
 
+        //signin authentication
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             Intent intent = new Intent(this, ProfileActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -123,30 +131,36 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
     //get user credentials & convert it back to string
     private void userLogin() {
+        //get user email and password
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
+        //check email is entered
         if(email.isEmpty()){
             editTextEmail.setError("Email is required");
             editTextEmail.requestFocus();
             return;
         }
+        //check whether email is valid
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editTextEmail.setError("Enter a valid email!");
             editTextEmail.requestFocus();
             return;
         }
+        //check password is entered
         if(password.isEmpty()){
             editTextPassword.setError("Password is Required");
             editTextPassword.requestFocus();
             return;
         }
+        //check password length is more than 6 characters
         if(password.length() < 6){
             editTextPassword.setError("Minimum Password length should be 6 characters!");
             editTextPassword.requestFocus();
             return;
         }
         progressBar.setVisibility(View.GONE);
+        //signin with email and password
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

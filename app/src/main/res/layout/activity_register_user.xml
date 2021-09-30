@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterUser"
-    android:background="@drawable/gradient_bg_register">
+    android:background="@drawable/bg_2">
 
 
     <Button

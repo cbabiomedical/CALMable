@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,10 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private TextView log,registerUser,  tvOccupation;
     private EditText editTextFullname, editTextAge, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
+    private RadioButton male;
+    private RadioButton female;
+    private RadioButton other;
+    private String gender = "";
     Dialog dialog;
 
     private FirebaseAuth mAuth;
@@ -48,6 +54,10 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         editTextAge = (EditText) findViewById(R.id.age);
         editTextEmail = (EditText) findViewById(R.id.TextInputLayout1);
         editTextPassword = (EditText) findViewById(R.id.textInputLayout2);
+
+        male = (RadioButton) findViewById(R.id.radio_male);
+        female = (RadioButton) findViewById(R.id.radio_female);
+        other = (RadioButton) findViewById(R.id.radio_other);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -139,45 +149,76 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String age = editTextAge.getText().toString().trim();
         String phoneNumber = "";
 
+
+        // Assigning male to gender variable if male radio button is checked
+        if (male.isChecked()) {
+            gender = "Male";
+        }
+
+        // Assigning female to gender variable if female radio button is checked
+        if (female.isChecked()) {
+            gender = "Female";
+        }
+
+        // Assigning other to gender variable if other radio button is checked
+        if (other.isChecked()) {
+            gender = "Other";
+        }
+
+        Log.d("gender---------", gender);
+
+        // notifying user if username field is empty
         if(fullName.isEmpty()){
             editTextFullname.setError("Full Name is Required");
             editTextFullname.requestFocus();
             return;
         }
+
+        // notifying user if age field is empty
         if(age.isEmpty()){
             editTextAge.setError("Age is Required");
             editTextAge.requestFocus();
             return;
         }
+
+        // notifying user if email field is empty
         if(email.isEmpty()){
             editTextEmail.setError("Email is Required");
             editTextEmail.requestFocus();
             return;
         }
 
+        // notifying user if email entered is not in email address format
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editTextEmail.setError("Email is Invalid");
             editTextEmail.requestFocus();
             return;
         }
+        // Notifying user if password field is empty
         if(password.isEmpty()){
             editTextPassword.setError("Password is Required");
             editTextPassword.requestFocus();
             return;
         }
+
+        // Notifying user if password has less than 6 characters
         if(password.length() < 6){
             editTextPassword.setError("Minimum Password length should be 6 characters!");
             editTextPassword.requestFocus();
             return;
         }
 
+        // setting progress bar as visible for authentication time
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            User user= new User(fullName,age,email,phoneNumber);
+                            //Creating user object and passing user input as parameters
+                            User user= new User(fullName,age,email,gender,phoneNumber);
+
+                            Log.d("got the gender---------", gender);
 
                             //startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
 
@@ -188,8 +229,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if(task.isSuccessful()){
-                                        startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
+                                        //startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
 
+                                        //If task complete navigating from Register Activity to EnterPhone Activity
+                                        Intent intent = new Intent(RegisterUser.this, EnterPhoneActivity.class);
+                                        startActivity(intent);
+                                        // Display Toast message "Registration successful"
                                         Toast.makeText(RegisterUser.this,"User has been registered successfully!",Toast.LENGTH_LONG)
                                                 .show();
 

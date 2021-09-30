@@ -1,19 +1,18 @@
 package com.example.calmable;
 
-import java.util.HashMap;
-
 public class User {
 
     // Creating private variables to store user data
     // private variables for encapsulation
-    public String fullName,age, email , phoneNumber;
+    public String fullName,age, email , gender,phoneNumber;
 
     public User() {
     }
 
-    public User(String fullName, String age, String email, String phoneNumber) {
+    public User(String fullName, String age, String email,String gender,String phoneNumber) {
         this.fullName = fullName;
         this.age = age;
+        this.gender = gender;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
@@ -40,6 +39,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getPhoneNumber() {

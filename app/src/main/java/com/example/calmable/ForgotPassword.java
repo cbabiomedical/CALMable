@@ -34,8 +34,10 @@ public class ForgotPassword extends AppCompatActivity {
         resetPasswordButton = (Button) findViewById(R.id.resetPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        //get instance of firebase user authentication
         auth = FirebaseAuth.getInstance();
 
+        //onclick listener for resetPasswordButton to run resetPassword() method
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,11 +50,13 @@ public class ForgotPassword extends AppCompatActivity {
     private void resetPassword(){
         String email = emailEditText.getText().toString().trim();
 
+        //check email is entered
         if (email.isEmpty()){
             emailEditText.setError("Email is Required");
             emailEditText.requestFocus();
             return;
         }
+        //check if a valid email is entered
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             emailEditText.setError("Please provide valid email!");
             emailEditText.requestFocus();
@@ -60,9 +64,11 @@ public class ForgotPassword extends AppCompatActivity {
         }
 
         progressBar.setVisibility(View.VISIBLE);
+        //after user is authenticated send reset password mail to user email via otp
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                //if task is successful show the toast
                 if (task.isSuccessful()) {
                     Toast.makeText(ForgotPassword.this, "Check your email to reset your password & Log in again to continue!", Toast.LENGTH_LONG)
                             .show();
