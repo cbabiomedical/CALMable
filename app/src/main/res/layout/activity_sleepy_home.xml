@@ -4,14 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sleepyHome">
+    tools:context=".SleepyActivity"
+    android:alpha="0.9"
+    android:background="@drawable/sleepy_bg" >
 
-    <TextView
+
+    <ScrollView
+        android:id="@+id/sleepy"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="I'm Sleepy"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:gravity="center"
-        />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                android:text="S l e e p y"
+                android:textColor="@color/white"
+                android:fontFamily="@font/droidserif_italic"
+                android:textSize="45dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:id="@+id/sleepStoryBtn"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:background="@drawable/landing_main_btn"
+                android:text="Sleep Stories"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="60dp"/>
+
+            <Button
+                android:id="@+id/meditationBtn"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/landing_main_btn"
+                android:text="meditation"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/soundscapeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/landing_main_btn"
+                android:text="soundscape"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

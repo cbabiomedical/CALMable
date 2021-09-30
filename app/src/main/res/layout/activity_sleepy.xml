@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:background="@drawable/landing_main_btn"
-                android:text="Sleep Story"
+                android:text="Sleep Stories"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold"
