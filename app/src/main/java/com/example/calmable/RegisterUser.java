@@ -30,6 +30,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private ProgressBar progressBar;
     private RadioButton male;
     private RadioButton female;
+    private RadioButton other;
     private String gender = "";
     Dialog dialog;
 
@@ -56,6 +57,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
         male = (RadioButton) findViewById(R.id.radio_male);
         female = (RadioButton) findViewById(R.id.radio_female);
+        other = (RadioButton) findViewById(R.id.radio_other);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -156,6 +158,11 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         // Assigning female to gender variable if female radio button is checked
         if (female.isChecked()) {
             gender = "Female";
+        }
+
+        // Assigning other to gender variable if other radio button is checked
+        if (other.isChecked()) {
+            gender = "Other";
         }
 
         Log.d("gender---------", gender);
