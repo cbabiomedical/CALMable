@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.calmable.HomeFragment"
-        android:label="Home"
+        android:label="CALMable"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/relaxFragment"

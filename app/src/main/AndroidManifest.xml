@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".NoteEditorActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:label="">
@@ -23,7 +29,8 @@
         </activity>
         <activity
             android:name=".EditProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="My Profile" />
         <activity
             android:name=".BreathActivity"
             android:exported="true"
@@ -59,7 +66,8 @@
         <activity
             android:name=".ForgotPassword"
             android:exported="true"
-            android:label="Forgot Password" />
+            android:label="Forgot Password"
+            android:parentActivityName=".LoginUserActivity" />
         <activity
             android:name=".VerifyPhoneActivity"
             android:exported="true"
@@ -76,7 +84,8 @@
         <activity
             android:name=".LoginUserActivity"
             android:exported="true"
-            android:label="Login">
+            android:label="CALMable">
+
         </activity>
 
         <meta-data

@@ -30,7 +30,7 @@ public class ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        emailEditText = (EditText) findViewById(R.id.email);
+        emailEditText = (EditText) findViewById(R.id.TextInputLayout1);
         resetPasswordButton = (Button) findViewById(R.id.resetPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 

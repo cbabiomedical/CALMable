@@ -7,13 +7,8 @@
     tools:context=".JournalFragment">
 
 
-
-    <TextView
+    <ListView
+        android:id="@+id/listViewJournal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Journal"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:gravity="center"
-        />
-
+        android:layout_height="match_parent" />
 </FrameLayout>

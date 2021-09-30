@@ -26,6 +26,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         Button settings = (Button) view.findViewById(R.id.settings);
+        Button signOutBtn = (Button) view.findViewById(R.id.signOut);
 
 
         settings.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +39,19 @@ public class ProfileFragment extends Fragment {
 
         });
 
+
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), LoginUserActivity.class);
+//                in.putExtra("some","some data");
+                FirebaseAuth.getInstance().signOut();
+                getActivity().finish();
+                startActivity(in);
+
+            }
+
+        });
         return view;
     }
 

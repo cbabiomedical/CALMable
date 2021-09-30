@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/custom_input.xml" value="0.2755208333333333" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/ic_arrow.xml" value="0.2755208333333333" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/ic_premium_icon.xml" value="0.2755208333333333" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/ic_settings_icon.xml" value="0.2755208333333333" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/mybutton.xml" value="0.2755208333333333" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/profile_shape.xml" value="0.2755208333333333" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_breath.xml" value="0.259375" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_change_password.xml" value="0.1" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_edit_profile.xml" value="0.259375" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_enter_new_pw.xml" value="0.259375" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_enter_phone.xml" value="0.259375" />
@@ -18,14 +25,17 @@
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_sleepy.xml" value="0.259375" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_splash.xml" value="0.275" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_verify_phone.xml" value="0.259375" />
-        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/fragment_profile.xml" value="0.259375" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/fragment_home.xml" value="0.259375" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/home_main_btn.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic__lock_icon.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2712820512820513" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic_phone_icon.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/landing_main_btn.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/mybutton.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.21296296296296297" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_breath.xml" value="0.264" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_edit_profile.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_enter_new_pw.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_enter_phone.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_forget_pw_otp.xml" value="0.259375" />
@@ -34,6 +44,7 @@
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_login_user.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_main.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_motivation.xml" value="0.259375" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_note_editor.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_profile.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_register_user.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_sleepy.xml" value="0.259375" />
