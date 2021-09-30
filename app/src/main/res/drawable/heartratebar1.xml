@@ -6,6 +6,7 @@
         <shape
             android:innerRadiusRatio="3"
             android:shape="ring"
+            android:thickness="8dp"
             android:useLevel="false">
 
             <solid android:color="@android:color/darker_gray"/>
@@ -20,6 +21,7 @@
             <shape
                 android:innerRadiusRatio="3"
                 android:shape="ring"
+                android:thickness="8dp"
                 android:useLevel="true">
 
                 <solid android:color="@color/teal_200"/>
