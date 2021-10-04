@@ -6,6 +6,8 @@ public class User {
     // private variables for encapsulation
     public String fullName,age, email , gender,phoneNumber;
 
+    String preference;
+
     public User() {
     }
 
@@ -15,6 +17,18 @@ public class User {
         this.gender = gender;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public User(String preference) {
+        this.preference = preference;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 
     public String getFullName() {
