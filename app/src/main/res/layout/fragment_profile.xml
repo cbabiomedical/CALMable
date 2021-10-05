@@ -53,7 +53,7 @@
         android:id="@+id/settings"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="340dp"
+        android:layout_marginStart="345dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/ic_settings_icon"
         android:padding="13dp" />

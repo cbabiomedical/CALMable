@@ -59,7 +59,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TextInputLayout1"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"
@@ -77,10 +77,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_email"
             android:hint="\tEmail Address"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,6 +95,7 @@
         android:drawableStart="@drawable/ic_lock"
         android:drawablePadding="12dp"
         android:ems="10"
+        app:endIconMode="password_toggle"
         android:hint="\tPassword"
         android:inputType="textPassword"
         android:paddingStart="12dp"
@@ -109,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableStart="@drawable/ic_lock"
-            android:inputType="textVisiblePassword"/>
+            android:inputType="textWebPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

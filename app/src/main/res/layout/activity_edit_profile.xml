@@ -127,7 +127,7 @@
                 android:paddingStart="16dp"
                 android:textSize="18sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/changePassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -142,14 +142,16 @@
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editOccupation" />
+                app:layout_constraintTop_toBottomOf="@+id/editOccupation"
+                android:gravity="center_vertical"/>
+
 
             <Button
                 android:id="@+id/profileSaveBtn"
                 android:layout_width="266dp"
                 android:layout_height="55dp"
                 android:background="@drawable/mybutton"
-                android:text="LOGIN"
+                android:text="save"
                 android:textColor="@color/white"
                 android:textSize="21sp"
                 android:textStyle="bold"
