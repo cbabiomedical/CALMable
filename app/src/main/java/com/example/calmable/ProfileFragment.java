@@ -1,6 +1,5 @@
 package com.example.calmable;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,24 +26,90 @@ public class ProfileFragment extends Fragment {
 
         Button settings = (Button) view.findViewById(R.id.settings);
         Button signOutBtn = (Button) view.findViewById(R.id.signOut);
-
+        Button myDownloadsBtn = (Button) view.findViewById(R.id.myDownloadsBtn);
+        Button myFavouritesBtn = (Button) view.findViewById(R.id.myFavouritesBtn);
+        Button remindersBtn = (Button) view.findViewById(R.id.remindersBtn);
+        Button calenderBtn = (Button) view.findViewById(R.id.calenderBtn);
+        Button premiumBtn = (Button) view.findViewById(R.id.premiumBtn);
+        Button rateUsBtn = (Button) view.findViewById(R.id.rateUsBtn);
+        Button aboutAppBtn = (Button) view.findViewById(R.id.aboutAppBtn);
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent in = new Intent(getActivity(), EditProfileActivity.class);
-                in.putExtra("some","some data");
                 startActivity(in);
             }
 
         });
 
+        myDownloadsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), MyDownloadsActivity.class);
+                startActivity(in);
+            }
+
+        });
+
+        myFavouritesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), MyFavouritesActivity.class);
+                startActivity(in);
+            }
+
+        });
+
+        remindersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), RemindersActivity.class);
+                startActivity(in);
+            }
+
+        });
+
+        calenderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), CalenderActiivity.class);
+                startActivity(in);
+            }
+
+        });
+
+        premiumBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), PremiumActivity.class);
+                startActivity(in);
+            }
+
+        });
+
+        rateUsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), RateUsActivity.class);
+                startActivity(in);
+            }
+
+        });
+
+        aboutAppBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), AboutAppActivity.class);
+                startActivity(in);
+            }
+
+        });
 
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent in = new Intent(getActivity(), LoginUserActivity.class);
-//                in.putExtra("some","some data");
                 FirebaseAuth.getInstance().signOut();
                 getActivity().finish();
                 startActivity(in);

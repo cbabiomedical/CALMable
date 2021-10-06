@@ -12,6 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".AboutAppActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RateUsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".PremiumActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CalenderActiivity"
+            android:exported="true" />
+        <activity
+            android:name=".RemindersActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyFavouritesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyDownloadsActivity"
+            android:exported="true" />
+        <activity
             android:name=".ChangePasswordActivity"
             android:exported="true" />
         <activity
