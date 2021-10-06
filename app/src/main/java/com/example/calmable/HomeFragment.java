@@ -45,6 +45,7 @@ public class HomeFragment extends Fragment {
         int CurrentHeartRate = 158; //user's current heart rate
         int PastHeartRate = 112; //user's past heart rate
         int PastTime = 5; //time gap between user's current heart rate
+
         String chr = getColoredSpanned(Integer.toString(CurrentHeartRate), "#800000");
         String phr = getColoredSpanned(Integer.toString(PastHeartRate), "#000000");
         String t = getColoredSpanned(Integer.toString(PastTime), "#000000");
