@@ -28,12 +28,12 @@ import java.util.List;
 public class UserPreferences extends AppCompatActivity {
 
     private Button done;
-    CheckBox c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14;
+    CheckBox c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14;
     FirebaseDatabase database;
     //DatabaseReference reference;
 
     Member member;
-    int i=0;
+    int i = 0;
     //List<String> reference;
     FirebaseUser mUser;
     FirebaseAuth mAuth;
@@ -83,7 +83,6 @@ public class UserPreferences extends AppCompatActivity {
         String d14 = "Yoga";
 
 
-
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
         /*reference.addValueEventListener(new ValueEventListener(){
@@ -110,103 +109,89 @@ public class UserPreferences extends AppCompatActivity {
                                         ////////////////
 
                                         ///////////////
-                                        if (c1.isChecked())   {
+                                        if (c1.isChecked()) {
                                             reference.add(d1);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c2.isChecked())   {
+                                        if (c2.isChecked()) {
                                             reference.add(d2);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c3.isChecked())   {
+                                        if (c3.isChecked()) {
                                             reference.add(d3);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c4.isChecked())   {
+                                        if (c4.isChecked()) {
                                             reference.add(d4);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c5.isChecked())   {
+                                        if (c5.isChecked()) {
                                             reference.add(d5);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c6.isChecked())   {
+                                        if (c6.isChecked()) {
                                             reference.add(d6);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c7.isChecked())   {
+                                        if (c7.isChecked()) {
                                             reference.add(d7);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c8.isChecked())   {
+                                        if (c8.isChecked()) {
                                             reference.add(d8);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c9.isChecked())   {
+                                        if (c9.isChecked()) {
                                             reference.add(d9);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c10.isChecked())   {
+                                        if (c10.isChecked()) {
                                             reference.add(d10);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c11.isChecked())   {
+                                        if (c11.isChecked()) {
                                             reference.add(d11);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c12.isChecked())   {
+                                        if (c12.isChecked()) {
                                             reference.add(d12);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c13.isChecked())   {
+                                        if (c13.isChecked()) {
                                             reference.add(d13);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        if (c14.isChecked())   {
+                                        if (c14.isChecked()) {
                                             reference.add(d14);
-                                        }
-                                        else{
+                                        } else {
                                             //
                                         }
-                                        preference.put("preferences",reference);
+                                        preference.put("preferences", reference);
                                         FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).updateChildren(preference)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                        Toast.makeText(UserPreferences.this,"Successful",Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(UserPreferences.this, "Successful", Toast.LENGTH_SHORT).show();
                                                         //Intent intent=new Intent(UserPreferences.this,ProfileActivity.class);
                                                         //startActivity(intent);
                                                     }
                                                 });
                                         Log.d("User", mUser.getUid());
-                                        Toast.makeText(UserPreferences.this,"Successful !",Toast.LENGTH_SHORT).show();
-                                        Intent intent=new Intent(UserPreferences.this,EnterPhoneActivity.class);
+                                        Toast.makeText(UserPreferences.this, "Successful !", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(UserPreferences.this, EnterPhoneActivity.class);
                                         startActivity(intent);
                                     }
                                 }

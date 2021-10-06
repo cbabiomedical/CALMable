@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_breath.xml" value="0.259375" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_calender_actiivity.xml" value="0.259375" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_change_password.xml" value="0.24444444444444444" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_edit_profile.xml" value="0.259375" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_enter_new_pw.xml" value="0.259375" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_enter_phone.xml" value="0.259375" />
@@ -19,6 +21,8 @@
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_splash.xml" value="0.275" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_verify_phone.xml" value="0.259375" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/fragment_profile.xml" value="0.259375" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/menu/add_note_menu.xml" value="0.2553846153846154" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/home_main_btn.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic__lock_icon.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2712820512820513" />
@@ -56,7 +60,6 @@
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/menu/bottom_nav_menu.xml" value="0.21296296296296297" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/gradient_bg_register.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/heartratebar1.xml" value="0.2169230769230769" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/home_main_btn.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_editname_icon.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_email.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_journal.xml" value="0.2203125" />
@@ -66,28 +69,20 @@
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_profile.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_relax_face.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/landing_main_btn.xml" value="0.2203125" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/mybutton.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/side_nav_bar.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/font/bilbo.xml" value="0.22407407407407406" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_about_app.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_breath_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_calender_actiivity.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_happy_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_login_user.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_motivate_home.xml" value="0.22" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_my_downloads.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_my_favourites.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_premium.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_rate_us.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_register_user.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_reminders.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_sleepy.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_sleepy_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_stress_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_user_preferences.xml" value="0.25" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_user_preferences.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/fragment_challengers.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/fragment_journal.xml" value="0.20416666666666666" />

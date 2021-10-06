@@ -21,7 +21,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -64,7 +64,7 @@
 
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/edName"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_input"
@@ -79,7 +79,7 @@
                 app:layout_constraintRight_toRightOf="parent" />
 
             <EditText
-                android:id="@+id/TextInputLayout1"
+                android:id="@+id/edEmail"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
@@ -96,7 +96,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/name" />
 
             <EditText
-                android:id="@+id/phoneNumber"
+                android:id="@+id/edPhoneNo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
@@ -105,7 +105,7 @@
                 android:drawablePadding="12dp"
                 android:ems="10"
                 android:hint="\tPhone Number"
-                android:inputType="textPassword"
+                android:inputType="number"
                 android:paddingStart="12dp"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -114,7 +114,7 @@
 
 
             <EditText
-                android:id="@+id/editOccupation"
+                android:id="@+id/edOccupation"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
