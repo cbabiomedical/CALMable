@@ -59,7 +59,17 @@
                     android:layout_gravity="center"
                     android:layout_width="411dp"
                     android:layout_height="231dp"
-                    android:indeterminateDrawable="@drawable/heartratebar1" />
+                    android:indeterminateDrawable="@drawable/heartratebar1"/>
+
+                <TextView
+                    android:id="@+id/txtProgress"
+                    android:layout_width="270dp"
+                    android:layout_height="250dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </androidx.cardview.widget.CardView>
 

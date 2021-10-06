@@ -4,6 +4,7 @@ package com.example.calmable;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,26 @@ public class HomeFragment extends Fragment {
     private Button stressHomeBtn, sleepyHomebtn,motivateHomeBtn, happyHomeBtn, breathHomeBtn;
 
 
+    private String getColoredSpanned(String text, String color) {
+        String input = "<font color=" + color + ">" + text + "</font>";
+        return input;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        TextView txtProgress = (TextView) view.findViewById(R.id.txtProgress);
+        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar2);
+
+
+        int heartrate = 158;
+        String hr = getColoredSpanned(Integer.toString(heartrate), "#800000");
+        String BPM = getColoredSpanned("\u1D2E\u1D3E\u1D39","#000080");
+        txtProgress.setText(Html.fromHtml(hr+" "+BPM));
+
 
 
         //"I'm stressed" button
