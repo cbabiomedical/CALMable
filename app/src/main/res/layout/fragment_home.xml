@@ -81,6 +81,15 @@
                 android:textSize="27sp"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
+                <TextView
+                    android:id="@+id/txtPastProgress"
+                    android:layout_width="270dp"
+                    android:layout_height="250dp"
+                    android:paddingStart="72dp"
+                    android:paddingTop="215dp"
+                    android:textSize="17sp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
