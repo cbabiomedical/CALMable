@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
 
         int heartrate = 158;
         String hr = getColoredSpanned(Integer.toString(heartrate), "#800000");
-        String BPM = getColoredSpanned("\u1D2E\u1D3E\u1D39","#000080");
+        String BPM = getColoredSpanned("\u1D2E\u1D3E\u1D39","#000000");
         txtProgress.setText(Html.fromHtml(hr+" "+BPM));
 
 
