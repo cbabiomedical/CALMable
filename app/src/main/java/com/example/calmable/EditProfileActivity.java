@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,15 +23,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText name , email, gender, phoneNumber;
+    private EditText name , email, phoneNumber;
     private TextView userName;
 
     private Button btnChangePw;
 
     private FirebaseAuth mAuth;
+    FirebaseUser user;
     DatabaseReference myRef;
     private ProgressBar progressBar;
 
@@ -38,13 +44,13 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         TextView edChangePassword = (TextView) findViewById(R.id.changePassword);
-
+        Button saveBtn = (Button) findViewById(R.id.profileSaveBtn);
 
         name = findViewById(R.id.edName);
         email = findViewById(R.id.edEmail);
         phoneNumber = findViewById(R.id.edPhoneNo);
 
-        test();
+        getData();
 
         edChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +60,64 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                update();
+            }
+        });
+    }
+
+    public void update() {
+
+        String userName = name.getText().toString();
+        String emailAddress = email.getText().toString();
+        String phone = phoneNumber.getText().toString();
+        Log.d("TAG", "onDataChange: check-------------name-------" + userName);
+
+        if (userName.isEmpty()) {
+            userName = name.getHint().toString();
+
+        }
+        if (emailAddress.isEmpty()) {
+            emailAddress = email.getHint().toString();
+
+        }
+
+        if (phone.isEmpty()) {
+            phone = phoneNumber.getHint().toString();
+
+        }
+
+        HashMap<String, Object> User1 = new HashMap();
+        User1.put("fullName", userName);
+        User1.put("email", emailAddress);
+        User1.put("phoneNumber", phone);
+
+        Log.d("TAG", "onDataChange: check-------------UPname-------" + userName);
+
+
+        // get current user
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = user.getUid();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        reference.child(userid).updateChildren(User1).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(EditProfileActivity.this, "User Details Updated Successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(EditProfileActivity.this, "Failed Updating User Details", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 
-    private void test() {
-
+    private void getData() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userid = user.getUid();
