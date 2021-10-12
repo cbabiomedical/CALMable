@@ -23,10 +23,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -34,6 +39,14 @@ public class JournalFragment extends Fragment {
 
     static ArrayList<String> listOfNotes = new ArrayList<>();
     static ArrayAdapter listViewNoteAdapter;
+
+    FirebaseUser mUser;
+
+    ListView listViewJournal;
+
+    List<Object> listOfJournalDate = new ArrayList<>();
+    List<Object> listOfJournalBody = new ArrayList<>();
+    HashMap<String, Object> journalNote = new HashMap<>();
 
     public JournalFragment() {
         // Required empty public constructor
@@ -47,18 +60,20 @@ public class JournalFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_journal, container, false);
 
 
-        ListView listViewJournal = (ListView) view.findViewById(R.id.listViewJournal);
+        listViewJournal = (ListView) view.findViewById(R.id.listViewJournal);
 
         // permanent save notes
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
+        //SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
 
-        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("lostOfNotes", null);
-
-        if (set == null) {
-            //listOfNotes.add("test 001");
-        } else {
-            listOfNotes = new ArrayList(set);
-        }
+        //HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("lostOfNotes", null);
+//
+//        UpdateDB();
+//
+//        if (set == null) {
+//            //listOfNotes.add("test 001");
+//        } else {
+//            listOfNotes = new ArrayList(set);
+//        }
 
         listViewNoteAdapter = new ArrayAdapter<String>(
                 getActivity(),
@@ -153,4 +168,31 @@ public class JournalFragment extends Fragment {
         }
         return false;
     }
+
+
+//    public void UpdateDB() {
+//
+//
+//
+//        String edJournalBody = editTextNote.getText().toString().trim();
+//
+//        listOfJournalBody.add(edJournalBody);
+//
+//
+//        mUser = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        journalNote.put("journalNote", listOfJournalBody);
+//        FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).updateChildren(journalNote)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//
+//                        Toast.makeText(NoteEditorActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+//                        //Intent intent=new Intent(UserPreferences.this,ProfileActivity.class);
+//                        //startActivity(intent);
+//                    }
+//                });
+//        Log.d("User", mUser.getUid());
+//
+//    }
 }

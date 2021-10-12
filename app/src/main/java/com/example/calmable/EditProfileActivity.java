@@ -135,11 +135,11 @@ public class EditProfileActivity extends AppCompatActivity {
                 String gender = snapshot.child("gender").getValue(String.class);
 
 
-                Log.d("TAG", "onDataChange: check-------------" + name);
-                Log.d("TAG", "onDataChange: check-------------" + age);
-                Log.d("TAG", "onDataChange: check-------------" + phone);
-                Log.d("TAG", "onDataChange: check-------------" + email);
-                Log.d("TAG", "onDataChange: check-------------" + gender);
+                Log.d("TAG", "edit profile: name-------------" + name);
+                Log.d("TAG", "edit profile: age -------------" + age);
+                Log.d("TAG", "edit profile: phone-------------" + phone);
+                Log.d("TAG", "edit profile: email-------------" + email);
+                Log.d("TAG", "edit profile: gender-------------" + gender);
 
 
                 final TextView displaynametextview = (TextView) findViewById(R.id.userName);

@@ -34,7 +34,7 @@ public class UserPreferences extends AppCompatActivity {
 
     Member member;
     int i = 0;
-    //List<String> reference;
+
     FirebaseUser mUser;
     FirebaseAuth mAuth;
 

@@ -45,6 +45,20 @@
         android:layout_marginEnd="32dp"/>
 
 
+    <Button
+        android:id="@+id/saveNotes"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/mybutton"
+        android:text="save"
+        android:textColor="@color/white"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:layout_marginTop="650dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="65dp"
+        android:onClick="UpdateDB"/>
+
 
 
 
