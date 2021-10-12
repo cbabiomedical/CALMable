@@ -21,7 +21,7 @@
   <CheckBox
       android:id="@+id/c2"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Inspiration"
@@ -31,7 +31,7 @@
   <CheckBox
       android:id="@+id/c3"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Relax Music"
@@ -42,7 +42,7 @@
   <CheckBox
       android:id="@+id/c4"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Nature Sounds"
@@ -52,7 +52,7 @@
   <CheckBox
       android:id="@+id/c5"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Meditate"
@@ -62,7 +62,7 @@
   <CheckBox
       android:id="@+id/c6"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Country Music"
@@ -72,7 +72,7 @@
   <CheckBox
       android:id="@+id/c7"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Sleep Stories"
@@ -82,7 +82,7 @@
   <CheckBox
       android:id="@+id/c8"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Chill out music"
@@ -92,7 +92,7 @@
   <CheckBox
       android:id="@+id/c9"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Classical Music"
@@ -102,7 +102,7 @@
   <CheckBox
       android:id="@+id/c10"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Videos"
@@ -112,7 +112,7 @@
   <CheckBox
       android:id="@+id/c11"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Games"
@@ -122,7 +122,7 @@
   <CheckBox
       android:id="@+id/c12"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Breathing Exercise"
@@ -133,7 +133,7 @@
   <CheckBox
       android:id="@+id/c13"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Success Stories"
@@ -144,7 +144,7 @@
   <CheckBox
       android:id="@+id/c14"
       android:layout_width="211dp"
-      android:layout_height="31dp"
+      android:layout_height="39dp"
       android:drawableStart="@drawable/day_selector"
       android:button="@null"
       android:text="Yoga"
