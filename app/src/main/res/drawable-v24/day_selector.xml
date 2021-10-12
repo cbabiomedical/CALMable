@@ -3,5 +3,5 @@
     <item android:drawable="@drawable/ic_star_border"
         android:state_checked="false"/>
     <item android:drawable="@drawable/star"
-        android:state_checked="true"/>
+        android:state_checked="true" />
 </selector>
