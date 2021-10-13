@@ -113,7 +113,7 @@
       android:id="@+id/c11"
       android:layout_width="211dp"
       android:layout_height="39dp"
-      android:drawableStart="@drawable/star_selector"
+      android:drawableStart="@drawable/games_selector"
       android:button="@null"
       android:text="   Games"
       app:layout_constraintRight_toRightOf="parent"
