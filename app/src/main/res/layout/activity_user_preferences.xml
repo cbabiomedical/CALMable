@@ -13,7 +13,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Travel Music"
+      android:text="  Travel Music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       tools:ignore="MissingConstraints" />
@@ -24,7 +24,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Inspiration"
+      android:text="  Inspiration"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c1"/>
@@ -34,7 +34,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Relax Music"
+      android:text="  Relax Music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c2"/>
@@ -43,9 +43,9 @@
       android:id="@+id/c4"
       android:layout_width="211dp"
       android:layout_height="39dp"
-      android:drawableStart="@drawable/star_selector"
+      android:drawableStart="@drawable/tree_selector"
       android:button="@null"
-      android:text="Nature Sounds"
+      android:text=" Nature Sounds"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c3" />
@@ -55,7 +55,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/meditation_selector"
       android:button="@null"
-      android:text="Meditate"
+      android:text="   Meditate"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c4" />
@@ -65,7 +65,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Country Music"
+      android:text="   Country Music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c5" />
@@ -75,7 +75,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Sleep Stories"
+      android:text="   Sleep Stories"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c6"/>
@@ -85,7 +85,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Chill out music"
+      android:text="   Chill out music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c7"/>
@@ -95,7 +95,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/music_selector"
       android:button="@null"
-      android:text=" Classical Music"
+      android:text="   Classical Music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c8"/>
@@ -105,7 +105,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Videos"
+      android:text="   Videos"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c9" />
@@ -115,7 +115,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Games"
+      android:text="   Games"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c10"/>
@@ -125,7 +125,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Breathing Exercise"
+      android:text="   Breathing Exercise"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c11"/>
@@ -136,7 +136,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Success Stories"
+      android:text="   Success Stories"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c12"/>
@@ -147,7 +147,7 @@
       android:layout_height="39dp"
       android:drawableStart="@drawable/star_selector"
       android:button="@null"
-      android:text="Yoga"
+      android:text="   Yoga"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c13"/>
