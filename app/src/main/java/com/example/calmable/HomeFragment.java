@@ -2,29 +2,33 @@ package com.example.calmable;
 
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
+
+import com.example.calmable.device.DeviceActivity;
+import com.example.calmable.scan.ScanActivity;
+
+import java.util.ArrayList;
+
 
 public class HomeFragment extends Fragment {
 
+    DeviceActivity deviceActivity;
 
-    private Button stressHomeBtn, sleepyHomebtn,motivateHomeBtn, happyHomeBtn, breathHomeBtn;
-
+    private Button stressHomeBtn, sleepyHomeBtn,motivateHomeBtn, happyHomeBtn, breathHomeBtn , connectWatch;
 
     private String getColoredSpanned(String text, String color) {
         String input = "<font color=" + color + ">" + text + "</font>";
@@ -41,8 +45,20 @@ public class HomeFragment extends Fragment {
         TextView txtProgress2 = (TextView) view.findViewById(R.id.txtPastProgress);
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar2);
 
+//        TextView htRate = (TextView) view.findViewById(R.id.htRate);
+//
+//        for (String list : deviceActivity.listOfRate) {
+//
+//            if (list != null) {
+//                htRate.setText(list);
+//
+//                Log.d("TAG", "fragment : -------" + list);
+//            }
+//        }
 
-        int CurrentHeartRate = 158; //user's current heart rate
+
+
+        int CurrentHeartRate = 78; //user's current heart rate
         int PastHeartRate = 112; //user's past heart rate
         int PastTime = 5; //time gap between user's current heart rate
 
@@ -66,8 +82,8 @@ public class HomeFragment extends Fragment {
         });
 
         //"I'm Sleepy" button
-        sleepyHomebtn = (Button) view.findViewById(R.id.sleepyHomebtn);
-        sleepyHomebtn.setOnClickListener(new View.OnClickListener(){
+        sleepyHomeBtn = (Button) view.findViewById(R.id.sleepyHomebtn);
+        sleepyHomeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
 
@@ -109,10 +125,21 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        //  test --> connect watch
+        connectWatch = (Button) view.findViewById(R.id.connectWatch);
+        connectWatch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getActivity() , ScanActivity.class));
+
+            }
+        });
+
         return view;
 
     }
-
 
 }
 

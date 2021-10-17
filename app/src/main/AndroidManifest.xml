@@ -3,14 +3,30 @@
     package="com.example.calmable">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".SampleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
+        <activity
+            android:name=".device.DeviceActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".scan.ScanActivity"
+            android:exported="true" />
         <activity
             android:name=".AboutAppActivity"
             android:exported="true" />
@@ -55,11 +71,9 @@
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true"
-            android:label="">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -81,11 +95,7 @@
             android:label="Sleepy" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".NavigationActivity" -->
-        <!-- android:exported="true" -->
-        <!-- android:label="@string/title_activity_navigation" -->
-        <!-- android:theme="@style/Theme.CALMable.NoActionBar" /> -->
+            android:exported="true" />
         <activity
             android:name=".forgotpw_otp.EnterNewPwActivity"
             android:exported="true"
@@ -127,6 +137,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name="com.crrepa.ble.trans.upgrade.NotificationActivity" />
+
+        <service android:name="com.crrepa.ble.trans.upgrade.DfuService" />
     </application>
 
 </manifest>
