@@ -21,29 +21,14 @@
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_sleepy.xml" value="0.259375" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_splash.xml" value="0.275" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_verify_phone.xml" value="0.259375" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/fragment_profile.xml" value="0.259375" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/fragment_relax.xml" value="0.275" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/menu/add_note_menu.xml" value="0.2553846153846154" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2553846153846154" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable-v24/day_selector.xml" value="0.26256410256410256" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable-v24/ic_star.xml" value="0.26256410256410256" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable-v24/ic_star_border.xml" value="0.26256410256410256" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable-v24/star_selector.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/games_selector.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/home_main_btn.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/inspiration_selector.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/meditation_selector.xml" value="0.26256410256410256" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/music_selector.xml" value="0.26256410256410256" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/night_selector.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/smile_selector.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/tree_selector.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/video_selector.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/drawable/yoga_selector.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/layout/activity_main.xml" value="0.2318840579710145" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/layout/activity_user_preference_test.xml" value="0.2318840579710145" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/layout/activity_user_preferences.xml" value="0.176" />
-        <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/git/app/src/main/res/layout/fragment_home.xml" value="0.2318840579710145" />
         <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/github/app/src/main/res/drawable/heartratebar1.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/HASINI/Desktop/Mahidi/CBA/github/app/src/main/res/layout/fragment_home.xml" value="0.4" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/heartratebar1.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/home_main_btn.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic__lock_icon.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2712820512820513" />
@@ -51,6 +36,9 @@
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/drawable/mybutton.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.21296296296296297" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_breath.xml" value="0.264" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_device.xml" value="0.25" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_enter_new_pw.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_enter_phone.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_forget_pw_otp.xml" value="0.259375" />
@@ -59,12 +47,15 @@
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_login_user.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_main.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_motivation.xml" value="0.259375" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_note_editor.xml" value="0.25" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_profile.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_register_user.xml" value="0.2553846153846154" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_scan.xml" value="0.25" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_sleepy.xml" value="0.259375" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_testhome.xml" value="0.2453125" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_user_preference_test.xml" value="0.2553846153846154" />
-        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_user_preferences.xml" value="0.1" />
+        <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_user_preferences.xml" value="0.264" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/activity_verify_phone.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/content_main.xml" value="0.259375" />
         <entry key="..\:/Users/Hasi Boy/Desktop/CALMable/app/src/main/res/layout/fragment_challengers.xml" value="0.259375" />

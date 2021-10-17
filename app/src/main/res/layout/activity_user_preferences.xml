@@ -7,69 +7,28 @@
     android:background="@drawable/bg_1"
     tools:context=".UserPreferences">
 
-  <ScrollView
-      android:id="@+id/homeScroll"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:fillViewport="true"
-      android:isScrollContainer="true"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-  <TextView
-      android:id="@+id/textView3"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="50dp"
-      android:layout_marginStart="62dp"
-      android:text="What do you prefer ? "
-      android:textColor="@color/dark_blue_300"
-      android:textSize="30dp"
-      android:textStyle="bold"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
   <CheckBox
       android:id="@+id/c1"
-      android:layout_marginTop="30dp"
-      android:layout_marginStart="122dp"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:drawableStart="@drawable/music_selector"
-      android:button="@null"
-      android:text="  Travel Music"
+      android:layout_height="wrap_content"
+      android:text="Travel Music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
-      tools:ignore="MissingConstraints"
-      app:layout_constraintTop_toBottomOf="@id/textView3"/>
+      tools:ignore="MissingConstraints" />
 
   <CheckBox
       android:id="@+id/c2"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/inspiration_selector"
-      android:button="@null"
-      android:text="  Inspiration"
+      android:layout_height="wrap_content"
+      android:text="Inspiration"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c1"/>
   <CheckBox
       android:id="@+id/c3"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/music_selector"
-      android:button="@null"
-      android:text="  Relax Music"
+      android:layout_height="wrap_content"
+      android:text="Relax Music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c2"/>
@@ -77,99 +36,72 @@
   <CheckBox
       android:id="@+id/c4"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/tree_selector"
-      android:button="@null"
-      android:text=" Nature Sounds"
+      android:layout_height="wrap_content"
+      android:text="Nature Sounds"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c3" />
   <CheckBox
       android:id="@+id/c5"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/meditation_selector"
-      android:button="@null"
-      android:text="   Meditate"
+      android:layout_height="wrap_content"
+      android:text="Meditate"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c4" />
   <CheckBox
       android:id="@+id/c6"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/music_selector"
-      android:button="@null"
-      android:text="   Country Music"
+      android:layout_height="wrap_content"
+      android:text="Country Music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c5" />
   <CheckBox
       android:id="@+id/c7"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/night_selector"
-      android:button="@null"
-      android:text="   Sleep Stories"
+      android:layout_height="wrap_content"
+      android:text="Sleep Stories"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c6"/>
   <CheckBox
       android:id="@+id/c8"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/music_selector"
-      android:button="@null"
-      android:text="   Chill out music"
+      android:layout_height="wrap_content"
+      android:text="Chill out music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c7"/>
   <CheckBox
       android:id="@+id/c9"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/music_selector"
-      android:button="@null"
-      android:text="   Classical Music"
+      android:layout_height="wrap_content"
+      android:text="Classical Music"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c8"/>
   <CheckBox
       android:id="@+id/c10"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/video_selector"
-      android:button="@null"
-      android:text="   Videos"
+      android:layout_height="wrap_content"
+      android:text="Videos"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c9" />
   <CheckBox
       android:id="@+id/c11"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/games_selector"
-      android:button="@null"
-      android:text="   Games"
+      android:layout_height="wrap_content"
+      android:text="Games"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c10"/>
   <CheckBox
       android:id="@+id/c12"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/smile_selector"
-      android:button="@null"
-      android:text="   Breathing Exercise"
+      android:layout_height="wrap_content"
+      android:text="Breathing Exercise"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c11"/>
@@ -177,11 +109,8 @@
   <CheckBox
       android:id="@+id/c13"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/star_selector"
-      android:button="@null"
-      android:text="   Success Stories"
+      android:layout_height="wrap_content"
+      android:text="Success Stories"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c12"/>
@@ -189,11 +118,8 @@
   <CheckBox
       android:id="@+id/c14"
       android:layout_width="211dp"
-      android:layout_height="44dp"
-      android:layout_marginStart="122dp"
-      android:drawableStart="@drawable/yoga_selector"
-      android:button="@null"
-      android:text="   Yoga"
+      android:layout_height="wrap_content"
+      android:text="Yoga"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/c13"/>
@@ -203,7 +129,6 @@
       android:layout_width="298dp"
       android:layout_height="59dp"
       android:layout_marginTop="18dp"
-      android:layout_marginStart="62dp"
       android:textColor="#ffffff"
       android:text="done"
       android:textSize="26sp"
@@ -214,6 +139,4 @@
       app:cornerRadius="15dp"
       android:background="@drawable/mybutton"/>
 
-    </LinearLayout>
-  </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
