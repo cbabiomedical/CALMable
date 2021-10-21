@@ -8,7 +8,7 @@
     android:background="@drawable/sea_bg">
 
     <ImageView
-        android:id="@+id/imageViewProfileEdit"
+        android:id="@+id/profileImage"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@drawable/motivation_image"
@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileEdit">
+        app:layout_constraintTop_toBottomOf="@+id/profileImage">
 
         <LinearLayout
             android:layout_width="match_parent"

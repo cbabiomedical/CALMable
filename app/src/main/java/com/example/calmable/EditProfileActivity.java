@@ -1,19 +1,27 @@
 package com.example.calmable;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,6 +30,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -30,10 +43,15 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private EditText name , email, phoneNumber;
     private TextView userName;
+    ImageView profileImage;
+    Button editImage;
 
     private Button btnChangePw;
 
     private FirebaseAuth mAuth;
+    FirebaseFirestore firebaseFirestore;
+    StorageReference storageReference;
+
     FirebaseUser user;
     DatabaseReference myRef;
     private ProgressBar progressBar;
@@ -49,6 +67,21 @@ public class EditProfileActivity extends AppCompatActivity {
         name = findViewById(R.id.edName);
         email = findViewById(R.id.edEmail);
         phoneNumber = findViewById(R.id.edPhoneNo);
+
+        profileImage = findViewById(R.id.profileImage);
+        editImage = findViewById(R.id.editImage);
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = user.getUid();
+        StorageReference profileRef = storageReference.child("users/"+userid+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profileImage);
+            }
+        });
 
         getData();
 
@@ -67,10 +100,18 @@ public class EditProfileActivity extends AppCompatActivity {
                 update();
             }
         });
+
+        editImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //open gallery
+                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(openGalleryIntent,1000);
+            }
+        });
     }
 
-    public void update() {
-
+    private void update() {
         String userName = name.getText().toString();
         String emailAddress = email.getText().toString();
         String phone = phoneNumber.getText().toString();
@@ -118,7 +159,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     private void getData() {
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userid = user.getUid();
 
@@ -160,6 +200,45 @@ public class EditProfileActivity extends AppCompatActivity {
             }
 
         });
+    }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1000) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri imageUri = data.getData();
+                Log.d("Uri", String.valueOf(imageUri));
+                //profileImage.setImageURI(imageUri);
+
+                uploadImageToFirebase(imageUri);
+            }
+
+        }
+
+    }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        //upload image to firebase storage
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = user.getUid();
+        StorageReference fileRef = storageReference.child("users/"+userid+"/profile.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(profileImage);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(EditProfileActivity.this,"Failed",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
