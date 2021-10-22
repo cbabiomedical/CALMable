@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
 
     DeviceActivity deviceActivity;
 
-    private Button stressHomeBtn, sleepyHomeBtn,motivateHomeBtn, happyHomeBtn, breathHomeBtn , connectWatch;
+    private Button stressHomeBtn, sleepyHomeBtn,motivateHomeBtn, happyHomeBtn, breathHomeBtn ,reportHomeBtn, connectWatch;
 
     private String getColoredSpanned(String text, String color) {
         String input = "<font color=" + color + ">" + text + "</font>";
@@ -121,6 +121,17 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
 
                 startActivity(new Intent(getActivity(),breathHome.class));
+
+            }
+        });
+
+        //"Report" button
+        reportHomeBtn = (Button) view.findViewById(R.id.reportHomeBtn);
+        reportHomeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getActivity(),reportHome.class));
 
             }
         });

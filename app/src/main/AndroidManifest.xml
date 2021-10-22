@@ -21,9 +21,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".reportHome"
+            android:exported="true" />
+        <activity
             android:name=".device.DeviceActivity"
             android:exported="true" />
-
         <activity
             android:name=".scan.ScanActivity"
             android:exported="true" />
@@ -74,6 +76,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
