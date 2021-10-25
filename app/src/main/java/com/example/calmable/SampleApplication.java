@@ -19,4 +19,5 @@ public class SampleApplication extends Application {
         super.onCreate();
         mBleClient = CRPBleClient.create(this);
     }
+
 }

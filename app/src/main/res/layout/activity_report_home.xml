@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:background="@drawable/sea_bg"
     android:orientation="horizontal"
-    tools:context=".reportHome">
+    tools:context=".ReportHome">
 
     <ScrollView
         android:layout_width="match_parent"
