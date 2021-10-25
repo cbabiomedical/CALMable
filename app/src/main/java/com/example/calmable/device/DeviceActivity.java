@@ -271,7 +271,7 @@ public class DeviceActivity extends AppCompatActivity {
 
         @Override
         public void onTransCpmplete(Date date) {
-            Log.d(TAG, "onTransCpmplete");
+            Log.d(TAG, "onTransComplete");
         }
 
         @Override

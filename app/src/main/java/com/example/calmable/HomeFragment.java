@@ -2,12 +2,9 @@ package com.example.calmable;
 
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.calmable.device.DeviceActivity;
 import com.example.calmable.scan.ScanActivity;
-
-import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
@@ -87,7 +82,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),sleepyHome.class));
+                startActivity(new Intent(getActivity(), SleepyHome.class));
 
             }
         });
@@ -98,7 +93,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),motivateHome.class));
+                startActivity(new Intent(getActivity(), MotivateHome.class));
 
             }
         });
@@ -109,7 +104,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),happyHome.class));
+                startActivity(new Intent(getActivity(), HappyHome.class));
 
             }
         });
@@ -120,7 +115,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),breathHome.class));
+                startActivity(new Intent(getActivity(), BreathHome.class));
 
             }
         });
@@ -131,7 +126,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),reportHome.class));
+                startActivity(new Intent(getActivity(), ReportHome.class));
 
             }
         });
