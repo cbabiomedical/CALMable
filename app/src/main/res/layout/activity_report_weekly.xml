@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:background="@drawable/sea_bg"
     android:orientation="horizontal"
-    tools:context=".reportHome">
+    tools:context=".ReportWeekly">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,11 +32,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="50dp"
-                android:text="Report Page"
-                android:textColor="#000000"/>
+                android:text="Weekly Report Page"
+                android:textColor="#000000" />
 
             <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/barChartDaily"
+                android:id="@+id/barChartWeekly"
                 android:layout_width="325dp"
                 android:layout_height="250dp"
                 android:layout_below="@+id/toggleBtn"
@@ -51,18 +51,18 @@
                 android:id="@+id/btnLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/barChartDaily"
+                android:layout_below="@+id/barChartWeekly"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/weekly"
+                    android:id="@+id/daily"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/mybutton"
-                    android:text="Weekly"
+                    android:text="Daily"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
@@ -92,89 +92,6 @@
 
                 </androidx.appcompat.widget.AppCompatButton>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="650dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="500dp"
-                    android:background="#000000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <View
-                        android:id="@+id/hi"
-                        android:layout_width="20dp"
-                        android:layout_height="2dp"
-                        android:background="#000000"
-                        android:layout_marginTop="530dp"
-                        android:layout_marginLeft="20dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="520dp"
-                        android:text="Job"
-                        android:textColor="#000000"/>
-                </LinearLayout>
-
-            </LinearLayout>
-            <com.github.mikephil.charting.charts.ScatterChart
-                android:id="@+id/chart1"
-                android:layout_width="232dp"
-                android:layout_height="295dp"
-                android:layout_marginLeft="104dp"
-                android:layout_marginTop="500dp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <View
-                        android:id="@+id/hi3"
-                        android:layout_width="20dp"
-                        android:layout_height="2dp"
-                        android:background="#000000"
-                        android:layout_marginTop="830dp"
-                        android:layout_marginLeft="20dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="820dp"
-                        android:text="Age"
-                        android:textColor="#000000"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.github.mikephil.charting.charts.ScatterChart
-                android:id="@+id/chart3"
-                android:layout_width="232dp"
-                android:layout_height="295dp"
-                android:layout_marginLeft="104dp"
-                android:layout_marginTop="830dp" />
-
-
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
