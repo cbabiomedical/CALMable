@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+<<<<<<< HEAD:app/src/main/java/com/example/calmable/reportHome.java
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
@@ -61,6 +62,9 @@ import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 public class reportHome extends AppCompatActivity {
+=======
+public class ReportHome extends AppCompatActivity {
+>>>>>>> 08f32e9464dd0f1348bf7f9ce576a3cc56e9bd9e:app/src/main/java/com/example/calmable/ReportHome.java
 
     BarChart barChartdaily;
     private Context context;

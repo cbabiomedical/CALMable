@@ -21,10 +21,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+<<<<<<< HEAD
             android:name=".ReportWeekly"
             android:exported="true" />
         <activity
             android:name=".reportHome"
+=======
+            android:name=".ReportHome"
+>>>>>>> 08f32e9464dd0f1348bf7f9ce576a3cc56e9bd9e
             android:exported="true" />
         <activity
             android:name=".device.DeviceActivity"
@@ -60,16 +64,16 @@
             android:name=".UserPreferences"
             android:exported="true" />
         <activity
-            android:name=".breathHome"
+            android:name=".BreathHome"
             android:exported="true" />
         <activity
-            android:name=".happyHome"
+            android:name=".HappyHome"
             android:exported="true" />
         <activity
-            android:name=".motivateHome"
+            android:name=".MotivateHome"
             android:exported="true" />
         <activity
-            android:name=".sleepyHome"
+            android:name=".SleepyHome"
             android:exported="true" />
         <activity
             android:name=".stressHome"
@@ -86,11 +90,6 @@
         <activity
             android:name=".EditProfileActivity"
             android:exported="true" />
-        <activity
-            android:name=".BreathActivity"
-            android:exported="true"
-            android:label="Breathing Exercises"
-            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MotivationActivity"
             android:exported="true"
@@ -147,6 +146,15 @@
         <activity android:name="com.crrepa.ble.trans.upgrade.NotificationActivity" />
 
         <service android:name="com.crrepa.ble.trans.upgrade.DfuService" />
+
+
+        <service
+            android:name=".services.MyFirebaseInstanceService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
