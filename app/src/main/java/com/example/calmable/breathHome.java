@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class BreathHome extends AppCompatActivity {
+public class breathHome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
