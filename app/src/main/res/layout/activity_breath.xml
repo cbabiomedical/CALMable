@@ -28,7 +28,7 @@
                 android:background="@drawable/breathing_man_image" />
 
             <Button
-                android:id="@+id/brathLevelBtn1"
+                android:id="@+id/breathLevelBtn1"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginStart="55dp"
@@ -43,7 +43,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/brathLevelBtn2"
+                android:id="@+id/breathLevelBtn2"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginStart="55dp"
@@ -58,7 +58,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/brathLevelBtn3"
+                android:id="@+id/breathLevelBtn3"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginStart="55dp"
@@ -73,7 +73,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/brathLevelBtn4"
+                android:id="@+id/breathLevelBtn4"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginStart="55dp"
@@ -88,7 +88,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/brathLevelBtn5"
+                android:id="@+id/breathLevelBtn5"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginStart="55dp"
@@ -103,7 +103,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/brathLevelBtn6"
+                android:id="@+id/breathLevelBtn6"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginStart="55dp"
@@ -118,7 +118,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/brathLevelBtn7"
+                android:id="@+id/breathLevelBtn7"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginStart="55dp"
