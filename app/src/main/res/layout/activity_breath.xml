@@ -37,7 +37,7 @@
                 android:background="@drawable/landing_main_btn"
                 android:drawableEnd="@drawable/ic__lock_icon"
                 android:paddingRight="20dp"
-                android:text="Breathing Leve 1"
+                android:text="Breathing Level 1"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -52,7 +52,7 @@
                 android:background="@drawable/landing_main_btn"
                 android:drawableEnd="@drawable/ic__lock_icon"
                 android:paddingRight="20dp"
-                android:text="Breathing Leve 2"
+                android:text="Breathing Level 2"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -67,7 +67,7 @@
                 android:background="@drawable/landing_main_btn"
                 android:drawableEnd="@drawable/ic__lock_icon"
                 android:paddingRight="20dp"
-                android:text="Breathing Leve 3"
+                android:text="Breathing Level 3"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -82,7 +82,7 @@
                 android:background="@drawable/landing_main_btn"
                 android:drawableEnd="@drawable/ic__lock_icon"
                 android:paddingRight="20dp"
-                android:text="Breathing Leve 4"
+                android:text="Breathing Level 4"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -97,7 +97,7 @@
                 android:background="@drawable/landing_main_btn"
                 android:drawableEnd="@drawable/ic__lock_icon"
                 android:paddingRight="20dp"
-                android:text="Breathing Leve 5"
+                android:text="Breathing Level 5"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -112,7 +112,7 @@
                 android:background="@drawable/landing_main_btn"
                 android:drawableEnd="@drawable/ic__lock_icon"
                 android:paddingRight="20dp"
-                android:text="Breathing Leve 6"
+                android:text="Breathing Level 6"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -127,7 +127,7 @@
                 android:background="@drawable/landing_main_btn"
                 android:drawableEnd="@drawable/ic__lock_icon"
                 android:paddingRight="20dp"
-                android:text="Breathing Leve 6"
+                android:text="Breathing Level 6"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />

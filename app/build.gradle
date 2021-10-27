@@ -86,4 +86,8 @@ dependencies {
     //charts
     implementation files('libs/MPAndroidChart-v3.0.1.jar')
 
+
+    //for breathing exercise
+    implementation 'com.github.florent37:viewanimator:1.1.0'
+
 }
