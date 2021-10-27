@@ -86,6 +86,7 @@
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_profile.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/ic_relax_face.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/landing_main_btn.xml" value="0.2203125" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/mybutton.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/drawable/side_nav_bar.xml" value="0.2203125" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/font/bilbo.xml" value="0.22407407407407406" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_breath_home.xml" value="0.20416666666666666" />
@@ -96,8 +97,10 @@
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_motivate_home.xml" value="0.22" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_register_user.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_report_home.xml" value="0.15" />
-        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_report_weekly.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_report_home.xml" value="0.2" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_report_monthly.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_report_weekly.xml" value="0.2" />
+        <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_report_yearly.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_sleepy.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_sleepy_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayesh/Documents/Cba/Git/CALMable/app/src/main/res/layout/activity_stress_home.xml" value="0.20416666666666666" />

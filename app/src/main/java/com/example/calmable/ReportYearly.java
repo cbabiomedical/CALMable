@@ -54,11 +54,11 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
-public class ReportWeekly extends AppCompatActivity {
+public class ReportYearly extends AppCompatActivity {
 
-    BarChart barChartweekly, barChart2;
+    BarChart barChartYearly;
     AppCompatButton monthly;
-    AppCompatButton yearly;
+    AppCompatButton weekly;
     AppCompatButton daily, whereAmI;
     File fileName, localFile;
     FirebaseUser mUser;
@@ -66,26 +66,24 @@ public class ReportWeekly extends AppCompatActivity {
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report_weekly);
+        setContentView(R.layout.activity_report_yearly);
 
-        barChartweekly = (BarChart) findViewById(R.id.barChartWeekly);
+        barChartYearly = (BarChart) findViewById(R.id.barChartYearly);
         monthly = findViewById(R.id.monthly);
-        yearly = findViewById(R.id.yearly);
+        weekly = findViewById(R.id.weekly);
         daily = findViewById(R.id.daily);
-        // whereAmI = findViewById(R.id.whereAmI);
-
 
 
         //Initializing arraylist and storing input data to arraylist
         ArrayList<Float> obj = new ArrayList<>(
-                Arrays.asList(30f, 86f, 10f, 50f));//Array list1 to write data to file
+                Arrays.asList(30f, 86f, 10f, 50f)); //Array list1 to write data to file
         //Writing data to file
         try {
-            fileName = new File(getCacheDir() + "/reportWeekly.txt");
+            fileName = new File(getCacheDir() + "/reportYearly.txt");
+            String line = "";
             FileWriter fw;
             fw = new FileWriter(fileName);
             BufferedWriter output = new BufferedWriter(fw);
@@ -104,25 +102,24 @@ public class ReportWeekly extends AppCompatActivity {
         // Uploading file created to firebase storage
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference(mUser.getUid());
         try {
-            StorageReference mountainsRef = storageReference1.child("reportWeekly.txt");
+            StorageReference mountainsRef = storageReference1.child("reportYearly.txt");
             InputStream stream = new FileInputStream(new File(fileName.getAbsolutePath()));
             UploadTask uploadTask = mountainsRef.putStream(stream);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                    Toast.makeText(ConcentrationReportWeekly.this, "File Uploaded", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ConcentrationReportYearly.this, "File Uploaded", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(ConcentrationReportWeekly.this, "File Uploading Failed", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ConcentrationReportYearly.this, "File Uploading Failed", Toast.LENGTH_SHORT).show();
                 }
             });
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         final Handler handler = new Handler();
         final int delay = 7000;
 
@@ -130,7 +127,8 @@ public class ReportWeekly extends AppCompatActivity {
 
             @Override
             public void run() {
-                StorageReference storageReference = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportWeekly.txt");
+
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportYearly.txt");
                 //downloading the uploaded file and storing in arraylist
                 try {
                     localFile = File.createTempFile("tempFile", ".txt");
@@ -139,7 +137,7 @@ public class ReportWeekly extends AppCompatActivity {
                     storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                            Toast.makeText(ConcentrationReportWeekly.this, "Success", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ConcentrationReportYearly.this, "Success", Toast.LENGTH_SHORT).show();
 
                             try {
                                 InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(localFile.getAbsolutePath()));
@@ -169,16 +167,18 @@ public class ReportWeekly extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            String[] weeks = new String[]{"One", "Two", "Three", "Four"};
+
+                            String[] weeks = new String[]{"2018", "2019", "2020", "2021"};
                             List<Float> creditsWeek = new ArrayList<>(Arrays.asList(90f, 30f, 70f, 10f));
                             float[] strengthWeek = new float[]{90f, 30f, 70f, 10f};
 
                             List<BarEntry> entries = new ArrayList<>();
-                            for (int j = 0; j < floatList.size(); ++j) {
-                                entries.add(new BarEntry(j, floatList.get(j)));
+                            for (int i = 0; i < floatList.size(); ++i) {
+                                entries.add(new BarEntry(i, floatList.get(i)));
                             }
+
                             float textSize = 16f;
-                            //Initializing arraylist and storing input data to arraylist
+                            //Initializing object of MyBarDataset class
                             MyBarDataset dataSet = new MyBarDataset(entries, "data", creditsWeek);
                             dataSet.setColors(ContextCompat.getColor(getApplicationContext(), R.color.black),
                                     ContextCompat.getColor(getApplicationContext(), R.color.teal_100),
@@ -187,36 +187,35 @@ public class ReportWeekly extends AppCompatActivity {
                                     ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
                             BarData data = new BarData(dataSet);
                             data.setDrawValues(false);
-                            data.setBarWidth(0.9f);
+                            data.setBarWidth(0.8f);
 
-                            barChartweekly.setData(data);
-                            barChartweekly.setFitBars(true);
-                            barChartweekly.getXAxis().setValueFormatter(new IndexAxisValueFormatter(weeks));
-                            barChartweekly.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-                            barChartweekly.getXAxis().setTextSize(textSize);
-                            barChartweekly.getAxisLeft().setTextSize(textSize);
-                            barChartweekly.setExtraBottomOffset(10f);
+                            barChartYearly.setData(data);
+                            barChartYearly.setFitBars(true);
+                            barChartYearly.getXAxis().setValueFormatter(new IndexAxisValueFormatter(weeks));
+                            barChartYearly.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+                            barChartYearly.getXAxis().setTextSize(textSize);
+                            barChartYearly.getAxisLeft().setTextSize(textSize);
+                            barChartYearly.setExtraBottomOffset(10f);
 
-                            barChartweekly.getAxisRight().setEnabled(false);
+                            barChartYearly.getAxisRight().setEnabled(false);
                             Description desc = new Description();
                             desc.setText("");
-                            barChartweekly.setDescription(desc);
-                            barChartweekly.getLegend().setEnabled(false);
-                            barChartweekly.getXAxis().setDrawGridLines(false);
-                            barChartweekly.getAxisLeft().setDrawGridLines(false);
+                            barChartYearly.setDescription(desc);
+                            barChartYearly.getLegend().setEnabled(false);
+                            barChartYearly.getXAxis().setDrawGridLines(false);
+                            barChartYearly.getAxisLeft().setDrawGridLines(false);
 
-                            barChartweekly.invalidate();
+                            barChartYearly.invalidate();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-//                            Toast.makeText(ConcentrationReportWeekly.this, "Failed", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ConcentrationReportYearly.this, "Failed", Toast.LENGTH_SHORT).show();
                         }
                     });
 
 
-                } catch (
-                        IOException exception) {
+                } catch (IOException exception) {
                     exception.printStackTrace();
                 }
             }
@@ -241,15 +240,16 @@ public class ReportWeekly extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        // On click listener of yearly button
-        yearly.setOnClickListener(new View.OnClickListener() {
+
+        // On click listener of weekly button
+        weekly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ReportYearly.class);
+                Intent intent = new Intent(getApplicationContext(), ReportWeekly.class);
                 startActivity(intent);
             }
         });
-//
+
 //        // On click listener of where am i toggle button
 //        whereAmI.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -289,7 +289,7 @@ public class ReportWeekly extends AppCompatActivity {
         }
     }
 
-    private class MyXAxisValueFormatter extends ReportWeekly.ValueFormatter {
+    private class MyXAxisValueFormatter extends ReportYearly.ValueFormatter {
         private String[] mValues;
 
         public MyXAxisValueFormatter(String[] values) {
