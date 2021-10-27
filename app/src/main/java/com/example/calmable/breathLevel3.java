@@ -1,5 +1,7 @@
 package com.example.calmable;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -7,17 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-//import android.widget.ViewAnimator;
-
-//import com.example.calmable.Prefs;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
 
 import java.text.MessageFormat;
 
-public class breathLevel1 extends AppCompatActivity {
+public class breathLevel3 extends AppCompatActivity {
+
     private ImageView imageView;
     public int counter, counter2;
     private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
@@ -27,7 +26,8 @@ public class breathLevel1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breath_level1);
+        setContentView(R.layout.activity_breath_level3);
+
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
         timerminutes= (TextView) findViewById(R.id.timerminutes);
@@ -101,7 +101,7 @@ public class breathLevel1 extends AppCompatActivity {
                 .onStart(new AnimationListener.Start() {
                     @Override
                     public void onStart() {
-                        guideTxt.setText("Inhale... Exhale");
+                        guideTxt.setText("Inhale... Hold... Exhale");
                     }
                 })
                 /*.decelerate()
@@ -118,9 +118,15 @@ public class breathLevel1 extends AppCompatActivity {
                 .duration(1)
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
-                .rotation(360)
+                //.rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -135,6 +141,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
+
+                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -145,6 +157,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -159,6 +177,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
+
+                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -169,6 +193,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -183,6 +213,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
+
+                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -193,6 +229,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -207,6 +249,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
+
+                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -217,6 +265,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -231,6 +285,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
+
+                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -241,6 +301,12 @@ public class breathLevel1 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -255,40 +321,10 @@ public class breathLevel1 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
-                .scale(1.5f, 0.002f)
+                .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
-                ///////////////////// 13 //////////////////////
-                .thenAnimate(imageView)
-                .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f, 0.002f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-                ///////////////////// 14 //////////////////////
-                .thenAnimate(imageView)
-                .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f, 0.002f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-                ///////////////////// 15 //////////////////////
-                .thenAnimate(imageView)
-                .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)

@@ -21,6 +21,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".breathLevel3"
+            android:exported="true" />
+        <activity
+            android:name=".breathLevel2"
+            android:exported="true" />
+        <activity
             android:name=".ReportYearly"
             android:exported="true" />
         <activity
