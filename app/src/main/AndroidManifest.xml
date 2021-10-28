@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".breathLevel6"
+            android:exported="true" />
+        <activity
             android:name=".breathLevel5"
             android:exported="true" />
         <activity
