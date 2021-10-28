@@ -61,9 +61,9 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     return;
                 }
                 verifyCode(code);
-                Intent intentSUGGESTIONS = new Intent(VerifyPhoneActivity.this, LoginUserActivity.class);
-                intentSUGGESTIONS.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intentSUGGESTIONS);
+                Intent intent = new Intent(getApplicationContext(), LoginUserActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 finish();
             }
         });
@@ -177,10 +177,4 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
-
-
-//    public void gotoLandingPage(View view) {
-//        Intent intentGotoSU = new Intent(VerifyPhoneActivity.this,LandingPage.class);
-//        startActivity(intentGotoSU);
-//    }
 }

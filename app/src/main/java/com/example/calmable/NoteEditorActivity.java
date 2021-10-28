@@ -64,12 +64,13 @@ public class NoteEditorActivity extends AppCompatActivity {
         Intent intent = getIntent();
         noteId = intent.getIntExtra("noteId", -1);
 
+        // check valid note id
         if (noteId != -1) {
-            editTextNote.setText(JournalFragment.listOfNotes.get(noteId));
+            editTextNote.setText(Journal.listOfNotes.get(noteId));
         } else {
-            JournalFragment.listOfNotes.add("");
-            noteId = JournalFragment.listOfNotes.size() - 1;
-            JournalFragment.listViewNoteAdapter.notifyDataSetChanged();
+            Journal.listOfNotes.add("");
+            noteId = Journal.listOfNotes.size() - 1;
+            Journal.listViewNoteAdapter.notifyDataSetChanged();
 
         }
 
@@ -83,14 +84,13 @@ public class NoteEditorActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                JournalFragment.listOfNotes.set(noteId, String.valueOf(charSequence));
-                JournalFragment.listViewNoteAdapter.notifyDataSetChanged();
-
+                Journal.listOfNotes.set(noteId, String.valueOf(charSequence));
+                Journal.listViewNoteAdapter.notifyDataSetChanged();
 
                 // permanent save notes
                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable" , Context.MODE_PRIVATE);
-                HashSet<String> set = new HashSet(JournalFragment.listOfNotes);
-                sharedPreferences.edit().putStringSet("listOfNotes" , set).apply();
+                HashSet<String> set = new HashSet(Journal.listOfNotes);
+                sharedPreferences.edit().putStringSet("lostOfNotes" , set).apply();
 
             }
 
@@ -100,29 +100,5 @@ public class NoteEditorActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void UpdateDB(View view) {
-
-        String tvJournalDate = tvDate.getText().toString().trim();
-        String edJournalBody = editTextNote.getText().toString().trim();
-
-        listOfJournalDate.add(tvJournalDate);
-        listOfJournalBody.add(edJournalBody);
-
-
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        journalNote.put("journalNote", listOfJournalBody);
-        FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).updateChildren(journalNote)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        Toast.makeText(NoteEditorActivity.this, "added Successfully", Toast.LENGTH_SHORT).show();
-                        
-                    }
-                });
-        Log.d("User", mUser.getUid());
     }
 }

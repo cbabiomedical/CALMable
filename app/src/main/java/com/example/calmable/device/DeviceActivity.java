@@ -4,11 +4,14 @@ package com.example.calmable.device;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.crrepa.ble.CRPBleClient;
@@ -21,11 +24,10 @@ import com.crrepa.ble.conn.listener.CRPBleECGChangeListener;
 import com.crrepa.ble.conn.listener.CRPBloodOxygenChangeListener;
 import com.crrepa.ble.conn.listener.CRPBloodPressureChangeListener;
 import com.crrepa.ble.conn.listener.CRPHeartRateChangeListener;
+import com.example.calmable.Home;
 import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
 
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,12 +37,11 @@ import butterknife.OnClick;
 
 public class DeviceActivity extends AppCompatActivity {
 
+
+    public static int finalRate;
+
     private static final String TAG = "DeviceActivity";
     public static final String DEVICE_MACADDR = "device_macaddr";
-
-    public ArrayList<String> listOfRate = new ArrayList<>();
-
-
 
     ProgressDialog mProgressDialog;
     CRPBleClient mBleClient;
@@ -53,6 +54,7 @@ public class DeviceActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_heart_rate)
     TextView tvHeartRate;
+
     @BindView(R.id.tv_blood_pressure)
     TextView tvBloodPressure;
 
@@ -62,12 +64,18 @@ public class DeviceActivity extends AppCompatActivity {
     @BindView(R.id.tv_blood_oxygen)
     TextView tvBloodOxygen;
 
+    private ImageView imgConnect , imgDisconnect;
+
+
     private String bandFirmwareVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
+
+        imgConnect = findViewById(R.id.imgConnect);
+        imgDisconnect = findViewById(R.id.imgDisconnect);
 
         ButterKnife.bind(this);
         //initView();
@@ -94,6 +102,7 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
 
+
     void connect() {
         mProgressDialog.show();
         mBleConnection = mBleDevice.connect();
@@ -107,6 +116,8 @@ public class DeviceActivity extends AppCompatActivity {
                         state = R.string.state_connected;
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.disconnect));
+                        tvConnectState.setTextColor(Color.GREEN);
+                        //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
@@ -116,6 +127,8 @@ public class DeviceActivity extends AppCompatActivity {
                         state = R.string.state_disconnected;
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.connect));
+                        tvConnectState.setTextColor(Color.RED);
+                        //imgDisconnect.setVisibility(View.VISIBLE);
                         break;
                 }
                 updateConnectState(state);
@@ -135,6 +148,7 @@ public class DeviceActivity extends AppCompatActivity {
         mBleConnection.syncTime();
 //        mBleConnection.queryPastHeartRate();
 //        mBleConnection.syncSleep();
+
 
 //        sendFindBandMessage();
     }
@@ -193,19 +207,23 @@ public class DeviceActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        mHeartRateChangListener.onOnceMeasureComplete(finalRate);
+        super.onPause();
+    }
 
-    final CRPHeartRateChangeListener mHeartRateChangListener = new CRPHeartRateChangeListener() {
+    CRPHeartRateChangeListener mHeartRateChangListener = new CRPHeartRateChangeListener() {
         @Override
         public void onMeasuring(int rate) {
 
             Log.d(TAG, "onMeasuring: " + rate);
             updateTextView(tvHeartRate, String.format(getString(R.string.heart_rate), rate));
-            listOfRate.add(String.format(getString(R.string.heart_rate), rate));
-            Log.d(TAG, "list----->: " + listOfRate);
         }
 
         @Override
         public void onOnceMeasureComplete(int rate) {
+            finalRate = rate;
             Log.d(TAG, "onOnceMeasureComplete: " + rate);
         }
 
@@ -291,6 +309,10 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
     void updateConnectState(final int state) {
         if (state < 0) {
             return;
@@ -306,4 +328,13 @@ public class DeviceActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public void GoHome(View view) {
+
+
+        startActivity(new Intent(this, Home.class));
+    }
+
+
 }

@@ -65,7 +65,7 @@ public class JournalFragment extends Fragment {
         // permanent save notes
         //SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
 
-        //HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("lostOfNotes", null);
+//        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("lostOfNotes", null);
 //
 //        UpdateDB();
 //

@@ -42,7 +42,7 @@ public class ScanActivity extends AppCompatActivity {
             "android.permission.WRITE_EXTERNAL_STORAGE",
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.ACCESS_FINE_LOCATION",
-            "android.permission.ACCESS_COARS[E_LOCATION"};
+            "android.permission.ACCESS_COARSE_LOCATION"};
 
     @BindView(R.id.btn_scan_toggle)
     Button scanToggleBtn;
@@ -83,7 +83,6 @@ public class ScanActivity extends AppCompatActivity {
         super.onPause();
         cancelScan();
     }
-
 
     @OnClick({R.id.btn_scan_toggle, R.id.btn_firmware_fix, R.id.btn_hs_upgrade})
     public void onViewClicked(View view) {
@@ -175,8 +174,8 @@ public class ScanActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, DeviceActivity.class);
         intent.putExtra(DeviceActivity.DEVICE_MACADDR, macAddress);
         startActivity(intent);
+        System.out.println("okay oi");
     }
-
 
     private void updateButtonUIState() {
         scanToggleBtn.setText(mScanState ? R.string.stop_scan : R.string.start_scan);

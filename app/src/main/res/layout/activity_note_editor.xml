@@ -9,16 +9,18 @@
     android:background="@drawable/sea_bg">
 
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Date and time"
-            android:id="@+id/tvDate"
-            android:textSize="25dp"
-            android:textColor="@color/dark_blue_300"
-            android:layout_marginTop="16dp"/>
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="right"
+        android:text="Date and Time"
+        android:textColor="@color/dark_blue_300"
+        android:textSize="23dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:textStyle="italic"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,23 +45,5 @@
         android:layout_marginTop="65dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"/>
-
-
-    <Button
-        android:id="@+id/saveNotes"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@drawable/mybutton"
-        android:text="save"
-        android:textColor="@color/white"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        android:layout_marginTop="650dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="65dp"
-        android:onClick="UpdateDB"/>
-
-
-
 
 </RelativeLayout>

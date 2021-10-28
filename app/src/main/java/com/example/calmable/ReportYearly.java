@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -226,7 +225,7 @@ public class ReportYearly extends AppCompatActivity {
         daily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), reportHome.class);
+                Intent intent = new Intent(getApplicationContext(), ReportHome.class);
                 startActivity(intent);
             }
         });
