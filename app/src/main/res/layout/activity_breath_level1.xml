@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sea_bg"
-    tools:context=".breathLevel1">
+    tools:context=".BreathLevel1">
 
     <androidx.cardview.widget.CardView
         android:layout_width="321dp"
