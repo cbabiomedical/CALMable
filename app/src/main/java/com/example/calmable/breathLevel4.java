@@ -15,7 +15,7 @@ import com.github.florent37.viewanimator.ViewAnimator;
 
 import java.text.MessageFormat;
 
-public class breathLevel3 extends AppCompatActivity {
+public class breathLevel4 extends AppCompatActivity {
 
     private ImageView imageView;
     public int counter, counter2;
@@ -118,7 +118,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .duration(1)
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
-                .rotation(360)
+                //.rotation(360)
                 .accelerate()
                 .duration(4000)
 
@@ -126,7 +126,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -144,7 +144,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -162,7 +162,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -180,7 +180,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -198,7 +198,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -216,7 +216,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -234,7 +234,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -252,7 +252,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -270,7 +270,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
+                .duration(4000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -288,43 +288,7 @@ public class breathLevel3 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(2000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f, 0.002f)
-                .rotation(360)
-                .accelerate()
                 .duration(4000)
-                ///////////////////// 11 //////////////////////
-                .thenAnimate(imageView)
-                .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(2000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f, 0.002f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-                ///////////////////// 12 //////////////////////
-                .thenAnimate(imageView)
-                .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
