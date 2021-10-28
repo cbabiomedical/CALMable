@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".breathLevel5">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/flower2" />
+
+    <TextView
+        android:id="@+id/breathsTakenTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="712dp"
+        android:layout_marginBottom="628dp"
+        android:text="7 Breaths"
+        android:textColor="#022E2A"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/last"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="712dp"
+        android:layout_marginBottom="628dp"
+        android:text="Last at 11.45 pm"
+        android:textColor="#022E2A"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/todayminutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="142dp"
+        android:layout_marginEnd="712dp"
+        android:layout_marginBottom="628dp"
+        android:text="4 min today"
+        android:textColor="#022E2A"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/timerminutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="237dp"
+        android:layout_marginTop="159dp"
+        android:layout_marginEnd="712dp"
+        android:layout_marginBottom="628dp"
+        android:textColor="#022E2A"
+        android:textSize="21sp" />
+
+    <TextView
+        android:id="@+id/timerseconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="149dp"
+        android:layout_marginEnd="712dp"
+        android:layout_marginBottom="628dp"
+        android:textColor="#022E2A"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/startbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="13dp"
+        android:text="start"
+        android:textColor="#022E2A" />
+
+    <TextView
+        android:id="@+id/guideTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="169dp"
+        android:layout_marginTop="542dp"
+        android:layout_marginEnd="712dp"
+        android:layout_marginBottom="628dp"
+        android:text="Breathe"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+</RelativeLayout>
