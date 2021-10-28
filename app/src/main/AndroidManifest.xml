@@ -21,19 +21,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
-            android:name=".breathLevel6"
+            android:name=".ProfileMain"
+            android:exported="false" />
+
+        <activity
+            android:name=".BreathLevel6"
             android:exported="true" />
         <activity
-            android:name=".breathLevel5"
+            android:name=".BreathLevel5"
             android:exported="true" />
         <activity
-            android:name=".breathLevel4"
+            android:name=".BreathLevel4"
             android:exported="true" />
         <activity
-            android:name=".breathLevel3"
+            android:name=".BreathLevel3"
             android:exported="true" />
         <activity
-            android:name=".breathLevel2"
+            android:name=".BreathLevel2"
             android:exported="true" />
         <activity
             android:name=".ReportYearly"
@@ -42,20 +46,34 @@
             android:name=".ReportMonthly"
             android:exported="true" />
         <activity
-            android:name=".breathLevel1"
+            android:name=".BreathLevel1"
             android:exported="true" />
         <activity
             android:name=".ReportWeekly"
             android:exported="true" />
         <activity
-            android:name=".reportHome"
+            android:name=".scan.ScanActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".ReportHome"
+            android:exported="true" />
+
         <activity
             android:name=".device.DeviceActivity"
             android:exported="true" />
         <activity
-            android:name=".scan.ScanActivity"
-            android:exported="true" />
+            android:name=".Challenge"
+            android:exported="false" />
+        <activity
+            android:name=".Relax"
+            android:exported="false" />
+        <activity
+            android:name=".Journal"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
         <activity
             android:name=".AboutAppActivity"
             android:exported="true" />
@@ -84,23 +102,24 @@
             android:name=".UserPreferences"
             android:exported="true" />
         <activity
-            android:name=".breathHome"
+            android:name=".BreathHome"
             android:exported="true" />
         <activity
-            android:name=".happyHome"
+            android:name=".HappyHome"
             android:exported="true" />
         <activity
-            android:name=".motivateHome"
+            android:name=".MotivateHome"
             android:exported="true" />
         <activity
-            android:name=".sleepyHome"
+            android:name=".SleepyHome"
             android:exported="true" />
         <activity
-            android:name=".stressHome"
+            android:name=".StressHome"
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="CALMable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -110,11 +129,6 @@
         <activity
             android:name=".EditProfileActivity"
             android:exported="true" />
-        <activity
-            android:name=".BreathActivity"
-            android:exported="true"
-            android:label="Breathing Exercises"
-            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MotivationActivity"
             android:exported="true"
@@ -163,6 +177,11 @@
             android:name=".NoteEditorActivity"
             android:exported="true"
             android:label="Note" />
+        <activity
+            android:name=".BreathActivity"
+            android:exported="true"
+            android:label="Breathing Exercises"
+            android:parentActivityName=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
@@ -171,6 +190,13 @@
         <activity android:name="com.crrepa.ble.trans.upgrade.NotificationActivity" />
 
         <service android:name="com.crrepa.ble.trans.upgrade.DfuService" />
+        <service
+            android:name=".services.MyFirebaseInstanceService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

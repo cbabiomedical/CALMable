@@ -227,7 +227,7 @@ public class ReportMonthly extends AppCompatActivity {
         daily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), reportHome.class);
+                Intent intent = new Intent(getApplicationContext(), ReportHome.class);
                 startActivity(intent);
             }
         });

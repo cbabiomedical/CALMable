@@ -22,7 +22,7 @@ public class BreathActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(BreathActivity.this, breathLevel1.class);
+                Intent intent = new Intent(BreathActivity.this, BreathLevel1.class);
                 startActivity(intent);
                 //startActivity(new Intent(getActivity(),breathLevel1.class));
 

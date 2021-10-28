@@ -21,19 +21,6 @@ import butterknife.ButterKnife;
 
 public class ScanResultsAdapter extends RecyclerView.Adapter<ScanResultsAdapter.ViewHolder>{
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(android.R.id.text1)
-        TextView line1;
-        @BindView(android.R.id.text2)
-        TextView line2;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
 
     interface OnAdapterItemClickListener {
 
@@ -82,27 +69,44 @@ public class ScanResultsAdapter extends RecyclerView.Adapter<ScanResultsAdapter.
         return data.get(childAdapterPosition);
     }
 
-    @Override
-    public int getItemCount() {
-        return data.size();
-    }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        final CRPScanDevice scanDevice = data.get(position);
-        final BluetoothDevice bleDevice = scanDevice.getDevice();
-        holder.line1.setText(String.format("%s (%s)", bleDevice.getAddress(), bleDevice.getName()));
-        holder.line2.setText(String.format("RSSI: %d", scanDevice.getRssi()));
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ScanResultsAdapter.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.two_line_list_item, parent, false);
         itemView.setOnClickListener(onClickListener);
         return new ViewHolder(itemView);
     }
 
+    @Override
+    public void onBindViewHolder( ScanResultsAdapter.ViewHolder holder, int position) {
+
+        final CRPScanDevice scanDevice = data.get(position);
+        final BluetoothDevice bleDevice = scanDevice.getDevice();
+        holder.line1.setText(String.format("%s (%s)", bleDevice.getAddress(), bleDevice.getName()));
+        holder.line2.setText(String.format("RSSI: %d", scanDevice.getRssi()));
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return data.size();
+    }
+
+
     void setOnAdapterItemClickListener(OnAdapterItemClickListener onAdapterItemClickListener) {
         this.onAdapterItemClickListener = onAdapterItemClickListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(android.R.id.text1)
+        TextView line1;
+        @BindView(android.R.id.text2)
+        TextView line2;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
     }
 }

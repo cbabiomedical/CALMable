@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.calmable.forgotpw_otp.ProfileActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -52,7 +52,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
         //firebase authentication instance
         mAuth = FirebaseAuth.getInstance();
 
-        //set onclick listener for forgotpassword button
+        //set onclick listener for forgot password button
         forgotPassword = (TextView) findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(this);
 
@@ -79,7 +79,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 startActivity(new Intent(this, ForgotPassword.class));
                 break;
             case R.id.homebtn:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, Home.class));
                 finish();
                 break;
         }
@@ -115,14 +115,14 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 //        });
 //    }
 
-    //get & display current user's profile
+//    //get & display current user's profile
     @Override
     protected void onStart() {
         super.onStart();
 
         //signin authentication
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, Home.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
             startActivity(intent);
@@ -169,7 +169,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 if (task.isSuccessful()) {
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    startActivity(new Intent(LoginUserActivity.this, MainActivity.class));
+                    startActivity(new Intent(LoginUserActivity.this, Home.class));
 
                      /*if (user.isEmailVerified()) {
                         // redirect to user profile
