@@ -17,7 +17,7 @@
         android:alpha="0.9"
         android:outlineAmbientShadowColor="@color/black"
         android:outlineSpotShadowColor="@color/black"
-        app:cardBackgroundColor="#cfd8dc"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="28dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">

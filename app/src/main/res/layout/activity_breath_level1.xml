@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/sea_bg"
     tools:context=".BreathLevel1">
-
+    <!--app:cardBackgroundColor="#cfd8dc"/-->
     <androidx.cardview.widget.CardView
         android:layout_width="321dp"
         android:layout_height="321dp"
@@ -16,7 +16,7 @@
         android:alpha="0.9"
         android:outlineAmbientShadowColor="@color/black"
         android:outlineSpotShadowColor="@color/black"
-        app:cardBackgroundColor="#cfd8dc"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="28dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
