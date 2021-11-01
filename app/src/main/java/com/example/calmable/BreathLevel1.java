@@ -43,7 +43,7 @@ public class BreathLevel1 extends AppCompatActivity {
 
         sessionTxt.setText(MessageFormat.format("{0} min today", prefs.getSessions()));
         breathsTxt.setText(MessageFormat.format("{0} Breaths", prefs.getBreaths()));
-        timeTxt.setText(prefs.getDate());
+        //timeTxt.setText(prefs.getDate());
 
 
         startButton = findViewById(R.id.startbutton);

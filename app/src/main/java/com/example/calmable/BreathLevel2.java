@@ -21,7 +21,7 @@ public class BreathLevel2 extends AppCompatActivity {
     public int counter, counter2;
     private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
     private Button startButton;
-    private Prefs prefs;
+    private Prefs2 prefs2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +37,13 @@ public class BreathLevel2 extends AppCompatActivity {
         timeTxt = findViewById(R.id.last);
         sessionTxt = findViewById(R.id.todayminutes);
         guideTxt = findViewById(R.id.guideTxt);
-        prefs = new Prefs(this);
+        prefs2 = new Prefs2(this);
 
         startIntroAnimation();
 
-        sessionTxt.setText(MessageFormat.format("{0} min today", prefs.getSessions()));
-        breathsTxt.setText(MessageFormat.format("{0} Breaths", prefs.getBreaths()));
-        timeTxt.setText(prefs.getDate());
+        sessionTxt.setText(MessageFormat.format("{0} min today", prefs2.getSessions()));
+        breathsTxt.setText(MessageFormat.format("{0} Breaths", prefs2.getBreaths()));
+        //timeTxt.setText(prefs.getDate());
 
 
         startButton = findViewById(R.id.startbutton);
@@ -243,9 +243,9 @@ public class BreathLevel2 extends AppCompatActivity {
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
 
-                        prefs.setSessions(prefs.getSessions() + 1);
-                        prefs.setBreaths(prefs.getBreaths() + 1);
-                        prefs.setDate(SystemClock.currentThreadTimeMillis());
+                        prefs2.setSessions(prefs2.getSessions() + 1);
+                        prefs2.setBreaths(prefs2.getBreaths() + 1);
+                        prefs2.setDate(SystemClock.currentThreadTimeMillis());
 
                     }
                 })
