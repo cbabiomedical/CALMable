@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,8 +22,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class ProfileMain extends AppCompatActivity {
+
+    StorageReference storageReference;
+    ImageView profileImage;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +56,22 @@ public class ProfileMain extends AppCompatActivity {
         Button rateUsBtn = (Button) findViewById(R.id.rateUsBtn);
         Button aboutAppBtn = (Button) findViewById(R.id.aboutAppBtn);
 
+        //load profile picture to the imageview
+        ImageView profileImage = (ImageView) findViewById(R.id.profileImage);
 
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = user.getUid();
+        StorageReference profileRef = storageReference.child("users/" + userid + "/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profileImage);
+            }
+        });
+
+        getData();
 
 
         //go to edit profile page
