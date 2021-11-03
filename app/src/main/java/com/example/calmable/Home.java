@@ -95,7 +95,7 @@ public class Home extends AppCompatActivity {
     }
 
     public void btnStressed (View view) {
-        startActivity(new Intent(this, StressHome.class));
+        startActivity(new Intent(this, Relax.class));
     }
 
     public void btnSleepy (View view) {

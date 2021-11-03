@@ -30,7 +30,8 @@
                 android:text="Deep relax music"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="BtnGoDeepRelaxMusic"/>
 
             <Button
                 android:id="@+id/natureSoundBtn"

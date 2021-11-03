@@ -39,7 +39,12 @@ public class ProfileMain extends AppCompatActivity {
 
         NavigationBar();
 
-        getData();
+        try {
+            getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         Button settings = (Button) findViewById(R.id.settings);
         Button signOutBtn = (Button) findViewById(R.id.signOut);
@@ -109,7 +114,7 @@ public class ProfileMain extends AppCompatActivity {
         calenderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getApplicationContext(), CalenderActiivity.class);
+                Intent in = new Intent(getApplicationContext(), CalenderActivity.class);
                 startActivity(in);
             }
 
