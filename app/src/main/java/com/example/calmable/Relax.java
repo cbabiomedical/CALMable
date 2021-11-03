@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -56,5 +58,9 @@ public class Relax extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void BtnGoDeepRelaxMusic (View view){
+        startActivity(new Intent(getApplicationContext(), DeepRelaxMusicActivity.class));
     }
 }

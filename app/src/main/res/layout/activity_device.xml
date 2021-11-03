@@ -24,7 +24,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/connect_state" />
+                android:text="@string/connect_state"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/tv_connect_state"
@@ -93,7 +94,8 @@
             android:id="@+id/btn_stop_measure_heart_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/stop_measure_heart_rate" />
+            android:text="@string/stop_measure_heart_rate"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 

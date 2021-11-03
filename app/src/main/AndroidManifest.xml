@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name = "android.permission.RECORD_AUDIO"/>
 
     <application
         android:name=".SampleApplication"
@@ -21,9 +22,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".concentration_music"
+            android:exported="false" />
+        <activity
+            android:name=".MusicPlayer"
+            android:exported="false" />
+        <activity
+            android:name=".DeepRelaxMusicActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileMain"
             android:exported="false" />
-
         <activity
             android:name=".BreathLevel6"
             android:exported="true" />
@@ -41,27 +50,33 @@
             android:exported="true" />
         <activity
             android:name=".ReportYearly"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Yearly" />
         <activity
             android:name=".ReportMonthly"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Monthly" />
         <activity
             android:name=".BreathLevel1"
             android:exported="true" />
         <activity
             android:name=".ReportWeekly"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Weekly" />
         <activity
             android:name=".scan.ScanActivity"
-            android:exported="true" />
-
+            android:exported="true"
+            android:label="Scan"
+            android:parentActivityName=".Home" />
         <activity
             android:name=".ReportHome"
-            android:exported="true" />
-
+            android:exported="true"
+            android:label="Report"
+            android:parentActivityName=".Home" />
         <activity
             android:name=".device.DeviceActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Device" />
         <activity
             android:name=".Challenge"
             android:exported="false" />
@@ -76,31 +91,49 @@
             android:exported="false" />
         <activity
             android:name=".AboutAppActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="About"
+            android:parentActivityName=".ProfileMain" />
         <activity
             android:name=".RateUsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Rate Us"
+            android:parentActivityName=".ProfileMain" />
         <activity
             android:name=".PremiumActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Premium"
+            android:parentActivityName=".ProfileMain" />
         <activity
-            android:name=".CalenderActiivity"
-            android:exported="true" />
+            android:name=".CalenderActivity"
+            android:exported="true"
+            android:label="Calender"
+            android:parentActivityName=".ProfileMain" />
         <activity
             android:name=".RemindersActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Reminders"
+            android:parentActivityName=".ProfileMain" />
         <activity
             android:name=".MyFavouritesActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Favourites"
+            android:parentActivityName=".ProfileMain" />
         <activity
             android:name=".MyDownloadsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Downloads"
+            android:parentActivityName=".ProfileMain" />
         <activity
             android:name=".ChangePasswordActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Change Password"
+            android:parentActivityName=".EditProfileActivity" />
         <activity
             android:name=".UserPreferences"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Preferences"
+            android:parentActivityName=".RegisterUser" />
         <activity
             android:name=".BreathHome"
             android:exported="true" />
@@ -109,13 +142,18 @@
             android:exported="true" />
         <activity
             android:name=".MotivateHome"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Motivate"
+            android:parentActivityName=".Home" />
         <activity
             android:name=".SleepyHome"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Sleepy"
+            android:parentActivityName=".Home" />
         <activity
             android:name=".StressHome"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".Home" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -128,11 +166,14 @@
         </activity>
         <activity
             android:name=".EditProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Edit Profile"
+            android:parentActivityName=".ProfileMain" />
         <activity
             android:name=".MotivationActivity"
             android:exported="true"
-            android:label="Motivation" />
+            android:label="Motivation"
+            android:parentActivityName=".Home" />
         <activity
             android:name=".SleepyActivity"
             android:exported="true"

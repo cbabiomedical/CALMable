@@ -3,13 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/ic_baseline_library.xml" value="0.2520833333333333" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/ic_pause_circle.xml" value="0.26614583333333336" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/drawable/ic_play_circle.xml" value="0.26614583333333336" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_about_app.xml" value="0.25" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_breath.xml" value="0.275" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_breath_home.xml" value="0.22962962962962963" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_calender_activity.xml" value="0.25" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_change_password.xml" value="0.12708333333333333" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_concentration_music.xml" value="0.25" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_deep_relax_music.xml" value="0.25" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_device.xml" value="0.275" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_journal.xml" value="0.275" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_motivation.xml" value="0.25" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_music_player.xml" value="0.2359375" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_note_editor.xml" value="0.275" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_profile_main.xml" value="0.25" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_relax.xml" value="0.25" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_report_home.xml" value="0.275" />
         <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_scan.xml" value="0.275" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_stress_home.xml" value="0.25" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/activity_user_preferences.xml" value="0.25" />
+        <entry key="..\:/CBA/CALMable - Project/Git/CALMable/app/src/main/res/layout/music_name.xml" value="0.275" />
       </map>
     </option>
   </component>
