@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/sea_bg"
+    android:background="@drawable/bg_1"
     android:orientation="horizontal"
-    tools:context=".reportHome">
+    tools:context=".ReportHome">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,13 +32,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="50dp"
-                android:text="Report Page"
+                android:text="Daily Report Page"
                 android:textColor="#000000"/>
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChartDaily"
                 android:layout_width="325dp"
-                android:layout_height="250dp"
+                android:layout_height="350dp"
                 android:layout_below="@+id/toggleBtn"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="4dp"
@@ -102,7 +102,7 @@
                     android:layout_width="2dp"
                     android:layout_height="650dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="500dp"
+                    android:layout_marginTop="600dp"
                     android:background="#000000" />
             </LinearLayout>
 
@@ -120,14 +120,14 @@
                         android:layout_width="20dp"
                         android:layout_height="2dp"
                         android:background="#000000"
-                        android:layout_marginTop="530dp"
+                        android:layout_marginTop="630dp"
                         android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="520dp"
+                        android:layout_marginTop="620dp"
                         android:text="Job"
                         android:textColor="#000000"/>
                 </LinearLayout>
@@ -138,7 +138,7 @@
                 android:layout_width="232dp"
                 android:layout_height="295dp"
                 android:layout_marginLeft="104dp"
-                android:layout_marginTop="500dp" />
+                android:layout_marginTop="600dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -153,14 +153,14 @@
                         android:layout_width="20dp"
                         android:layout_height="2dp"
                         android:background="#000000"
-                        android:layout_marginTop="830dp"
+                        android:layout_marginTop="930dp"
                         android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="820dp"
+                        android:layout_marginTop="920dp"
                         android:text="Age"
                         android:textColor="#000000"/>
                 </LinearLayout>
@@ -172,7 +172,7 @@
                 android:layout_width="232dp"
                 android:layout_height="295dp"
                 android:layout_marginLeft="104dp"
-                android:layout_marginTop="830dp" />
+                android:layout_marginTop="930dp" />
 
 
         </RelativeLayout>

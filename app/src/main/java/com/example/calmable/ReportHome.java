@@ -2,6 +2,7 @@ package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -66,10 +67,11 @@ public class ReportHome extends AppCompatActivity {
 
     BarChart barChartdaily;
     private Context context;
-    AppCompatButton monthly, yearly, weekly, whereAmI;
+    AppCompatButton monthly, yearly, weekly;
     File fileName, localFile;
     FirebaseUser mUser;
     String text;
+
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
 
@@ -106,9 +108,6 @@ public class ReportHome extends AppCompatActivity {
         weekly = findViewById(R.id.weekly);
 
 
-        //Initializing arraylist and storing input data to arraylist
-        ArrayList<Float> obj = new ArrayList<>(
-                Arrays.asList(30f, 86f, 10f, 50f, 20f, 60f, 80f));
         //Writing data to file
         try {
             fileName = new File(getCacheDir() + "/reportDaily.txt");
@@ -116,10 +115,12 @@ public class ReportHome extends AppCompatActivity {
             FileWriter fw;
             fw = new FileWriter(fileName);
             BufferedWriter output = new BufferedWriter(fw);
-            int size = obj.size();
+            int size = dataValues1().size();
             for (int i = 0; i < size; i++) {
-                output.write(obj.get(i).toString() + "\n");
-//                Toast.makeText(this, "Success Writing", Toast.LENGTH_SHORT).show();
+//                output.write(dataValues1().get(i).toString() + "\n");
+
+                output.write("X "+ dataValues1().get(i).getX()+
+                        " Y " + Arrays.toString(dataValues1().get(i).getYVals()) + "\n");
             }
             output.close();
         } catch (IOException exception) {
@@ -153,106 +154,91 @@ public class ReportHome extends AppCompatActivity {
         final Handler handler = new Handler();
         final int delay = 5000;
 
-        handler.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                StorageReference storageReference = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportDaily.txt");
-                //downloading the uploaded file and storing in arraylist
-                try {
-                    localFile = File.createTempFile("tempFile", ".txt");
-                    text = localFile.getAbsolutePath();
-                    Log.d("Bitmap", text);
-                    storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                            Toast.makeText(ConcentrationReportDaily.this, "Success", Toast.LENGTH_SHORT).show();
-
-                            try {
-                                InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(localFile.getAbsolutePath()));
-
-                                Log.d("FileName", localFile.getAbsolutePath());
-
-                                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                                String line = "";
-
-                                Log.d("First", line);
-                                if ((line = bufferedReader.readLine()) != null) {
-                                    list.add(line);
-                                }
-                                while ((line = bufferedReader.readLine()) != null) {
-
-                                    list.add(line);
-                                    Log.d("Line", line);
-                                }
-
-                                Log.d("List", String.valueOf(list));
-
-                                for (int i = 0; i < list.size(); i++) {
-                                    floatList.add(Float.parseFloat(list.get(i)));
-                                    Log.d("FloatArrayList", String.valueOf(floatList));
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            String[] days = new String[]{"Mon", "Thu", "Wed", "Thur", "Fri", "Sat", "Sun"};
-                            List<Float> creditsMain = new ArrayList<>(Arrays.asList(90f, 30f, 70f, 50f, 10f, 15f, 85f));
-                            float[] strengthDay = new float[]{90f, 30f, 70f, 50f, 10f, 15f, 85f};
-
-                            List<BarEntry> entries = new ArrayList<>();
-                            for (int j = 0; j < floatList.size(); ++j) {
-                                entries.add(new BarEntry(j, floatList.get(j)));
-                            }
-                            float textSize = 16f;
-                            //Initializing object of MyBarDataset class
-                            MyBarDataset dataSet = new MyBarDataset(entries, "data", creditsMain);
-                            dataSet.setColors(ContextCompat.getColor(getApplicationContext(), R.color.black),
-                                    ContextCompat.getColor(getApplicationContext(), R.color.teal_100),
-                                    ContextCompat.getColor(getApplicationContext(), R.color.teal_700),
-                                    ContextCompat.getColor(getApplicationContext(), R.color.dark_blue_300),
-                                    ContextCompat.getColor(getApplicationContext(), R.color.purple_500));
-                            BarData data = new BarData(dataSet);
-                            data.setDrawValues(false);
-                            data.setBarWidth(0.9f);
-
-                            barChartdaily.setData(data);
-                            barChartdaily.setFitBars(true);
-                            barChartdaily.getXAxis().setValueFormatter(new IndexAxisValueFormatter(days));
-                            barChartdaily.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-                            barChartdaily.getXAxis().setTextSize(textSize);
-                            barChartdaily.getAxisLeft().setTextSize(textSize);
-                            barChartdaily.setExtraBottomOffset(10f);
-
-                            barChartdaily.getAxisRight().setEnabled(false);
-                            Description desc = new Description();
-                            desc.setText("");
-                            barChartdaily.setDescription(desc);
-                            barChartdaily.getLegend().setEnabled(false);
-                            barChartdaily.getXAxis().setDrawGridLines(false);
-                            barChartdaily.getAxisLeft().setDrawGridLines(false);
-
-                            barChartdaily.invalidate();
-
+//        handler.postDelayed(new Runnable() {
 //
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-//                            Toast.makeText(ConcentrationReportDaily.this, "Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+//            @Override
+//            public void run() {
+//                StorageReference storageReference = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportDaily.txt");
+//                //downloading the uploaded file and storing in arraylist
+//                try {
+//                    localFile = File.createTempFile("tempFile", ".txt");
+//                    text = localFile.getAbsolutePath();Log.d("Values", String.valueOf(dataVals));
+//                    Log.d("Bitmap", text);
+//                    storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+////                            Toast.makeText(ConcentrationReportDaily.this, "Success", Toast.LENGTH_SHORT).show();
+//
+//                            try {
+//                                InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(localFile.getAbsolutePath()));
+//
+//                                Log.d("FileName", localFile.getAbsolutePath());
+//
+//                                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//                                String line = "";
+//
+//                                Log.d("First", line);
+//                                if ((line = bufferedReader.readLine()) != null) {
+//                                    list.add(line);
+//                                }
+//                                while ((line = bufferedReader.readLine()) != null) {
+//
+//                                    list.add(line);
+//                                    Log.d("Line", line);
+//                                }
+//
+//                                Log.d("List", String.valueOf(list));
+//
+//                                for (int i = 0; i < list.size(); i++) {
+//                                    floatList.add(Float.parseFloat(list.get(i)));
+//                                    Log.d("FloatArrayList", String.valueOf(floatList));
+//                                }
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//
+////                            //Stacked BarChart
+////                            int[] colorClassArray = new int[]{Color.GREEN,Color.RED};
+////                            BarDataSet barDataSet = new BarDataSet(dataValues1(),"Stress Time");
+////                            barDataSet.setColors(colorClassArray);
+////                            barDataSet.setStackLabels(new String[]{"Not Stressed", "Stressed", "Not Stressed"});
+////                            String[] daysS = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+////                            XAxis xAxis = barChartdaily.getXAxis();
+////                            xAxis.setValueFormatter(new IndexAxisValueFormatter(daysS));
+////
+////                            BarData barData = new BarData(barDataSet);
+////                            barChartdaily.setData(barData);
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+////                            Toast.makeText(ConcentrationReportDaily.this, "Failed", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//
+//
+//                } catch (IOException exception) {
+//                    exception.printStackTrace();
+//                }
+//            }
+//
+//            //Downloading file and displaying chart
+//        }, delay);
 
+        //Stacked BarChart
+        int[] colorClassArray = new int[]{Color.GREEN,Color.RED};
+        Log.d("DataValues print", "--------String------");
+        BarDataSet barDataSet = new BarDataSet(dataValues1(),"Stress Time");
+        barDataSet.setColors(colorClassArray);
+        barDataSet.setStackLabels(new String[]{"Relaxed", "Stressed"});
+        String[] daysS = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        XAxis xAxis = barChartdaily.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(daysS));
 
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                }
-            }
+        BarData barData = new BarData(barDataSet);
+        barChartdaily.setData(barData);
 
-            //Downloading file and displaying chart
-        }, delay);
-
-        //1 -----> chart
+        //1 -----> Scatter chart
         ArrayList<Float> obj1 = new ArrayList<>(
                 Arrays.asList(30f, 86f, 10f, 50f, 20f, 60f, 80f));
 
@@ -521,7 +507,7 @@ public class ReportHome extends AppCompatActivity {
             //Downloading file and displaying chart
         }, delay2);
 
-        //2 ------> chart
+        //2 ------> Scatter chart
 
         ArrayList<Float> objm = new ArrayList<>(
                 Arrays.asList(80f, 86f, 10f, 50f, 20f, 60f, 80f));
@@ -818,17 +804,28 @@ public class ReportHome extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//
-//        // On click listener of where am i toggle button
-//        whereAmI.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), ConcentrationReportWhereamI.class);
-//                startActivity(intent);
-//            }
-//        });
+
     }
 
+    //Putting data to the array of stacked bar chart
+    private ArrayList<BarEntry> dataValues1() {
+        ArrayList<BarEntry> dataVals = new ArrayList<>();
+        dataVals.add(new BarEntry(0, new float[]{17, 7}));
+        dataVals.add(new BarEntry(1, new float[]{8, 16}));
+        dataVals.add(new BarEntry(2, new float[]{15, 9}));
+        dataVals.add(new BarEntry(3, new float[]{24,0}));
+        dataVals.add(new BarEntry(4, new float[]{22, 2}));
+        dataVals.add(new BarEntry(5, new float[]{10,14}));
+        dataVals.add(new BarEntry(6, new float[]{18,6}));
+
+        Log.d("Values0", String.valueOf(dataVals.get(0).getX()));
+        Log.d("Values1", String.valueOf(Arrays.toString(dataVals.get(1).getYVals())));
+
+        for (int i = 0; i < dataVals.size(); i++) {
+            System.out.println(Arrays.toString(dataVals.get(i).getYVals()));
+        }
+        return dataVals;
+    }
 
     public class MyBarDataset extends BarDataSet {
 
