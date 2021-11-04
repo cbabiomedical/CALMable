@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,8 @@ import com.github.florent37.viewanimator.ViewAnimator;
 import java.text.MessageFormat;
 
 public class BreathLevel2 extends AppCompatActivity {
+
+    public static int x2;
 
     private ImageView imageView;
     public int counter, counter2;
@@ -43,6 +46,11 @@ public class BreathLevel2 extends AppCompatActivity {
 
         sessionTxt.setText(MessageFormat.format("{0} min today", prefs2.getSessions()));
         breathsTxt.setText(MessageFormat.format("{0} Breaths", prefs2.getBreaths()));
+
+        Log.d("---get breaths value2--", String.valueOf(prefs2.getBreaths()));
+        x2 = prefs2.getBreaths();
+        Log.d("----x2 value----", String.valueOf(x2));
+
         //timeTxt.setText(prefs.getDate());
 
 

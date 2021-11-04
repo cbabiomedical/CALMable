@@ -3,6 +3,7 @@ package com.example.calmable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,11 +19,14 @@ import com.github.florent37.viewanimator.ViewAnimator;
 import java.text.MessageFormat;
 
 public class BreathLevel1 extends AppCompatActivity {
+
+    public static int x;
+
     private ImageView imageView;
     public int counter, counter2;
     private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
     private Button startButton;
-    private Prefs prefs;
+    public static Prefs prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,13 @@ public class BreathLevel1 extends AppCompatActivity {
         startIntroAnimation();
 
         sessionTxt.setText(MessageFormat.format("{0} min today", prefs.getSessions()));
-        breathsTxt.setText(MessageFormat.format("{0} Breaths", prefs.getBreaths()));
+        //y = prefs.getBreaths();
+        breathsTxt.setText(MessageFormat.format("{0} Breaths",prefs.getBreaths()));
+        Log.d("---get breaths value---", String.valueOf(prefs.getBreaths()));
+        x = prefs.getBreaths();
+        Log.d("----x value----", String.valueOf(x));
         //timeTxt.setText(prefs.getDate());
+
 
 
         startButton = findViewById(R.id.startbutton);
@@ -52,7 +61,7 @@ public class BreathLevel1 extends AppCompatActivity {
             public void onClick(View view){
                 startAnimation();
                 timerminutes.setText(" Seconds");
-                new CountDownTimer(121000, 1000){
+                new CountDownTimer(24000, 1000){
                     public void onTick(long millisUntilFinished){
                         timerseconds.setText(String.valueOf(counter));
                         counter++;
@@ -104,14 +113,6 @@ public class BreathLevel1 extends AppCompatActivity {
                         guideTxt.setText("Inhale... Exhale");
                     }
                 })
-                /*.decelerate()
-                .duration(1000)
-                .thenAnimate(imageView)
-                .scale(0.002f, 1.5f, 1.5f, 1.5f, 0.7f, 0.002f)
-                .rotation(360)
-                .repeatCount(5)
-                .accelerate()
-                .duration(6000)*/
 
                 ///////////////////// 1 //////////////////////
                 .decelerate()
@@ -304,9 +305,11 @@ public class BreathLevel1 extends AppCompatActivity {
                         imageView.setScaleY(1.0f);
 
                         prefs.setSessions(prefs.getSessions() + 1);
+                        //BreathHome.x = prefs.setBreaths(prefs.getBreaths() + 1);
                         prefs.setBreaths(prefs.getBreaths() + 1);
+                        //Log.d(TAG, "-----------------x-----------------");
                         prefs.setDate(SystemClock.currentThreadTimeMillis());
-
+                        //x = x+1;
                     }
                 })
                 .start();
