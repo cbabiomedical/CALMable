@@ -71,6 +71,7 @@ public class ReportHome extends AppCompatActivity {
     File fileName, localFile;
     FirebaseUser mUser;
     String text;
+    StorageReference storageReference;
 
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
@@ -127,11 +128,12 @@ public class ReportHome extends AppCompatActivity {
             exception.printStackTrace();
         }
 
+        storageReference = FirebaseStorage.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mUser.getUid();
 
         // Uploading file created to firebase storage
-        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference(mUser.getUid());
+        StorageReference storageReference1 = storageReference.child("users/" + mUser.getUid());
         try {
             StorageReference mountainsRef = storageReference1.child("reportDaily.txt");
             InputStream stream = new FileInputStream(new File(fileName.getAbsolutePath()));
@@ -238,6 +240,7 @@ public class ReportHome extends AppCompatActivity {
         BarData barData = new BarData(barDataSet);
         barChartdaily.setData(barData);
 
+
         //1 -----> Scatter chart
         ArrayList<Float> obj1 = new ArrayList<>(
                 Arrays.asList(30f, 86f, 10f, 50f, 20f, 60f, 80f));
@@ -279,11 +282,13 @@ public class ReportHome extends AppCompatActivity {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+
+        storageReference = FirebaseStorage.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mUser.getUid();
 
         // Uploading file created to firebase storage
-        StorageReference storageReference11 = FirebaseStorage.getInstance().getReference(mUser.getUid());
+        StorageReference storageReference11 = storageReference.child("users/" + mUser.getUid());
         try {
             StorageReference mountainsRef = storageReference11.child("reportWhereami_job.txt");
             InputStream stream = new FileInputStream(new File(fileName1.getAbsolutePath()));
@@ -307,7 +312,12 @@ public class ReportHome extends AppCompatActivity {
 
         //Avg
 
-        StorageReference storageReference1a = FirebaseStorage.getInstance().getReference(mUser.getUid());
+        storageReference = FirebaseStorage.getInstance().getReference();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser.getUid();
+
+        // Uploading file created to firebase storage
+        StorageReference storageReference1a = storageReference.child("users/" + mUser.getUid());
         try {
             StorageReference mountainsRef = storageReference1a.child("reportWhereami_jobAvg.txt");
             InputStream stream = new FileInputStream(new File(fileNamea.getAbsolutePath()));
@@ -334,8 +344,14 @@ public class ReportHome extends AppCompatActivity {
 
             @Override
             public void run() {
-                StorageReference storageReference = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportConcenWhereamiTR_job.txt");
-                StorageReference storageReferencea = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportConcenWhereamiTR_jobAvg.txt");
+                storageReference = FirebaseStorage.getInstance().getReference();
+                mUser = FirebaseAuth.getInstance().getCurrentUser();
+                mUser.getUid();
+
+                StorageReference storageReference1a = storageReference.child("users/" + mUser.getUid());
+                StorageReference storageReferenceb = storageReference1a.child("reportWhereami_job.txt");
+                StorageReference storageReferencea = storageReference1a.child("reportWhereami_jobAvg.txt");
+
                 //download and read the file
 
                 try {
@@ -348,7 +364,7 @@ public class ReportHome extends AppCompatActivity {
                     Log.d("Bitmap", text1);
                     Log.d("Bitmap", texta);
 
-                    storageReference.getFile(localFile1).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    storageReferenceb.getFile(localFile1).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 //                            Toast.makeText(ConcentrationReportWhereamI.this, "Success", Toast.LENGTH_SHORT).show();
@@ -549,11 +565,13 @@ public class ReportHome extends AppCompatActivity {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+
+        storageReference = FirebaseStorage.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mUser.getUid();
 
         // Uploading file created to firebase storage
-        StorageReference storageReference2 = FirebaseStorage.getInstance().getReference(mUser.getUid());
+        StorageReference storageReference2 = storageReference.child("users/" + mUser.getUid());
         try {
             StorageReference mountainsRef = storageReference2.child("reportWhereami_age.txt");
             InputStream stream = new FileInputStream(new File(fileNamem.getAbsolutePath()));
@@ -576,7 +594,12 @@ public class ReportHome extends AppCompatActivity {
 
         //Avg
 
-        StorageReference storageReferencea2 = FirebaseStorage.getInstance().getReference(mUser.getUid());
+        storageReference = FirebaseStorage.getInstance().getReference();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser.getUid();
+
+        // Uploading file created to firebase storage
+        StorageReference storageReferencea2 = storageReference.child("users/" + mUser.getUid());
         try {
             StorageReference mountainsRef = storageReferencea2.child("reportWhereami_ageAvg.txt");
             InputStream stream = new FileInputStream(new File(fileNamea2.getAbsolutePath()));
@@ -604,9 +627,16 @@ public class ReportHome extends AppCompatActivity {
 
             @Override
             public void run() {
-                StorageReference storageReferencem = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportConcenWhereamiTR_age.txt");
-                StorageReference storageReferencea2 = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportConcenWhereamiTR_ageAvg.txt");
+
                 //download and read the file
+
+                storageReference = FirebaseStorage.getInstance().getReference();
+                mUser = FirebaseAuth.getInstance().getCurrentUser();
+                mUser.getUid();
+
+                StorageReference storageReference1a = storageReference.child("users/" + mUser.getUid());
+                StorageReference storageReferencem = storageReference1a.child("reportWhereami_job.txt");
+                StorageReference storageReferencea2 = storageReference1a.child("reportWhereami_jobAvg.txt");
 
                 try {
                     localFilem = File.createTempFile("tempFilem", ".txt");
