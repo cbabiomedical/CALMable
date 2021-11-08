@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tag_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Who are you with?"
+        android:textAlignment="center"
+        android:textColor="#205072"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/edit_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Person"
+        android:layout_below="@+id/tag_person"
+        />
+
+    <TextView
+        android:id="@+id/tag_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Where are you now?"
+        android:textAlignment="center"
+        android:textColor="#205072"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/edit_person"
+        />
+
+    <EditText
+        android:id="@+id/edit_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Place"
+        android:layout_below="@+id/tag_place"
+        />
+
+
+</RelativeLayout>
