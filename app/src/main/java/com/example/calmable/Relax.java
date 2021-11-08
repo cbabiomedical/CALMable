@@ -63,4 +63,20 @@ public class Relax extends AppCompatActivity {
     public void BtnGoDeepRelaxMusic (View view){
         startActivity(new Intent(getApplicationContext(), DeepRelaxMusicActivity.class));
     }
+
+    public void BtnGoNatureSounds (View view){
+        startActivity(new Intent(getApplicationContext(), NatureSoundsActivity.class));
+    }
+
+    public void BtnGoMeditateMusic (View view){
+        startActivity(new Intent(getApplicationContext(), MeditateMusicActivity.class));
+    }
+
+    public void BtnGoPainReliefMusic (View view){
+        startActivity(new Intent(getApplicationContext(), PainReliefMusicActivity.class));
+    }
+
+    public void BtnGoChillOutMusic (View view){
+        startActivity(new Intent(getApplicationContext(), ChillOutMusicActivity.class));
+    }
 }

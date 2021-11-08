@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Relax"
-    android:background="@drawable/relax_bg">
+    android:background="@drawable/relax_bg"
+    tools:context=".Relax">
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:layout_above="@id/bottom_navigation">
+        android:layout_above="@id/bottom_navigation"
+        android:layout_marginTop="250dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,11 +27,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:background="@drawable/landing_main_btn"
+                android:onClick="BtnGoDeepRelaxMusic"
                 android:text="Deep relax music"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:onClick="BtnGoDeepRelaxMusic"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/natureSoundBtn"
@@ -39,6 +39,7 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/landing_main_btn"
+                android:onClick="BtnGoNatureSounds"
                 android:text="Nature Sounds"
                 android:textColor="@color/white"
                 android:textSize="18dp"
@@ -50,6 +51,7 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/landing_main_btn"
+                android:onClick="BtnGoMeditateMusic"
                 android:text="Meditate"
                 android:textColor="@color/white"
                 android:textSize="18dp"
@@ -61,6 +63,7 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/landing_main_btn"
+                android:onClick="BtnGoPainReliefMusic"
                 android:text="Pain Relief"
                 android:textColor="@color/white"
                 android:textSize="18dp"
@@ -71,11 +74,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/landing_main_btn"
                 android:text="Chill out music"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="BtnGoChillOutMusic"/>
 
         </LinearLayout>
 

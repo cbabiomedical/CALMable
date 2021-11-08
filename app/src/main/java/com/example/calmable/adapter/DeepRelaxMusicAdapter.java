@@ -19,7 +19,7 @@ import com.example.calmable.R;
 import java.util.ArrayList;
 
 
-public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAdapter.ViewHolder>{
+public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAdapter.ViewHolder> {
 
     private ArrayList<MusicModel> listOfSongs;
     private Context context;
@@ -45,7 +45,7 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
             public void onClick(View v) {
                 listOfSongs.get(position);
 
-                Intent intent=new Intent(context,MusicPlayer.class);
+                Intent intent = new Intent(context, MusicPlayer.class);
 
                 String songName = listOfSongs.get(position).getSongName();
                 String url = listOfSongs.get(position).getUrl();
@@ -73,10 +73,8 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            songTitle=itemView.findViewById(R.id.songTitle);
+            songTitle = itemView.findViewById(R.id.songTitle);
             recyclerView = itemView.findViewById(R.id.listOfSongRecycleView);
         }
-
-
     }
 }

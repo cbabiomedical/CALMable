@@ -85,10 +85,11 @@ public class MusicPlayer extends AppCompatActivity {
         if (extras != null) {
             uri = extras.getString("url");
 //            time_selected = extras.getString("time");
-            name = extras.getString("name");
+            name = extras.getString("songName");
 //            time = Integer.parseInt(time_selected);
             music_title.setText(name);
-            image=extras.getInt("image");
+            image = extras.getInt("image");
+            Log.d("TAG", "titile --------: " + name);
 
             prepareMediaPlayer();
 
@@ -156,14 +157,13 @@ public class MusicPlayer extends AppCompatActivity {
                     }
 
 
-
                 }
             };
 
             playSeekBar.setMax(time);
             updateSeekBar.start();
-            playSeekBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.purple_700), PorterDuff.Mode.MULTIPLY);
-            playSeekBar.getThumb().setColorFilter(getResources().getColor(R.color.purple_500), PorterDuff.Mode.SRC_IN);
+            playSeekBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.teal_700), PorterDuff.Mode.MULTIPLY);
+            playSeekBar.getThumb().setColorFilter(getResources().getColor(R.color.teal_100), PorterDuff.Mode.SRC_IN);
             playSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -256,7 +256,7 @@ public class MusicPlayer extends AppCompatActivity {
     private void startAudioVisulizer() {     //Audio Visualizer
 
         SquareBarVisualizer squareBarVisualizer = findViewById(R.id.visualizer);
-        squareBarVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700));
+        squareBarVisualizer.setColor(ContextCompat.getColor(this, R.color.dark_blue_100));
         squareBarVisualizer.setDensity(65);
         squareBarVisualizer.setGap(2);
         squareBarVisualizer.setPlayer(mediaPlayer.getAudioSessionId());

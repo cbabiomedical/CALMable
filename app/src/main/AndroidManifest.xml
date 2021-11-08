@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name = "android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name=".SampleApplication"
@@ -21,6 +21,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
+        <activity
+            android:name=".InstrumentalMusicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoveMusicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HealingMusicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SoundScapeMusicActivity"
+            android:exported="false"
+            android:label="Sound Scape"
+            android:parentActivityName=".SleepyHome" />
+        <activity
+            android:name=".SleepStoryReadActivity"
+            android:exported="false"
+            android:label="Sleepy Stories"
+            android:parentActivityName=".SleepyHome" />
+        <activity
+            android:name=".SleepStoryAudioActivity"
+            android:exported="false"
+            android:label="Sleepy Stories"
+            android:parentActivityName=".SleepyHome" />
+        <activity
+            android:name=".ChillOutMusicActivity"
+            android:exported="false"
+            android:label="Chill Music" />
+        <activity
+            android:name=".PainReliefMusicActivity"
+            android:exported="false"
+            android:label="Pain Relief" />
+        <activity
+            android:name=".MeditateMusicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NatureSoundsActivity"
+            android:exported="false" />
         <activity
             android:name=".concentration_music"
             android:exported="false" />
@@ -169,15 +207,6 @@
             android:exported="true"
             android:label="Edit Profile"
             android:parentActivityName=".ProfileMain" />
-        <activity
-            android:name=".MotivationActivity"
-            android:exported="true"
-            android:label="Motivation"
-            android:parentActivityName=".Home" />
-        <activity
-            android:name=".SleepyActivity"
-            android:exported="true"
-            android:label="Sleepy" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

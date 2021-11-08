@@ -7,6 +7,13 @@
     android:background="@drawable/deep_relax_bg3"
     tools:context=".MusicPlayer">
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_gif1" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,23 +27,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:text="TextView"
+            android:fontFamily="More Fonts..."
+            android:text="Deep Relax"
             android:textAlignment="center"
             android:textColor="@color/dark_blue_100"
-            android:textSize="28sp" />
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/imagePlayIcon"
             android:layout_width="222dp"
             android:layout_height="222dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_baseline_library" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="32dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -74,8 +82,7 @@
             android:id="@+id/imagePlayPause"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="32dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_pause_circle" />
 

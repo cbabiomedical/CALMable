@@ -12,9 +12,9 @@
         android:id="@+id/watchGif"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/watch_gif2"
+        android:layout_marginTop="32dp"
         android:gravity="center"
-        android:layout_marginTop="32dp"/>
+        android:src="@drawable/watch_gif2" />
 
     <TextView
         android:id="@+id/bannerScan"

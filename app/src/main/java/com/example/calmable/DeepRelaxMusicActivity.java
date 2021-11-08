@@ -25,10 +25,8 @@ public class DeepRelaxMusicActivity extends AppCompatActivity  {
     RecyclerView recyclerView;
     DeepRelaxMusicAdapter deepRelaxMusicAdapter;
     ArrayList<MusicModel> listOfSongs;
-    LinearLayout linearLayoutManager;
 
     FirebaseUser mUser;
-    DatabaseReference database;
 
 
     @Override

@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DeepRelaxMusicActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/sea_bg">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listOfSongRecycleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </ScrollView>
+
 </RelativeLayout>

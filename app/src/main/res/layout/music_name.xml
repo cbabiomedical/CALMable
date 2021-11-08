@@ -3,21 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="8dp">
 
-    <TextView
-        android:id="@+id/songTitle"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="Relax Music"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="44dp"
-        android:textSize="18dp"
-        android:gravity="left|center"
-        android:textColor="@color/black"/>
+        android:layout_height="50dp"
+        android:background="@drawable/item_bg1"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_music_note"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/songTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Relax Music"
+            tools:layout_editor_absoluteX="126dp"
+            tools:layout_editor_absoluteY="44dp"
+            android:textSize="18dp"
+            android:gravity="left|center"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_favorite"
+        android:layout_marginEnd="8dp"
+        android:layout_gravity="right|center"/>
+
+
 
 </androidx.cardview.widget.CardView>

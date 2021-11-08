@@ -56,7 +56,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 public class ReportMonthly extends AppCompatActivity {
 
     BarChart barChartmonthly;
-    StorageReference storageReference;
     AppCompatButton daily;
     AppCompatButton yearly;
     AppCompatButton weekly, whereAmI;
@@ -99,13 +98,12 @@ public class ReportMonthly extends AppCompatActivity {
             exception.printStackTrace();
         }
 
-        storageReference = FirebaseStorage.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mUser.getUid();
         // Uploading file created to firebase storage
-        StorageReference storageReference1a = storageReference.child("users/" + mUser.getUid());
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference(mUser.getUid());
         try {
-            StorageReference mountainsRef = storageReference1a.child("reportMonthly.txt");
+            StorageReference mountainsRef = storageReference1.child("reportMonthly.txt");
             InputStream stream = new FileInputStream(new File(fileName.getAbsolutePath()));
             UploadTask uploadTask = mountainsRef.putStream(stream);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -131,20 +129,13 @@ public class ReportMonthly extends AppCompatActivity {
 
             @Override
             public void run() {
-
-                storageReference = FirebaseStorage.getInstance().getReference();
-                mUser = FirebaseAuth.getInstance().getCurrentUser();
-                mUser.getUid();
-
-                StorageReference storageReference1a = storageReference.child("users/" + mUser.getUid());
-                StorageReference storageReferenceb = storageReference1a.child("reportMonthly.txt");
-
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportMonthly.txt");
                 //downloading the uploaded file and storing in arraylist
                 try {
                     localFile = File.createTempFile("tempFile", ".txt");
                     text = localFile.getAbsolutePath();
                     Log.d("Bitmap", text);
-                    storageReferenceb.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 //                            Toast.makeText(ConcentrationReportMonthly.this, "Success", Toast.LENGTH_SHORT).show();
