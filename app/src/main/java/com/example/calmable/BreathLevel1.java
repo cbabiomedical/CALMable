@@ -305,7 +305,6 @@ public class BreathLevel1 extends AppCompatActivity {
                         imageView.setScaleY(1.0f);
 
                         prefs.setSessions(prefs.getSessions() + 1);
-                        //BreathHome.x = prefs.setBreaths(prefs.getBreaths() + 1);
                         prefs.setBreaths(prefs.getBreaths() + 1);
                         //Log.d(TAG, "-----------------x-----------------");
                         prefs.setDate(SystemClock.currentThreadTimeMillis());
