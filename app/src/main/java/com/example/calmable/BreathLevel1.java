@@ -40,14 +40,14 @@ public class BreathLevel1 extends AppCompatActivity {
         breathsTxt = findViewById(R.id.breathsTakenTxt);
         timeTxt = findViewById(R.id.last);
         sessionTxt = findViewById(R.id.todayminutes);
-        guideTxt = findViewById(R.id.guideTxt);
+        //guideTxt = findViewById(R.id.guideTxt);
         prefs = new Prefs(this);
 
-        startIntroAnimation();
+        //startIntroAnimation();
 
-        sessionTxt.setText(MessageFormat.format("{0} min today", prefs.getSessions()));
+        //sessionTxt.setText(MessageFormat.format("{0} min today", prefs.getSessions()));
         //y = prefs.getBreaths();
-        breathsTxt.setText(MessageFormat.format("{0} Breaths",prefs.getBreaths()));
+        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths",prefs.getBreaths()));
         Log.d("---get breaths value---", String.valueOf(prefs.getBreaths()));
         x = prefs.getBreaths();
         Log.d("----x value----", String.valueOf(x));
@@ -61,7 +61,7 @@ public class BreathLevel1 extends AppCompatActivity {
             public void onClick(View view){
                 startAnimation();
                 timerminutes.setText(" Seconds");
-                new CountDownTimer(24000, 1000){
+                new CountDownTimer(121000, 1000){
                     public void onTick(long millisUntilFinished){
                         timerseconds.setText(String.valueOf(counter));
                         counter++;
@@ -90,7 +90,7 @@ public class BreathLevel1 extends AppCompatActivity {
 
     }
 
-    private void startIntroAnimation(){
+    /*private void startIntroAnimation(){
         ViewAnimator
                 .animate(guideTxt)
                 .scale(0, 1)
@@ -102,17 +102,17 @@ public class BreathLevel1 extends AppCompatActivity {
                     }
                 })
                 .start();
-    }
+    }*/
     private void startAnimation(){
         ViewAnimator
                 .animate(imageView)
                 .alpha(0,1)
-                .onStart(new AnimationListener.Start() {
+                /*.onStart(new AnimationListener.Start() {
                     @Override
                     public void onStart() {
                         guideTxt.setText("Inhale... Exhale");
                     }
-                })
+                })*/
 
                 ///////////////////// 1 //////////////////////
                 .decelerate()
@@ -300,7 +300,7 @@ public class BreathLevel1 extends AppCompatActivity {
                 .onStop(new AnimationListener.Stop() {
                     @Override
                     public void onStop() {
-                        guideTxt.setText("Good Job");
+                        //guideTxt.setText("Good Job");
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
 
