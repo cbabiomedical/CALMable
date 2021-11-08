@@ -36,8 +36,8 @@ public class BreathLevel3 extends AppCompatActivity {
 
         /////////////////////////////////////////////////////////////////
         breathsTxt = findViewById(R.id.breathsTakenTxt);
-        timeTxt = findViewById(R.id.last);
-        sessionTxt = findViewById(R.id.todayminutes);
+        //timeTxt = findViewById(R.id.last);
+        //sessionTxt = findViewById(R.id.todayminutes);
         //guideTxt = findViewById(R.id.guideTxt);
         prefs3 = new Prefs3(this);
 
