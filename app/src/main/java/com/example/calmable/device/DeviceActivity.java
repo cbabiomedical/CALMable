@@ -29,13 +29,14 @@ import com.crrepa.ble.conn.listener.CRPBloodOxygenChangeListener;
 import com.crrepa.ble.conn.listener.CRPBloodPressureChangeListener;
 import com.crrepa.ble.conn.listener.CRPHeartRateChangeListener;
 import com.example.calmable.Home;
-import com.example.calmable.Journal;
 import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
+
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -103,8 +104,7 @@ public class DeviceActivity extends AppCompatActivity {
             connect();
         }
 
-        mBleConnection.startMeasureDynamicRate();
-        Log.d(TAG, "onCreate: ");
+
     }
 
     @Override
@@ -184,8 +184,10 @@ public class DeviceActivity extends AppCompatActivity {
 
             // Measure Heart Rate
             case R.id.btn_start_measure_heart_rate:
-                mBleConnection.startMeasureDynamicRate();
+                //mBleConnection.startMeasureDynamicRate();
                 //mBleConnection.startMeasureOnceHeartRate();
+//                mBleConnection.openTimingMeasureHeartRate(1);
+//                Log.d(TAG, "on24HourMeasureResult: started " );
                 break;
             case R.id.btn_stop_measure_heart_rate:
                 mBleConnection.stopMeasureDynamicRtae();
@@ -220,58 +222,31 @@ public class DeviceActivity extends AppCompatActivity {
 
         super.onPause();
 
-        stopThread = false;
-        ExampleRunnable runnable = new ExampleRunnable();
-        new Thread(runnable).start();
+        Log.d(TAG, "onPause: --- okay");
+
+        //stopThread = false;
+        //ExampleRunnable runnable = new ExampleRunnable();
+        //new Thread(runnable).start();
 
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: ---> okay");
+
+        mBleConnection.syncTime();
+        Log.d(TAG, "on24HourMeasureResult: started ");
+    }
 
     class ExampleRunnable implements Runnable {
 
         @Override
         public void run() {
 
-            CRPHeartRateChangeListener mHeartRateChangListener = new CRPHeartRateChangeListener() {
-                @Override
-                public void onMeasuring(int rate) {
-                    Log.d(TAG, "onMeasuring: " + rate);
-                    finalRate = rate;
-                    updateTextView(tvHeartRate, String.format(getString(R.string.heart_rate), rate));
-                }
+            mBleConnection.startMeasureDynamicRate();
 
-                @Override
-                public void onOnceMeasureComplete(int rate) {
-                    finalRate = rate;
-                    Log.d(TAG, "onOnceMeasureComplete: " + rate);
-                }
-
-                @Override
-                public void onMeasureComplete(CRPHeartRateInfo info) {
-                    if (info != null && info.getMeasureData() != null) {
-                        for (Integer integer : info.getMeasureData()) {
-                            Log.d(TAG, "onMeasureComplete: " + integer);
-                        }
-                    }
-                }
-
-                @Override
-                public void on24HourMeasureResult(CRPHeartRateInfo info) {
-                    List<Integer> data = info.getMeasureData();
-                    Log.d(TAG, "on24HourMeasureResult: " + data.size());
-                }
-
-                @Override
-                public void onMovementMeasureResult(List<CRPMovementHeartRateInfo> list) {
-                    for (CRPMovementHeartRateInfo info : list) {
-                        if (info != null) {
-                            Log.d(TAG, "onMovementMeasureResult: " + info.getStartTime());
-                        }
-                    }
-                }
-
-            };
 
             for (int q = 0; q >= 0; q++) {
 
@@ -297,19 +272,27 @@ public class DeviceActivity extends AppCompatActivity {
             Log.d(TAG, "onMeasuring: " + rate);
             //finalRate = rate;
             updateTextView(tvHeartRate, String.format(getString(R.string.heart_rate), rate));
+
+            //To save
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("heartRate", rate);
+            editor.commit();
         }
 
         @Override
         public void onOnceMeasureComplete(int rate) {
             finalRate = rate;
             Log.d(TAG, "onOnceMeasureComplete: " + rate);
+
+
         }
 
         @Override
         public void onMeasureComplete(CRPHeartRateInfo info) {
             if (info != null && info.getMeasureData() != null) {
                 for (Integer integer : info.getMeasureData()) {
-                    Log.d(TAG, "onMeasureComplete: " + integer);
+                    Log.d(TAG, "onMeasureComplete XXX : " + integer);
                 }
             }
         }
@@ -328,6 +311,8 @@ public class DeviceActivity extends AppCompatActivity {
                 }
             }
         }
+
+
 
     };
 

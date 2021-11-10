@@ -115,7 +115,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 //        });
 //    }
 
-//    //get & display current user's profile
+    //    //get & display current user's profile
     @Override
     protected void onStart() {
         super.onStart();

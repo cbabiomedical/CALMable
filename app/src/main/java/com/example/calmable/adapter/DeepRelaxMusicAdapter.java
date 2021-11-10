@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.calmable.MusicModel;
+import com.example.calmable.model.MusicModel;
 import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
 

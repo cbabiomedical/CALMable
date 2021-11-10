@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -42,8 +43,8 @@ import java.util.List;
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
     TextView txtHtRate;
+    TextView txtProgress;
     int StressLevel = 85;
-    DeviceActivity deviceActivity;
     File fileName;
     FirebaseUser mUser;
     StorageReference storageReference;
@@ -54,6 +55,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     String viewPerson;
     String viewPlace;
     String dateAndTime;
+    int finalRateff;
+    private Handler mHandler;
 
     private String getColoredSpanned(String text, String color) {
         String input = "<font color=" + color + ">" + text + "</font>";
@@ -66,19 +69,16 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         setContentView(R.layout.activity_home);
 
         txtHtRate = (TextView) findViewById(R.id.htRate);
-        TextView txtProgress = (TextView) findViewById(R.id.txtProgress);
+        txtProgress = (TextView) findViewById(R.id.txtProgress);
         TextView txtProgress2 = (TextView) findViewById(R.id.txtPastProgress);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
         //textViewPerson = (TextView) findViewById(R.id.tag_person);
         //textViewPlace = (TextView) findViewById(R.id.tag_place);
 
-        txtProgress.setText(String.valueOf(DeviceActivity.finalRate));
-        String chr = getColoredSpanned(Integer.toString(DeviceActivity.finalRate), "#800000");
-        String BPM = getColoredSpanned("\u1D2E\u1D3E\u1D39","#000000");
-        txtProgress.setText(Html.fromHtml(chr+" "+BPM));
 
-        Log.d("TAG", "home ht rate -->" + DeviceActivity.finalRate);
+        this.mHandler = new Handler();
+        m_Runnable.run();
 
         //Chechikg the stress level (TODO: finalRate should be added here instead of StressLevel)
         if (StressLevel > 80) {
@@ -87,6 +87,45 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
 
         NavigationBar();
+    }
+
+    //refresh activity
+    private final Runnable m_Runnable = new Runnable() {
+        public void run() {
+            updateLandingHeartRate();
+            //Toast.makeText(Home.this, "in runnable", Toast.LENGTH_SHORT).show();
+            Home.this.mHandler.postDelayed(m_Runnable, 5000);
+        }
+    };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mHandler.removeCallbacks(m_Runnable);
+        finish();
+
+    }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        try {
+//            txtHtRate.setText(0);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//    }
+
+
+    // show landing page heart rate
+    public void updateLandingHeartRate() {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        finalRateff = sharedPreferences.getInt("heartRate", 0);
+        txtProgress.setText(String.valueOf(finalRateff));
+        String chr = getColoredSpanned(Integer.toString(finalRateff), "#800000");
+        String BPM = getColoredSpanned("\u1D2E\u1D3E\u1D39", "#000000");
+        txtProgress.setText(Html.fromHtml(chr + " " + BPM));
     }
 
     @Override

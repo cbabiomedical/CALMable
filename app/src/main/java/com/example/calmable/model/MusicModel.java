@@ -1,4 +1,4 @@
-package com.example.calmable;
+package com.example.calmable.model;
 
 public class MusicModel {
 
