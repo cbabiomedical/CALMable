@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -35,6 +36,7 @@ import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FileDownloadTask;
@@ -108,6 +110,7 @@ public class ReportHome extends AppCompatActivity {
         yearly = findViewById(R.id.yearly);
         weekly = findViewById(R.id.weekly);
 
+        NavigationBar();
 
         //Writing data to file
         try {
@@ -979,5 +982,44 @@ public class ReportHome extends AppCompatActivity {
 //        Intent intent2 = new Intent(this, ConcentrationReportWeekly.class);
 //        startActivity(intent2);
 //    }
+
+    private void NavigationBar() {
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.relax:
+                        startActivity(new Intent(getApplicationContext(), Relax.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.journal:
+                        startActivity(new Intent(getApplicationContext(), Journal.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.challenge:
+                        startActivity(new Intent(getApplicationContext(), Challenge.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(), ProfileMain.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
+    }
+
 
 }

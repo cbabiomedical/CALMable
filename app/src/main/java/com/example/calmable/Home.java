@@ -7,25 +7,46 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.calmable.device.DeviceActivity;
 import com.example.calmable.scan.ScanActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
     TextView txtHtRate;
     int StressLevel = 85;
     DeviceActivity deviceActivity;
+    File fileName;
+    FirebaseUser mUser;
+    StorageReference storageReference;
 
     //private TextView textViewPerson;
     //private TextView textViewPlace;
@@ -82,7 +103,70 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         Log.d("Date And Time",dateAndTime);
         Log.d("Person Value",viewPerson);
         Log.d("Place Value",viewPlace);
+
+        List<Object> reportList = new ArrayList<>();
+        reportList.add(dateAndTime);
+        reportList.add(viewPerson);
+        reportList.add(viewPlace);
+
+        Log.d("----Array----", String.valueOf(reportList));
+
+        //Writing data to file
+
+
+        try {
+            fileName = new File(getCacheDir() + "/reportStress.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            fileName.createNewFile();
+            if (!fileName.exists()) {
+                fileName.mkdirs();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+            int size = reportList.size();
+            for (int i = 0; i < size; i++) {
+                writer.write(reportList.get(i).toString());
+                writer.newLine();
+                writer.flush();
+
+                Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+            }
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+        // Uploading file created to firebase storage
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser.getUid();
+
+        StorageReference storageReference1 = storageReference.child("users/" + mUser.getUid());
+        try {
+            StorageReference mountainsRef = storageReference1.child("reportStress.txt");
+            InputStream stream = new FileInputStream(new File(fileName.getAbsolutePath()));
+            UploadTask uploadTask = mountainsRef.putStream(stream);
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    Toast.makeText(ConcentrationReportDaily.this, "File Uploaded", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(ConcentrationReportDaily.this, "File Uploading Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        final Handler handler = new Handler();
+        final int delay = 5000;
+
     }
+
 
     //open are you stressed popup
     private void openDialog() {
