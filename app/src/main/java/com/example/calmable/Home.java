@@ -19,11 +19,14 @@ import android.widget.Toast;
 
 import com.example.calmable.device.DeviceActivity;
 import com.example.calmable.scan.ScanActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -38,6 +41,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
@@ -80,9 +84,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         this.mHandler = new Handler();
         m_Runnable.run();
 
-        //Chechikg the stress level (TODO: finalRate should be added here instead of StressLevel)
+        //for testing
+        finalRateff = 100;
+        //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
         if (finalRateff > 80) {
             openDialog();
+            Log.d("TAG", String.valueOf(finalRateff));
         }
 
 
@@ -143,6 +150,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         Log.d("Person Value",viewPerson);
         Log.d("Place Value",viewPlace);
 
+        HashMap<String, Object> Reports = new HashMap<>();
         List<Object> reportList = new ArrayList<>();
         reportList.add(dateAndTime);
         reportList.add(viewPerson);
@@ -204,6 +212,15 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         final Handler handler = new Handler();
         final int delay = 5000;
 
+        //uploading reportList array values to firebase real time db
+        Reports.put("Reports", reportList);
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("reportStress").child(dateAndTime).updateChildren(Reports)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(Home.this, "Successful", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 
