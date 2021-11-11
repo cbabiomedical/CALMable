@@ -186,7 +186,6 @@ public class DeviceActivity extends AppCompatActivity {
             case R.id.btn_start_measure_heart_rate:
                 //mBleConnection.startMeasureDynamicRate();
                 //mBleConnection.startMeasureOnceHeartRate();
-//                mBleConnection.openTimingMeasureHeartRate(1);
 //                Log.d(TAG, "on24HourMeasureResult: started " );
                 break;
             case R.id.btn_stop_measure_heart_rate:
@@ -237,7 +236,7 @@ public class DeviceActivity extends AppCompatActivity {
         Log.d(TAG, "onStop: ---> okay");
 
         mBleConnection.syncTime();
-        Log.d(TAG, "on24HourMeasureResult: started ");
+        Log.d(TAG, "Measuring : started ");
     }
 
     class ExampleRunnable implements Runnable {
@@ -311,9 +310,6 @@ public class DeviceActivity extends AppCompatActivity {
                 }
             }
         }
-
-
-
     };
 
 

@@ -81,7 +81,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         m_Runnable.run();
 
         //Chechikg the stress level (TODO: finalRate should be added here instead of StressLevel)
-        if (StressLevel > 80) {
+        if (finalRateff > 80) {
             openDialog();
         }
 
