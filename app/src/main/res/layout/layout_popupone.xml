@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <AutoCompleteTextView
+        android:id="@+id/ac_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Person"
+        android:layout_below="@id/tag_person" />
+
     <TextView
         android:id="@+id/tag_person"
         android:layout_width="match_parent"
@@ -15,11 +22,12 @@
         android:textStyle="bold"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_person"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Person"
+        android:layout_height="45dp"
+        android:textSize="20sp"
+        android:visibility="invisible"
         android:layout_below="@+id/tag_person"
         />
 
