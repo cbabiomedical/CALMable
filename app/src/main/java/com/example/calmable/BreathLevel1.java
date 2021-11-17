@@ -3,6 +3,7 @@ package com.example.calmable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,11 +19,15 @@ import com.github.florent37.viewanimator.ViewAnimator;
 import java.text.MessageFormat;
 
 public class BreathLevel1 extends AppCompatActivity {
+
+    public static int x;
+    public static int BreathScore;
+
     private ImageView imageView;
     public int counter, counter2;
     private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
     private Button startButton;
-    private Prefs prefs;
+    public static Prefs prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +39,24 @@ public class BreathLevel1 extends AppCompatActivity {
 
         /////////////////////////////////////////////////////////////////
         breathsTxt = findViewById(R.id.breathsTakenTxt);
-        timeTxt = findViewById(R.id.last);
-        sessionTxt = findViewById(R.id.todayminutes);
-        guideTxt = findViewById(R.id.guideTxt);
+        //timeTxt = findViewById(R.id.last);
+        //sessionTxt = findViewById(R.id.todayminutes);
+        //guideTxt = findViewById(R.id.guideTxt);
         prefs = new Prefs(this);
 
-        startIntroAnimation();
+        //startIntroAnimation();
 
-        sessionTxt.setText(MessageFormat.format("{0} min today", prefs.getSessions()));
-        breathsTxt.setText(MessageFormat.format("{0} Breaths", prefs.getBreaths()));
+        //sessionTxt.setText(MessageFormat.format("{0} min today", prefs.getSessions()));
+        //y = prefs.getBreaths();
+        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths",prefs.getBreaths()));
+        Log.d("---get breaths value---", String.valueOf(prefs.getBreaths()));
+        x = prefs.getBreaths();
+        if(x == 51){ //put here 4
+            BreathScore = BreathScore + 50;
+        }
+        Log.d("----x value----", String.valueOf(x));
         //timeTxt.setText(prefs.getDate());
+
 
 
         startButton = findViewById(R.id.startbutton);
@@ -81,7 +94,7 @@ public class BreathLevel1 extends AppCompatActivity {
 
     }
 
-    private void startIntroAnimation(){
+    /*private void startIntroAnimation(){
         ViewAnimator
                 .animate(guideTxt)
                 .scale(0, 1)
@@ -93,25 +106,17 @@ public class BreathLevel1 extends AppCompatActivity {
                     }
                 })
                 .start();
-    }
+    }*/
     private void startAnimation(){
         ViewAnimator
                 .animate(imageView)
                 .alpha(0,1)
-                .onStart(new AnimationListener.Start() {
+                /*.onStart(new AnimationListener.Start() {
                     @Override
                     public void onStart() {
                         guideTxt.setText("Inhale... Exhale");
                     }
-                })
-                /*.decelerate()
-                .duration(1000)
-                .thenAnimate(imageView)
-                .scale(0.002f, 1.5f, 1.5f, 1.5f, 0.7f, 0.002f)
-                .rotation(360)
-                .repeatCount(5)
-                .accelerate()
-                .duration(6000)*/
+                })*/
 
                 ///////////////////// 1 //////////////////////
                 .decelerate()
@@ -299,14 +304,19 @@ public class BreathLevel1 extends AppCompatActivity {
                 .onStop(new AnimationListener.Stop() {
                     @Override
                     public void onStop() {
-                        guideTxt.setText("Good Job");
+                        //guideTxt.setText("Good Job");
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
 
                         prefs.setSessions(prefs.getSessions() + 1);
                         prefs.setBreaths(prefs.getBreaths() + 1);
+                        //Log.d(TAG, "-----------------x-----------------");
                         prefs.setDate(SystemClock.currentThreadTimeMillis());
+                        //x = x+1;
 
+                        //counting score of completing breathing exercises of level 1
+                        BreathScore = BreathScore + 5;
+                        Log.d("---get breath score---", String.valueOf(BreathScore));
                     }
                 })
                 .start();

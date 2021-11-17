@@ -8,6 +8,7 @@ public class User {
 
     public String preference;
     public String journalNote;
+    private long coins = 25;
 
     public User() {
     }

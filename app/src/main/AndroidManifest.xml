@@ -26,6 +26,9 @@
             android:name=".device.DeviceActivity"
             android:exported="false" />
         <activity
+            android:name=".LeaderboardsFragment"
+            android:exported="true" />
+        <activity
             android:name=".InstrumentalMusicActivity"
             android:exported="false" />
         <activity
@@ -127,7 +130,8 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".AboutAppActivity"
             android:exported="true"
