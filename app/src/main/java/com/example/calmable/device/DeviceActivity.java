@@ -1,12 +1,9 @@
 package com.example.calmable.device;
 
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -34,9 +31,7 @@ import com.example.calmable.SampleApplication;
 
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,6 +70,8 @@ public class DeviceActivity extends AppCompatActivity {
     private ImageView imgConnect, imgDisconnect;
 
 
+    private TextView tvConnectMsg1 , tvConnectMsg2;
+
     private Button button2;
 
     private String bandFirmwareVersion;
@@ -86,6 +83,8 @@ public class DeviceActivity extends AppCompatActivity {
 
         imgConnect = findViewById(R.id.imgConnect);
         imgDisconnect = findViewById(R.id.imgDisconnect);
+        tvConnectMsg1 = findViewById(R.id.tvConnectMsg1);
+        tvConnectMsg2 = findViewById(R.id.tvConnectMsg2);
 
         button2 = findViewById(R.id.btn_start_measure_heart_rate);
 
@@ -116,8 +115,12 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
 
+
+
     void connect() {
-        mProgressDialog.show();
+        //mProgressDialog.show();
+        mProgressDialog = ProgressDialog.show(this,
+                "Connecting Watch", "Please Wait");
         mBleConnection = mBleDevice.connect();
         mBleConnection.setConnectionStateListener(new CRPBleConnectionStateListener() {
             @Override
@@ -130,6 +133,8 @@ public class DeviceActivity extends AppCompatActivity {
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.disconnect));
                         tvConnectState.setTextColor(Color.GREEN);
+                        tvConnectMsg1.setText("Your watch is successfully connected.");
+                        tvConnectMsg2.setText(" Press \'GO HOME\' button and enjoy the CALMable");
                         //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
                         break;
@@ -141,6 +146,8 @@ public class DeviceActivity extends AppCompatActivity {
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.connect));
                         tvConnectState.setTextColor(Color.RED);
+                        tvConnectMsg1.setText("Your watch is not connected.");
+                        tvConnectMsg2.setText("Go back and try again");
                         //imgDisconnect.setVisibility(View.VISIBLE);
                         break;
                 }
@@ -226,8 +233,6 @@ public class DeviceActivity extends AppCompatActivity {
         //stopThread = false;
         //ExampleRunnable runnable = new ExampleRunnable();
         //new Thread(runnable).start();
-
-
     }
 
     @Override

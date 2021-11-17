@@ -105,8 +105,8 @@ public class MusicPlayer extends AppCompatActivity {
         ProgressDialog progressDialog = ProgressDialog.show(this,
                 "Loading Music", "Please Wait");
 
-        // MEDIA STARTS FUNCTION
 
+        // MEDIA STARTS FUNCTION
         mediaPlayer.setOnPreparedListener(mp -> {
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
@@ -162,8 +162,8 @@ public class MusicPlayer extends AppCompatActivity {
 
             playSeekBar.setMax(time);
             updateSeekBar.start();
-            playSeekBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.teal_700), PorterDuff.Mode.MULTIPLY);
-            playSeekBar.getThumb().setColorFilter(getResources().getColor(R.color.teal_100), PorterDuff.Mode.SRC_IN);
+            playSeekBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.MULTIPLY);
+            playSeekBar.getThumb().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
             playSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -201,7 +201,6 @@ public class MusicPlayer extends AppCompatActivity {
                         Log.d("play", String.valueOf(playNo));
 
                     }
-
 
                 }
             }, delay);

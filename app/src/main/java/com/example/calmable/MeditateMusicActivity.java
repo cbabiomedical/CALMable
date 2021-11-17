@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
+import com.example.calmable.adapter.MeditateMusicAdapter;
 import com.example.calmable.model.MusicModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class MeditateMusicActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DeepRelaxMusicAdapter deepRelaxMusicAdapter;
+    MeditateMusicAdapter meditateMusicAdapter;
     ArrayList<MusicModel> listOfSongs;
 
     FirebaseUser mUser;
@@ -37,13 +38,13 @@ public class MeditateMusicActivity extends AppCompatActivity {
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        initData();
+        //initData();
     }
 
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("Meditate");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -55,8 +56,8 @@ public class MeditateMusicActivity extends AppCompatActivity {
                 Log.d("List-->", String.valueOf(listOfSongs));
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
-                recyclerView.setAdapter(deepRelaxMusicAdapter);
+                meditateMusicAdapter = new MeditateMusicAdapter(listOfSongs, getApplicationContext());
+                recyclerView.setAdapter(meditateMusicAdapter);
 
 
             }

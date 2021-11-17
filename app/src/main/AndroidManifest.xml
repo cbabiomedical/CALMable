@@ -21,6 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
+
+        <activity
+            android:name=".device.DeviceActivity"
+            android:exported="false" />
         <activity
             android:name=".InstrumentalMusicActivity"
             android:exported="false" />
@@ -112,15 +116,12 @@
             android:label="Report"
             android:parentActivityName=".Home" />
         <activity
-            android:name=".device.DeviceActivity"
-            android:exported="true"
-            android:label="Device" />
-        <activity
             android:name=".Challenge"
             android:exported="false" />
         <activity
             android:name=".Relax"
-            android:exported="false" />
+            android:exported="false"
+            android:largeHeap="true"/>
         <activity
             android:name=".Journal"
             android:exported="false" />
@@ -267,6 +268,11 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="io.sentry.dsn"
+            android:value="https://examplePublicKey@o0.ingest.sentry.io/0" />
     </application>
+
 
 </manifest>

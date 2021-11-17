@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
+import com.example.calmable.adapter.PainReliefMusicAdapter;
 import com.example.calmable.model.MusicModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class PainReliefMusicActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DeepRelaxMusicAdapter deepRelaxMusicAdapter;
+    PainReliefMusicAdapter painReliefMusicAdapter;
     ArrayList<MusicModel> listOfSongs;
 
     FirebaseUser mUser;
@@ -45,7 +46,7 @@ public class PainReliefMusicActivity extends AppCompatActivity {
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("PainRelief");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -57,8 +58,8 @@ public class PainReliefMusicActivity extends AppCompatActivity {
                 Log.d("List-->", String.valueOf(listOfSongs));
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
-                recyclerView.setAdapter(deepRelaxMusicAdapter);
+                painReliefMusicAdapter = new PainReliefMusicAdapter(listOfSongs, getApplicationContext());
+                recyclerView.setAdapter(painReliefMusicAdapter);
 
 
             }

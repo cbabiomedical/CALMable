@@ -17,7 +17,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.calmable.device.DeviceActivity;
 import com.example.calmable.scan.ScanActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -76,7 +75,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         //textViewPerson = (TextView) findViewById(R.id.tag_person);
         //textViewPlace = (TextView) findViewById(R.id.tag_place);
 
-
         this.mHandler = new Handler();
         m_Runnable.run();
 
@@ -97,6 +95,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             Home.this.mHandler.postDelayed(m_Runnable, 5000);
         }
     };
+
 
     @Override
     protected void onPause() {

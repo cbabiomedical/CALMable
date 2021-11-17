@@ -1,17 +1,27 @@
 package com.example.calmable.adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.calmable.MyFavouritesActivity;
+import com.example.calmable.db.FavDB;
+import com.example.calmable.db.FavDeepRelaxDB;
+import com.example.calmable.model.DeepRelaxModel;
 import com.example.calmable.model.MusicModel;
 import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
@@ -21,10 +31,12 @@ import java.util.ArrayList;
 
 public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAdapter.ViewHolder> {
 
-    private ArrayList<MusicModel> listOfSongs;
+    private ArrayList<DeepRelaxModel> listOfSongs;
     private Context context;
+    private FavDeepRelaxDB favDB;
+    public static ViewHolder viewHolder;
 
-    public DeepRelaxMusicAdapter(ArrayList<MusicModel> listOfSongs, Context context) {
+    public DeepRelaxMusicAdapter(ArrayList<DeepRelaxModel> listOfSongs, Context context) {
         this.listOfSongs = listOfSongs;
         this.context = context;
     }
@@ -32,14 +44,33 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
     @NonNull
     @Override
     public DeepRelaxMusicAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        favDB = new FavDeepRelaxDB(context);
+        SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart", true);
+        if (firstStart) {
+            createTableOnFirstStart();
+        }
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.music_name, parent, false);
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull DeepRelaxMusicAdapter.ViewHolder holder, int position) {
+
+        final DeepRelaxModel coffeeItem = listOfSongs.get(position);
+
+        readCursorDataDP(coffeeItem, holder);
+
+        holder.imageView.setImageResource(listOfSongs.get(position).getImageView());
         holder.songTitle.setText(listOfSongs.get(position).getSongName());
 
+        //holder.imageView.setImageResource(coffeeItem.getImageView());
+        //holder.songTitle.setText(coffeeItem.getSongName());
+
+        // recyclerview onClickListener
         holder.songTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,17 +80,24 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
 
                 String songName = listOfSongs.get(position).getSongName();
                 String url = listOfSongs.get(position).getUrl();
+                int image = listOfSongs.get(position).getImageView();
                 intent.putExtra("songName", songName);
                 intent.putExtra("url", url);
+                intent.putExtra("image", image);
 
                 Log.d("TAG", "song name : " + songName);
                 Log.d("TAG", "url : " + url);
+
+
+                Log.d(" adapter List-->", String.valueOf(listOfSongs));
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -70,11 +108,71 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
 
         TextView songTitle;
         RecyclerView recyclerView;
+        ImageView imageView;
+        AppCompatButton favBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             songTitle = itemView.findViewById(R.id.songTitle);
+            imageView = itemView.findViewById(R.id.favImageView);
             recyclerView = itemView.findViewById(R.id.listOfSongRecycleView);
+            favBtn = itemView.findViewById(R.id.favHeartIcon);
+
+
+            //add to fav btn
+            favBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    DeepRelaxModel deepRelaxModel = listOfSongs.get(position);
+                    if (deepRelaxModel.getIsFav().equals("0")) {
+                        deepRelaxModel.setIsFav("1");
+                        favDB.insertIntoTheDatabaseDPMusic(deepRelaxModel.getSongName(), deepRelaxModel.getImageView(),
+                                deepRelaxModel.getId(), deepRelaxModel.getIsFav());
+                        favBtn.setBackgroundResource(R.drawable.ic_fill_fav_icon);
+                    } else {
+                        deepRelaxModel.setIsFav("0");
+                        favDB.remove_fav_dp_music(deepRelaxModel.getId());
+                        favBtn.setBackgroundResource(R.drawable.ic_favorite);
+                    }
+                }
+
+            });
         }
     }
+
+
+    private void createTableOnFirstStart() {
+        favDB.insertEmptyDRMusic();
+
+        SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
+    }
+
+    private void readCursorDataDP(DeepRelaxModel coffeeItem, ViewHolder viewHolder) {
+        Cursor cursor = favDB.read_all_data_dp_music(coffeeItem.getId());
+        SQLiteDatabase db = favDB.getReadableDatabase();
+
+        try {
+            while (cursor.moveToNext()) {
+                String item_fav_status = cursor.getString(cursor.getColumnIndex(FavDeepRelaxDB.FAVORITE_STATUSDP));
+                coffeeItem.setIsFav(item_fav_status);
+
+                //check fav status
+                if (item_fav_status != null && item_fav_status.equals("1")) {
+                    viewHolder.favBtn.setBackgroundResource(R.drawable.ic_fill_fav_icon);
+                } else if (item_fav_status != null && item_fav_status.equals("0")) {
+                    viewHolder.favBtn.setBackgroundResource(R.drawable.ic_favorite);
+                }
+            }
+        } finally {
+            if (cursor != null && cursor.isClosed())
+                cursor.close();
+            db.close();
+        }
+
+    }
+
 }

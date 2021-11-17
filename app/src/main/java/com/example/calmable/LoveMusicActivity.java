@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
+import com.example.calmable.adapter.LoveMusicAdapter;
 import com.example.calmable.model.MusicModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class LoveMusicActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DeepRelaxMusicAdapter deepRelaxMusicAdapter;
+    LoveMusicAdapter loveMusicAdapter;
     ArrayList<MusicModel> listOfSongs;
 
     FirebaseUser mUser;
@@ -44,7 +45,7 @@ public class LoveMusicActivity extends AppCompatActivity {
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("Love");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -56,8 +57,8 @@ public class LoveMusicActivity extends AppCompatActivity {
                 Log.d("List-->", String.valueOf(listOfSongs));
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
-                recyclerView.setAdapter(deepRelaxMusicAdapter);
+                loveMusicAdapter = new LoveMusicAdapter(listOfSongs, getApplicationContext());
+                recyclerView.setAdapter(loveMusicAdapter);
 
 
             }

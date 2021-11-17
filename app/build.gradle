@@ -104,4 +104,6 @@ dependencies {
     implementation 'com.gauravk.audiovisualizer:audiovisualizer:0.9.2'
     implementation 'com.karumi:dexter:6.2.3'
 
+    implementation 'io.sentry:sentry-android:5.4.0'
+
 }

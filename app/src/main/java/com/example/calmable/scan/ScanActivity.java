@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
@@ -174,7 +175,6 @@ public class ScanActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, DeviceActivity.class);
         intent.putExtra(DeviceActivity.DEVICE_MACADDR, macAddress);
         startActivity(intent);
-        System.out.println("okay oi");
     }
 
     private void updateButtonUIState() {

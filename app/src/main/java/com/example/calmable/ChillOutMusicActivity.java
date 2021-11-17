@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.calmable.adapter.ChillOutMusicAdapter;
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
 import com.example.calmable.model.MusicModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class ChillOutMusicActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DeepRelaxMusicAdapter deepRelaxMusicAdapter;
+    ChillOutMusicAdapter chillOutMusicAdapter;
     ArrayList<MusicModel> listOfSongs;
 
     FirebaseUser mUser;
@@ -32,6 +33,7 @@ public class ChillOutMusicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chill_out_music);
+        
         recyclerView = findViewById(R.id.listOfSongRecycleView);
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -43,7 +45,7 @@ public class ChillOutMusicActivity extends AppCompatActivity {
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("ChillOut");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -55,8 +57,8 @@ public class ChillOutMusicActivity extends AppCompatActivity {
                 Log.d("List-->", String.valueOf(listOfSongs));
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
-                recyclerView.setAdapter(deepRelaxMusicAdapter);
+                chillOutMusicAdapter = new ChillOutMusicAdapter(listOfSongs, getApplicationContext());
+                recyclerView.setAdapter(chillOutMusicAdapter);
 
 
             }

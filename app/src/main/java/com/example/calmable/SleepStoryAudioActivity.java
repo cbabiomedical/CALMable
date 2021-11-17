@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
+import com.example.calmable.adapter.SleepStoryAudioAdapter;
 import com.example.calmable.model.MusicModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class SleepStoryAudioActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DeepRelaxMusicAdapter deepRelaxMusicAdapter;
+    SleepStoryAudioAdapter sleepStoryAudioAdapter;
     ArrayList<MusicModel> listOfSongs;
 
     FirebaseUser mUser;
@@ -46,7 +47,7 @@ public class SleepStoryAudioActivity extends AppCompatActivity {
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("SleepStory");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -58,8 +59,8 @@ public class SleepStoryAudioActivity extends AppCompatActivity {
                 Log.d("List-->", String.valueOf(listOfSongs));
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
-                recyclerView.setAdapter(deepRelaxMusicAdapter);
+                sleepStoryAudioAdapter = new SleepStoryAudioAdapter(listOfSongs, getApplicationContext());
+                recyclerView.setAdapter(sleepStoryAudioAdapter);
 
 
             }

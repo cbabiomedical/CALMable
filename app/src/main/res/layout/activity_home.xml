@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:onClick="btnWatch"
-                        android:text="watch" />
+                        android:text="Add Device"/>
 
 
                 </LinearLayout>
@@ -192,7 +192,7 @@
                         android:layout_marginEnd="1dp"
                         android:background="@drawable/home_main_btn"
                         android:padding="16dp"
-                        android:text="I'm stressed"
+                        android:text="Stressed"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:onClick="btnStressed"/>
@@ -204,7 +204,7 @@
                         android:layout_marginStart="45dp"
                         android:background="@drawable/home_main_btn"
                         android:padding="16dp"
-                        android:text="I'm Sleepy"
+                        android:text="Sleepy"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:onClick="btnSleepy"/>
@@ -227,7 +227,7 @@
                         android:layout_marginEnd="1dp"
                         android:background="@drawable/home_main_btn"
                         android:padding="16dp"
-                        android:text="I wanna motivate"
+                        android:text="Motivate"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:onClick="btnMotivate"/>
@@ -239,7 +239,7 @@
                         android:layout_marginStart="45dp"
                         android:background="@drawable/home_main_btn"
                         android:padding="16dp"
-                        android:text="I'm Happy"
+                        android:text="Happy"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:onClick="btnHappy"/>

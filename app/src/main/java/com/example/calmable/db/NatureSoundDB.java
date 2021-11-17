@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class FavDBDeepRelax extends SQLiteOpenHelper {
+import androidx.annotation.Nullable;
+
+public class NatureSoundDB extends SQLiteOpenHelper {
 
     private static int DB_VERSIONMUS = 1;
     private static String DATABASE_NAMEMUS = "MusicDB";
@@ -21,13 +23,14 @@ public class FavDBDeepRelax extends SQLiteOpenHelper {
             + KEY_IDMUS + " TEXT," + ITEM_TITLEMUS + " TEXT,"
             + ITEM_IMAGEMUS + " TEXT," + FAVORITE_STATUSMUS + " TEXT)";
 
-    public FavDBDeepRelax(Context context) {
+    public NatureSoundDB(Context context) {
         super(context, DATABASE_NAMEMUS, null, DB_VERSIONMUS);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(CREATE_TABLEMUS);
     }
 
     @Override
@@ -36,7 +39,7 @@ public class FavDBDeepRelax extends SQLiteOpenHelper {
     }
 
     // create empty table
-    public void insertEmptyDPMusic() {
+    public void insertEmptyMusic() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         // enter your value
@@ -49,7 +52,7 @@ public class FavDBDeepRelax extends SQLiteOpenHelper {
     }
 
     // insert data into database
-    public void insertIntoTheDatabaseDPMusic(String item_title, int item_image, String id, String fav_status) {
+    public void insertIntoTheDatabaseMusic(String item_title, int item_image, String id, String fav_status) {
         SQLiteDatabase db;
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -62,14 +65,14 @@ public class FavDBDeepRelax extends SQLiteOpenHelper {
     }
 
     // read all data
-    public Cursor read_all_data_dp_music(String id) {
+    public Cursor read_all_data_mus(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "select * from " + TABLE_NAMEMUS + " where " + KEY_IDMUS + "=" + id + "";
         return db.rawQuery(sql, null, null);
     }
 
     // remove line from database
-    public void remove_fav_dp_music(String id) {
+    public void remove_fav_mus(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "UPDATE " + TABLE_NAMEMUS + " SET  " + FAVORITE_STATUSMUS + " ='0' WHERE " + KEY_IDMUS + "=" + id + "";
         db.execSQL(sql);
@@ -78,10 +81,10 @@ public class FavDBDeepRelax extends SQLiteOpenHelper {
     }
 
     // select all favorite list
-    public Cursor select_all_favorite_list_dp_music() {
+
+    public Cursor select_all_favorite_list_mus() {
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + TABLE_NAMEMUS + " WHERE " + FAVORITE_STATUSMUS + " ='1'";
         return db.rawQuery(sql, null, null);
     }
-
 }

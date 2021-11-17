@@ -1,6 +1,5 @@
 package com.example.calmable;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -130,3 +129,4 @@ public class PermissionUtils {
 //        return false;
 //    }
 }
+
