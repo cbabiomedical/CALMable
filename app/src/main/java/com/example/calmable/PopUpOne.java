@@ -7,11 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -31,8 +34,9 @@ public class PopUpOne extends AppCompatDialogFragment {
     AutoCompleteTextView autoCompleteTextView;
 
     ArrayAdapter<String> adapter;
-    //List<Object> personList = new ArrayList<>();
-    String[] personList = {"Amal","Anil","Ayeshika","Sunil","Saman"};
+    ArrayList<Object> personList = new ArrayList<>(Arrays.asList("Amal","Anil","Ayeshika","Sunil","Saman"));
+    //ArrayList<Object> personList = new ArrayList<>(Arrays.asList(String.valueOf(editPerson)));
+    // String[] personList = {"Amal","Anil","Ayeshika","Sunil","Saman"};
 
     @NonNull
     @Override
@@ -62,6 +66,17 @@ public class PopUpOne extends AppCompatDialogFragment {
         editPerson = view.findViewById(R.id.edit_person);
         editPlace = view.findViewById(R.id.edit_place);
         autoCompleteTextView = view.findViewById(R.id.ac_text_view);
+        Button getLocation = view.findViewById(R.id.give_place);
+
+        getLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), LocationActivity.class);
+                startActivity(in);
+            }
+        });
+
+
 
         //SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
         //HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("people", null);
@@ -73,7 +88,7 @@ public class PopUpOne extends AppCompatDialogFragment {
 //        }
 
         //initialize adapter
-        adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,personList);
+        adapter = new ArrayAdapter(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,personList);
 
         //Get suggestion after the number of word types
         autoCompleteTextView.setThreshold(1);
@@ -85,8 +100,10 @@ public class PopUpOne extends AppCompatDialogFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //set selected text on text view
+                //editPerson.setText(adapter.getItem(i));
                 editPerson.setText(adapter.getItem(i));
                 //personList.add(editPerson);
+                Log.d("---------", String.valueOf(editPerson));
             }
         });
 

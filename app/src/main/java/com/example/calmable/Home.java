@@ -26,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -51,6 +52,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     File fileName;
     FirebaseUser mUser;
     StorageReference storageReference;
+    FirebaseFirestore database;
 
     //private TextView textViewPerson;
     //private TextView textViewPlace;
@@ -218,6 +220,18 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(Home.this, "Successful", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        //uploading last report to firebase firestore
+        database = FirebaseFirestore.getInstance();
+        database.collection("users")
+                .document(mUser.getUid())
+                .set(Reports)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
                     }
                 });
     }

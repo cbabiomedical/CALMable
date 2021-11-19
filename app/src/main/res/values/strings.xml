@@ -62,4 +62,5 @@
     <string name="dfu_status_completed">Done</string>
     <string name="dfu_status_aborted">Aborted</string>
     <string name="dfu_status_error_msg">DFU process failed.</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

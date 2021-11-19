@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.calmable">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -22,6 +28,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
 
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".device.DeviceActivity"
             android:exported="false" />
@@ -124,14 +146,14 @@
         <activity
             android:name=".Relax"
             android:exported="false"
-            android:largeHeap="true"/>
+            android:largeHeap="true" />
         <activity
             android:name=".Journal"
             android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".AboutAppActivity"
             android:exported="true"
@@ -153,7 +175,7 @@
             android:label="Calender"
             android:parentActivityName=".ProfileMain" />
         <activity
-            android:name=".RemindersActivity"
+            android:name=".LocationActivity"
             android:exported="true"
             android:label="Reminders"
             android:parentActivityName=".ProfileMain" />
@@ -277,6 +299,5 @@
             android:name="io.sentry.dsn"
             android:value="https://examplePublicKey@o0.ingest.sentry.io/0" />
     </application>
-
 
 </manifest>

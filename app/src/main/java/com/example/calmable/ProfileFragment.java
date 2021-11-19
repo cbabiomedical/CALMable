@@ -103,7 +103,7 @@ public class ProfileFragment extends Fragment {
         remindersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getActivity(), RemindersActivity.class);
+                Intent in = new Intent(getActivity(), LocationActivity.class);
                 startActivity(in);
             }
 

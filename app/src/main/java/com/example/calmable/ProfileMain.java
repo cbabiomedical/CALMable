@@ -105,7 +105,7 @@ public class ProfileMain extends AppCompatActivity {
         remindersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getApplicationContext(), RemindersActivity.class);
+                Intent in = new Intent(getApplicationContext(), LocationActivity.class);
                 startActivity(in);
             }
 
