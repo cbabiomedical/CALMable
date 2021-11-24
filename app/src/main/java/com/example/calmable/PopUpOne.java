@@ -1,11 +1,17 @@
 package com.example.calmable;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,21 +26,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 
 public class PopUpOne extends AppCompatDialogFragment {
 
     private PopUpOneListener listener;
-    private TextView editPerson;
+    private EditText editPerson;
     private EditText editPlace;
     AutoCompleteTextView autoCompleteTextView;
+    FusedLocationProviderClient fusedLocationProviderClient;
 
     ArrayAdapter<String> adapter;
-    ArrayList<Object> personList = new ArrayList<>(Arrays.asList("Amal","Anil","Ayeshika","Sunil","Saman"));
+    ArrayList<Object> personList = new ArrayList<>(Arrays.asList("Amal","Anil","Ayeshika","Sunil","Saman","Mother","Father","Sister","Brother","Boss","Daughter","Son"));
     //ArrayList<Object> personList = new ArrayList<>(Arrays.asList(String.valueOf(editPerson)));
     // String[] personList = {"Amal","Anil","Ayeshika","Sunil","Saman"};
 
@@ -66,16 +81,17 @@ public class PopUpOne extends AppCompatDialogFragment {
         editPerson = view.findViewById(R.id.edit_person);
         editPlace = view.findViewById(R.id.edit_place);
         autoCompleteTextView = view.findViewById(R.id.ac_text_view);
-        Button getLocation = view.findViewById(R.id.give_place);
 
-        getLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent in = new Intent(getActivity(), LocationActivity.class);
-                startActivity(in);
-            }
-        });
+        //initialize fusedLocationProviderClient
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity().getApplicationContext());
 
+        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            //when permission granted
+            getLocation();
+        } else {
+            //when permission denied
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
 
 
         //SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
@@ -86,6 +102,7 @@ public class PopUpOne extends AppCompatDialogFragment {
 //        } else {
 //            personList = new ArrayList(set);
 //        }
+
 
         //initialize adapter
         adapter = new ArrayAdapter(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,personList);
@@ -100,7 +117,6 @@ public class PopUpOne extends AppCompatDialogFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //set selected text on text view
-                //editPerson.setText(adapter.getItem(i));
                 editPerson.setText(adapter.getItem(i));
                 //personList.add(editPerson);
                 Log.d("---------", String.valueOf(editPerson));
@@ -109,6 +125,39 @@ public class PopUpOne extends AppCompatDialogFragment {
 
         return builder.create();
     }
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+                if (location!=null){
+                    try {
+                        //initialize geocoder
+                        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+                        //initialize address list
+                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                        //set address
+                        editPlace.setText(addresses.get(0).getAddressLine(0));
+
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onAttach(@NonNull Context context) {

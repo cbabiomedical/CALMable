@@ -241,9 +241,9 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     private void openDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
         builder.setCancelable(true);
-        builder.setMessage("Are You Stressed?");
+        builder.setMessage("Do you engage in any physical activity?");
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
@@ -251,7 +251,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         });
 
         //display getting user inputs popup
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("NO, I'm Stressed", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //Intent intent = new Intent(Home.this, UserInputPopup.class);

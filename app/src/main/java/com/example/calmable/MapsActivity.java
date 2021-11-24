@@ -266,8 +266,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onStop() {
         super.onStop();
 
-        if(mGoogleApiClient.isConnected()){
-            mGoogleApiClient.disconnect();
-        }
+//        if(mGoogleApiClient.isConnected()){
+//            mGoogleApiClient.disconnect();
+//        }
     }
 }
