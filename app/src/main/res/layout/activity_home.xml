@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:onClick="btnWatch"
-                        android:text="Add Device"/>
+                        android:text="Add watch" />
 
 
                 </LinearLayout>
@@ -192,7 +192,7 @@
                         android:layout_marginEnd="1dp"
                         android:background="@drawable/home_main_btn"
                         android:padding="16dp"
-                        android:text="Stressed"
+                        android:text="I'm stressed"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:onClick="btnStressed"/>
@@ -204,7 +204,7 @@
                         android:layout_marginStart="45dp"
                         android:background="@drawable/home_main_btn"
                         android:padding="16dp"
-                        android:text="Sleepy"
+                        android:text="I'm Sleepy"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:onClick="btnSleepy"/>
@@ -239,7 +239,7 @@
                         android:layout_marginStart="45dp"
                         android:background="@drawable/home_main_btn"
                         android:padding="16dp"
-                        android:text="Happy"
+                        android:text="I'm Happy"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:onClick="btnHappy"/>

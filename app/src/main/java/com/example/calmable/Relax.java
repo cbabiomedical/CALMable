@@ -45,7 +45,9 @@ public class Relax extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.challenge:
-                        startActivity(new Intent(getApplicationContext(), Challenge.class));
+
+                        ////////////////// edit
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.profile:

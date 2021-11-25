@@ -26,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -51,6 +52,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     File fileName;
     FirebaseUser mUser;
     StorageReference storageReference;
+    FirebaseFirestore database;
 
     //private TextView textViewPerson;
     //private TextView textViewPlace;
@@ -86,7 +88,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         //m_Runnable_popup.run();
 
         //for testing
-        //finalRateff = 100;
+        finalRateff = 100;
         //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
         if (finalRateff > 80) {
             openDialog();
@@ -238,6 +240,18 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                         Toast.makeText(Home.this, "Successful", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        //uploading last report to firebase firestore
+        database = FirebaseFirestore.getInstance();
+        database.collection("users")
+                .document(mUser.getUid())
+                .set(Reports)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
     }
 
 
@@ -245,9 +259,9 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     private void openDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
         builder.setCancelable(true);
-        builder.setMessage("Are You Stressed?");
+        builder.setMessage("Do you engage in any physical activity?");
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
@@ -255,7 +269,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         });
 
         //display getting user inputs popup
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("NO, I'm Stressed", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //Intent intent = new Intent(Home.this, UserInputPopup.class);
@@ -289,7 +303,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.challenge:
-                        startActivity(new Intent(getApplicationContext(), Challenge.class));
+
+                        ////////////////// edit
+
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.profile:

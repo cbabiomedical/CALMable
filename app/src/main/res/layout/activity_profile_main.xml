@@ -118,7 +118,7 @@
                     android:drawableEnd="@drawable/ic_arrow"
                     android:paddingStart="12dp"
                     android:paddingEnd="10dp"
-                    android:text="Reminders"
+                    android:text="Location"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />

@@ -19,10 +19,9 @@
         android:textAlignment="center"
         android:textColor="#205072"
         android:textSize="20sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
-    <TextView
+    <EditText
         android:id="@+id/edit_person"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -31,24 +30,24 @@
         android:layout_below="@+id/tag_person"
         />
 
-    <TextView
-        android:id="@+id/tag_place"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Where are you now?"
-        android:textAlignment="center"
-        android:textColor="#205072"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/edit_person"
-        />
+    <!--    <Button-->
+    <!--        android:id="@+id/give_place"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="60dp"-->
+    <!--        android:layout_below="@+id/edit_person"-->
+    <!--        android:text="Give Location"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textColor="#205072"-->
+    <!--        android:textSize="20sp"-->
+    <!--        android:textStyle="bold" />-->
 
     <EditText
         android:id="@+id/edit_place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Place"
-        android:layout_below="@+id/tag_place"
+        android:visibility="invisible"
+        android:layout_below="@+id/edit_person"
         />
 
 

@@ -106,7 +106,7 @@ public class ProfileMain extends AppCompatActivity {
         remindersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getApplicationContext(), RemindersActivity.class);
+                Intent in = new Intent(getApplicationContext(), LocationActivity.class);
                 startActivity(in);
             }
 
@@ -217,7 +217,7 @@ public class ProfileMain extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.challenge:
-                        startActivity(new Intent(getApplicationContext(), Challenge.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.profile:

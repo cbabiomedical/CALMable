@@ -13,11 +13,15 @@ import android.widget.TextView;
 
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.MessageFormat;
 
 public class BreathLevel5 extends AppCompatActivity {
     public static int x5;
+    public static int BreathScore5;
 
     private ImageView imageView;
     public int counter, counter2;
@@ -47,6 +51,18 @@ public class BreathLevel5 extends AppCompatActivity {
 
         Log.d("---get breaths value5--", String.valueOf(prefs5.getBreaths()));
         x5 = prefs5.getBreaths();
+
+        if(x5 == 4){ //put here 4
+            BreathScore5 = BreathScore5 + 50;
+
+            FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+            database.collection("users")
+                    .document(FirebaseAuth.getInstance().getUid())
+                    .update("coins", FieldValue.increment(BreathScore5));
+        }
+
+
         Log.d("----x5 value----", String.valueOf(x5));
 
         //timeTxt.setText(prefs.getDate());
@@ -365,9 +381,18 @@ public class BreathLevel5 extends AppCompatActivity {
                         prefs5.setBreaths(prefs5.getBreaths() + 1);
                         prefs5.setDate(SystemClock.currentThreadTimeMillis());
 
+                        //counting score of completing breathing exercises of level 1
+                        BreathScore5 = BreathScore5 + 5;
+                        Log.d("---get breath score---", String.valueOf(BreathScore5));
+
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+                        database.collection("users")
+                                .document(FirebaseAuth.getInstance().getUid())
+                                .update("coins", FieldValue.increment(BreathScore5));
+
                     }
                 })
                 .start();
     }
 }
-
