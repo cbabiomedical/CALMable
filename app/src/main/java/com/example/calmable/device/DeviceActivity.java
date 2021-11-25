@@ -70,9 +70,7 @@ public class DeviceActivity extends AppCompatActivity {
     private ImageView imgConnect, imgDisconnect;
 
 
-    private TextView tvConnectMsg1 , tvConnectMsg2;
-
-    private Button button2;
+    private TextView tvConnectMsg1, tvConnectMsg2;
 
     private String bandFirmwareVersion;
 
@@ -86,7 +84,7 @@ public class DeviceActivity extends AppCompatActivity {
         tvConnectMsg1 = findViewById(R.id.tvConnectMsg1);
         tvConnectMsg2 = findViewById(R.id.tvConnectMsg2);
 
-        button2 = findViewById(R.id.btn_start_measure_heart_rate);
+        //button2 = findViewById(R.id.btn_start_measure_heart_rate);
 
         ButterKnife.bind(this);
         //initView();
@@ -115,8 +113,6 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
 
-
-
     void connect() {
         //mProgressDialog.show();
         mProgressDialog = ProgressDialog.show(this,
@@ -137,6 +133,11 @@ public class DeviceActivity extends AppCompatActivity {
                         tvConnectMsg2.setText(" Press \'GO HOME\' button and enjoy the CALMable");
                         //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
+
+                        stopThread = false;
+                        ExampleRunnable runnable = new ExampleRunnable();
+                        new Thread(runnable).start();
+
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
                         state = R.string.state_connecting;
@@ -155,11 +156,11 @@ public class DeviceActivity extends AppCompatActivity {
             }
         });
 
-
         mBleConnection.setHeartRateChangeListener(mHeartRateChangListener);
         mBleConnection.setBloodPressureChangeListener(mBloodPressureChangeListener);
         mBleConnection.setBloodOxygenChangeListener(mBloodOxygenChangeListener);
         mBleConnection.setECGChangeListener(mECGChangeListener);
+
     }
 
 
@@ -183,6 +184,7 @@ public class DeviceActivity extends AppCompatActivity {
             R.id.btn_start_measure_heart_rate, R.id.btn_stop_measure_heart_rate,
             R.id.btn_start_measure_blood_pressure, R.id.btn_stop_measure_blood_pressure,
             R.id.btn_start_measure_blood_oxygen, R.id.btn_stop_measure_blood_oxygen})
+
     public void onViewClicked(View view) {
         if (!mBleDevice.isConnected()) {
             return;
@@ -193,13 +195,11 @@ public class DeviceActivity extends AppCompatActivity {
             case R.id.btn_start_measure_heart_rate:
                 //mBleConnection.startMeasureDynamicRate();
                 //mBleConnection.startMeasureOnceHeartRate();
-//                Log.d(TAG, "on24HourMeasureResult: started " );
                 break;
             case R.id.btn_stop_measure_heart_rate:
                 mBleConnection.stopMeasureDynamicRtae();
 //                mBleConnection.stopMeasureOnceHeartRate();
                 break;
-
 
             //  Measure Blood Pressure
             case R.id.btn_start_measure_blood_pressure:
@@ -225,22 +225,23 @@ public class DeviceActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-
         super.onPause();
 
-        Log.d(TAG, "onPause: --- okay");
+        Log.d(TAG, "onPause:");
 
-        //stopThread = false;
-        //ExampleRunnable runnable = new ExampleRunnable();
-        //new Thread(runnable).start();
+//        stopThread = false;
+//        ExampleRunnable runnable = new ExampleRunnable();
+//        new Thread(runnable).start();
     }
+
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop: ---> okay");
 
-        mBleConnection.syncTime();
+        //mBleConnection.syncTime();
+        //crpHeartRateInfo.getStartMeasureTime();
         Log.d(TAG, "Measuring : started ");
     }
 
@@ -249,11 +250,9 @@ public class DeviceActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            mBleConnection.startMeasureDynamicRate();
-
-
             for (int q = 0; q >= 0; q++) {
 
+                mBleConnection.startMeasureOnceHeartRate();
                 Log.d(TAG, "run: " + q + " = " + finalRate);
 
                 try {
@@ -273,9 +272,21 @@ public class DeviceActivity extends AppCompatActivity {
     CRPHeartRateChangeListener mHeartRateChangListener = new CRPHeartRateChangeListener() {
         @Override
         public void onMeasuring(int rate) {
-            Log.d(TAG, "onMeasuring: " + rate);
+            Log.d(TAG, "onMeasuring : " + rate);
             //finalRate = rate;
             updateTextView(tvHeartRate, String.format(getString(R.string.heart_rate), rate));
+
+//            //To save
+//            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            editor.putInt("heartRate", rate);
+//            editor.commit();
+        }
+
+        @Override
+        public void onOnceMeasureComplete(int rate) {
+            finalRate = rate;
+            Log.d(TAG, "onOnceMeasureComplete: " + rate);
 
             //To save
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
@@ -285,18 +296,10 @@ public class DeviceActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onOnceMeasureComplete(int rate) {
-            finalRate = rate;
-            Log.d(TAG, "onOnceMeasureComplete: " + rate);
-
-
-        }
-
-        @Override
         public void onMeasureComplete(CRPHeartRateInfo info) {
             if (info != null && info.getMeasureData() != null) {
                 for (Integer integer : info.getMeasureData()) {
-                    Log.d(TAG, "onMeasureComplete XXX : " + integer);
+                    Log.d(TAG, "onMeasureComplete : " + integer);
                 }
             }
         }
@@ -304,7 +307,9 @@ public class DeviceActivity extends AppCompatActivity {
         @Override
         public void on24HourMeasureResult(CRPHeartRateInfo info) {
             List<Integer> data = info.getMeasureData();
+            Log.d(TAG, "on24HourMeasureResult: started ");
             Log.d(TAG, "on24HourMeasureResult: " + data.size());
+
         }
 
         @Override

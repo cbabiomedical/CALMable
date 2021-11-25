@@ -1,7 +1,6 @@
 package com.example.calmable.adapter;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -22,6 +22,7 @@ import com.example.calmable.MyFavouritesActivity;
 import com.example.calmable.db.FavDB;
 import com.example.calmable.db.FavDeepRelaxDB;
 import com.example.calmable.model.DeepRelaxModel;
+import com.example.calmable.model.FavModel;
 import com.example.calmable.model.MusicModel;
 import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
@@ -31,12 +32,12 @@ import java.util.ArrayList;
 
 public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAdapter.ViewHolder> {
 
-    private ArrayList<DeepRelaxModel> listOfSongs;
+    private ArrayList<FavModel> listOfSongs;
     private Context context;
-    private FavDeepRelaxDB favDB;
+    private FavDB favDB;
     public static ViewHolder viewHolder;
 
-    public DeepRelaxMusicAdapter(ArrayList<DeepRelaxModel> listOfSongs, Context context) {
+    public DeepRelaxMusicAdapter(ArrayList<FavModel> listOfSongs, Context context) {
         this.listOfSongs = listOfSongs;
         this.context = context;
     }
@@ -45,7 +46,7 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
     @Override
     public DeepRelaxMusicAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        favDB = new FavDeepRelaxDB(context);
+        favDB = new FavDB(context);
         SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
         if (firstStart) {
@@ -58,17 +59,14 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
 
 
     @Override
-    public void onBindViewHolder(@NonNull DeepRelaxMusicAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        final DeepRelaxModel coffeeItem = listOfSongs.get(position);
+        final FavModel coffeeItem = listOfSongs.get(position);
 
         readCursorDataDP(coffeeItem, holder);
 
         holder.imageView.setImageResource(listOfSongs.get(position).getImageView());
         holder.songTitle.setText(listOfSongs.get(position).getSongName());
-
-        //holder.imageView.setImageResource(coffeeItem.getImageView());
-        //holder.songTitle.setText(coffeeItem.getSongName());
 
         // recyclerview onClickListener
         holder.songTitle.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +86,6 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
                 Log.d("TAG", "song name : " + songName);
                 Log.d("TAG", "url : " + url);
 
-
                 Log.d(" adapter List-->", String.valueOf(listOfSongs));
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -97,8 +94,7 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
         });
     }
 
-
-
+    FavModel favModel;
     @Override
     public int getItemCount() {
         return listOfSongs.size();
@@ -114,36 +110,37 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             songTitle = itemView.findViewById(R.id.songTitle);
-            imageView = itemView.findViewById(R.id.favImageView);
             recyclerView = itemView.findViewById(R.id.listOfSongRecycleView);
+            imageView = itemView.findViewById(R.id.favImageView);
             favBtn = itemView.findViewById(R.id.favHeartIcon);
-
 
             //add to fav btn
             favBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    DeepRelaxModel deepRelaxModel = listOfSongs.get(position);
-                    if (deepRelaxModel.getIsFav().equals("0")) {
-                        deepRelaxModel.setIsFav("1");
-                        favDB.insertIntoTheDatabaseDPMusic(deepRelaxModel.getSongName(), deepRelaxModel.getImageView(),
-                                deepRelaxModel.getId(), deepRelaxModel.getIsFav());
+                    favModel = listOfSongs.get(position);
+                    if (favModel.getIsFav().equals("0")) {
+                        favModel.setIsFav("1");
+                        favDB.insertIntoTheDatabase(favModel.getSongName(), favModel.getImageView(),
+                                favModel.getId(), favModel.getIsFav(), favModel.getUrl());
                         favBtn.setBackgroundResource(R.drawable.ic_fill_fav_icon);
+                        Toast.makeText(context, "Added To Favourite!", Toast.LENGTH_SHORT).show();
                     } else {
-                        deepRelaxModel.setIsFav("0");
-                        favDB.remove_fav_dp_music(deepRelaxModel.getId());
+                        favModel.setIsFav("0");
+                        favDB.remove_fav_music(favModel.getId());
                         favBtn.setBackgroundResource(R.drawable.ic_favorite);
+                        Toast.makeText(context, "Removed From Favourite!", Toast.LENGTH_SHORT).show();
                     }
                 }
-
             });
         }
     }
 
 
     private void createTableOnFirstStart() {
-        favDB.insertEmptyDRMusic();
+
+        favDB.insertEmpty();
 
         SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -151,13 +148,13 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
         editor.apply();
     }
 
-    private void readCursorDataDP(DeepRelaxModel coffeeItem, ViewHolder viewHolder) {
-        Cursor cursor = favDB.read_all_data_dp_music(coffeeItem.getId());
+    private void readCursorDataDP(FavModel coffeeItem, ViewHolder viewHolder) {
+        Cursor cursor = favDB.read_all_data(coffeeItem.getId());
         SQLiteDatabase db = favDB.getReadableDatabase();
 
         try {
             while (cursor.moveToNext()) {
-                String item_fav_status = cursor.getString(cursor.getColumnIndex(FavDeepRelaxDB.FAVORITE_STATUSDP));
+                String item_fav_status = cursor.getString(cursor.getColumnIndex(FavDB.FAVORITE_STATUS));
                 coffeeItem.setIsFav(item_fav_status);
 
                 //check fav status
@@ -172,7 +169,5 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
                 cursor.close();
             db.close();
         }
-
     }
-
 }

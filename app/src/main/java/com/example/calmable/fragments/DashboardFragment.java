@@ -38,10 +38,10 @@ public class DashboardFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // add item touch helper
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView); // set swipe to recyclerview
+        //ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        //itemTouchHelper.attachToRecyclerView(recyclerView); // set swipe to recyclerview
 
-        loadData();
+        //loadData();
 
         return root;
     }
@@ -86,7 +86,7 @@ public class DashboardFragment extends Fragment {
             if (direction == ItemTouchHelper.LEFT) { //if swipe left
                 favAdapter.notifyItemRemoved(position); // item removed from recyclerview
                 favItemList.remove(position); //then remove item
-                favDB.remove_fav_music(favItem.getKey_id()); // remove item from database
+                favDB.remove_fav_music(favItem.getId()); // remove item from database
             }
         }
     };

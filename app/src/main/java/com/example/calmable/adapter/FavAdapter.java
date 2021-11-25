@@ -1,33 +1,35 @@
 package com.example.calmable.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
 import com.example.calmable.db.FavDB;
-import com.example.calmable.model.DeepRelaxModel;
 import com.example.calmable.model.FavModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder>{
+public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
     private Context context;
-    private List<FavModel> favItemList;
+    private List<FavModel> listOfSongs;
     private FavDB favDB;
 
-    public FavAdapter(Context context, List<FavModel> favItemList) {
+    public FavAdapter(Context context, List<FavModel> listOfSongs) {
         this.context = context;
-        this.favItemList = favItemList;
+        this.listOfSongs = listOfSongs;
     }
 
     @NonNull
@@ -39,14 +41,40 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavAdapter.ViewHolder holder, int position) {
-        holder.favTextView.setText(favItemList.get(position).getItem_title());
-        holder.favImageView.setImageResource(favItemList.get(position).getItem_image());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        holder.favTextView.setText(listOfSongs.get(position).getId());
+        holder.favImageView.setImageResource(listOfSongs.get(position).getImageView());
+
+
+        holder.favTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listOfSongs.get(position);
+
+                Intent intent = new Intent(context, MusicPlayer.class);
+
+                String songName = listOfSongs.get(position).getId();
+                String url = listOfSongs.get(position).getUrl();
+                int image = listOfSongs.get(position).getImageView();
+                intent.putExtra("songName", songName);
+                intent.putExtra("url", url);
+                intent.putExtra("image", image);
+
+                Log.d("TAG", "song name : " + songName);
+                Log.d("TAG", "url : " + url);
+
+                Log.d(" adapter List-->", String.valueOf(listOfSongs));
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return favItemList.size();
+        return listOfSongs.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,24 +90,26 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder>{
             favBtn = itemView.findViewById(R.id.favHeartIcon);
             favImageView = itemView.findViewById(R.id.favImageView);
 
+            favBtn.setBackgroundResource(R.drawable.ic_fill_fav_icon);
 
             //remove from fav after click
             favBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    final FavModel favItem = favItemList.get(position);
-                    favDB.remove_fav_music(favItem.getKey_id());
+                    final FavModel favItem = listOfSongs.get(position);
+                    Log.d("TAG", "remove method id -->: " + favItem.getSongName());
+                    favDB.remove_fav_music(favItem.getSongName());
                     removeItem(position);
-
+                    Toast.makeText(context, "Removed From Favourite", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
     private void removeItem(int position) {
-        favItemList.remove(position);
+        listOfSongs.remove(position);
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, favItemList.size());
+        notifyItemRangeChanged(position, listOfSongs.size());
     }
 }

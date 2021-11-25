@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
 import com.example.calmable.model.DeepRelaxModel;
+import com.example.calmable.model.FavModel;
 import com.example.calmable.model.MusicModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +27,7 @@ public class DeepRelaxMusicActivity extends AppCompatActivity  {
 
     RecyclerView recyclerView;
     DeepRelaxMusicAdapter deepRelaxMusicAdapter;
-    ArrayList<DeepRelaxModel> listOfSongs;
+    ArrayList<FavModel> listOfSongs;
 
     FirebaseUser mUser;
 
@@ -44,10 +45,10 @@ public class DeepRelaxMusicActivity extends AppCompatActivity  {
 
         listOfSongs = new ArrayList<>();
 
-        listOfSongs.add(new DeepRelaxModel("0", "Test - Ours Saxmental-version",R.drawable.item_bg1,
+        listOfSongs.add(new FavModel("0", "Test - Ours Saxmental-version",R.drawable.item_bg1,
                 "https://firebasestorage.googleapis.com/v0/b/calmableproject.appspot.com/o/Songs%2Fmusic-is-ours-saxmental-version.mp3?alt=media&token=379b9b63-d4a5-4968-bf3b-1a2aafa88b22","0"));
 
-        listOfSongs.add(new DeepRelaxModel("1" , "Test - Lilac Days", R.drawable.item_bg2,
+        listOfSongs.add(new FavModel("1" , "Test - Lilac Days", R.drawable.item_bg2,
                 "https://firebasestorage.googleapis.com/v0/b/calmableproject.appspot.com/o/Songs%2Flilac-days.mp3?alt=media&token=5e3076ec-628e-4fcd-8591-2fc833c65c26","0"));
 
         HashMap<String,Object> songs=new HashMap<>();

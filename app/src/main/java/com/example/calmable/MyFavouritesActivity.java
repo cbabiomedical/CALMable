@@ -1,7 +1,6 @@
 package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,13 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.calmable.adapter.ChillOutMusicAdapter;
-import com.example.calmable.adapter.DeepRelaxMusicAdapter;
 import com.example.calmable.adapter.FavAdapter;
-import com.example.calmable.adapter.FavDeepRelaxAdapter;
 import com.example.calmable.db.FavDB;
-import com.example.calmable.db.FavDeepRelaxDB;
-import com.example.calmable.model.DeepRelaxModel;
 import com.example.calmable.model.FavModel;
 
 import java.util.ArrayList;
@@ -26,7 +20,7 @@ import java.util.ArrayList;
 public class MyFavouritesActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<FavModel> favouriteList;
+    ArrayList<FavModel> listOfSongs;
     private FavDB favDB;
     FavAdapter adapter;
 
@@ -38,8 +32,11 @@ public class MyFavouritesActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.gridView);
         favDB=new FavDB(getApplicationContext());
 
+        Log.d("TAG", "LoadData: " + listOfSongs);
+
         LoadData();
     }
+
 
     private void LoadData() {
 
@@ -52,20 +49,21 @@ public class MyFavouritesActivity extends AppCompatActivity {
             return;
         }
 
-        favouriteList = new ArrayList<>();
-        if (favouriteList != null) {
-            favouriteList.clear();
+        listOfSongs = new ArrayList<>();
+        if (listOfSongs != null) {
+            listOfSongs.clear();
         }
 
 
         try {
             while (cursor.moveToNext()) {
-                @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_TITLE));
-                @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID));
-                @SuppressLint("Range") int image = Integer.parseInt(cursor.getString(cursor.getColumnIndex(FavDB.ITEM_IMAGE)));
-                FavModel favItem = new FavModel(title, id, image);
-                favouriteList.add(favItem);
-                Log.d("Fav List =", String.valueOf(favouriteList));
+                String title = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_TITLE));
+                String id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID));
+                String url = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_URL));
+                int image = Integer.parseInt(cursor.getString(cursor.getColumnIndex(FavDB.ITEM_IMAGE)));
+                FavModel favItem = new FavModel(title, id, url, image);
+                listOfSongs.add(favItem);
+                Log.d("Fav List =", String.valueOf(listOfSongs));
             }
         } finally {
             if (cursor != null && cursor.isClosed())
@@ -74,10 +72,11 @@ public class MyFavouritesActivity extends AppCompatActivity {
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //adapter = new DeepRelaxAdapter(this,favouriteList);
+        adapter = new FavAdapter(this,listOfSongs);
         recyclerView.setAdapter(adapter);
 
-        Log.d("TAG", "LoadData: " + favouriteList);
+        Log.d("TAG", "LoadData: " + listOfSongs);
 
     }
+
 }

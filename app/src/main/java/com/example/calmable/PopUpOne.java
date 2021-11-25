@@ -32,7 +32,7 @@ public class PopUpOne extends AppCompatDialogFragment {
 
     ArrayAdapter<String> adapter;
     //List<Object> personList = new ArrayList<>();
-    String[] personList = {"Amal","Anil","Ayeshika","Sunil","Saman"};
+    String[] personList = {"Amal","Anil","Ayeshika","Sunil","Saman" , "Hasindu" , "Ayodhya" , "Harshika" , "Sahan" , "Shammi"};
 
     @NonNull
     @Override

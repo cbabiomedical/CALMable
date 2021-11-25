@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
 import com.example.calmable.adapter.MeditateMusicAdapter;
+import com.example.calmable.model.FavModel;
 import com.example.calmable.model.MusicModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +26,7 @@ public class MeditateMusicActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     MeditateMusicAdapter meditateMusicAdapter;
-    ArrayList<MusicModel> listOfSongs;
+    ArrayList<FavModel> listOfSongs;
 
     FirebaseUser mUser;
 
@@ -38,7 +39,7 @@ public class MeditateMusicActivity extends AppCompatActivity {
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //initData();
+        initData();
     }
 
     private void initData() {
@@ -49,7 +50,7 @@ public class MeditateMusicActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postDataSnapshot : snapshot.getChildren()) {
-                    MusicModel post = postDataSnapshot.getValue(MusicModel.class);
+                    FavModel post = postDataSnapshot.getValue(FavModel.class);
                     Log.d("Post", String.valueOf(post));
                     listOfSongs.add(post);
                 }

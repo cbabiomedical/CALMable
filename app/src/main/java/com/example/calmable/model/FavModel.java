@@ -1,43 +1,75 @@
 package com.example.calmable.model;
 
-public class FavModel  {
+public class FavModel {
 
-    private String item_title;
-    private String key_id;
-    private int item_image;
+    public String id;
+    public String songName;
+    public int imageView;
+    public String url;
+    private String isFav;
 
+    public FavModel() {
 
-    public FavModel(String item_title, String key_id, int item_image) {
-        this.item_title = item_title;
-        this.key_id = key_id;
-        this.item_image = item_image;
     }
 
-    public String getItem_title() {
-        return item_title;
+    public FavModel(String id, String songName, int imageView) {
+        this.id = id;
+        this.songName = songName;
+        this.imageView = imageView;
     }
 
-    public void setItem_title(String item_title) {
-        this.item_title = item_title;
+    public FavModel(String id, String songName, int imageView, String url, String isFav) {
+        this.id = id;
+        this.songName = songName;
+        this.imageView = imageView;
+        this.url = url;
+        this.isFav = isFav;
     }
 
-    public String getKey_id() {
-        return key_id;
+    public FavModel(String id, String songName, String url , int imageView) {
+        this.id = id;
+        this.songName = songName;
+        this.imageView = imageView;
+        this.url = url;
     }
 
-    public void setKey_id(String key_id) {
-        this.key_id = key_id;
+    public String getId() {
+        return id;
     }
 
-
-    public class ViewHolder {
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public int getItem_image() {
-        return item_image;
+    public String getSongName() {
+        return songName;
     }
 
-    public void setItem_image(int item_image) {
-        this.item_image = item_image;
+    public void setSongName(String songName) {
+        this.songName = songName;
+    }
+
+    public int getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(int imageView) {
+        this.imageView = imageView;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getIsFav() {
+        return isFav;
+    }
+
+    public void setIsFav(String isFav) {
+        this.isFav = isFav;
     }
 }

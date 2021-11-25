@@ -82,14 +82,16 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         this.mHandler = new Handler();
         m_Runnable.run();
 
+       // this.mHandler = new Handler();
+        //m_Runnable_popup.run();
+
         //for testing
-        finalRateff = 100;
+        //finalRateff = 100;
         //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
         if (finalRateff > 80) {
             openDialog();
             Log.d("TAG", String.valueOf(finalRateff));
         }
-
 
         NavigationBar();
     }
@@ -99,7 +101,20 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         public void run() {
             updateLandingHeartRate();
             //Toast.makeText(Home.this, "in runnable", Toast.LENGTH_SHORT).show();
-            Home.this.mHandler.postDelayed(m_Runnable, 5000);
+            Home.this.mHandler.postDelayed(m_Runnable, 1000);
+        }
+    };
+
+
+    //refresh pop up mage
+    private final Runnable m_Runnable_popup = new Runnable() {
+        public void run() {
+            updateLandingHeartRate();
+            if (finalRateff > 80) {
+                openDialog();
+            }
+            Toast.makeText(Home.this, "popup done!", Toast.LENGTH_SHORT).show();
+            Home.this.mHandler.postDelayed(m_Runnable, 10000);
         }
     };
 
@@ -110,6 +125,9 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         mHandler.removeCallbacks(m_Runnable);
         finish();
 
+
+        mHandler.removeCallbacks(m_Runnable_popup);
+        finish();
     }
 
 //    @Override

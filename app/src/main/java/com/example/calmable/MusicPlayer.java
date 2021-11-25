@@ -89,13 +89,15 @@ public class MusicPlayer extends AppCompatActivity {
 //            time = Integer.parseInt(time_selected);
             music_title.setText(name);
             image = extras.getInt("image");
-            Log.d("TAG", "titile --------: " + name);
 
             prepareMediaPlayer();
 
             Log.d("MUSIC", uri + "");
 //            Log.d("DURATION", time_selected);
 //            Log.d("NAME", name);
+
+            Log.d("TAG", "name xxx --> : " + name);
+            Log.d("TAG", "url xxx --> : " + uri);
 
         } else {
             Log.d("ERROR", "Error in getting null value");

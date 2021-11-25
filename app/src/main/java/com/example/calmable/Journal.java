@@ -47,6 +47,7 @@ public class Journal extends AppCompatActivity {
 
         if (set == null) {
             listOfNotes.add("Write your day here!");
+            //Toast.makeText(Journal.this, "Write your day here!", Toast.LENGTH_SHORT).show();
         } else {
             listOfNotes = new ArrayList(set);
         }
@@ -90,7 +91,7 @@ public class Journal extends AppCompatActivity {
 
                                 // permanent save notes
                                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
-                                HashSet<String> set = new HashSet(JournalFragment.listOfNotes);
+                                HashSet<String> set = new HashSet(Journal.listOfNotes);
                                 sharedPreferences.edit().putStringSet("lostOfNotes", set).apply();
                             }
                         })

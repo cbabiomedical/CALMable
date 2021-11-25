@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
 import com.example.calmable.adapter.PainReliefMusicAdapter;
+import com.example.calmable.model.FavModel;
 import com.example.calmable.model.MusicModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +26,7 @@ public class PainReliefMusicActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     PainReliefMusicAdapter painReliefMusicAdapter;
-    ArrayList<MusicModel> listOfSongs;
+    ArrayList<FavModel> listOfSongs;
 
     FirebaseUser mUser;
 
@@ -51,7 +52,7 @@ public class PainReliefMusicActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postDataSnapshot : snapshot.getChildren()) {
-                    MusicModel post = postDataSnapshot.getValue(MusicModel.class);
+                    FavModel post = postDataSnapshot.getValue(FavModel.class);
                     Log.d("Post", String.valueOf(post));
                     listOfSongs.add(post);
                 }
