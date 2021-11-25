@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
@@ -35,6 +36,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     Dialog dialog;
 
     private FirebaseAuth mAuth;
+    FirebaseFirestore database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
         // Assign variables
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseFirestore.getInstance();
 
         log = (Button) findViewById(R.id.log);
         log.setOnClickListener(this);
@@ -247,7 +250,31 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                     progressBar.setVisibility(View.GONE);
                                 }
                             });
+                            String uid = task.getResult().getUser().getUid();
+                            database
+                                    .collection("users")
+                                    .document(uid).set(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                //If task complete navigating from Register Activity to EnterPhone Activity
+                                                Intent intent = new Intent(RegisterUser.this, UserPreferences.class);
+                                                startActivity(intent);
+                                                // Display Toast message "Registration successful"
+                                                Toast.makeText(RegisterUser.this,"User has been registered successfully!",Toast.LENGTH_LONG)
+                                                        .show();
 
+                                                //redirect to login layout
+                                            }
+                                            else {
+                                                Toast.makeText(RegisterUser.this,"Registration Unsuccessful. Try Again!",Toast.LENGTH_LONG)
+                                                        .show();
+                                            }
+                                            progressBar.setVisibility(View.GONE);
+
+                                        }
+                                    });
                         }
                     }
                 });

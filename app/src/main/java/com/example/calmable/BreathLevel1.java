@@ -15,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.MessageFormat;
 
@@ -51,8 +54,14 @@ public class BreathLevel1 extends AppCompatActivity {
         breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths",prefs.getBreaths()));
         Log.d("---get breaths value---", String.valueOf(prefs.getBreaths()));
         x = prefs.getBreaths();
-        if(x == 51){ //put here 4
+        if(x == 4){ //put here 4
             BreathScore = BreathScore + 50;
+
+            FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+            database.collection("users")
+                    .document(FirebaseAuth.getInstance().getUid())
+                    .update("coins", FieldValue.increment(BreathScore));
         }
         Log.d("----x value----", String.valueOf(x));
         //timeTxt.setText(prefs.getDate());
@@ -317,6 +326,12 @@ public class BreathLevel1 extends AppCompatActivity {
                         //counting score of completing breathing exercises of level 1
                         BreathScore = BreathScore + 5;
                         Log.d("---get breath score---", String.valueOf(BreathScore));
+
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+                        database.collection("users")
+                                .document(FirebaseAuth.getInstance().getUid())
+                                .update("coins", FieldValue.increment(BreathScore));
                     }
                 })
                 .start();

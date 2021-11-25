@@ -62,6 +62,7 @@
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+            <!--android:drawableStart="@drawable/ic_lock_icon"/-->
 
             <Button
                 android:id="@+id/level3Btn"
@@ -75,6 +76,7 @@
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+            <!--android:drawableStart="@drawable/ic_lock_icon"/-->
 
             <Button
                 android:id="@+id/level4Btn"

@@ -405,7 +405,7 @@ public class ReportYearly extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.challenge:
-                        startActivity(new Intent(getApplicationContext(), Challenge.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.profile:

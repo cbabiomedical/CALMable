@@ -13,12 +13,16 @@ import android.widget.TextView;
 
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.MessageFormat;
 
 public class BreathLevel3 extends AppCompatActivity {
 
     public static int x3;
+    public static int BreathScore3;
 
     private ImageView imageView;
     public int counter, counter2;
@@ -48,6 +52,17 @@ public class BreathLevel3 extends AppCompatActivity {
 
         Log.d("---get breaths value3--", String.valueOf(prefs3.getBreaths()));
         x3 = prefs3.getBreaths();
+
+        if(x3 == 4){ //put here 4
+            BreathScore3 = BreathScore3 + 50;
+
+            FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+            database.collection("users")
+                    .document(FirebaseAuth.getInstance().getUid())
+                    .update("coins", FieldValue.increment(BreathScore3));
+        }
+
         Log.d("----x3 value----", String.valueOf(x3));
 
         //timeTxt.setText(prefs.getDate());
@@ -342,9 +357,21 @@ public class BreathLevel3 extends AppCompatActivity {
                         prefs3.setBreaths(prefs3.getBreaths() + 1);
                         prefs3.setDate(SystemClock.currentThreadTimeMillis());
 
+                        //counting score of completing breathing exercises of level 1
+                        BreathScore3 = BreathScore3 + 5;
+                        Log.d("---get breath score---", String.valueOf(BreathScore3));
+
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+                        database.collection("users")
+                                .document(FirebaseAuth.getInstance().getUid())
+                                .update("coins", FieldValue.increment(BreathScore3));
+
                     }
                 })
                 .start();
     }
 }
+
+
 

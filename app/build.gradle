@@ -13,6 +13,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -119,4 +120,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+    //firestore
+    implementation "io.grpc:grpc-okhttp:1.32.2"
+
+    //Bottombar
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.8'
 }

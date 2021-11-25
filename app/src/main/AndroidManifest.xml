@@ -41,6 +41,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".ResultActivity"
+            android:exported="true" />
+        <activity
+            android:name=".QuizActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".MapsActivity"
             android:exported="true"
             android:label="@string/title_activity_maps" />

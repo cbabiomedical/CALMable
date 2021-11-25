@@ -4,11 +4,11 @@ public class User {
 
     // Creating private variables to store user data
     // private variables for encapsulation
-    public String fullName,age, email , gender,phoneNumber;
+    public String fullName,age, email , gender,phoneNumber, profile;
 
     public String preference;
     public String journalNote;
-    private long coins = 25;
+    private long coins = 0;
 
     public User() {
     }
@@ -84,5 +84,21 @@ public class User {
 
     public void setJournalNote(String journalNote) {
         this.journalNote = journalNote;
+    }
+
+    public long getCoins() {
+        return coins;
+    }
+
+    public void setCoins(long coins) {
+        this.coins = coins;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 }
