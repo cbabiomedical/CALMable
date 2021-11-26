@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/bg_1"
+    android:background="@drawable/report_bg"
     android:orientation="horizontal"
     tools:context=".ReportHome">
 
@@ -30,12 +30,18 @@
             </RelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="50dp"
-                android:text="Daily Report Page"
-                android:textColor="#000000"/>
+                android:layout_marginTop="520dp"
+                android:background="@color/teal_200"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:padding="5dp"
+                android:fontFamily="@font/droidserif_italic"
+                android:text="Where am I \naccording to my occupation and age?"
+
+                android:textColor="@color/dark_blue_300"/>
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChartDaily"
@@ -45,7 +51,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="70dp"
                 app:cornerRadius="13dp"
                 tools:ignore="MissingClass" />
 
@@ -63,10 +69,9 @@
                     android:id="@+id/weekly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/mybutton"
                     android:text="Weekly"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/dark_blue_300"
                     android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -74,10 +79,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:background="@drawable/mybutton"
                     android:text="Monthly"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/dark_blue_300"
                     android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
 
@@ -86,10 +90,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:background="@drawable/mybutton"
                     android:text="Yearly"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/dark_blue_300"
                     android:textStyle="bold">
 
                 </androidx.appcompat.widget.AppCompatButton>
@@ -131,6 +134,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="620dp"
                         android:text="Job"
+                        android:textStyle="bold"
                         android:textColor="#000000"/>
                 </LinearLayout>
 
@@ -163,6 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="920dp"
+                        android:textStyle="bold"
                         android:text="Age"
                         android:textColor="#000000"/>
                 </LinearLayout>

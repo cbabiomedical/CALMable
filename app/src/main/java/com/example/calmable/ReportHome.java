@@ -231,11 +231,11 @@ public class ReportHome extends AppCompatActivity {
 //        }, delay);
 
         //Stacked BarChart
-        int[] colorClassArray = new int[]{Color.GREEN,Color.RED};
+        int[] colorClassArray = new int[]{Color.rgb(1,135,134),Color.rgb(255,51,51)};
         Log.d("DataValues print", "--------String------");
-        BarDataSet barDataSet = new BarDataSet(dataValues1(),"Stress Time");
+        BarDataSet barDataSet = new BarDataSet(dataValues1(),"Time");
         barDataSet.setColors(colorClassArray);
-        barDataSet.setStackLabels(new String[]{"Relaxed", "Stressed"});
+        barDataSet.setStackLabels(new String[]{"Relaxed Time", "Stressed"});
         String[] daysS = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
         XAxis xAxis = barChartdaily.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(daysS));
@@ -1006,7 +1006,7 @@ public class ReportHome extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.challenge:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), Challenge.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.profile:
