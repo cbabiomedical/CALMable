@@ -23,7 +23,7 @@ public class BreathPatterns extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(BreathPatterns.this, BreathLevel1.class);
+                Intent intent = new Intent(BreathPatterns.this, BreathPattern1.class);
                 startActivity(intent);
                 //startActivity(new Intent(getActivity(),breathLevel1.class));
 
@@ -44,7 +44,7 @@ public class BreathPatterns extends AppCompatActivity {
         level2Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BreathPatterns.this, BreathLevel2.class);
+                Intent intent = new Intent(BreathPatterns.this, BreathPattern2.class);
                 startActivity(intent);
             }
         });
@@ -54,7 +54,7 @@ public class BreathPatterns extends AppCompatActivity {
         level3Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BreathPatterns.this, BreathLevel3.class);
+                Intent intent = new Intent(BreathPatterns.this, BreathPattern3.class);
                 startActivity(intent);
             }
 
@@ -65,7 +65,7 @@ public class BreathPatterns extends AppCompatActivity {
         level4Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BreathPatterns.this, BreathLevel4.class);
+                Intent intent = new Intent(BreathPatterns.this, BreathPattern4.class);
                 startActivity(intent);
             }
 
@@ -76,7 +76,7 @@ public class BreathPatterns extends AppCompatActivity {
         level5Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BreathPatterns.this, BreathLevel5.class);
+                Intent intent = new Intent(BreathPatterns.this, BreathPattern5.class);
                 startActivity(intent);
             }
 
@@ -87,7 +87,7 @@ public class BreathPatterns extends AppCompatActivity {
         level6Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BreathPatterns.this, BreathLevel6.class);
+                Intent intent = new Intent(BreathPatterns.this, BreathPattern6.class);
                 startActivity(intent);
             }
 

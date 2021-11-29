@@ -17,7 +17,7 @@ public class Prefs {
         preferences.edit().putLong("seconds", 0);
     }
 
-    /*public String getDate(){
+    public String getDate(){
         long milliDate = preferences.getLong("seconds",0);
         String amOrpm;
 
@@ -32,7 +32,7 @@ public class Prefs {
         String time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + " " + amOrpm;
 
         return time;
-    }*/
+    }
 
     public void setSessions(int session){
         preferences.edit().putInt("sessions", session).apply();
