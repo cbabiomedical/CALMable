@@ -69,7 +69,7 @@ public class ChallengeFragment extends Fragment {
         binding.leaderboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), Challenge.class));
+                startActivity(new Intent(getContext(), BreathHome.class));
             }
         });
 
