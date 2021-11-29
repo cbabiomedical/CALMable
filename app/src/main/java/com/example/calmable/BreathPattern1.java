@@ -21,8 +21,6 @@ import java.text.MessageFormat;
 
 public class BreathPattern1 extends AppCompatActivity {
 
-    public static int x;
-    public static int BreathScore;
 
     private ImageView imageView;
     public int counter, counter2;
@@ -52,17 +50,7 @@ public class BreathPattern1 extends AppCompatActivity {
         //y = prefs.getBreaths();
         breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths",prefs.getBreaths()));
         Log.d("---get breaths value---", String.valueOf(prefs.getBreaths()));
-        x = prefs.getBreaths();
-        if(x == 4){ //put here 4
-            BreathScore = BreathScore + 50;
 
-            FirebaseFirestore database = FirebaseFirestore.getInstance();
-
-            database.collection("users")
-                    .document(FirebaseAuth.getInstance().getUid())
-                    .update("coins", FieldValue.increment(BreathScore));
-        }
-        Log.d("----x value----", String.valueOf(x));
         //timeTxt.setText(prefs.getDate());
 
 
@@ -322,15 +310,6 @@ public class BreathPattern1 extends AppCompatActivity {
                         prefs.setDate(SystemClock.currentThreadTimeMillis());
                         //x = x+1;
 
-                        //counting score of completing breathing exercises of level 1
-                        BreathScore = BreathScore + 5;
-                        Log.d("---get breath score---", String.valueOf(BreathScore));
-
-                        FirebaseFirestore database = FirebaseFirestore.getInstance();
-
-                        database.collection("users")
-                                .document(FirebaseAuth.getInstance().getUid())
-                                .update("coins", FieldValue.increment(BreathScore));
                     }
                 })
                 .start();
