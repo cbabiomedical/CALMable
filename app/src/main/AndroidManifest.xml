@@ -27,6 +27,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".BreathPattern6"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern5"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern4"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern3"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern2"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern1"
+            android:exported="true" />
+        <activity
             android:name=".BreathPatterns"
             android:exported="true" />
         <!--
