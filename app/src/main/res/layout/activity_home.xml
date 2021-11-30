@@ -140,35 +140,35 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <Button
                         android:id="@+id/happyEmoji_1"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_margin="10dp"
-                        android:background="@drawable/happy01" />
+                        android:background="@drawable/happy01"/>
 
-                    <ImageView
+                    <Button
                         android:id="@+id/happyEmoji_2"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/happy02" />
 
-                    <ImageView
+                    <Button
                         android:id="@+id/happyEmoji_3"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/happy03" />
 
-                    <ImageView
+                    <Button
                         android:id="@+id/happyEmoji_4"
                         android:layout_width="49dp"
                         android:layout_height="49dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/happy04" />
 
-                    <ImageView
+                    <Button
                         android:id="@+id/happyEmoji_5"
                         android:layout_width="45dp"
                         android:layout_height="45dp"

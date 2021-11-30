@@ -124,4 +124,6 @@ dependencies {
     //Bottombar
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.8'
 
+    //custom calender
+    implementation 'org.naishadhparmar.zcustomcalendar:zcustomcalendar:1.0.1'
 }
