@@ -40,7 +40,7 @@
         <activity
             android:name=".BreathPattern6"
             android:exported="true" />
-        
+
         <activity
             android:name=".BreathPattern5"
             android:exported="true" />
