@@ -53,7 +53,7 @@ public class BreathLevel3 extends AppCompatActivity {
         Log.d("---get breaths value3--", String.valueOf(prefs3.getBreaths()));
         x3 = prefs3.getBreaths();
 
-        if(x3 == 4){ //put here 4
+        if(x3 == 7){ //put here 7
             BreathScore3 = BreathScore3 + 50;
 
             FirebaseFirestore database = FirebaseFirestore.getInstance();
