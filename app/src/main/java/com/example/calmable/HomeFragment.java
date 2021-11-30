@@ -111,7 +111,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(), BreathHome.class));
+                startActivity(new Intent(getActivity(), BreathPatterns.class));
 
             }
         });

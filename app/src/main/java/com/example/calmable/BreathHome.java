@@ -103,7 +103,7 @@ public class BreathHome extends AppCompatActivity {
 
             private void ExerciseMethod4() {
                 Log.d("-BreathLevel3.x3 value-", String.valueOf(BreathLevel3.x3));
-                if(BreathLevel3.x3 < 5){
+                if(BreathLevel3.x3 < 8){
                     level4Btn.setClickable(false);
                 }else{
                     level4Btn.setClickable(true);
@@ -123,7 +123,7 @@ public class BreathHome extends AppCompatActivity {
 
             private void ExerciseMethod5() {
                 Log.d("-BreathLevel4.x4 value-", String.valueOf(BreathLevel4.x4));
-                if(BreathLevel4.x4 < 5){
+                if(BreathLevel4.x4 < 8){
                     level5Btn.setClickable(false);
                 }else{
                     level5Btn.setClickable(true);
@@ -143,7 +143,7 @@ public class BreathHome extends AppCompatActivity {
 
             private void ExerciseMethod6() {
                 Log.d("-BreathLevel5.x5 value-", String.valueOf(BreathLevel5.x5));
-                if(BreathLevel5.x5 < 5){
+                if(BreathLevel5.x5 < 10){
                     level6Btn.setClickable(false);
                 }else{
                     level6Btn.setClickable(true);

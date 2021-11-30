@@ -19,51 +19,40 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.MessageFormat;
 
-public class BreathLevel4 extends AppCompatActivity {
-    public static int x4;
-    public static int BreathScore4;
+public class BreathPattern1 extends AppCompatActivity {
+
 
     private ImageView imageView;
     public int counter, counter2;
     private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
     private Button startButton;
-    public static Prefs4 prefs4;
+    public static Prefs prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breath_level4);
+        setContentView(R.layout.activity_breath_pattern1);
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
         timerminutes= (TextView) findViewById(R.id.timerminutes);
 
         /////////////////////////////////////////////////////////////////
         breathsTxt = findViewById(R.id.breathsTakenTxt);
-        //timeTxt = findViewById(R.id.last);
+
+        //////// how many times does user do the breathing exercise in  a day
         //sessionTxt = findViewById(R.id.todayminutes);
         //guideTxt = findViewById(R.id.guideTxt);
-        prefs4 = new Prefs4(this);
+        prefs = new Prefs(this);
 
         //startIntroAnimation();
 
-        //sessionTxt.setText(MessageFormat.format("{0} min today", prefs4.getSessions()));
-        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths", prefs4.getBreaths()));
-
-        Log.d("---get breaths value4--", String.valueOf(prefs4.getBreaths()));
-        x4 = prefs4.getBreaths();
-
-        if(x4 == 7){ //put here 7
-            BreathScore4 = BreathScore4 + 50;
-
-            FirebaseFirestore database = FirebaseFirestore.getInstance();
-
-            database.collection("users")
-                    .document(FirebaseAuth.getInstance().getUid())
-                    .update("coins", FieldValue.increment(BreathScore4));
-        }
-        Log.d("----x4 value----", String.valueOf(x4));
+        //sessionTxt.setText(MessageFormat.format("{0} min today", prefs.getSessions()));
+        //y = prefs.getBreaths();
+        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths",prefs.getBreaths()));
+        Log.d("---get breaths value---", String.valueOf(prefs.getBreaths()));
 
         //timeTxt.setText(prefs.getDate());
+
 
 
         startButton = findViewById(R.id.startbutton);
@@ -121,7 +110,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 /*.onStart(new AnimationListener.Start() {
                     @Override
                     public void onStart() {
-                        guideTxt.setText("Inhale... Hold... Exhale");
+                        guideTxt.setText("Inhale... Exhale");
                     }
                 })*/
 
@@ -130,12 +119,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 .duration(1)
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
-                //.rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
@@ -153,12 +136,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
-                .scale(1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -166,12 +143,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 ///////////////////// 3 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
@@ -189,12 +160,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
-                .scale(1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -202,12 +167,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 ///////////////////// 5 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
@@ -225,12 +184,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
-                .scale(1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -238,12 +191,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 ///////////////////// 7 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
@@ -261,12 +208,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
-                .scale(1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
@@ -274,12 +215,6 @@ public class BreathLevel4 extends AppCompatActivity {
                 ///////////////////// 9 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
-                .rotation(360)
-                .accelerate()
-                .duration(4000)
-
-                .thenAnimate(imageView)
-                .scale(1.5f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
@@ -297,7 +232,61 @@ public class BreathLevel4 extends AppCompatActivity {
                 .duration(4000)
 
                 .thenAnimate(imageView)
-                .scale(1.5f)
+                .scale(1.5f, 0.002f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+                ///////////////////// 11 //////////////////////
+                .thenAnimate(imageView)
+                .scale(0.002f, 1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f, 0.002f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+                ///////////////////// 12 //////////////////////
+                .thenAnimate(imageView)
+                .scale(0.002f, 1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f, 0.002f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+                ///////////////////// 13 //////////////////////
+                .thenAnimate(imageView)
+                .scale(0.002f, 1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f, 0.002f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+                ///////////////////// 14 //////////////////////
+                .thenAnimate(imageView)
+                .scale(0.002f, 1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f, 0.002f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+                ///////////////////// 15 //////////////////////
+                .thenAnimate(imageView)
+                .scale(0.002f, 1.5f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
@@ -315,19 +304,11 @@ public class BreathLevel4 extends AppCompatActivity {
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
 
-                        prefs4.setSessions(prefs4.getSessions() + 1);
-                        prefs4.setBreaths(prefs4.getBreaths() + 1);
-                        prefs4.setDate(SystemClock.currentThreadTimeMillis());
-
-                        //counting score of completing breathing exercises of level 1
-                        BreathScore4 = BreathScore4 + 5;
-                        Log.d("---get breath score---", String.valueOf(BreathScore4));
-
-                        FirebaseFirestore database = FirebaseFirestore.getInstance();
-
-                        database.collection("users")
-                                .document(FirebaseAuth.getInstance().getUid())
-                                .update("coins", FieldValue.increment(BreathScore4));
+                        //prefs.setSessions(prefs.getSessions() + 1);
+                        prefs.setBreaths(prefs.getBreaths() + 1);
+                        //Log.d(TAG, "-----------------x-----------------");
+                        prefs.setDate(SystemClock.currentThreadTimeMillis());
+                        //x = x+1;
 
                     }
                 })

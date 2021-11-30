@@ -341,7 +341,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     }
 
     public void btnBreath (View view) {
-        startActivity(new Intent(this, BreathHome.class));
+        startActivity(new Intent(this, BreathPatterns.class));
     }
 
     public void btnReport (View view) {

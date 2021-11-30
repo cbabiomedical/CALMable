@@ -60,6 +60,7 @@ public class LeaderboardsAdapter extends RecyclerView.Adapter<LeaderboardsAdapte
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).into(holder.binding.imageView7);
+                //holder.binding.imageView7.setImageURI(Uri.parse("users/" + userid + "/profile.jpg"));
             }
         });
     }

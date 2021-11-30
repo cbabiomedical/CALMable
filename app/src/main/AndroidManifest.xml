@@ -27,6 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+
             android:name=".SelfImprovementActivity"
             android:exported="false" />
         <activity
@@ -35,6 +36,29 @@
         <activity
             android:name=".SuccesStoryActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".BreathPattern6"
+            android:exported="true" />
+        
+        <activity
+            android:name=".BreathPattern5"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern4"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern3"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern2"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern1"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPatterns"
+            android:exported="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -58,6 +82,7 @@
             android:exported="true"
             android:label="Sleepy"
             android:parentActivityName=".Home" />
+
         <activity
             android:name=".MapsActivity"
             android:exported="true"
@@ -156,7 +181,7 @@
         <activity
             android:name=".ReportHome"
             android:exported="true"
-            android:label="Report"
+            android:label="Report-Daily"
             android:parentActivityName=".Home" />
         <activity
             android:name=".Challenge"

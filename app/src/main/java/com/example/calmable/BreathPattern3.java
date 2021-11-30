@@ -19,20 +19,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.MessageFormat;
 
-public class BreathLevel4 extends AppCompatActivity {
-    public static int x4;
-    public static int BreathScore4;
+public class BreathPattern3 extends AppCompatActivity {
 
     private ImageView imageView;
     public int counter, counter2;
     private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
     private Button startButton;
-    public static Prefs4 prefs4;
+    public static Prefs3 prefs3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breath_level4);
+        setContentView(R.layout.activity_breath_pattern3);
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
         timerminutes= (TextView) findViewById(R.id.timerminutes);
@@ -42,26 +40,14 @@ public class BreathLevel4 extends AppCompatActivity {
         //timeTxt = findViewById(R.id.last);
         //sessionTxt = findViewById(R.id.todayminutes);
         //guideTxt = findViewById(R.id.guideTxt);
-        prefs4 = new Prefs4(this);
+        prefs3 = new Prefs3(this);
 
         //startIntroAnimation();
 
-        //sessionTxt.setText(MessageFormat.format("{0} min today", prefs4.getSessions()));
-        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths", prefs4.getBreaths()));
+        //sessionTxt.setText(MessageFormat.format("{0} min today", prefs3.getSessions()));
+        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths", prefs3.getBreaths()));
 
-        Log.d("---get breaths value4--", String.valueOf(prefs4.getBreaths()));
-        x4 = prefs4.getBreaths();
-
-        if(x4 == 7){ //put here 7
-            BreathScore4 = BreathScore4 + 50;
-
-            FirebaseFirestore database = FirebaseFirestore.getInstance();
-
-            database.collection("users")
-                    .document(FirebaseAuth.getInstance().getUid())
-                    .update("coins", FieldValue.increment(BreathScore4));
-        }
-        Log.d("----x4 value----", String.valueOf(x4));
+        Log.d("---get breaths value3--", String.valueOf(prefs3.getBreaths()));
 
         //timeTxt.setText(prefs.getDate());
 
@@ -130,7 +116,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .duration(1)
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
-                //.rotation(360)
+                .rotation(360)
                 .accelerate()
                 .duration(4000)
 
@@ -138,7 +124,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -156,7 +142,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -174,7 +160,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -192,7 +178,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -210,7 +196,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -228,7 +214,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -246,7 +232,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -264,7 +250,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -282,7 +268,7 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
-                .duration(4000)
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -300,7 +286,43 @@ public class BreathLevel4 extends AppCompatActivity {
                 .scale(1.5f)
                 .rotation(360)
                 .accelerate()
+                .duration(2000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f, 0.002f)
+                .rotation(360)
+                .accelerate()
                 .duration(4000)
+                ///////////////////// 11 //////////////////////
+                .thenAnimate(imageView)
+                .scale(0.002f, 1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f, 0.002f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+                ///////////////////// 12 //////////////////////
+                .thenAnimate(imageView)
+                .scale(0.002f, 1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(4000)
+
+                .thenAnimate(imageView)
+                .scale(1.5f)
+                .rotation(360)
+                .accelerate()
+                .duration(2000)
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -315,19 +337,10 @@ public class BreathLevel4 extends AppCompatActivity {
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
 
-                        prefs4.setSessions(prefs4.getSessions() + 1);
-                        prefs4.setBreaths(prefs4.getBreaths() + 1);
-                        prefs4.setDate(SystemClock.currentThreadTimeMillis());
+                        prefs3.setSessions(prefs3.getSessions() + 1);
+                        prefs3.setBreaths(prefs3.getBreaths() + 1);
+                        prefs3.setDate(SystemClock.currentThreadTimeMillis());
 
-                        //counting score of completing breathing exercises of level 1
-                        BreathScore4 = BreathScore4 + 5;
-                        Log.d("---get breath score---", String.valueOf(BreathScore4));
-
-                        FirebaseFirestore database = FirebaseFirestore.getInstance();
-
-                        database.collection("users")
-                                .document(FirebaseAuth.getInstance().getUid())
-                                .update("coins", FieldValue.increment(BreathScore4));
 
                     }
                 })
