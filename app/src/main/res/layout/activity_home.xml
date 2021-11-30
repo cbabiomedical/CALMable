@@ -7,28 +7,18 @@
     android:background="@drawable/homebg"
     tools:context=".Home">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tag_person"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="person"-->
-    <!--        android:textAlignment="center"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textSize="20sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        />-->
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tag_place"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="place"-->
-    <!--        android:textAlignment="center"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textSize="20sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_below="@+id/tag_person"-->
-    <!--        />-->
+    <TextView
+        android:id="@+id/tvMusicCoins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0000\t"
+        android:textColor="@color/white"
+        android:gravity="center | right"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:drawableEnd="@drawable/ic_coin"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

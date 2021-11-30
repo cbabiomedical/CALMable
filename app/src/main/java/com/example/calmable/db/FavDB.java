@@ -51,7 +51,7 @@ public class FavDB extends SQLiteOpenHelper {
     }
 
     // insert data into database
-    public void insertIntoTheDatabase(String item_title, int item_image, String id, String fav_status, String itemUrl) {
+    public void insertIntoTheDatabase(String item_title, String item_image, String id, String fav_status, String itemUrl) {
         SQLiteDatabase db;
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

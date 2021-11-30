@@ -1,6 +1,7 @@
 package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
@@ -10,6 +11,7 @@ import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
@@ -21,32 +23,50 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.webkit.PermissionRequest;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chibde.visualizer.SquareBarVisualizer;
+import com.example.calmable.model.FavModel;
+import com.google.android.material.internal.DescendantOffsetUtils;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MusicPlayer extends AppCompatActivity {
 
-    private ImageView imageViewPlayPause, music_lib;
-    private TextView textCurrentTime, textTotalTimeDuration, music_title;
-    private SeekBar playSeekBar;
-    private static MediaPlayer mediaPlayer;
-    private String time_selected;
-    private int time;
-    private String name;
-    boolean play = true;
-    int image;
-    String uri;
+    static MediaPlayer mediaPlayer;
+
+    AppCompatButton imageViewPlayPause, music_lib;
+    TextView textCurrentTime, textTotalTimeDuration, music_title;
+    SeekBar playSeekBar;
     Thread updateSeekBar;
+
+    boolean play = true;
+
+    String uri;
+    String name;
+    String timerString;
+
+    int time;
+    int musicCoin;
+    int minutes;
+    int seconds;
+    int hours;
+    int totalDuration;
+
+
+    public static final String EXTRA_NAME = "songName";
+    int position;
+    String sName;
+    ArrayList<FavModel> songs = new ArrayList<>();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -59,9 +79,11 @@ public class MusicPlayer extends AppCompatActivity {
         textCurrentTime = findViewById(R.id.textCurrentTime);
         textTotalTimeDuration = findViewById(R.id.totalDuration);
         music_title = findViewById(R.id.music_title);
-        music_lib = findViewById(R.id.imagePlayIcon);
+        //music_lib = findViewById(R.id.imagePlayIcon);
         mediaPlayer = new MediaPlayer();
         play = mediaPlayer.isPlaying();
+        mediaPlayer = new MediaPlayer();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mediaPlayer.setAudioAttributes(
                     new AudioAttributes.Builder()
@@ -74,21 +96,21 @@ public class MusicPlayer extends AppCompatActivity {
         imageViewPlayPause.setOnClickListener(v -> {
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.pause();
-                imageViewPlayPause.setImageResource(R.drawable.ic_play_circle);
+                imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
             } else {
                 mediaPlayer.start();
-                imageViewPlayPause.setImageResource(R.drawable.ic_pause_circle);
+                imageViewPlayPause.setBackgroundResource(R.drawable.ic_pause_circle);
             }
         });
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             uri = extras.getString("url");
-//            time_selected = extras.getString("time");
+            time = extras.getInt("time");
             name = extras.getString("songName");
-//            time = Integer.parseInt(time_selected);
+            //time = Integer.parseInt(time_selected);
             music_title.setText(name);
-            image = extras.getInt("image");
+            // image = extras.getInt("image");
 
             prepareMediaPlayer();
 
@@ -102,7 +124,10 @@ public class MusicPlayer extends AppCompatActivity {
         } else {
             Log.d("ERROR", "Error in getting null value");
         }
-        textTotalTimeDuration.setText(millisecondsToTimer(time));
+
+
+        //textTotalTimeDuration.setText(millisecondsToTimer(time));
+
 
         ProgressDialog progressDialog = ProgressDialog.show(this,
                 "Loading Music", "Please Wait");
@@ -122,29 +147,64 @@ public class MusicPlayer extends AppCompatActivity {
             animation.setFillAfter(true);
             animation.setRepeatMode(Animation.REVERSE);
             animation.setRepeatCount(1);
-            music_lib.startAnimation(animation);
+            //music_lib.startAnimation(animation);
 
             updateSeekBar = new Thread() {
                 @Override
                 public void run() {
 
-                    int totalDuration = time;
+                    totalDuration = mediaPlayer.getDuration();
                     int currentPosition = 0;
                     while (currentPosition < totalDuration) {
                         try {
-                            sleep(500);
+                            sleep(1000);
+
                             currentPosition = mediaPlayer.getCurrentPosition();
-                            Log.d("upCurrent time", String.valueOf(currentPosition));
-//
+
+                            String currentTime11 = millisecondsToTimer(mediaPlayer.getCurrentPosition());
+
+                            // music coins part
+                            int y = seconds;
+                            double x = Double.parseDouble(currentTime11);
+
+                            Log.d("TAG", "time : " + y);
+                            //Log.d("TAG", "time : ---> " + x);
+
+                            if (seconds % 60 == 0) {
+
+                                musicCoin++;
+
+                                Log.d("TAG", "Music Coins  " + musicCoin);
+
+                                // to save music coins
+                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putInt("musicCoin", musicCoin);
+                                editor.commit();
+                            }
+
+                            //Log.d("Current position", String.valueOf(mediaPlayer.getCurrentPosition()));
+                            //Log.d("upCurrent time", String.valueOf(currentPosition));
+
                             playSeekBar.setProgress(currentPosition);
+
                         } catch (InterruptedException | IllegalStateException e) {
                             e.printStackTrace();
                         }
                     }
+
+                    /**
+                     * after end music directory
+                     */
+                    if (currentPosition > time) {
+                        mediaPlayer.stop();
+                        //startActivity(new Intent(getApplicationContext(), Home.class));
+                    }
+
                     if (currentPosition > totalDuration) {
                         mediaPlayer.stop();
 
-                        imageViewPlayPause.setImageResource(R.drawable.ic_play_circle);
+                        imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
                         Intent intent = new Intent(getApplicationContext(), concentration_music.class);
                         startActivity(intent);
                         String notification = "Media finished Playing";
@@ -154,60 +214,75 @@ public class MusicPlayer extends AppCompatActivity {
                         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.notify(0, builder.build());
 
-//                       Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
                     }
-
 
                 }
             };
 
-            playSeekBar.setMax(time);
+            playSeekBar.setMax(mediaPlayer.getDuration());
             updateSeekBar.start();
             playSeekBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.MULTIPLY);
             playSeekBar.getThumb().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
-            playSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//            playSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//                @Override
+//                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//
+//                }
+//
+//                @Override
+//                public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//                }
+//
+//                @Override
+//                public void onStopTrackingTouch(SeekBar seekBar) {
+//                    mediaPlayer.seekTo(seekBar.getProgress());
+//                }
+//            });
 
-                }
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-
-                }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-                    mediaPlayer.seekTo(seekBar.getProgress());
-                }
-            });
-            int noOfRuns = time / mediaPlayer.getDuration();
-
+            String endTime = millisecondsToTimer(mediaPlayer.getDuration());
+            textTotalTimeDuration.setText(endTime);
+            //int noOfRuns = time / mediaPlayer.getDuration();
 
             final Handler handler = new Handler();
             final int delay = 1000;
+
 
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     String currentTime = millisecondsToTimer(mediaPlayer.getCurrentPosition());
                     textCurrentTime.setText(currentTime);
+                    playSeekBar.setProgress(mp.getCurrentPosition());
                     handler.postDelayed(this, delay);
-                    if (mediaPlayer.getDuration() < time) {
-
-                        Log.d("RUNS", String.valueOf(noOfRuns));
-                        int remain = time % mediaPlayer.getDuration();
-                        Log.d("REMAIN", String.valueOf(remain));
-                        int playNo = noOfRuns + 1;
-                        Log.d("play", String.valueOf(playNo));
-
-                    }
 
                 }
             }, delay);
 
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    String currentTime = millisecondsToTimer(mediaPlayer.getCurrentPosition());
+//                    textCurrentTime.setText(currentTime);
+//                    handler.postDelayed(this, delay);
+//                    if (mediaPlayer.getDuration() < time) {
+//
+//                        Log.d("RUNS", String.valueOf(noOfRuns));
+//                        int remain = time % mediaPlayer.getDuration();
+//                        Log.d("REMAIN", String.valueOf(remain));
+//                        int playNo = noOfRuns + 1;
+//                        Log.d("play", String.valueOf(playNo));
+//
+//                    }
+//
+//                }
+//            }, delay);
+
         });
+
     }
 
     private void prepareMediaPlayer() {
@@ -238,7 +313,7 @@ public class MusicPlayer extends AppCompatActivity {
 
                         // check for permanent denial of any permission
                         if (report.isAnyPermissionPermanentlyDenied()) {
-                            // permission is denied permenantly, navigate user to app settings
+                            // permission is denied permanently, navigate user to app settings
                         }
                     }
 
@@ -254,7 +329,8 @@ public class MusicPlayer extends AppCompatActivity {
 
     }
 
-    private void startAudioVisulizer() {     //Audio Visualizer
+    //Audio Visualizer
+    private void startAudioVisulizer() {
 
         SquareBarVisualizer squareBarVisualizer = findViewById(R.id.visualizer);
         squareBarVisualizer.setColor(ContextCompat.getColor(this, R.color.dark_blue_100));
@@ -267,7 +343,7 @@ public class MusicPlayer extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        imageViewPlayPause.setImageResource(R.drawable.ic_pause_circle);
+        imageViewPlayPause.setBackgroundResource(R.drawable.ic_pause_circle);
     }
 
     @Override
@@ -284,13 +360,14 @@ public class MusicPlayer extends AppCompatActivity {
     }
 
 
+
     private String millisecondsToTimer(long milliSeconds) {
-        String timerString = "";
+        timerString = "";
         String secondsString;
 
-        int hours = (int) (milliSeconds / (1000 * 60 * 60));
-        int minutes = (int) (milliSeconds % (1000 * 60 * 60)) / (1000 * 60);
-        int seconds = (int) ((milliSeconds % (1000 * 60 * 60)) % (1000 * 60) / 1000);
+        hours = (int) (milliSeconds / (1000 * 60 * 60));
+        minutes = (int) (milliSeconds % (1000 * 60 * 60)) / (1000 * 60);
+        seconds = (int) ((milliSeconds % (1000 * 60 * 60)) % (1000 * 60) / 1000);
 
         if (hours > 0) {
             timerString = hours + ":";
@@ -298,10 +375,25 @@ public class MusicPlayer extends AppCompatActivity {
         if (seconds < 10) {
             secondsString = "0" + seconds;
         } else {
-            secondsString = " " + seconds;
+            secondsString = "" + seconds;
         }
-        timerString = timerString + minutes + ":" + secondsString;
+        timerString = timerString + minutes + "." + secondsString;
 
         return timerString;
+    }
+
+
+    public void calCoin() {
+
+        Log.d("TAG", "duration >>>>>>>>>> : " + totalDuration);
+
+        for (int i = 0; i >= 0; i++) {
+//            if (totalDuration / minutes * 1 == 0) {
+//
+//                int valueOfCoin = musicCoin * i;
+//
+//                Log.d("TAG", "Coin >>>>" + valueOfCoin);
+//            }
+        }
     }
 }

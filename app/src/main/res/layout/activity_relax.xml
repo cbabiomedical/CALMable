@@ -14,73 +14,168 @@
         android:layout_above="@id/bottom_navigation"
         android:layout_marginTop="250dp">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="55dp"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:layout_marginStart="38dp"
+            android:layout_marginEnd="38dp"
+            android:orientation="vertical">
 
-            <Button
+            <androidx.cardview.widget.CardView
                 android:id="@+id/deepRelaxMusicBtn"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:background="@drawable/landing_main_btn"
-                android:onClick="BtnGoDeepRelaxMusic"
-                android:text="Deep relax music"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:onClick="BtnGoDeepRelaxMusic">
 
-            <Button
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:background="@drawable/dp_bg1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:letterSpacing="0.09"
+                        android:padding="4dp"
+                        android:text="Deep Relax Music"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/natureSoundBtn"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/landing_main_btn"
-                android:onClick="BtnGoNatureSounds"
-                android:text="Nature Sounds"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:onClick="BtnGoNatureSounds">
 
-            <Button
-                android:id="@+id/meditateBtn"
-                android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/landing_main_btn"
-                android:onClick="BtnGoMeditateMusic"
-                android:text="Meditate"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <Button
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:background="@drawable/dp_bg2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:letterSpacing="0.09"
+                        android:padding="4dp"
+                        android:text="Nature Sounds Music"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/painReliefBtn"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/landing_main_btn"
-                android:onClick="BtnGoPainReliefMusic"
-                android:text="Pain Relief"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:onClick="BtnGoPainReliefMusic">
 
-            <Button
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:background="@drawable/dp_bg3" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:letterSpacing="0.09"
+                        android:padding="4dp"
+                        android:text="Calming - 528 Hz"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/chillOutMusicBtn"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/landing_main_btn"
-                android:text="Chill out music"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:onClick="BtnGoChillOutMusic"/>
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:onClick="BtnGoChillOutMusic">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:background="@drawable/dp_bg1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:letterSpacing="0.09"
+                        android:padding="4dp"
+                        android:text="Chill Out Music"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/meditateBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:onClick="BtnGoMeditateMusic">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:background="@drawable/dp_bg2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:letterSpacing="0.09"
+                        android:padding="4dp"
+                        android:text="Meditate Music"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
 
         </LinearLayout>
 

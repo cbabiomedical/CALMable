@@ -60,7 +60,7 @@ public class MyFavouritesActivity extends AppCompatActivity {
                 String title = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_TITLE));
                 String id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID));
                 String url = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_URL));
-                int image = Integer.parseInt(cursor.getString(cursor.getColumnIndex(FavDB.ITEM_IMAGE)));
+                String image = String.valueOf(cursor.getString(cursor.getColumnIndex(FavDB.ITEM_IMAGE)));
                 FavModel favItem = new FavModel(title, id, url, image);
                 listOfSongs.add(favItem);
                 Log.d("Fav List =", String.valueOf(listOfSongs));

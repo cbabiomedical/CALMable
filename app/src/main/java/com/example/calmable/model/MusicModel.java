@@ -4,21 +4,21 @@ public class MusicModel {
 
     public String id ;
     public String songName ;
-    public int imageView;
+    public String imageView;
     public String url ;
     private String isFav;
 
     public MusicModel() {
     }
 
-    public MusicModel(String id, String songName, String url, int imageView) {
+    public MusicModel(String id, String songName, String url, String imageView) {
         this.id = id;
         this.songName = songName;
         this.url = url;
         this.imageView = imageView;
     }
 
-    public MusicModel(String id, String songName, String url, int imageView, String isFav) {
+    public MusicModel(String id, String songName, String url, String imageView, String isFav) {
         this.id = id;
         this.songName = songName;
         this.url = url;
@@ -58,11 +58,11 @@ public class MusicModel {
         this.id = id;
     }
 
-    public int getImageView() {
+    public String getImageView() {
         return imageView;
     }
 
-    public void setImageView(int imageView) {
+    public void setImageView(String imageView) {
         this.imageView = imageView;
     }
 

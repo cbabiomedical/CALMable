@@ -22,6 +22,7 @@ import com.example.calmable.model.FavModel;
 import com.example.calmable.model.MusicModel;
 import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class LoveMusicAdapter extends RecyclerView.Adapter<LoveMusicAdapter.View
 
         readCursorDataDP(coffeeItem, holder);
 
-        holder.imageView.setImageResource(listOfSongs.get(position).getImageView());
+        Picasso.get().load(listOfSongs.get(position).getUrl()).into(holder.imageView);
 
         holder.songTitle.setText(listOfSongs.get(position).getSongName());
         holder.songTitle.setOnClickListener(new View.OnClickListener() {

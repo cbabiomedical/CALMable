@@ -18,6 +18,7 @@ import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
 import com.example.calmable.db.FavDB;
 import com.example.calmable.model.FavModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.favTextView.setText(listOfSongs.get(position).getId());
-        holder.favImageView.setImageResource(listOfSongs.get(position).getImageView());
+        Picasso.get().load(listOfSongs.get(position).getUrl()).into(holder.favImageView);
 
 
         holder.favTextView.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +57,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
                 String songName = listOfSongs.get(position).getId();
                 String url = listOfSongs.get(position).getUrl();
-                int image = listOfSongs.get(position).getImageView();
+                String image = listOfSongs.get(position).getImageView();
                 intent.putExtra("songName", songName);
                 intent.putExtra("url", url);
                 intent.putExtra("image", image);

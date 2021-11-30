@@ -58,56 +58,104 @@
             android:padding="5dp">
 
 
-            <Button
+            <androidx.cardview.widget.CardView
                 android:id="@+id/healingBtn"
-                android:layout_width="300dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="60dp"
-                android:alpha="0.9"
-                android:background="@drawable/healing"
-                android:fontFamily="@font/droidserif_italic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:onClick="btnGoHealingMusic"
-                android:text="Healing"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                tools:ignore="OnClick" />
+                tools:ignore="OnClick">
 
-            <Button
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:background="@drawable/dp_bg2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:letterSpacing="0.09"
+                        android:padding="4dp"
+                        android:text="Healing Music"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/loveBtn"
-                android:layout_width="300dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="60dp"
-                android:alpha="0.8"
-                android:background="@drawable/love"
-                android:fontFamily="@font/droidserif_italic"
-                android:text="Love"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:onClick="btnGoLoveMusic"
-                tools:ignore="OnClick" />
+                tools:ignore="OnClick">
 
-            <Button
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:background="@drawable/dp_bg1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:letterSpacing="0.09"
+                        android:padding="4dp"
+                        android:text="Love Music"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/instrumentalBtn"
-                android:layout_width="300dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="60dp"
-                android:alpha="0.8"
-                android:background="@drawable/instrumental"
-                android:fontFamily="@font/droidserif_italic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:onClick="btnGoInstrumentalMusic"
-                android:text="Instrumental"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                tools:ignore="OnClick" />
+                tools:ignore="OnClick">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:background="@drawable/dp_bg3" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:letterSpacing="0.09"
+                        android:padding="4dp"
+                        android:text="Instrumental Music"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

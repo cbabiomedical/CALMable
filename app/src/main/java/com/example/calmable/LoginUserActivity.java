@@ -37,8 +37,8 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_login_user);
 
         //set onclick listener for register button
-        register = (Button) findViewById(R.id.register);
-        register.setOnClickListener(this);
+        //register = (Button) findViewById(R.id.register);
+        //register.setOnClickListener(this);
 
         //set onclick listener for signin button
         signIn = (Button) findViewById(R.id.signIn);
@@ -63,13 +63,6 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            //go to register page
-            case R.id.register:
-                startActivity(new Intent(this,RegisterUser.class));
-                break;
-            case R.id.log:
-                startActivity(new Intent(this, LoginUserActivity.class));
-                break;
             //go to sign in page
             case R.id.signIn:
                 userLogin();
@@ -189,5 +182,10 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
         });
 
 
+    }
+
+
+    public void btnUserRegister (View view) {
+        startActivity(new Intent(getApplicationContext(), RegisterUser.class));
     }
 }

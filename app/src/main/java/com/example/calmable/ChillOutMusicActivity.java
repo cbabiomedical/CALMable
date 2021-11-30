@@ -39,14 +39,13 @@ public class ChillOutMusicActivity extends AppCompatActivity {
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-
         initData();
     }
 
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

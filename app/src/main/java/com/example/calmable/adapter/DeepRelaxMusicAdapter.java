@@ -26,6 +26,7 @@ import com.example.calmable.model.FavModel;
 import com.example.calmable.model.MusicModel;
 import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,10 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
     private Context context;
     private FavDB favDB;
     public static ViewHolder viewHolder;
+
+
+    public DeepRelaxMusicAdapter() {
+    }
 
     public DeepRelaxMusicAdapter(ArrayList<FavModel> listOfSongs, Context context) {
         this.listOfSongs = listOfSongs;
@@ -65,7 +70,7 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
 
         readCursorDataDP(coffeeItem, holder);
 
-        holder.imageView.setImageResource(listOfSongs.get(position).getImageView());
+        Picasso.get().load(listOfSongs.get(position).getUrl()).into(holder.imageView);
         holder.songTitle.setText(listOfSongs.get(position).getSongName());
 
         // recyclerview onClickListener
@@ -78,7 +83,7 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
 
                 String songName = listOfSongs.get(position).getSongName();
                 String url = listOfSongs.get(position).getUrl();
-                int image = listOfSongs.get(position).getImageView();
+                String image = listOfSongs.get(position).getImageView();
                 intent.putExtra("songName", songName);
                 intent.putExtra("url", url);
                 intent.putExtra("image", image);
@@ -94,7 +99,6 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
         });
     }
 
-    FavModel favModel;
     @Override
     public int getItemCount() {
         return listOfSongs.size();
@@ -106,6 +110,8 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
         RecyclerView recyclerView;
         ImageView imageView;
         AppCompatButton favBtn;
+        TextView time;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -113,13 +119,14 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
             recyclerView = itemView.findViewById(R.id.listOfSongRecycleView);
             imageView = itemView.findViewById(R.id.favImageView);
             favBtn = itemView.findViewById(R.id.favHeartIcon);
+            time = itemView.findViewById(R.id.time);
 
             //add to fav btn
             favBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    favModel = listOfSongs.get(position);
+                    FavModel favModel = listOfSongs.get(position);
                     if (favModel.getIsFav().equals("0")) {
                         favModel.setIsFav("1");
                         favDB.insertIntoTheDatabase(favModel.getSongName(), favModel.getImageView(),
@@ -169,5 +176,9 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
                 cursor.close();
             db.close();
         }
+    }
+
+    public interface OnNoteListner {
+        void onNoteClick(int position);
     }
 }

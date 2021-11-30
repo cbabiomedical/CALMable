@@ -56,7 +56,7 @@ public class DashboardFragment extends Fragment {
             while (cursor.moveToNext()) {
                 String title = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_TITLE));
                 String id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID));
-                int image = Integer.parseInt(cursor.getString(cursor.getColumnIndex(FavDB.ITEM_IMAGE)));
+                String image = String.valueOf(Integer.parseInt(cursor.getString(cursor.getColumnIndex(FavDB.ITEM_IMAGE))));
                 FavModel favItem = new FavModel(title, id, image);
                 favItemList.add(favItem);
             }

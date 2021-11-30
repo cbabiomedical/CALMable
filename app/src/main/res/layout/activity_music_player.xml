@@ -82,7 +82,7 @@
 
         </LinearLayout>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/imagePlayPause"
             android:layout_width="50dp"
             android:layout_height="50dp"

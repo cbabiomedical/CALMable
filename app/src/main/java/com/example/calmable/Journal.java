@@ -39,6 +39,7 @@ public class Journal extends AppCompatActivity {
         setContentView(R.layout.activity_journal);
 
         NavigationBar();
+        Toast.makeText(getApplicationContext(), "Write your day here!", Toast.LENGTH_SHORT).show();
 
         listViewJournal = (ListView) findViewById(R.id.listViewJournal);
 
@@ -46,7 +47,7 @@ public class Journal extends AppCompatActivity {
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("lostOfNotes", null);
 
         if (set == null) {
-            listOfNotes.add("Write your day here!");
+            //listOfNotes.add("Write your day here!");
             //Toast.makeText(Journal.this, "Write your day here!", Toast.LENGTH_SHORT).show();
         } else {
             listOfNotes = new ArrayList(set);

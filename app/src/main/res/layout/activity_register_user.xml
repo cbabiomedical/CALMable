@@ -8,41 +8,8 @@
     android:background="@drawable/bg_2">
 
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="155dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#78909c"
-        android:text="Register"
-        android:textColor="#ffffff"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintLeft_toLeftOf="@+id/log"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cornerRadius="15dp"
-        android:background="@drawable/mybutton"/>
-
-    <Button
-        android:id="@+id/log"
-        android:layout_width="148dp"
-        android:layout_height="59dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#ffffff"
-        android:text="login"
-        android:textColor="#78909c"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cornerRadius="15dp"
-        android:background="@drawable/mybutton"/>
-
     <TextView
-        android:id="@+id/banner"
+        android:id="@+id/banner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
@@ -53,7 +20,7 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="45dp"/>
 
     <EditText
@@ -71,7 +38,7 @@
         android:textSize="17sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner"
+        app:layout_constraintTop_toBottomOf="@+id/banner1"
         android:textColor="@color/dark_blue_300"/>
 
     <EditText
@@ -227,7 +194,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
+        app:layout_constraintVertical_bias="0.251" />
 
     <ProgressBar
         android:id="@+id/progressBar"

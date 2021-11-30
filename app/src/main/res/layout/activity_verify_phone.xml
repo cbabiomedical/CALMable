@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:id="@+id/banner"
+        android:id="@+id/banner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -43,7 +43,7 @@
         android:id="@+id/editTextCode"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/banner"
+        android:layout_below="@id/banner1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:digits="0123456789"
@@ -58,7 +58,7 @@
         android:id="@+id/linearLayoutVerifyPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/banner"
+        android:layout_below="@id/banner1"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="32dp"

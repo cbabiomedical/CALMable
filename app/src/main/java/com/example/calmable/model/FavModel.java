@@ -4,7 +4,7 @@ public class FavModel {
 
     public String id;
     public String songName;
-    public int imageView;
+    public String imageView;
     public String url;
     private String isFav;
 
@@ -12,13 +12,13 @@ public class FavModel {
 
     }
 
-    public FavModel(String id, String songName, int imageView) {
+    public FavModel(String id, String songName, String imageView) {
         this.id = id;
         this.songName = songName;
         this.imageView = imageView;
     }
 
-    public FavModel(String id, String songName, int imageView, String url, String isFav) {
+    public FavModel(String id, String songName, String imageView, String url, String isFav) {
         this.id = id;
         this.songName = songName;
         this.imageView = imageView;
@@ -26,7 +26,7 @@ public class FavModel {
         this.isFav = isFav;
     }
 
-    public FavModel(String id, String songName, String url , int imageView) {
+    public FavModel(String id, String songName, String url , String imageView) {
         this.id = id;
         this.songName = songName;
         this.imageView = imageView;
@@ -49,11 +49,11 @@ public class FavModel {
         this.songName = songName;
     }
 
-    public int getImageView() {
+    public String getImageView() {
         return imageView;
     }
 
-    public void setImageView(int imageView) {
+    public void setImageView(String imageView) {
         this.imageView = imageView;
     }
 

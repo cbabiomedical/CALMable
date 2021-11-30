@@ -47,11 +47,11 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseFirestore.getInstance();
 
-        log = (Button) findViewById(R.id.log);
-        log.setOnClickListener(this);
-
-        registerUser = (Button) findViewById(R.id.registerUser);
-        registerUser.setOnClickListener(this);
+//        log = (Button) findViewById(R.id.log);
+//        log.setOnClickListener(this);
+//
+//        registerUser = (Button) findViewById(R.id.registerUser);
+//        registerUser.setOnClickListener(this);
 
         editTextFullname = (EditText) findViewById(R.id.fullName);
         editTextAge = (EditText) findViewById(R.id.age);
@@ -131,12 +131,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.register:
-                startActivity(new Intent(this,RegisterUser.class));
-                break;
-            case R.id.log:
-                startActivity(new Intent(this, LoginUserActivity.class));
-                break;
             case R.id.registerUser:
                 registerUser();
                 break;
@@ -144,7 +138,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     }
 
     //Register details validation
-
     private void registerUser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();

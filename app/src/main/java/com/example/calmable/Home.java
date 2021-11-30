@@ -48,6 +48,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     TextView txtHtRate;
     TextView txtProgress;
+    TextView tvMusicCoins;
     int StressLevel = 85;
     File fileName;
     FirebaseUser mUser;
@@ -61,6 +62,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     String viewPlace;
     String dateAndTime;
     int finalRateff;
+    int coins;
+
     private Handler mHandler;
 
     private String getColoredSpanned(String text, String color) {
@@ -75,6 +78,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         txtHtRate = (TextView) findViewById(R.id.htRate);
         txtProgress = (TextView) findViewById(R.id.txtProgress);
+        tvMusicCoins = (TextView) findViewById(R.id.tvMusicCoins);
         TextView txtProgress2 = (TextView) findViewById(R.id.txtPastProgress);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
@@ -88,12 +92,14 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         //m_Runnable_popup.run();
 
         //for testing
-        finalRateff = 100;
+        //finalRateff = 100;
         //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
         if (finalRateff > 80) {
             openDialog();
             Log.d("TAG", String.valueOf(finalRateff));
         }
+
+        updateLandingCoins();
 
         NavigationBar();
     }
@@ -108,17 +114,17 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     };
 
 
-    //refresh pop up mage
-    private final Runnable m_Runnable_popup = new Runnable() {
-        public void run() {
-            updateLandingHeartRate();
-            if (finalRateff > 80) {
-                openDialog();
-            }
-            Toast.makeText(Home.this, "popup done!", Toast.LENGTH_SHORT).show();
-            Home.this.mHandler.postDelayed(m_Runnable, 10000);
-        }
-    };
+//    //refresh pop up mage
+//    private final Runnable m_Runnable_popup = new Runnable() {
+//        public void run() {
+//            updateLandingHeartRate();
+//            if (finalRateff > 80) {
+//                openDialog();
+//            }
+//            Toast.makeText(Home.this, "popup done!", Toast.LENGTH_SHORT).show();
+//            Home.this.mHandler.postDelayed(m_Runnable, 10000);
+//        }
+//    };
 
 
     @Override
@@ -127,21 +133,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         mHandler.removeCallbacks(m_Runnable);
         finish();
 
-
-        mHandler.removeCallbacks(m_Runnable_popup);
-        finish();
     }
-
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        try {
-//            txtHtRate.setText(0);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//    }
 
 
     // show landing page heart rate
@@ -152,6 +144,13 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         String chr = getColoredSpanned(Integer.toString(finalRateff), "#800000");
         String BPM = getColoredSpanned("\u1D2E\u1D3E\u1D39", "#000000");
         txtProgress.setText(Html.fromHtml(chr + " " + BPM));
+    }
+
+
+    public void updateLandingCoins(){
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        coins = sharedPreferences.getInt("musicCoin", 0);
+        tvMusicCoins.setText(String.valueOf(coins));
     }
 
     @Override
@@ -303,9 +302,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.challenge:
-
-                        ////////////////// edit
-
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
@@ -332,7 +328,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     }
 
     public void btnSleepy (View view) {
-        startActivity(new Intent(this, SleepyHome.class));
+        Intent intent = new Intent(getApplicationContext() , SleepyHome.class);
+        startActivity(intent);
     }
 
     public void btnMotivate (View view) {

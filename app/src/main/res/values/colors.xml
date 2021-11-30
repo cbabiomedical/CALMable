@@ -21,4 +21,6 @@
 
     <!--for the rounded_box.xml/-->
     <color name="light_grey">#E8E8E8</color>
+
+    <color name="dark_red">#800000</color>
 </resources>
