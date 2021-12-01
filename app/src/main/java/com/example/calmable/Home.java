@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.calmable.databinding.FragmentWalletBinding;
 import com.example.calmable.scan.ScanActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,6 +27,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -46,13 +49,17 @@ import java.util.List;
 
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
+    private static final String COINS = "coins";
+
     TextView txtHtRate;
     TextView txtProgress;
     TextView tvMusicCoins;
     File fileName;
+    FirebaseFirestore database;
     FirebaseUser mUser;
     StorageReference storageReference;
-    FirebaseFirestore database;
+    FragmentWalletBinding binding;
+
 
     //private TextView textViewPerson;
     //private TextView textViewPlace;
@@ -61,8 +68,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     String viewPlace;
     String dateAndTime;
     int finalRateff;
-    int coins;
-    int totalCoins;
 
     private Handler mHandler;
 
@@ -88,7 +93,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         this.mHandler = new Handler();
         m_Runnable.run();
 
-       // this.mHandler = new Handler();
+        // this.mHandler = new Handler();
         //m_Runnable_popup.run();
 
         //for testing
@@ -147,13 +152,35 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     }
 
 
-    public void updateLandingCoins(){
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
-        totalCoins = sharedPreferences.getInt("totalMusicCoin", totalCoins);
-        coins = sharedPreferences.getInt("musicCoin", 0);
-        int totalCoins1 = totalCoins + coins;
-        tvMusicCoins.setText(String.valueOf(totalCoins1));
+    // update coins in CALMable
+    public void updateLandingCoins() {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference noteRef = db.collection("users")
+                .document(FirebaseAuth.getInstance().getUid());
+
+        noteRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            long title = documentSnapshot.getLong(COINS);
+
+                            String totalMusicCoins = String.valueOf(title);
+
+                            tvMusicCoins.setText(totalMusicCoins);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
+
+
 
     @Override
     public void applyText(String person, String place) {
@@ -166,9 +193,9 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         viewPerson = person;
         viewPlace = place;
 
-        Log.d("Date And Time",dateAndTime);
-        Log.d("Person Value",viewPerson);
-        Log.d("Place Value",viewPlace);
+        Log.d("Date And Time", dateAndTime);
+        Log.d("Person Value", viewPerson);
+        Log.d("Place Value", viewPlace);
 
         HashMap<String, Object> Reports = new HashMap<>();
         List<Object> reportList = new ArrayList<>();
@@ -276,7 +303,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                 //Intent intent = new Intent(Home.this, UserInputPopup.class);
                 //startActivity(intent);
                 PopUpOne popUpOne = new PopUpOne();
-                popUpOne.show(getSupportFragmentManager(),"popup one");
+                popUpOne.show(getSupportFragmentManager(), "popup one");
             }
         });
         builder.show();
@@ -321,32 +348,32 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
 
     // landing page btn actions
-    public void btnWatch (View view) {
+    public void btnWatch(View view) {
         startActivity(new Intent(this, ScanActivity.class));
     }
 
-    public void btnStressed (View view) {
+    public void btnStressed(View view) {
         startActivity(new Intent(this, Relax.class));
     }
 
-    public void btnSleepy (View view) {
-        Intent intent = new Intent(getApplicationContext() , SleepyHome.class);
+    public void btnSleepy(View view) {
+        Intent intent = new Intent(getApplicationContext(), SleepyHome.class);
         startActivity(intent);
     }
 
-    public void btnMotivate (View view) {
+    public void btnMotivate(View view) {
         startActivity(new Intent(this, MotivateHome.class));
     }
 
-    public void btnHappy (View view) {
+    public void btnHappy(View view) {
         startActivity(new Intent(this, HappyHome.class));
     }
 
-    public void btnBreath (View view) {
+    public void btnBreath(View view) {
         startActivity(new Intent(this, BreathPatterns.class));
     }
 
-    public void btnReport (View view) {
+    public void btnReport(View view) {
         startActivity(new Intent(this, ReportHome.class));
     }
 

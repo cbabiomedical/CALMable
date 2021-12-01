@@ -1,6 +1,10 @@
 package com.example.calmable;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,15 +45,27 @@ public class WalletFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 user = documentSnapshot.toObject(User.class);
-                binding.currentCoins.setText(String.valueOf(user.getCoins()));
+               binding.currentCoins.setText(String.valueOf(user.getCoins()));
+
+               long musicCoinTest = user.getCoins();
+
+                Intent ii=new Intent(getContext(), Home.class);
+                ii.putExtra("name", musicCoinTest);
+
+                // to save music coins
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+                //SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.calmable", 0);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putLong("allMusicCoin", musicCoinTest);
+                editor.commit();
+
+                Log.d("TAG", "Total coins : " + musicCoinTest);
 
                 //binding.currentCoins.setText(user.getCoins() + "");
 
             }
         });
-
-
-
 
         return binding.getRoot();
     }

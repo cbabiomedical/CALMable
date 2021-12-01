@@ -10,16 +10,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.calmable.databinding.ActivityChallengeBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
 
 public class Challenge extends AppCompatActivity {
+
+    private static final String COINS = "coins";
+
+    TextView tvMusicCoins;
 
     ActivityChallengeBinding binding;
     RecyclerView CategoryList;
@@ -31,6 +42,9 @@ public class Challenge extends AppCompatActivity {
         binding = ActivityChallengeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //setContentView(R.layout.activity_challenge);
+
+        tvMusicCoins = findViewById(R.id.tvMusicCoins1);
+        updateLandingCoins();
 
         binding.bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -75,8 +89,41 @@ public class Challenge extends AppCompatActivity {
         CategoryList.setAdapter(adapter);
         //NavigationBar();
 
+    }
 
 
+    // update all coins in CALMable
+    public void updateLandingCoins() {
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+//        long xx = sharedPreferences.getLong("allMusicCoin", 0);
+//        tvMusicCoins.setText(String.valueOf(xx));
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference noteRef = db.collection("users")
+                .document(FirebaseAuth.getInstance().getUid());
+
+        noteRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            long title = documentSnapshot.getLong(COINS);
+
+                            String totalMusicCoins = String.valueOf(title);
+
+                            tvMusicCoins.setText(totalMusicCoins);
+                        } else {
+                            //Toast.makeText(MainActivity.this, "Document does not exist", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                        //Log.d(TAG, e.toString());
+                    }
+                });
     }
 
     /*private void NavigationBar() {

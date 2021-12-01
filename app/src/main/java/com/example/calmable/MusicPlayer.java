@@ -28,6 +28,9 @@ import android.widget.Toast;
 
 import com.chibde.visualizer.SquareBarVisualizer;
 import com.example.calmable.model.FavModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -45,6 +48,8 @@ public class MusicPlayer extends AppCompatActivity {
     SeekBar playSeekBar;
     Thread updateSeekBar;
 
+    FirebaseFirestore database;
+
     boolean play = true;
 
     String uri;
@@ -52,7 +57,7 @@ public class MusicPlayer extends AppCompatActivity {
     String timerString;
 
     int time;
-    int musicCoin = 1;
+    int musicCoin;
     int minutes;
     int seconds;
     int hours;
@@ -172,28 +177,23 @@ public class MusicPlayer extends AppCompatActivity {
 
                             if (seconds % 60 == 0) {
 
-//                               musicCoin++
-
-                                listOfCoins.add(musicCoin);
+                                musicCoin++;
 
                                 Log.d("TAG", "Music Coins  " + musicCoin);
-                                Log.d("TAG", "Music Coins List  " + listOfCoins);
-
-
-                                int sumOfCoins = 0;
-
-                                for (int num : listOfCoins) {
-                                    sumOfCoins += num;
-                                }
-
-                                Log.d("TAG", "coin --> " + sumOfCoins);
 
                                 // to save music coins
                                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putInt("musicCoin", sumOfCoins);
+                                editor.putInt("musicCoin", musicCoin);
                                 editor.commit();
+
+                                database = FirebaseFirestore.getInstance();
+                                database.collection("users")
+                                        .document(FirebaseAuth.getInstance().getUid())
+                                        .update("coins", FieldValue.increment(musicCoin));
                             }
+
+                            musicCoin = 0;
 
                             //Log.d("Current position", String.valueOf(mediaPlayer.getCurrentPosition()));
                             //Log.d("upCurrent time", String.valueOf(currentPosition));
