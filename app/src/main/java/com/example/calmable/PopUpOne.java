@@ -75,6 +75,7 @@ public class PopUpOne extends AppCompatDialogFragment {
                         String person = editPerson.getText().toString();
                         String place = editPlace.getText().toString();
                         listener.applyText(person,place);
+
                     }
                 });
 

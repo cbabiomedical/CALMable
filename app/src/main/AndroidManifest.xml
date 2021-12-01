@@ -82,7 +82,6 @@
             android:exported="true"
             android:label="Sleepy"
             android:parentActivityName=".Home" />
-
         <activity
             android:name=".MapsActivity"
             android:exported="true"

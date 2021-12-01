@@ -49,7 +49,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     TextView txtHtRate;
     TextView txtProgress;
     TextView tvMusicCoins;
-    int StressLevel = 85;
     File fileName;
     FirebaseUser mUser;
     StorageReference storageReference;
@@ -63,6 +62,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     String dateAndTime;
     int finalRateff;
     int coins;
+    int totalCoins;
 
     private Handler mHandler;
 
@@ -149,8 +149,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     public void updateLandingCoins(){
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        totalCoins = sharedPreferences.getInt("totalMusicCoin", totalCoins);
         coins = sharedPreferences.getInt("musicCoin", 0);
-        tvMusicCoins.setText(String.valueOf(coins));
+        int totalCoins1 = totalCoins + coins;
+        tvMusicCoins.setText(String.valueOf(totalCoins1));
     }
 
     @Override

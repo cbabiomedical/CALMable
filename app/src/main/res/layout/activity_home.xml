@@ -12,13 +12,12 @@
         android:id="@+id/tvMusicCoins"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0000\t"
-        android:textColor="@color/white"
-        android:gravity="center | right"
-        android:layout_marginEnd="32dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:drawableEnd="@drawable/ic_coin"
-        />
+        android:gravity="center | right"
+        android:text="0000\t"
+        android:textColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,12 +82,12 @@
                             android:id="@+id/txtProgress"
                             android:layout_width="270dp"
                             android:layout_height="250dp"
+                            android:hint="00"
                             android:paddingStart="95dp"
                             android:paddingTop="135dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textSize="27sp"
-                            android:textStyle="bold"
-                            android:hint="00"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/txtPastProgress"
@@ -106,8 +105,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_marginTop="-50dp">
 
                     <Button
                         android:id="@+id/connectWatch"
@@ -120,52 +120,74 @@
 
                 </LinearLayout>
 
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:alpha="0.9"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    app:cardBackgroundColor="#E7EBED"
+                    app:cardCornerRadius="18dp"
+                    app:cardUseCompatPadding="true"
+                    android:layout_marginTop="12dp">
 
-                    <Button
-                        android:id="@+id/happyEmoji_1"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/happy01"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/covered_by_your_grace"
+                        android:gravity="center"
+                        android:paddingTop="4dp"
+                        android:text="How are you feeling today?"
+                        android:textColor="@color/dark_blue_300"
+                        android:textSize="25dp" />
 
-                    <Button
-                        android:id="@+id/happyEmoji_2"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/happy02" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingTop="40dp">
 
-                    <Button
-                        android:id="@+id/happyEmoji_3"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/happy03" />
 
-                    <Button
-                        android:id="@+id/happyEmoji_4"
-                        android:layout_width="49dp"
-                        android:layout_height="49dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/happy04" />
+                        <Button
+                            android:id="@+id/happyEmoji_1"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/happy01" />
 
-                    <Button
-                        android:id="@+id/happyEmoji_5"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/happy05" />
+                        <Button
+                            android:id="@+id/happyEmoji_2"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/happy02" />
 
-                </LinearLayout>
+                        <Button
+                            android:id="@+id/happyEmoji_3"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/happy03" />
+
+                        <Button
+                            android:id="@+id/happyEmoji_4"
+                            android:layout_width="49dp"
+                            android:layout_height="49dp"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/happy04" />
+
+                        <Button
+                            android:id="@+id/happyEmoji_5"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/happy05" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,11 +203,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="1dp"
                         android:background="@drawable/home_main_btn"
+                        android:onClick="btnStressed"
                         android:padding="16dp"
                         android:text="I'm stressed"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:onClick="btnStressed"/>
+                        android:textColor="@color/white" />
 
                     <Button
                         android:id="@+id/sleepyHomebtn"
@@ -193,11 +215,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="45dp"
                         android:background="@drawable/home_main_btn"
+                        android:onClick="btnSleepy"
                         android:padding="16dp"
                         android:text="I'm Sleepy"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:onClick="btnSleepy"/>
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -216,11 +238,11 @@
                         android:layout_height="49dp"
                         android:layout_marginEnd="1dp"
                         android:background="@drawable/home_main_btn"
+                        android:onClick="btnMotivate"
                         android:padding="16dp"
                         android:text="Motivate"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:onClick="btnMotivate"/>
+                        android:textColor="@color/white" />
 
                     <Button
                         android:id="@+id/happyHomeBtn"
@@ -228,11 +250,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="45dp"
                         android:background="@drawable/home_main_btn"
+                        android:onClick="btnHappy"
                         android:padding="16dp"
                         android:text="I'm Happy"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:onClick="btnHappy"/>
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -249,11 +271,11 @@
                         android:layout_width="285dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/home_main_btn"
+                        android:onClick="btnBreath"
                         android:padding="16dp"
                         android:text="Take a deep breath"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:onClick="btnBreath"/>
+                        android:textColor="@color/white" />
 
 
                 </LinearLayout>
@@ -272,9 +294,9 @@
                         android:layout_width="155dp"
                         android:layout_height="45dp"
                         android:background="@drawable/mybutton"
+                        android:onClick="btnReport"
                         android:text="Report"
-                        android:textColor="@color/white"
-                        android:onClick="btnReport"/>
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 

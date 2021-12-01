@@ -22,16 +22,12 @@ import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.webkit.PermissionRequest;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chibde.visualizer.SquareBarVisualizer;
 import com.example.calmable.model.FavModel;
-import com.google.android.material.internal.DescendantOffsetUtils;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -56,12 +52,12 @@ public class MusicPlayer extends AppCompatActivity {
     String timerString;
 
     int time;
-    int musicCoin;
+    int musicCoin = 1;
     int minutes;
     int seconds;
     int hours;
     int totalDuration;
-
+    ArrayList<Integer> listOfCoins = new ArrayList<Integer>();
 
     public static final String EXTRA_NAME = "songName";
     int position;
@@ -96,6 +92,7 @@ public class MusicPlayer extends AppCompatActivity {
         imageViewPlayPause.setOnClickListener(v -> {
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.pause();
+
                 imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
             } else {
                 mediaPlayer.start();
@@ -118,8 +115,8 @@ public class MusicPlayer extends AppCompatActivity {
 //            Log.d("DURATION", time_selected);
 //            Log.d("NAME", name);
 
-            Log.d("TAG", "name xxx --> : " + name);
-            Log.d("TAG", "url xxx --> : " + uri);
+            Log.d("TAG", "name : " + name);
+            Log.d("TAG", "url : " + uri);
 
         } else {
             Log.d("ERROR", "Error in getting null value");
@@ -155,6 +152,8 @@ public class MusicPlayer extends AppCompatActivity {
 
                     totalDuration = mediaPlayer.getDuration();
                     int currentPosition = 0;
+
+
                     while (currentPosition < totalDuration) {
                         try {
                             sleep(1000);
@@ -165,21 +164,34 @@ public class MusicPlayer extends AppCompatActivity {
 
                             // music coins part
                             int y = seconds;
+                            int q = minutes;
                             double x = Double.parseDouble(currentTime11);
 
-                            Log.d("TAG", "time : " + y);
-                            //Log.d("TAG", "time : ---> " + x);
+                            Log.d("TAG", "time s : " + y);
+                            Log.d("TAG", "time min : " + q);
 
                             if (seconds % 60 == 0) {
 
-                                musicCoin++;
+//                               musicCoin++
+
+                                listOfCoins.add(musicCoin);
 
                                 Log.d("TAG", "Music Coins  " + musicCoin);
+                                Log.d("TAG", "Music Coins List  " + listOfCoins);
+
+
+                                int sumOfCoins = 0;
+
+                                for (int num : listOfCoins) {
+                                    sumOfCoins += num;
+                                }
+
+                                Log.d("TAG", "coin --> " + sumOfCoins);
 
                                 // to save music coins
                                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putInt("musicCoin", musicCoin);
+                                editor.putInt("musicCoin", sumOfCoins);
                                 editor.commit();
                             }
 
@@ -193,20 +205,22 @@ public class MusicPlayer extends AppCompatActivity {
                         }
                     }
 
+
                     /**
                      * after end music directory
                      */
-                    if (currentPosition > time) {
+                    if (currentPosition == totalDuration) {
                         mediaPlayer.stop();
-                        //startActivity(new Intent(getApplicationContext(), Home.class));
+                        imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
+
                     }
 
                     if (currentPosition > totalDuration) {
                         mediaPlayer.stop();
 
                         imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
-                        Intent intent = new Intent(getApplicationContext(), concentration_music.class);
-                        startActivity(intent);
+                        //Intent intent = new Intent(getApplicationContext(), concentration_music.class);
+                        //startActivity(intent);
                         String notification = "Media finished Playing";
                         NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
                                 .setSmallIcon(R.drawable.ic_notifications).setContentTitle("New Notification").setContentText(notification)
@@ -243,6 +257,7 @@ public class MusicPlayer extends AppCompatActivity {
 //            });
 
 
+            //set end time to textview
             String endTime = millisecondsToTimer(mediaPlayer.getDuration());
             textTotalTimeDuration.setText(endTime);
             //int noOfRuns = time / mediaPlayer.getDuration();
@@ -283,6 +298,11 @@ public class MusicPlayer extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void prepareMediaPlayer() {
@@ -360,7 +380,6 @@ public class MusicPlayer extends AppCompatActivity {
     }
 
 
-
     private String millisecondsToTimer(long milliSeconds) {
         timerString = "";
         String secondsString;
@@ -380,20 +399,5 @@ public class MusicPlayer extends AppCompatActivity {
         timerString = timerString + minutes + "." + secondsString;
 
         return timerString;
-    }
-
-
-    public void calCoin() {
-
-        Log.d("TAG", "duration >>>>>>>>>> : " + totalDuration);
-
-        for (int i = 0; i >= 0; i++) {
-//            if (totalDuration / minutes * 1 == 0) {
-//
-//                int valueOfCoin = musicCoin * i;
-//
-//                Log.d("TAG", "Coin >>>>" + valueOfCoin);
-//            }
-        }
     }
 }
