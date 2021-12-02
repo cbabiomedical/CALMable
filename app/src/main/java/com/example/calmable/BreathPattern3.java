@@ -2,6 +2,7 @@ package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -23,7 +24,7 @@ public class BreathPattern3 extends AppCompatActivity {
 
     private ImageView imageView;
     public int counter, counter2;
-    private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
+    private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes, info;
     private Button startButton;
     public static Prefs3 prefs3;
 
@@ -34,6 +35,7 @@ public class BreathPattern3 extends AppCompatActivity {
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
         timerminutes= (TextView) findViewById(R.id.timerminutes);
+        info = (TextView) findViewById(R.id.info);
 
         /////////////////////////////////////////////////////////////////
         breathsTxt = findViewById(R.id.breathsTakenTxt);
@@ -85,6 +87,11 @@ public class BreathPattern3 extends AppCompatActivity {
             }
         });
 
+    }
+
+    //to got to info of the breath pattern 3 page
+    public void btnInfo (View view){
+        startActivity(new Intent(getApplicationContext(), BreathPattern3Info.class));
     }
 
     /*private void startIntroAnimation(){

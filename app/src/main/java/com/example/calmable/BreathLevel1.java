@@ -23,6 +23,9 @@ import java.text.MessageFormat;
 
 public class BreathLevel1 extends AppCompatActivity {
 
+    //adding the audio
+    //MediaPlayer mysong;
+
     public static int x;
     public static int BreathScore;
 
@@ -36,6 +39,11 @@ public class BreathLevel1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breath_level1);
+
+        //
+//        mysong = MediaPlayer.create(BreathLevel1.this,R.raw.audio1);
+//        mysong.start();
+
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
         timerminutes= (TextView) findViewById(R.id.timerminutes);
@@ -73,6 +81,9 @@ public class BreathLevel1 extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 startAnimation();
+                //
+                //mysong.start();
+
                 timerminutes.setText(" Seconds");
                 new CountDownTimer(121000, 1000){
                     public void onTick(long millisUntilFinished){

@@ -102,7 +102,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/landing_main_btn"
                 android:paddingStart="12dp"
-                android:text=" Square Breathing         "
+                android:text="    Square Breathing Pattern"
                 android:textColor="@color/white"
                 android:drawableStart="@drawable/ic_baseline_emoji_emotions_24"
                 android:textAllCaps="false"

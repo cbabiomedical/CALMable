@@ -2,6 +2,8 @@ package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -21,10 +23,12 @@ import java.text.MessageFormat;
 
 public class BreathPattern1 extends AppCompatActivity {
 
+    //adding the audio
+    MediaPlayer mysong;
 
     private ImageView imageView;
     public int counter, counter2;
-    private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
+    private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes, info;
     private Button startButton;
     public static Prefs prefs;
 
@@ -32,9 +36,15 @@ public class BreathPattern1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breath_pattern1);
+
+        //final MediaPlayer mysong = MediaPlayer.create(this,R.raw.audio1);
+        mysong = MediaPlayer.create(this,R.raw.audio);
+        //mysong.start();
+
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
         timerminutes= (TextView) findViewById(R.id.timerminutes);
+        info = (TextView) findViewById(R.id.info);
 
         /////////////////////////////////////////////////////////////////
         breathsTxt = findViewById(R.id.breathsTakenTxt);
@@ -59,6 +69,8 @@ public class BreathPattern1 extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                mysong.start();
+
                 startAnimation();
                 timerminutes.setText(" Seconds");
                 new CountDownTimer(121000, 1000){
@@ -88,6 +100,11 @@ public class BreathPattern1 extends AppCompatActivity {
             }
         });
 
+    }
+
+    //to got to info of the breath pattern 1 page
+    public void btnInfo (View view){
+        startActivity(new Intent(getApplicationContext(), BreathPattern1Info.class));
     }
 
     /*private void startIntroAnimation(){
