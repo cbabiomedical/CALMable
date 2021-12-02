@@ -53,7 +53,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     TextView txtHtRate;
     TextView txtProgress;
-    TextView tvMusicCoins;
     File fileName;
     FirebaseFirestore database;
     FirebaseUser mUser;
@@ -83,7 +82,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         txtHtRate = (TextView) findViewById(R.id.htRate);
         txtProgress = (TextView) findViewById(R.id.txtProgress);
-        tvMusicCoins = (TextView) findViewById(R.id.tvMusicCoins);
         TextView txtProgress2 = (TextView) findViewById(R.id.txtPastProgress);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
@@ -104,7 +102,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             Log.d("TAG", String.valueOf(finalRateff));
         }
 
-        updateLandingCoins();
+        //updateLandingCoins();
 
         NavigationBar();
     }
@@ -153,32 +151,32 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
 
     // update coins in CALMable
-    public void updateLandingCoins() {
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference noteRef = db.collection("users")
-                .document(FirebaseAuth.getInstance().getUid());
-
-        noteRef.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()) {
-                            long title = documentSnapshot.getLong(COINS);
-
-                            String totalMusicCoins = String.valueOf(title);
-
-                            tvMusicCoins.setText(totalMusicCoins);
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
-    }
+//    public void updateLandingCoins() {
+//
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        DocumentReference noteRef = db.collection("users")
+//                .document(FirebaseAuth.getInstance().getUid());
+//
+//        noteRef.get()
+//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                        if (documentSnapshot.exists()) {
+//                            long title = documentSnapshot.getLong(COINS);
+//
+//                            String totalMusicCoins = String.valueOf(title);
+//
+//                            tvMusicCoins.setText(totalMusicCoins);
+//                        }
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//
+//                    }
+//                });
+//    }
 
 
 

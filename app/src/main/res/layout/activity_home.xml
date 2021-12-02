@@ -8,17 +8,6 @@
     tools:context=".Home">
 
 
-    <TextView
-        android:id="@+id/tvMusicCoins"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:drawableEnd="@drawable/ic_coin"
-        android:gravity="center | right"
-        android:text="0000\t"
-        android:textColor="@color/white" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
