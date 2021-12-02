@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.calmable.databinding.FragmentChallengeBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,6 +26,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class ChallengeFragment extends Fragment {
+
+    private static final String COINS = "coins";
+
+    TextView tvMusicCoins;
 
     public ChallengeFragment() {
         // Required empty public constructor
@@ -43,6 +53,10 @@ public class ChallengeFragment extends Fragment {
         binding = FragmentChallengeBinding.inflate(inflater, container, false);
 
         database = FirebaseFirestore.getInstance();
+
+        tvMusicCoins = (TextView) binding.getRoot().findViewById(R.id.tvMusicCoins1);
+
+        updateLandingCoins();
 
         final ArrayList<CategoryModel> categories = new ArrayList<>();
 
@@ -76,5 +90,32 @@ public class ChallengeFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return binding.getRoot();
+    }
+
+    public void updateLandingCoins() {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference noteRef = db.collection("users")
+                .document(FirebaseAuth.getInstance().getUid());
+
+        noteRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            long title = documentSnapshot.getLong(COINS);
+
+                            String totalMusicCoins = String.valueOf(title);
+
+                            tvMusicCoins.setText(totalMusicCoins);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
 }

@@ -3,11 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeaderboardsFragment">
+    tools:context=".LeaderboardsFragment"
+    android:layout_margin="16dp">
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/ic_leaderboard2"
+        android:layout_gravity="center |top"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/row_leaderboards"/>
+        tools:listitem="@layout/row_leaderboards"
+        android:layout_marginTop="190dp"/>
 </FrameLayout>
