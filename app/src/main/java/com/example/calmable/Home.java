@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +60,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     FirebaseUser mUser;
     StorageReference storageReference;
     FragmentWalletBinding binding;
+    Button happy,awesome,relaxed,sleepy,sad;
 
 
     //private TextView textViewPerson;
@@ -85,6 +88,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         TextView txtProgress2 = (TextView) findViewById(R.id.txtPastProgress);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
+        happy = findViewById(R.id.happyEmoji_1);
+        awesome = findViewById(R.id.happyEmoji_2);
+        relaxed = findViewById(R.id.happyEmoji_3);
+        sleepy = findViewById(R.id.happyEmoji_4);
+        sad = findViewById(R.id.happyEmoji_5);
+
         //textViewPerson = (TextView) findViewById(R.id.tag_person);
         //textViewPlace = (TextView) findViewById(R.id.tag_place);
 
@@ -95,7 +104,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         //m_Runnable_popup.run();
 
         //for testing
-        //finalRateff = 100;
+        finalRateff = 100;
         //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
         if (finalRateff > 80) {
             openDialog();
@@ -103,6 +112,71 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         }
 
         //updateLandingCoins();
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        //set button clicks to mood buttons
+        happy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int happyValue = 1;
+                Intent myIntent = new Intent(Home.this, CalenderActivity.class);
+                //myIntent.putExtra("happyValue", happyValue);
+                editor.putInt("happyValue", happyValue);
+                editor.commit();
+                startActivity(myIntent);
+                Log.d("Happy value-------", String.valueOf(myIntent));
+            }
+        });
+
+        awesome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int awesomeValue = 2;
+                Intent myIntent = new Intent(Home.this, CalenderActivity.class);
+                editor.putInt("awesomeValue", awesomeValue);
+                editor.commit();
+                startActivity(myIntent);
+                Log.d("awesome value-------", String.valueOf(myIntent));
+            }
+        });
+
+        relaxed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int relaxedValue = 3;
+                Intent myIntent = new Intent(Home.this, CalenderActivity.class);
+                editor.putInt("relaxedValue", relaxedValue);
+                editor.commit();
+                startActivity(myIntent);
+                Log.d("relaxed value-------", String.valueOf(myIntent));
+            }
+        });
+
+        sleepy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int sleepyValue = 4;
+                Intent myIntent = new Intent(Home.this, CalenderActivity.class);
+                editor.putInt("sleepyValue", sleepyValue);
+                editor.commit();
+                startActivity(myIntent);
+                Log.d("sleepy value-------", String.valueOf(myIntent));
+            }
+        });
+
+        sad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int sadValue = 5;
+                Intent myIntent = new Intent(Home.this, CalenderActivity.class);
+                editor.putInt("sadValue", sadValue);
+                editor.commit();
+                startActivity(myIntent);
+                Log.d("sad value-------", String.valueOf(myIntent));
+            }
+        });
 
         NavigationBar();
     }

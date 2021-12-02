@@ -2,6 +2,8 @@ package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -21,21 +23,31 @@ import java.text.MessageFormat;
 
 public class BreathPattern2 extends AppCompatActivity {
 
+    //adding the audio
+    MediaPlayer mysong;
+
     private ImageView imageView;
     public int counter, counter2;
-    private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
+    private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes, info;
     private Button startButton;
     public static Prefs2 prefs2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breath_pattern2);imageView = findViewById(R.id.imageView2);
+        setContentView(R.layout.activity_breath_pattern2);
+
+        mysong = MediaPlayer.create(BreathPattern2.this,R.raw.audio);
+//        mysong.start();
+
+        imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
         timerminutes= (TextView) findViewById(R.id.timerminutes);
+        info = (TextView) findViewById(R.id.info);
 
         /////////////////////////////////////////////////////////////////
         breathsTxt = findViewById(R.id.breathsTakenTxt);
+
         //timeTxt = findViewById(R.id.last);
         //sessionTxt = findViewById(R.id.todayminutes);
         //guideTxt = findViewById(R.id.guideTxt);
@@ -44,18 +56,22 @@ public class BreathPattern2 extends AppCompatActivity {
         //startIntroAnimation();
 
         //sessionTxt.setText(MessageFormat.format("{0} min today", prefs2.getSessions()));
+        //y = prefs2.getBreaths();
         breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths", prefs2.getBreaths()));
-
         Log.d("---get breaths value2--", String.valueOf(prefs2.getBreaths()));
 
-
         //timeTxt.setText(prefs.getDate());
+
 
 
         startButton = findViewById(R.id.startbutton);
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+
+                //
+                mysong.start();
+
                 startAnimation();
                 timerminutes.setText(" Seconds");
                 new CountDownTimer(121000, 1000){
@@ -85,6 +101,11 @@ public class BreathPattern2 extends AppCompatActivity {
             }
         });
 
+    }
+
+    //to got to info of the breath pattern 2 page
+    public void btnInfo (View view){
+        startActivity(new Intent(getApplicationContext(), BreathPattern2Info.class));
     }
 
     /*private void startIntroAnimation(){

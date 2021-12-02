@@ -30,6 +30,25 @@
             android:name=".ComingSoonActivity"
             android:exported="false" />
         <activity
+            android:name=".BreathPattern6Info"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern5Info"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern4Info"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern3Info"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern2Info"
+            android:exported="true" />
+        <activity
+            android:name=".BreathPattern1Info"
+            android:exported="true" />
+
+        <activity
             android:name=".SelfImprovementActivity"
             android:exported="false" />
         <activity
