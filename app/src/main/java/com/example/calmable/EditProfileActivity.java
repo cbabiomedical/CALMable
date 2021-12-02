@@ -98,6 +98,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 update();
+                startActivity(new Intent(getApplicationContext() , ProfileMain.class));
             }
         });
 

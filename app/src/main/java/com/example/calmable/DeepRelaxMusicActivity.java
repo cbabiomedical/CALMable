@@ -55,8 +55,8 @@ public class DeepRelaxMusicActivity extends AppCompatActivity {
 //
         HashMap<String, Object> songs = new HashMap<>();
         songs.put("songList", listOfSongs);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("testMusic");
-        reference.setValue(songs);
+        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("testMusic");
+        //reference.setValue(songs);
 
 
         Log.d("List -> ", String.valueOf(listOfSongs));
@@ -72,7 +72,7 @@ public class DeepRelaxMusicActivity extends AppCompatActivity {
 
         listOfSongs = new ArrayList<>();
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList");
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Deep Relax");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -124,7 +124,7 @@ public class ProfileMain extends AppCompatActivity {
         premiumBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getApplicationContext(), PremiumActivity.class);
+                Intent in = new Intent(getApplicationContext(), ComingSoonActivity.class);
                 startActivity(in);
             }
 
@@ -188,11 +188,6 @@ public class ProfileMain extends AppCompatActivity {
 
         });
     }
-
-
-
-
-
 
 
     private void NavigationBar() {

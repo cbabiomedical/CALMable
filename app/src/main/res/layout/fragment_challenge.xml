@@ -9,23 +9,33 @@
 
 
     <TextView
-        android:id="@+id/tvMusicCoins1"
+        android:id="@+id/tv001"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="130dp"
         android:background="@drawable/home_main_btn"
-        android:drawableEnd="@drawable/ic_coin"
-        android:gravity="right |center"
+        android:gravity="right"
         android:paddingTop="32dp"
-        android:text="0000\t"
         android:textColor="@color/white"
         android:textSize="18dp" />
 
+    <TextView
+        android:id="@+id/tvMusicCoins1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/home_main_btn"
+        android:drawableEnd="@drawable/ic_coin"
+        android:gravity="right |center"
+        android:text="0000\t"
+        android:textColor="@color/white"
+        android:layout_margin="24dp"
+        android:textSize="18dp" />
 
 
     <View
         android:id="@+id/view3"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
+        android:layout_below="@+id/tv001"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="-32dp"
@@ -33,8 +43,7 @@
         android:layout_marginRight="32dp"
         android:background="@drawable/rounded_box"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_below="@+id/tvMusicCoins1"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 
@@ -56,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="120dp"
         android:fontFamily="@font/roboto_medium"
         android:text="Instructions"
         android:textColor="@color/white"

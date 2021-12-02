@@ -27,7 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
-
+            android:name=".ComingSoonActivity"
+            android:exported="false" />
+        <activity
             android:name=".SelfImprovementActivity"
             android:exported="false" />
         <activity
@@ -36,11 +38,9 @@
         <activity
             android:name=".SuccesStoryActivity"
             android:exported="false" />
-
         <activity
             android:name=".BreathPattern6"
             android:exported="true" />
-
         <activity
             android:name=".BreathPattern5"
             android:exported="true" />
