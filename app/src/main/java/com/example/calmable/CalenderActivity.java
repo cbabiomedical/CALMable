@@ -2,13 +2,23 @@ package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.calmable.Home;
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
 import org.naishadhparmar.zcustomcalendar.Property;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CalenderActivity extends AppCompatActivity {
     //initialize variable
@@ -41,7 +51,7 @@ public class CalenderActivity extends AppCompatActivity {
         Property currentProperty = new Property();
         currentProperty.layoutResource = R.layout.current_view;
         currentProperty.dateTextViewResource = R.id.text_view;
-        descHashmap.put("happy",currentProperty);
+        descHashmap.put("current",currentProperty);
 
         //for happy mood
         Property happyProperty = new Property();
@@ -81,14 +91,49 @@ public class CalenderActivity extends AppCompatActivity {
 
         //initialize calender
         Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+        String day = dayFormat.format(new Date());
+        Log.d("Date--------",day);
 
-        //put values
+        //initializing shared preferences
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable" , Context.MODE_PRIVATE);
+
+        Intent intent = getIntent();
+        //int happyValue = intent.getIntExtra("happyValue", 0);
+
+        int happyValue = sharedPreferences.getInt("happyValue",0);
+        int awesomeValue = sharedPreferences.getInt("awesomeValue",0);
+        int relaxedValue = sharedPreferences.getInt("relaxedValue",0);
+        int sleepyValue = sharedPreferences.getInt("sleepyValue",0);
+        int sadValue = sharedPreferences.getInt("sadValue",0);
+
+        //put values to dateHashMap
         dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"current");
-        dateHashMap.put(1,"happy");
-        dateHashMap.put(2,"awesome");
-        dateHashMap.put(4,"sad");
-        dateHashMap.put(10,"sleepy");
-        dateHashMap.put(11,"relaxed");
+
+        if (happyValue == 1) {
+            //dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"happy");
+            dateHashMap.put(20,"happy");
+        }
+        if (awesomeValue == 2) {
+            //dateHashMap.put(2,"awesome");
+            dateHashMap.put(Integer.valueOf(day), "awesome");
+            Log.d("Day valu--------", String.valueOf(Integer.valueOf(day)));
+        }
+        if (relaxedValue == 3) {
+            // dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"relaxed");
+        }
+        if (sleepyValue == 4) {
+            dateHashMap.put(10,"sleepy");
+        }
+        if (sadValue == 5) {
+            dateHashMap.put(15,"sad");
+        }
+
+//        dateHashMap.put(20,"happy");
+//        dateHashMap.put(2,"awesome");
+//        dateHashMap.put(4,"sad");
+//        dateHashMap.put(10,"sleepy");
+//        dateHashMap.put(11,"relaxed");
 
         //set date
         customCalendar.setDate(calendar,dateHashMap);
