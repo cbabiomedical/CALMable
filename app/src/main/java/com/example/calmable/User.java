@@ -5,7 +5,6 @@ public class User {
     // Creating private variables to store user data
     // private variables for encapsulation
     public String fullName,age, email , gender,phoneNumber, profile;
-
     public String preference;
     public String journalNote;
     private long coins = 0;

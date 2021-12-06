@@ -27,6 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".MusicSuggestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ComingSoonActivity"
             android:exported="false" />
         <activity
@@ -47,7 +50,6 @@
         <activity
             android:name=".BreathPattern1Info"
             android:exported="true" />
-
         <activity
             android:name=".SelfImprovementActivity"
             android:exported="false" />

@@ -110,7 +110,7 @@
         android:id="@+id/signIn"
         android:layout_width="266dp"
         android:layout_height="55dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/mybutton"
         android:text="LOGIN"
         android:textColor="@color/white"

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
@@ -69,7 +70,7 @@ public class BreathPattern1 extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                mysong.start();
+                //mysong.start();
 
                 startAnimation();
                 timerminutes.setText(" Seconds");
@@ -124,12 +125,6 @@ public class BreathPattern1 extends AppCompatActivity {
         ViewAnimator
                 .animate(imageView)
                 .alpha(0,1)
-                /*.onStart(new AnimationListener.Start() {
-                    @Override
-                    public void onStart() {
-                        guideTxt.setText("Inhale... Exhale");
-                    }
-                })*/
 
                 ///////////////////// 1 //////////////////////
                 .decelerate()
@@ -139,6 +134,19 @@ public class BreathPattern1 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.stop();
+                            }
+                        }, 20 * 1000);
+                    }
+                })
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -330,5 +338,10 @@ public class BreathPattern1 extends AppCompatActivity {
                     }
                 })
                 .start();
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        mysong.release();
     }
 }
