@@ -39,7 +39,8 @@
             android:backgroundTint="@color/teal_100"
             android:text="Breathing"
             android:textColor="@color/white"
-            android:id="@+id/btnSugBreathing"/>
+            android:id="@+id/btnSugBreathing"
+            android:onClick="btnGoSugBreathing"/>
 
     </LinearLayout>
 
