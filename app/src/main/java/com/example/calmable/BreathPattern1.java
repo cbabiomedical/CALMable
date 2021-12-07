@@ -25,7 +25,7 @@ import java.text.MessageFormat;
 public class BreathPattern1 extends AppCompatActivity {
 
     //adding the audio
-    MediaPlayer mysong;
+    MediaPlayer mysong, mysong2;
 
     private ImageView imageView;
     public int counter, counter2;
@@ -39,7 +39,8 @@ public class BreathPattern1 extends AppCompatActivity {
         setContentView(R.layout.activity_breath_pattern1);
 
         //final MediaPlayer mysong = MediaPlayer.create(this,R.raw.audio1);
-        mysong = MediaPlayer.create(this,R.raw.audio);
+        mysong = MediaPlayer.create(this,R.raw.audio_1);
+        mysong2 = MediaPlayer.create(this,R.raw.audio_2);
         //mysong.start();
 
         imageView = findViewById(R.id.imageView2);
@@ -134,6 +135,8 @@ public class BreathPattern1 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to inhale part only
                 .onStart(new AnimationListener.Start() {
                     @Override
                     public void onStart() {
@@ -142,9 +145,9 @@ public class BreathPattern1 extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                mysong.stop();
+                                mysong.pause();
                             }
-                        }, 20 * 1000);
+                        }, 4 * 1000);
                     }
                 })
 
@@ -153,6 +156,21 @@ public class BreathPattern1 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 2 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -160,11 +178,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 3 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -172,11 +220,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 4 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -184,11 +262,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 5 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -196,11 +304,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 6 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -208,11 +346,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 7 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -220,11 +388,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 8 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -232,11 +430,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 9 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -244,11 +472,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 10 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -256,11 +514,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 11 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -268,11 +556,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 12 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -280,11 +598,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 13 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -292,11 +640,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 14 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -304,11 +682,41 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
                 ///////////////////// 15 //////////////////////
                 .thenAnimate(imageView)
                 .scale(0.002f, 1.5f)
@@ -316,11 +724,43 @@ public class BreathPattern1 extends AppCompatActivity {
                 .accelerate()
                 .duration(4000)
 
+                //adding a music sound to inhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
                 .rotation(360)
                 .accelerate()
                 .duration(4000)
+
+                //adding a music sound to exhale part only
+                .onStart(new AnimationListener.Start() {
+                    @Override
+                    public void onStart() {
+                        mysong2.start();
+                        Handler handler=new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mysong2.pause();
+                            }
+                        }, 4 * 1000);
+                    }
+                })
+
+                ////////////////////////////////////
 
                 .onStop(new AnimationListener.Stop() {
                     @Override
@@ -343,5 +783,6 @@ public class BreathPattern1 extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
         mysong.release();
+        mysong2.release();
     }
 }

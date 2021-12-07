@@ -34,8 +34,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private RadioButton other;
     private String gender = "";
     Dialog dialog;
-
     private Button registerUser;
+
 
     private FirebaseAuth mAuth;
     FirebaseFirestore database;
@@ -52,8 +52,10 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 //        log = (Button) findViewById(R.id.log);
 //        log.setOnClickListener(this);
 //
+
         registerUser = findViewById(R.id.registerUser);
         registerUser.setOnClickListener(this);
+
 
         editTextFullname = (EditText) findViewById(R.id.fullName);
         editTextAge = (EditText) findViewById(R.id.age);
