@@ -9,6 +9,8 @@ public class User {
     public String journalNote;
     private long coins = 0;
 
+    public int sugIndex;
+
     public User() {
     }
 
@@ -99,5 +101,13 @@ public class User {
 
     public void setProfile(String profile) {
         this.profile = profile;
+    }
+
+    public int getSugIndex() {
+        return sugIndex;
+    }
+
+    public void setSugIndex(int sugIndex) {
+        this.sugIndex = sugIndex;
     }
 }

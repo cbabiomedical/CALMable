@@ -7,16 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.example.calmable.adapter.ChillOutMusicAdapter;
 import com.example.calmable.adapter.DeepRelaxMusicAdapter;
-import com.example.calmable.model.DeepRelaxModel;
 import com.example.calmable.model.FavModel;
-import com.example.calmable.model.MusicModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class DeepRelaxMusicActivity extends AppCompatActivity {
 
@@ -59,13 +56,15 @@ public class DeepRelaxMusicActivity extends AppCompatActivity {
         //reference.setValue(songs);
 
 
-        Log.d("List -> ", String.valueOf(listOfSongs));
+        //Log.d("List -> ", String.valueOf(listOfSongs));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
         recyclerView.setAdapter(deepRelaxMusicAdapter);
 
         initData();
+
+        getDataId();
     }
 
     private void initData() {
@@ -81,7 +80,7 @@ public class DeepRelaxMusicActivity extends AppCompatActivity {
                     Log.d("Post", String.valueOf(post));
                     listOfSongs.add(post);
                 }
-                Log.d("List-->", String.valueOf(listOfSongs));
+                Log.d("List -->", String.valueOf(listOfSongs));
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
@@ -93,6 +92,56 @@ public class DeepRelaxMusicActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //get songs id's
+    private void getDataId() {
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Deep Relax");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                List<String> listOfID = new ArrayList<>();
+
+                for (DataSnapshot postDataSnapshot : snapshot.getChildren()) {
+
+                    String post = postDataSnapshot.child("id").getValue(String.class);
+                    Log.d("Post --> ", String.valueOf(post));
+                    listOfID.add(String.valueOf(post));
+                }
+                Log.d("list of songs id's -->", String.valueOf(listOfID));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+    }
+
+
+    public void sugSongs() {
+        List<Object> reference = new ArrayList<>();
+        HashMap<String, Object> sugSongsMap = new HashMap<>();
+
+        sugSongsMap.put("sugSongs", reference);
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).updateChildren(sugSongsMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                        //Intent intent=new Intent(UserPreferences.this,ProfileActivity.class);
+                        //startActivity(intent);
+                    }
+                });
+
+        Log.d("User", mUser.getUid());
+        Toast.makeText(getApplicationContext(), "Successful !", Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(getApplicationContext(), EnterPhoneActivity.class);
+//        startActivity(intent);
     }
 
 }

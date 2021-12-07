@@ -42,7 +42,7 @@
                 android:id="@+id/level1Btn"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background="@drawable/landing_main_btn"
+                android:background="@drawable/mybutton"
                 android:paddingStart="35dp"
                 android:text="Breathing Level 1"
                 android:textColor="@color/white"

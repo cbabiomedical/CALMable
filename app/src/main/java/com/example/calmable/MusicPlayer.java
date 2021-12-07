@@ -173,7 +173,7 @@ public class MusicPlayer extends AppCompatActivity {
                             double x = Double.parseDouble(currentTime11);
 
                             Log.d("TAG", "time s : " + y);
-                            Log.d("TAG", "time min : " + q);
+                            //Log.d("TAG", "time min : " + q);
 
                             if (seconds % 60 == 0) {
 

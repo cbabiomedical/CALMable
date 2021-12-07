@@ -24,9 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
+public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView log,registerUser,  tvOccupation;
+    private TextView log, tvOccupation;
     private EditText editTextFullname, editTextAge, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
     private RadioButton male;
@@ -34,6 +34,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private RadioButton other;
     private String gender = "";
     Dialog dialog;
+
+    private Button registerUser;
 
     private FirebaseAuth mAuth;
     FirebaseFirestore database;
@@ -50,8 +52,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 //        log = (Button) findViewById(R.id.log);
 //        log.setOnClickListener(this);
 //
-//        registerUser = (Button) findViewById(R.id.registerUser);
-//        registerUser.setOnClickListener(this);
+        registerUser = findViewById(R.id.registerUser);
+        registerUser.setOnClickListener(this);
 
         editTextFullname = (EditText) findViewById(R.id.fullName);
         editTextAge = (EditText) findViewById(R.id.age);
@@ -130,7 +132,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.registerUser:
                 registerUser();
                 break;
@@ -164,41 +166,41 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         Log.d("gender---------", gender);
 
         // notifying user if username field is empty
-        if(fullName.isEmpty()){
+        if (fullName.isEmpty()) {
             editTextFullname.setError("Full Name is Required");
             editTextFullname.requestFocus();
             return;
         }
 
         // notifying user if age field is empty
-        if(age.isEmpty()){
+        if (age.isEmpty()) {
             editTextAge.setError("Age is Required");
             editTextAge.requestFocus();
             return;
         }
 
         // notifying user if email field is empty
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             editTextEmail.setError("Email is Required");
             editTextEmail.requestFocus();
             return;
         }
 
         // notifying user if email entered is not in email address format
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Email is Invalid");
             editTextEmail.requestFocus();
             return;
         }
         // Notifying user if password field is empty
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             editTextPassword.setError("Password is Required");
             editTextPassword.requestFocus();
             return;
         }
 
         // Notifying user if password has less than 6 characters
-        if(password.length() < 6){
+        if (password.length() < 6) {
             editTextPassword.setError("Minimum Password length should be 6 characters!");
             editTextPassword.requestFocus();
             return;
@@ -206,13 +208,13 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
         // setting progress bar as visible for authentication time
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email,password)
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             //Creating user object and passing user input as parameters
-                            User user= new User(fullName,age,email,gender,phoneNumber);
+                            User user = new User(fullName, age, email, gender, phoneNumber);
 
                             Log.d("got the gender---------", gender);
 
@@ -224,20 +226,19 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
-                                    if(task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         //startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
 
                                         //If task complete navigating from Register Activity to EnterPhone Activity
                                         Intent intent = new Intent(RegisterUser.this, UserPreferences.class);
                                         startActivity(intent);
                                         // Display Toast message "Registration successful"
-                                        Toast.makeText(RegisterUser.this,"User has been registered successfully!",Toast.LENGTH_LONG)
+                                        Toast.makeText(RegisterUser.this, "User has been registered successfully!", Toast.LENGTH_LONG)
                                                 .show();
 
                                         //redirect to login layout
-                                    }
-                                    else {
-                                        Toast.makeText(RegisterUser.this,"Registration Unsuccessful. Try Again!",Toast.LENGTH_LONG)
+                                    } else {
+                                        Toast.makeText(RegisterUser.this, "Registration Unsuccessful. Try Again!", Toast.LENGTH_LONG)
                                                 .show();
                                     }
                                     progressBar.setVisibility(View.GONE);
@@ -250,18 +251,17 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
+                                            if (task.isSuccessful()) {
                                                 //If task complete navigating from Register Activity to EnterPhone Activity
                                                 Intent intent = new Intent(RegisterUser.this, UserPreferences.class);
                                                 startActivity(intent);
                                                 // Display Toast message "Registration successful"
-                                                Toast.makeText(RegisterUser.this,"User has been registered successfully!",Toast.LENGTH_LONG)
+                                                Toast.makeText(RegisterUser.this, "User has been registered successfully!", Toast.LENGTH_LONG)
                                                         .show();
 
                                                 //redirect to login layout
-                                            }
-                                            else {
-                                                Toast.makeText(RegisterUser.this,"Registration Unsuccessful. Try Again!",Toast.LENGTH_LONG)
+                                            } else {
+                                                Toast.makeText(RegisterUser.this, "Registration Unsuccessful. Try Again!", Toast.LENGTH_LONG)
                                                         .show();
                                             }
                                             progressBar.setVisibility(View.GONE);
@@ -273,4 +273,9 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                 });
 
     }
+
+    public void btnRegisterUser1(View view) {
+        //startActivity(new Intent(getApplicationContext() , VerifyPhoneActivity.class));
+    }
+
 }

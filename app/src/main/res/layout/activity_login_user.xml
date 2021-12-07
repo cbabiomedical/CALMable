@@ -110,7 +110,7 @@
         android:id="@+id/signIn"
         android:layout_width="266dp"
         android:layout_height="55dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/mybutton"
         android:text="LOGIN"
         android:textColor="@color/white"
@@ -151,6 +151,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+
     <Button
         android:id="@+id/homebtn"
         android:layout_width="wrap_content"
@@ -158,17 +159,17 @@
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10"
-        app:layout_constraintVertical_bias="0.919" />
+        app:layout_constraintVertical_bias="0.156" />
 
     <LinearLayout
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="32dp"
         android:gravity="center|bottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signIn">
@@ -188,7 +189,6 @@
             android:textColor="@color/av_red"
             android:textSize="18dp"
             android:textStyle="bold" />
-
 
     </LinearLayout>
 
