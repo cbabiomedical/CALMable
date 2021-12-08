@@ -88,7 +88,7 @@ public class ProfileMain extends AppCompatActivity {
         myDownloadsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getApplicationContext(), MyDownloadsActivity.class);
+                Intent in = new Intent(getApplicationContext(), MostStressedPeople.class);
                 startActivity(in);
             }
 

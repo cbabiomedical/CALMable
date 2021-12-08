@@ -86,15 +86,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/profile_shape"
-                    android:drawableStart="@drawable/ic_download_icon"
+                    android:drawableStart="@drawable/ic_baseline_people"
                     android:drawableEnd="@drawable/ic_arrow"
                     android:paddingStart="12dp"
                     android:paddingEnd="10dp"
-                    android:text="My Downloads"
+                    android:text="Edit Stressed People"
                     android:textColor="@color/black"
                     android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:visibility="gone"/>
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/myFavouritesBtn"
