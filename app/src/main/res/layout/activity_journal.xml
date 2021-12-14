@@ -11,32 +11,35 @@
     tools:context=".Journal">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/notestitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="NOTES"
-        android:textSize="20dp"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:textSize="20dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerview"
         android:layout_above="@id/addnewnotebtn"
-        android:layout_below="@id/notestitle"/>
+        android:layout_below="@id/notestitle" />
 
     <Button
+        android:id="@+id/addnewnotebtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add new note"
-        android:id="@+id/addnewnotebtn"
-        android:textColor="#00B0FF"
+        android:layout_above="@+id/bottom_navigation"
         android:backgroundTint="@color/white"
-        android:layout_alignParentBottom="true"/>
+        android:text="Add new note"
+        android:textColor="#00B0FF"/>
 
 
-</RelativeLayout>
+<!--</RelativeLayout>-->
     <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
     <!--    xmlns:tools="http://schemas.android.com/tools"-->
@@ -62,14 +65,14 @@
 
 
 
-    <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-    <!--        android:id="@+id/bottom_navigation"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        app:itemBackground="@color/white"-->
-    <!--        app:itemIconTint="@color/teal_700"-->
-    <!--        app:itemTextColor="@color/teal_700"-->
-    <!--        app:menu="@menu/menu_navigation"/>-->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+           android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/white"
+            app:itemIconTint="@color/teal_700"
+            app:itemTextColor="@color/teal_700"
+            app:menu="@menu/menu_navigation"/>
 
-    <!--</RelativeLayout>-->
+    </RelativeLayout>
