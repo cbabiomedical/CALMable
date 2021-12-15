@@ -51,16 +51,16 @@ public class DeepRelaxMusicActivity extends AppCompatActivity {
 //                "https://firebasestorage.googleapis.com/v0/b/calmableproject.appspot.com/o/Songs%2Flilac-days.mp3?alt=media&token=5e3076ec-628e-4fcd-8591-2fc833c65c26", "0"));
 //
         HashMap<String, Object> songs = new HashMap<>();
-        songs.put("songList", listOfSongs);
+        songs.put("songList0", listOfSongs);
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("testMusic");
         //reference.setValue(songs);
 
 
         //Log.d("List -> ", String.valueOf(listOfSongs));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
-        recyclerView.setAdapter(deepRelaxMusicAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//        deepRelaxMusicAdapter = new DeepRelaxMusicAdapter(listOfSongs, getApplicationContext());
+//        recyclerView.setAdapter(deepRelaxMusicAdapter);
 
         initData();
 

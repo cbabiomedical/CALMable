@@ -22,6 +22,15 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public User(String fullName, String age, String email, String gender, String phoneNumber, int sugIndex) {
+        this.fullName = fullName;
+        this.age = age;
+        this.email = email;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.sugIndex = sugIndex;
+    }
+
     public User(String preference) {
         this.preference = preference;
     }

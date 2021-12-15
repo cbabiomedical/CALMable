@@ -46,7 +46,7 @@ public class LoveMusicActivity extends AppCompatActivity {
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Music").child("songList").child("Love Music");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -60,7 +60,6 @@ public class LoveMusicActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 loveMusicAdapter = new LoveMusicAdapter(listOfSongs, getApplicationContext());
                 recyclerView.setAdapter(loveMusicAdapter);
-
 
             }
 

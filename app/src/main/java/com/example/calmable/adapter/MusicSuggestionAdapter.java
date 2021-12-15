@@ -20,7 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
 import com.example.calmable.db.FavDB;
-import com.example.calmable.model.FavModel;
+import com.example.calmable.db.SugDB;
+import com.example.calmable.model.MusicModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,12 +29,12 @@ import java.util.ArrayList;
 public class MusicSuggestionAdapter extends RecyclerView.Adapter<MusicSuggestionAdapter.ViewHolder> {
 
 
-    private ArrayList<FavModel> listOfSongs;
+    private ArrayList<MusicModel> listOfSongs;
     private Context context;
-    private FavDB favDB;
-    public static ChillOutMusicAdapter.ViewHolder viewHolder;
+    private SugDB sugDB;
+    public static ViewHolder viewHolder;
 
-    public MusicSuggestionAdapter(ArrayList<FavModel> listOfSongs, Context context) {
+    public MusicSuggestionAdapter(ArrayList<MusicModel> listOfSongs, Context context) {
         this.listOfSongs = listOfSongs;
         this.context = context;
     }
@@ -42,7 +43,7 @@ public class MusicSuggestionAdapter extends RecyclerView.Adapter<MusicSuggestion
     @Override
     public MusicSuggestionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        favDB = new FavDB(context);
+        sugDB = new SugDB(context);
         SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
         if (firstStart) {
@@ -55,7 +56,7 @@ public class MusicSuggestionAdapter extends RecyclerView.Adapter<MusicSuggestion
 
     @Override
     public void onBindViewHolder(@NonNull MusicSuggestionAdapter.ViewHolder holder, int position) {
-        final FavModel coffeeItem = listOfSongs.get(position);
+        final MusicModel coffeeItem = listOfSongs.get(position);
 
         readCursorDataDP(coffeeItem, holder);
 
@@ -109,16 +110,16 @@ public class MusicSuggestionAdapter extends RecyclerView.Adapter<MusicSuggestion
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    FavModel favModel = listOfSongs.get(position);
-                    if (favModel.getIsFav().equals("0")) {
-                        favModel.setIsFav("1");
-                        favDB.insertIntoTheDatabase(favModel.getSongName(), favModel.getImageView(),
-                                favModel.getId(), favModel.getIsFav() ,favModel.getUrl());
+                    MusicModel musicModel = listOfSongs.get(position);
+                    if (musicModel.getIsFav().equals("0")) {
+                        musicModel.setIsFav("1");
+                        sugDB.insertIntoTheDatabase(musicModel.getSongName(), musicModel.getImageView(),
+                                musicModel.getId(), musicModel.getIsFav(), musicModel.getUrl());
                         favBtn.setBackgroundResource(R.drawable.ic_fill_fav_icon);
                         Toast.makeText(context, "Added To Favourite!", Toast.LENGTH_SHORT).show();
                     } else {
-                        favModel.setIsFav("0");
-                        favDB.remove_fav_music(favModel.getId());
+                        musicModel.setIsFav("0");
+                        sugDB.remove_fav_music(musicModel.getId());
                         favBtn.setBackgroundResource(R.drawable.ic_favorite);
                         Toast.makeText(context, "Removed From Favourite!", Toast.LENGTH_SHORT).show();
                     }
@@ -129,7 +130,7 @@ public class MusicSuggestionAdapter extends RecyclerView.Adapter<MusicSuggestion
 
 
     private void createTableOnFirstStart() {
-        favDB.insertEmpty();
+        sugDB.insertEmpty();
 
         SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -137,9 +138,9 @@ public class MusicSuggestionAdapter extends RecyclerView.Adapter<MusicSuggestion
         editor.apply();
     }
 
-    private void readCursorDataDP(FavModel coffeeItem, ViewHolder viewHolder) {
-        Cursor cursor = favDB.read_all_data(coffeeItem.getId());
-        SQLiteDatabase db = favDB.getReadableDatabase();
+    private void readCursorDataDP(MusicModel coffeeItem, ViewHolder viewHolder) {
+        Cursor cursor = sugDB.read_all_data(coffeeItem.getId());
+        SQLiteDatabase db = sugDB.getReadableDatabase();
 
         try {
             while (cursor.moveToNext()) {

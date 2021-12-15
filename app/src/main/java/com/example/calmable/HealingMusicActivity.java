@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HealingMusicActivity extends AppCompatActivity {
 
@@ -38,20 +39,21 @@ public class HealingMusicActivity extends AppCompatActivity {
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-
         initData();
+
+        //getDataId();
     }
 
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Healing Music");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postDataSnapshot : snapshot.getChildren()) {
                     MusicModel post = postDataSnapshot.getValue(MusicModel.class);
-                    Log.d("Post", String.valueOf(post));
+                    Log.d("Post ", String.valueOf(post));
                     listOfSongs.add(post);
                 }
                 Log.d("List-->", String.valueOf(listOfSongs));
@@ -70,4 +72,32 @@ public class HealingMusicActivity extends AppCompatActivity {
         });
     }
 
+
+//    //get songs id's
+//    private void getDataId() {
+//
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Healing Music");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                List<String> listOfID = new ArrayList<>();
+//
+//                for (DataSnapshot postDataSnapshot : snapshot.getChildren()) {
+//
+//                    String post = postDataSnapshot.child("id").getValue(String.class);
+//                    Log.d("id --> ", String.valueOf(post));
+//                    listOfID.add(String.valueOf(post));
+//                }
+//                Log.d("list of songs id's -->", String.valueOf(listOfID));
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//
+//        });
+//    }
 }

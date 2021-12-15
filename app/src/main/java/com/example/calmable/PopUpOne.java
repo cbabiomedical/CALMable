@@ -76,7 +76,6 @@ public class PopUpOne extends AppCompatDialogFragment {
                         String place = editPlace.getText().toString();
                         listener.applyText(person,place);
                         startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
-
                     }
                 });
 

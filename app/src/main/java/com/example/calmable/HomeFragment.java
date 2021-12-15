@@ -134,7 +134,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity() , ScanActivity.class));
+                //startActivity(new Intent(getActivity() , ScanActivity.class));
 
             }
         });

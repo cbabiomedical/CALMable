@@ -218,7 +218,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                             //Creating user object and passing user input as parameters
                             User user = new User(fullName, age, email, gender, phoneNumber);
 
-                            Log.d("got the gender---------", gender);
+                            //Log.d("got the gender---------", gender);
 
                             //startActivity(new Intent(RegisterUser.this, EnterPhoneActivity.class));
 

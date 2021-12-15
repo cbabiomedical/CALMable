@@ -108,9 +108,6 @@
             android:exported="true"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".device.DeviceActivity"
-            android:exported="false" />
-        <activity
             android:name=".LeaderboardsFragment"
             android:exported="true" />
         <activity
@@ -141,6 +138,10 @@
             android:name=".ChillOutMusicActivity"
             android:exported="false"
             android:label="Chill Music" />
+        <activity
+            android:name=".device.DeviceActivity"
+            android:exported="false"
+            android:label="Device" />
         <activity
             android:name=".PainReliefMusicActivity"
             android:exported="false"
@@ -187,17 +188,16 @@
             android:exported="true"
             android:label="Monthly" />
         <activity
+            android:name=".scan.ScanActivity"
+            android:exported="true"
+            android:label="Scan" />
+        <activity
             android:name=".BreathLevel1"
             android:exported="true" />
         <activity
             android:name=".ReportWeekly"
             android:exported="true"
             android:label="Weekly" />
-        <activity
-            android:name=".scan.ScanActivity"
-            android:exported="true"
-            android:label="Scan"
-            android:parentActivityName=".Home" />
         <activity
             android:name=".ReportHome"
             android:exported="true"
@@ -277,6 +277,8 @@
             android:name=".StressHome"
             android:exported="true"
             android:parentActivityName=".Home" />
+
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"
