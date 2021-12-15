@@ -1,37 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Journal"
-    android:background="@drawable/sea_bg">
+    android:background="@drawable/sea_bg"
+    android:padding="10dp"
+    tools:context=".Journal">
 
-
-    <LinearLayout
-        android:id="@+id/lr1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@id/bottom_navigation">
-
-        <ListView
-            android:id="@+id/listViewJournal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <TextView
+        android:id="@+id/notestitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemBackground="@color/white"
-        app:itemIconTint="@color/teal_700"
-        app:itemTextColor="@color/teal_700"
-        app:menu="@menu/menu_navigation"/>
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="NOTES"
+        android:textAlignment="center"
+        android:textColor="@color/dark_blue_300"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/addnewnotebtn"
+        android:layout_below="@id/notestitle" />
+
+
+    <!--</RelativeLayout>-->
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    tools:context=".Journal"-->
+    <!--    android:background="@drawable/sea_bg">-->
+
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/lr1"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:layout_above="@id/bottom_navigation">-->
+
+    <!--        <ListView-->
+    <!--            android:id="@+id/listViewJournal"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
+
+    <!--    </LinearLayout>-->
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:textAlignment="center"
+        android:textColor="@color/dark_blue_300"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addnewnotebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/home_main_btn"
+        android:text="Add new note"
+        android:textColor="#FFF" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+           android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/white"
+            app:itemIconTint="@color/teal_700"
+            app:itemTextColor="@color/teal_700"
+            app:menu="@menu/menu_navigation"/>
+
+    </RelativeLayout>

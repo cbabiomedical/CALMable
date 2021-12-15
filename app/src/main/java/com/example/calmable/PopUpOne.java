@@ -49,7 +49,8 @@ public class PopUpOne extends AppCompatDialogFragment {
     FusedLocationProviderClient fusedLocationProviderClient;
 
     ArrayAdapter<String> adapter;
-    ArrayList<Object> personList = new ArrayList<>(Arrays.asList("Amal","Anil","Ayeshika","Sunil","Saman","Mother","Father","Sister","Brother","Boss","Daughter","Son"));
+    static ArrayList<String> personList = new ArrayList<>();
+    //ArrayList<String> personList = new ArrayList<>(Arrays.asList("Amal","Anil","Ayeshika","Sunil","Saman","Mother","Father","Sister","Brother","Boss","Daughter","Son"));
     //ArrayList<Object> personList = new ArrayList<>(Arrays.asList(String.valueOf(editPerson)));
     // String[] personList = {"Amal","Anil","Ayeshika","Sunil","Saman"};
 
@@ -76,6 +77,7 @@ public class PopUpOne extends AppCompatDialogFragment {
                         String place = editPlace.getText().toString();
                         listener.applyText(person,place);
                         startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
+
                     }
                 });
 
@@ -95,14 +97,14 @@ public class PopUpOne extends AppCompatDialogFragment {
         }
 
 
-        //SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
-        //HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("people", null);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.calmable", Context.MODE_PRIVATE);
+        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("addArray", null);
 
-//        if (set == null) {
-//            //personList.add("Write your day here!");
-//        } else {
-//            personList = new ArrayList(set);
-//        }
+        if (set == null) {
+
+        } else {
+            personList = new ArrayList(set);
+        }
 
 
         //initialize adapter

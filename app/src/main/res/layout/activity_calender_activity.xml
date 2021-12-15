@@ -7,6 +7,19 @@
     tools:context=".CalenderActivity"
     android:background="@drawable/bg_1">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/droidserif_italic"
+        android:gravity="center"
+        android:text="Your Daily Mood Check-Ins"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/custom_calender"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="20dp" />
+
     <org.naishadhparmar.zcustomcalendar.CustomCalendar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

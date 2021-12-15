@@ -27,6 +27,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".MyAdapter"
+            android:exported="true" />
+        <activity
+            android:name=".AddNoteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MostStressedPeople"
+            android:exported="true" />
+        <activity
             android:name=".MusicSuggestionActivity"
             android:exported="false" />
         <activity
