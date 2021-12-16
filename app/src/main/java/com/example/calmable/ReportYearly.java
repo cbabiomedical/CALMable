@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -44,9 +45,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import com.github.mikephil.charting.data.BubbleEntry;
 import com.github.mikephil.charting.data.CandleEntry;
@@ -65,6 +70,7 @@ public class ReportYearly extends AppCompatActivity {
     StorageReference storageReference;
     FirebaseUser mUser;
     String text;
+    TextView tvDate;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
 
@@ -77,6 +83,13 @@ public class ReportYearly extends AppCompatActivity {
         monthly = findViewById(R.id.monthly);
         weekly = findViewById(R.id.weekly);
         daily = findViewById(R.id.daily);
+
+        tvDate = (TextView) findViewById(R.id.tvDate);
+
+        Date realDate = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String date = sdf.format(realDate);
+        tvDate.setText(date);
 
         NavigationBar();
 

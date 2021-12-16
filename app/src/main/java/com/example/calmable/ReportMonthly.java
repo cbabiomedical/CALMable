@@ -3,6 +3,7 @@ package com.example.calmable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -44,9 +46,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import com.github.mikephil.charting.data.BubbleEntry;
 import com.github.mikephil.charting.data.CandleEntry;
@@ -64,7 +70,8 @@ public class ReportMonthly extends AppCompatActivity {
     AppCompatButton weekly, whereAmI;
     File fileName, localFile;
     FirebaseUser mUser;
-    String text;
+    TextView place,person,time,tvDate;
+    String text,finalValue;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
 
@@ -77,6 +84,20 @@ public class ReportMonthly extends AppCompatActivity {
         daily = findViewById(R.id.daily);
         yearly = findViewById(R.id.yearly);
         weekly = findViewById(R.id.weekly);
+        place = findViewById(R.id.tv4);
+        person = findViewById(R.id.tv5);
+        time = findViewById(R.id.tv6);
+
+        tvDate = (TextView) findViewById(R.id.tvDate);
+
+        Date realDate = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String date = sdf.format(realDate);
+        tvDate.setText(date);
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        finalValue = sharedPreferences.getString("word", null);
+        person.setText(String.valueOf(finalValue));
 
         NavigationBar();
 

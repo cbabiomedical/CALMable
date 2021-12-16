@@ -34,10 +34,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +55,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     TextView txtHtRate;
     TextView txtProgress;
-    File fileName;
+    File fileName, fileName1;
     FirebaseFirestore database;
     FirebaseUser mUser;
     StorageReference storageReference;
@@ -61,10 +63,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     Button happy,awesome,relaxed,sleepy,sad;
 
 
-    //private TextView textViewPerson;
-    //private TextView textViewPlace;
-
-    String viewPerson;
+    public static String viewPerson;
+    public static String word;
     String viewPlace;
     String dateAndTime;
     int finalRateff;
@@ -91,9 +91,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         relaxed = findViewById(R.id.happyEmoji_3);
         sleepy = findViewById(R.id.happyEmoji_4);
         sad = findViewById(R.id.happyEmoji_5);
-
-        //textViewPerson = (TextView) findViewById(R.id.tag_person);
-        //textViewPlace = (TextView) findViewById(R.id.tag_place);
 
         this.mHandler = new Handler();
         m_Runnable.run();
@@ -254,8 +251,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     @Override
     public void applyText(String person, String place) {
-        //textViewPerson.setText(person);
-        //textViewPlace.setText(place);
+
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh:mm:ss a");
         String dateTime = simpleDateFormat.format(calendar.getTime());
@@ -275,9 +271,89 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         Log.d("----Array----", String.valueOf(reportList));
 
+        //Writing stressed people data to text file
+        try {
+            fileName1 = new File(getCacheDir() + "/stressedPeople.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            fileName1.createNewFile();
+            if (!fileName1.exists()) {
+                fileName1.mkdirs();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName1, true));
+
+            writer.write(Home.viewPerson);
+            writer.newLine();
+            writer.flush();
+
+            Log.d("TAG", "----------stressedPeople File");
+            //Toast.makeText(this, "Data has been written to stressedPeople File", Toast.LENGTH_SHORT).show();
+
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+//        //get last day of the month to calculate
+//        Calendar cal = Calendar.getInstance();
+//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+//        Date lastDay = cal.getTime();
+//        if (day == lastDay) {
+        //get max word
+        try {
+            String line = "";
+            word = "";
+            int count = 0, maxCount = 0;
+            ArrayList<String> words = new ArrayList<String>();
+
+            //Opens file in read mode
+            FileReader file = new FileReader(getCacheDir() + "/stressedPeople.txt");
+            BufferedReader br = new BufferedReader(file);
+
+            //Reads each line
+            while ((line = br.readLine()) != null) {
+                String string[] = line.toLowerCase().split("([,.\\s]+) ");
+                //Adding all words generated in previous step into words
+                for (String s : string) {
+                    words.add(s);
+                }
+            }
+
+            //Determine the most repeated word in a file
+            for (int i = 0; i < words.size(); i++) {
+                count = 1;
+                //Count each word in the file and store it in variable count
+                for (int j = i + 1; j < words.size(); j++) {
+                    if (words.get(i).equals(words.get(j))) {
+                        count++;
+                    }
+                }
+                //If maxCount is less than count then store value of count in maxCount
+                //and corresponding word to variable word
+                if (count > maxCount) {
+                    maxCount = count;
+                    word = words.get(i);
+                }
+            }
+
+            //To save
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("word", word);
+            editor.commit();
+
+            System.out.println("Most repeated word: " + word);
+            br.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //}
+
+
         //Writing data to file
-
-
         try {
             fileName = new File(getCacheDir() + "/reportStress.txt");
             //File root = new File(Environment.getExternalStorageDirectory(), "Notes");

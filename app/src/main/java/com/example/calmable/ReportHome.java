@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.ScatterChart;
@@ -53,9 +54,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 import com.github.mikephil.charting.data.BubbleEntry;
@@ -72,6 +77,7 @@ public class ReportHome extends AppCompatActivity {
     AppCompatButton monthly, yearly, weekly;
     File fileName, localFile;
     FirebaseUser mUser;
+    TextView tvDate;
     String text;
     StorageReference storageReference;
 
@@ -109,6 +115,13 @@ public class ReportHome extends AppCompatActivity {
         monthly = findViewById(R.id.monthly);
         yearly = findViewById(R.id.yearly);
         weekly = findViewById(R.id.weekly);
+
+        tvDate = (TextView) findViewById(R.id.tvDate);
+
+        Date realDate = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String date = sdf.format(realDate);
+        tvDate.setText(date);
 
         NavigationBar();
 

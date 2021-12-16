@@ -39,9 +39,35 @@
                 android:textSize="15sp"
                 android:padding="5dp"
                 android:fontFamily="@font/droidserif_italic"
-                android:text="Where am I \naccording to my occupation and age?"
-
+                android:text="Where your stress level stands \naccording to your occupation"
                 android:textColor="@color/dark_blue_300"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="920dp"
+                android:background="@color/teal_200"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:padding="5dp"
+                android:fontFamily="@font/droidserif_italic"
+                android:text="According to your age"
+                android:textColor="@color/dark_blue_300"/>
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/droidserif_italic"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/dark_blue_300"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChartDaily"
@@ -51,7 +77,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="80dp"
                 app:cornerRadius="13dp"
                 tools:ignore="MissingClass" />
 
@@ -105,7 +131,7 @@
 
                 <View
                     android:layout_width="2dp"
-                    android:layout_height="650dp"
+                    android:layout_height="680dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="600dp"
                     android:background="#000000" />
@@ -125,14 +151,14 @@
                         android:layout_width="20dp"
                         android:layout_height="2dp"
                         android:background="#000000"
-                        android:layout_marginTop="630dp"
+                        android:layout_marginTop="620dp"
                         android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="620dp"
+                        android:layout_marginTop="610dp"
                         android:text="Job"
                         android:textStyle="bold"
                         android:textColor="#000000"/>
@@ -144,7 +170,7 @@
                 android:layout_width="232dp"
                 android:layout_height="295dp"
                 android:layout_marginLeft="104dp"
-                android:layout_marginTop="600dp" />
+                android:layout_marginTop="590dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -154,19 +180,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
+
                     <View
                         android:id="@+id/hi3"
                         android:layout_width="20dp"
                         android:layout_height="2dp"
                         android:background="#000000"
-                        android:layout_marginTop="930dp"
+                        android:layout_marginTop="1010dp"
                         android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="920dp"
+                        android:layout_marginTop="1000dp"
                         android:textStyle="bold"
                         android:text="Age"
                         android:textColor="#000000"/>
@@ -179,7 +206,7 @@
                 android:layout_width="232dp"
                 android:layout_height="295dp"
                 android:layout_marginLeft="104dp"
-                android:layout_marginTop="930dp" />
+                android:layout_marginTop="990dp" />
 
 
         </RelativeLayout>
