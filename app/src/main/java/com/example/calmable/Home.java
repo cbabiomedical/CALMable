@@ -512,7 +512,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     }
 
     public void btnHappy(View view) {
-        startActivity(new Intent(this, HappyHome.class));
+        startActivity(new Intent(this, VideoPlayerActivity.class));
     }
 
     public void btnBreath(View view) {

@@ -241,7 +241,7 @@
                         android:background="@drawable/home_main_btn"
                         android:onClick="btnHappy"
                         android:padding="16dp"
-                        android:text="I'm Happy"
+                        android:text="Video"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
 
