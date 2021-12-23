@@ -343,6 +343,18 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             editor.commit();
 
             System.out.println("Most repeated word: " + word);
+
+            //uploading most stressed person to realtime db
+            mUser = FirebaseAuth.getInstance().getCurrentUser();
+            mUser.getUid();
+            FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("MostStressedPerson").setValue(word)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(Home.this, "Successful", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
             br.close();
 
         } catch (FileNotFoundException e) {

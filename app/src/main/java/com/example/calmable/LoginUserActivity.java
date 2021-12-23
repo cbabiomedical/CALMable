@@ -162,7 +162,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 if (task.isSuccessful()) {
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    startActivity(new Intent(LoginUserActivity.this, MostStressedPeople.class));
+                    startActivity(new Intent(LoginUserActivity.this, Home.class));
 
                      /*if (user.isEmailVerified()) {
                         // redirect to user profile
