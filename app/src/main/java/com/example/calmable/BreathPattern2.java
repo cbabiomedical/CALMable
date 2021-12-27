@@ -38,9 +38,12 @@ public class BreathPattern2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breath_pattern2);
 
+        //to inhale
         mysong = MediaPlayer.create(this,R.raw.audio_1);
-        mysong2 = MediaPlayer.create(this,R.raw.audio_2);
+        //to exhale
+        mysong2 = MediaPlayer.create(this,R.raw.audiomass8);
         mysong4 = MediaPlayer.create(this,R.raw.audio4);
+
 
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
