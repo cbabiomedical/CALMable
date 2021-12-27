@@ -24,7 +24,8 @@ public class AddNoteActivity extends AppCompatActivity {
 
 
         Realm.init(getApplicationContext());
-        Realm realm = Realm.getDefaultInstance();
+        //Realm realm = Realm.getDefaultInstance();
+        Realm realm = Realm.getInstance(RealmUtility.getDefaultConfig());
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override

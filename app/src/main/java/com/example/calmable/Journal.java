@@ -58,7 +58,8 @@ public class Journal extends AppCompatActivity {
         });
 
         Realm.init(getApplicationContext());
-        Realm realm = Realm.getDefaultInstance();
+        //Realm realm = Realm.getDefaultInstance();
+        Realm realm = Realm.getInstance(RealmUtility.getDefaultConfig());
 
         RealmResults<Note> notesList = realm.where(Note.class).sort("createdTime", Sort.DESCENDING).findAll();
 
