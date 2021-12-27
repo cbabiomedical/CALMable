@@ -1,5 +1,6 @@
 package com.example.calmable;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -32,7 +33,7 @@ public class BreathLevel1 extends AppCompatActivity {
     private ImageView imageView;
     public int counter, counter2;
     private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes;
-    private Button startButton;
+    private Button startButton, backButton2;
     public static Prefs prefs;
 
     @Override
@@ -75,12 +76,27 @@ public class BreathLevel1 extends AppCompatActivity {
         //timeTxt.setText(prefs.getDate());
 
 
+        //button to go back
+        backButton2 = findViewById(R.id.backbutton2);
+        backButton2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                onPause();
+
+                Intent intent = new Intent(BreathLevel1.this, BreathHome.class);
+                startActivity(intent);
+                //startActivity(new Intent(getActivity(),breathLevel1.class));
+
+            }
+        });
 
         startButton = findViewById(R.id.startbutton);
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 startAnimation();
+                startButton.setVisibility(View.GONE);
                 //
                 //mysong.start();
 
