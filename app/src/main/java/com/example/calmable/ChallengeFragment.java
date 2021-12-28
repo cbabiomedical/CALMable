@@ -103,9 +103,9 @@ public class ChallengeFragment extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
-                            long title = documentSnapshot.getLong(COINS);
+                            String totalMusicCoins = String.valueOf(documentSnapshot.getLong(COINS));
 
-                            String totalMusicCoins = String.valueOf(title);
+                            //String totalMusicCoins = String.valueOf(title);
 
                             tvMusicCoins.setText(totalMusicCoins);
                         }

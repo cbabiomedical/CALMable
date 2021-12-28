@@ -30,7 +30,7 @@ public class BreathPattern1 extends AppCompatActivity {
     private ImageView imageView;
     public int counter, counter2;
     private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes, info;
-    private Button startButton;
+    private Button startButton, backButton2;
     public static Prefs prefs;
 
     @Override
@@ -39,8 +39,11 @@ public class BreathPattern1 extends AppCompatActivity {
         setContentView(R.layout.activity_breath_pattern1);
 
         //final MediaPlayer mysong = MediaPlayer.create(this,R.raw.audio1);
-        mysong = MediaPlayer.create(this,R.raw.audio_1);
-        mysong2 = MediaPlayer.create(this,R.raw.audio_2);
+
+        //sound for inhale
+        mysong = MediaPlayer.create(this,R.raw.audiomass);
+        //sound for exhale
+        mysong2 = MediaPlayer.create(this,R.raw.beach_housetr);
         //mysong.start();
 
         imageView = findViewById(R.id.imageView2);
@@ -65,6 +68,20 @@ public class BreathPattern1 extends AppCompatActivity {
 
         //timeTxt.setText(prefs.getDate());
 
+        //button to go back
+        backButton2 = findViewById(R.id.backbutton2);
+        backButton2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                onPause();
+
+                Intent intent = new Intent(BreathPattern1.this, BreathPatterns.class);
+                startActivity(intent);
+                //startActivity(new Intent(getActivity(),breathLevel1.class));
+
+            }
+        });
 
 
         startButton = findViewById(R.id.startbutton);
@@ -74,6 +91,7 @@ public class BreathPattern1 extends AppCompatActivity {
                 //mysong.start();
 
                 startAnimation();
+                startButton.setVisibility(View.GONE);
                 timerminutes.setText(" Seconds");
                 new CountDownTimer(121000, 1000){
                     public void onTick(long millisUntilFinished){
@@ -101,8 +119,9 @@ public class BreathPattern1 extends AppCompatActivity {
                 }.start();*/
             }
         });
-
     }
+
+
 
     //to got to info of the breath pattern 1 page
     public void btnInfo (View view){
