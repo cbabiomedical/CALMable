@@ -107,6 +107,16 @@
                         android:text="Add watch" />
 
 
+                    <Button
+                        android:id="@+id/connectFitbitWatch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="btnFitbitWatch"
+                        android:text="Add Fitbit"
+                        android:layout_marginStart="24dp"/>
+
+
                 </LinearLayout>
 
                 <androidx.cardview.widget.CardView

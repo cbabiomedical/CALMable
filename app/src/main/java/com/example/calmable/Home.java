@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.calmable.databinding.FragmentWalletBinding;
+import com.example.calmable.fitbit.FitbitMainActivity;
 import com.example.calmable.scan.ScanActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -522,6 +523,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     public void btnReport(View view) {
         startActivity(new Intent(this, ReportHome.class));
     }
+
+    public void btnFitbitWatch(View view) {
+        startActivity(new Intent(this, FitbitMainActivity.class));
+    }
+
+
 
 
 }

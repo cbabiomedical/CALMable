@@ -21,8 +21,18 @@ android {
 
     buildTypes {
         release {
+            buildConfigField("String","CLIENT_ID", "\"23BLCH\"")
+            buildConfigField("String","AUTH_URL", "\"https://www.fitbit.com/oauth2/authorize\"")
+            buildConfigField("String","TOKEN_URL", "\"https://api.fitbit.com/oauth2/token\"")
+            buildConfigField("String","REDIR_SCHEME", "\"monitor://fitbitcallback\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField("String","CLIENT_ID", "\"23BLCH\"")
+            buildConfigField("String","AUTH_URL", "\"https://www.fitbit.com/oauth2/authorize\"")
+            buildConfigField("String","TOKEN_URL", "\"https://api.fitbit.com/oauth2/token\"")
+            buildConfigField("String","REDIR_SCHEME", "\"monitor://fitbitcallback\"")
         }
     }
     compileOptions {
@@ -130,4 +140,8 @@ dependencies {
 
     //
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    //fitbot
+    implementation 'net.openid:appauth:0.10.0'
+
 }

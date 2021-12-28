@@ -63,4 +63,25 @@
     <string name="dfu_status_aborted">Aborted</string>
     <string name="dfu_status_error_msg">DFU process failed.</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+
+    <string name="login_button">Login</string>
+    <string name="login_title">Fitbit heart rate monitor</string>
+    <string name="user_id_hint">User id</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="get_heart_rate">Get heart rate</string>
+    <string name="userid_required">User id required</string>
+    <string name="logout">Logout</string>
+    <string name="starttime">Start Time</string>
+    <string name="endtime">End Time</string>
+    <string name="starttime_required">Start Time Required</string>
+    <string name="endtime_required">End Time Required</string>
+    <string name="starttime_invalid">Start Time Invalid</string>
+    <string name="endtime_invalid">End Time Invalid</string>
+    <string name="no_data">No Data Available For the Specified Duration</string>
+    <string name="heart">
+    M25.119,2.564c12.434,0.023,18.68,5.892,24.88,17.612  c6.2-11.721,12.446-17.589,24.877-17.612c13.81-0.025,25.035,10.575,25.061,23.66c0.033,23.708-24.952,47.46-49.938,71.212  C25.016,73.685,0.03,49.932,0.064,26.224C0.085,13.14,11.309,2.539,25.119,2.564z
+  </string>
+    <string name="title_activity_home2">Home2Activity</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
