@@ -80,7 +80,6 @@
                     android:id="@+id/daily"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/mybutton"
                     android:text="Daily"
                     android:textAllCaps="false"
                     android:textColor="@color/dark_blue_300"
@@ -91,7 +90,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:background="@drawable/mybutton"
                     android:text="Monthly"
                     android:textAllCaps="false"
                     android:textColor="@color/dark_blue_300"
@@ -102,14 +100,11 @@
                     android:id="@+id/weekly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/mybutton"
                     android:text="Weekly"
                     android:textAllCaps="false"
+                    android:layout_marginLeft="20dp"
                     android:textColor="@color/dark_blue_300"
-                    android:textStyle="bold">
-
-                </androidx.appcompat.widget.AppCompatButton>
+                    android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
