@@ -165,6 +165,10 @@ public class QuizActivity extends AppCompatActivity {
                     //Toast.makeText(this, "Quiz Finished.", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+            case R.id.quizBtn:
+                Intent intent = new Intent(QuizActivity.this, MainActivity.class);
+                startActivity(intent);
         }
     }
 
