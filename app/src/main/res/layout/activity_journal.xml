@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sea_bg"
-    android:padding="10dp"
     tools:context=".Journal">
 
     <TextView
@@ -16,7 +15,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:text="NOTES"
+        android:text="JOURNAL"
         android:textAlignment="center"
         android:textColor="@color/dark_blue_300"
         android:textSize="24dp"
@@ -29,6 +28,7 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="12dp"
         android:layout_above="@id/addnewnotebtn"
         android:layout_below="@id/notestitle" />
 
@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
-        android:layout_marginBottom="35dp"
+        android:layout_margin="35dp"
         android:background="@drawable/home_main_btn"
         android:text="Add new note"
         android:textColor="#FFF" />

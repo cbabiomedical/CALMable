@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.calmable.Home;
+
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
 import org.naishadhparmar.zcustomcalendar.Property;
 
@@ -112,7 +112,7 @@ public class CalenderActivity extends AppCompatActivity {
 
         if (happyValue == 1) {
             //dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"happy");
-            dateHashMap.put(20,"happy");
+            dateHashMap.put(31,"happy");
         }
         if (awesomeValue == 2) {
             //dateHashMap.put(2,"awesome");

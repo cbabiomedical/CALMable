@@ -47,7 +47,7 @@ public class PainReliefMusicActivity extends AppCompatActivity {
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Calming 528Hz");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
