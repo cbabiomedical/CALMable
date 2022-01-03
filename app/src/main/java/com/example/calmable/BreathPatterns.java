@@ -22,11 +22,17 @@ public class BreathPatterns extends AppCompatActivity {
         level1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(BreathPatterns.this, BreathPattern1.class);
-                startActivity(intent);
-                //startActivity(new Intent(getActivity(),breathLevel1.class));
-
+                PatternMethod();
+            }
+            private void PatternMethod() {
+                Log.d("--BreathLevel1.x value-", String.valueOf(BreathLevel1.x));
+                if(BreathLevel1.x == 0){
+                    Intent intent = new Intent(BreathPatterns.this, BreathPattern1Info.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(BreathPatterns.this, BreathPattern1.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -44,8 +50,17 @@ public class BreathPatterns extends AppCompatActivity {
         level2Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BreathPatterns.this, BreathPattern2.class);
-                startActivity(intent);
+                PatternMethod();
+            }
+            private void PatternMethod() {
+                Log.d("--BreathLevel1.x value-", String.valueOf(BreathLevel1.x));
+                if(BreathLevel2.x2 == 0){
+                    Intent intent = new Intent(BreathPatterns.this, BreathPattern2Info.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(BreathPatterns.this, BreathPattern2.class);
+                    startActivity(intent);
+                }
             }
         });
 
