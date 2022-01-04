@@ -75,7 +75,7 @@
             android:textStyle="bold"
             android:text="1. Close your mouth and inhale quietly through your nose to a mental count of 4.
                           \n\n2. Exhale completely through your mouth to a count of 4.
-                          \n\n3. This is one breath. Now inhale again and repeat the cycle 14 more times for a total of 15 breaths."/>
+                          \n\n3. This is one breath. Now inhale again and repeat the cycle 14 more times for a total of 15 breaths.\n\n"/>
         <!--<Button
             android:id="@+id/Btn1"
             android:layout_width="match_parent"
