@@ -21,15 +21,18 @@
 
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="331dp"
+        android:layout_height="316dp"
+        android:src="@drawable/sleep11"
         app:layout_constraintBottom_toBottomOf="@+id/SleepImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/SleepImage"
         app:layout_constraintTop_toTopOf="@+id/SleepImage"
-        app:layout_constraintVertical_bias="0.58000004"
-        android:src="@drawable/sleep11"
-        />
+        app:layout_constraintVertical_bias="0.58000004" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/startbutton"
