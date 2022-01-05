@@ -29,6 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".SleepIntro"
+            android:exported="true" />
+        <activity
             android:name=".fitbit.FitbitMainActivity"
             android:exported="false" />
         <activity

@@ -21,7 +21,7 @@ public class SleepyHome extends AppCompatActivity {
     }
 
     public void btnGoSleepyStories (View view) {
-        startActivity(new Intent(getApplicationContext(), SleepStoryAudioActivity.class));
+        startActivity(new Intent(getApplicationContext(), SleepIntro.class));
     }
 
     public void btnGoMeditation (View view) {
