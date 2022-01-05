@@ -25,14 +25,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:backgroundTint="@color/teal_700"
+                android:backgroundTint="@color/teal_100"
                 android:text="Audio Story"
                 android:textColor="@color/white"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/teal_100"
+                android:backgroundTint="@color/teal_700"
                 android:text="Read Story"
                 android:textColor="@color/white"
                 android:onClick="btnGoStoryRead"/>
