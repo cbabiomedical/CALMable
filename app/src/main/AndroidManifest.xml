@@ -30,7 +30,10 @@
         android:theme="@style/Theme.CALMable">
         <activity
             android:name=".fitbit.FitbitHomeActivity"
-            android:exported="false" />
+            android:exported="true" />
+        <activity
+            android:name=".SleepIntro"
+            android:exported="true" />
         <activity
             android:name=".fitbit.FitbitMainActivity"
             android:exported="false"

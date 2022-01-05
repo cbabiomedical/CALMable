@@ -7,23 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class BreathPattern4Info extends AppCompatActivity {
+public class SleepIntro extends AppCompatActivity {
 
     private Button startbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breath_pattern4_info);
+        setContentView(R.layout.activity_sleep_intro);
 
-        //button to go to level 4
         startbutton = findViewById(R.id.startbutton);
-        startbutton.setOnClickListener(new View.OnClickListener() {
+        startbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BreathPattern4Info.this, BreathPattern4.class);
+
+                Intent intent = new Intent(SleepIntro.this, SleepStoryAudioActivity.class);
                 startActivity(intent);
+                //startActivity(new Intent(getActivity(),breathLevel1.class));
+
             }
         });
     }
+
 }

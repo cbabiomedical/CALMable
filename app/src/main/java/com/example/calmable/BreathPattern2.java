@@ -24,6 +24,8 @@ import java.text.MessageFormat;
 
 public class BreathPattern2 extends AppCompatActivity {
 
+    public static int x2;
+
     //adding the audio
     MediaPlayer mysong, mysong2, mysong4;
 
@@ -65,7 +67,7 @@ public class BreathPattern2 extends AppCompatActivity {
         breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths", prefs2.getBreaths()));
         Log.d("---get breaths value2--", String.valueOf(prefs2.getBreaths()));
 
-        //timeTxt.setText(prefs.getDate());
+        x2 = prefs2.getBreaths();
 
         //button to go back
         backButton2 = findViewById(R.id.backbutton2);

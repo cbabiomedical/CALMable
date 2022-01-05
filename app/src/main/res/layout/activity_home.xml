@@ -291,7 +291,7 @@
                         android:id="@+id/reportHomeBtn"
                         android:layout_width="155dp"
                         android:layout_height="45dp"
-                        android:background="@drawable/mybutton"
+                        android:background="@drawable/home_main_btn"
                         android:onClick="btnReport"
                         android:text="Report"
                         android:textColor="@color/white" />
