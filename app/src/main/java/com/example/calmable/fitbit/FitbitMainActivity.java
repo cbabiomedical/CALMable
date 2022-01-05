@@ -1,10 +1,11 @@
 package com.example.calmable.fitbit;
 
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.content.Context;
@@ -13,17 +14,15 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.example.calmable.BuildConfig;
-import com.example.calmable.R;
 import com.example.calmable.data.AlertService;
 import com.example.calmable.databinding.ActivityFitbitMainBinding;
 
+import net.openid.appauth.AuthState;
 import net.openid.appauth.AuthorizationException;
 import net.openid.appauth.AuthorizationRequest;
 import net.openid.appauth.AuthorizationResponse;
@@ -33,6 +32,7 @@ import net.openid.appauth.ResponseTypeValues;
 import net.openid.appauth.TokenResponse;
 
 import org.jetbrains.annotations.NotNull;
+
 
 public class FitbitMainActivity extends AppCompatActivity {
 
@@ -47,7 +47,6 @@ public class FitbitMainActivity extends AppCompatActivity {
         return this.RecordAudioRequestCode;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +60,8 @@ public class FitbitMainActivity extends AppCompatActivity {
 
         //If user is already logged in taking the user to the home page
         if (mStateManager.getCurrent().isAuthorized()) {
-//            Intent intent = new Intent(this, HomeActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(this, FitbitHomeActivity.class);
+            startActivity(intent);
             return;
         }
 
@@ -110,7 +109,7 @@ public class FitbitMainActivity extends AppCompatActivity {
 
             Context context = this;
             if (resp != null) {
-
+                mStateManager.updateAfterAuthorization(resp, ex);
                 authService.performTokenRequest(
                         resp.createTokenExchangeRequest(),
                         new AuthorizationService.TokenResponseCallback() {
@@ -119,7 +118,7 @@ public class FitbitMainActivity extends AppCompatActivity {
                                 if (resp != null) {
                                     mStateManager.updateAfterTokenResponse(resp, ex);
 
-                                    Intent intent = new Intent(context, FitbitHomeFragment.class);
+                                    Intent intent = new Intent(context, FitbitHomeActivity.class);
                                     startActivity(intent);
                                 } else {
                                     AlertService.displaySnackBar(binding.view, "Authorization failed", false);

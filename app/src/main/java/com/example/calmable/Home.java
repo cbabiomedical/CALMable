@@ -56,12 +56,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     TextView txtHtRate;
     TextView txtProgress;
-    File fileName, fileName1;
+    File fileName, fileName1 , filNameHeartRate;
     FirebaseFirestore database;
     FirebaseUser mUser;
     StorageReference storageReference;
     FragmentWalletBinding binding;
-    Button happy,awesome,relaxed,sleepy,sad;
+    Button happy, awesome, relaxed, sleepy, sad;
 
 
     public static String viewPerson;
@@ -69,6 +69,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     String viewPlace;
     String dateAndTime;
     int finalRateff;
+
+    String timeAndHR;
+
+    public static String finalHR;
 
     private Handler mHandler;
 
@@ -217,6 +221,41 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         String chr = getColoredSpanned(Integer.toString(finalRateff), "#800000");
         String BPM = getColoredSpanned("\u1D2E\u1D3E\u1D39", "#000000");
         txtProgress.setText(Html.fromHtml(chr + " " + BPM));
+
+
+        SharedPreferences sharedPreferences1 = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        timeAndHR = sharedPreferences1.getString("timeAndHR", "0");
+
+        //Log.d("TAG", "updateLandingHeartRate:  " + timeAndHR);
+
+        finalHR = timeAndHR;
+
+        List<Object> heartRateList = new ArrayList<>();
+        heartRateList.add(finalHR);
+
+        //Writing data to file
+        try {
+            filNameHeartRate = new File(getCacheDir() + "/heartRateReport.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            filNameHeartRate.createNewFile();
+            if (!filNameHeartRate.exists()) {
+                filNameHeartRate.mkdirs();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filNameHeartRate, true));
+            int size = heartRateList.size();
+            for (int i = 0; i < size; i++) {
+                writer.write(heartRateList.get(i).toString());
+                writer.newLine();
+                writer.flush();
+
+                //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+            }
+
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
 
@@ -249,7 +288,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 //    }
 
 
-
     @Override
     public void applyText(String person, String place) {
 
@@ -280,6 +318,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             if (!fileName1.exists()) {
                 fileName1.mkdirs();
             }
+
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName1, true));
 
             writer.write(Home.viewPerson);
@@ -390,7 +429,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         }
 
         // Uploading file created to firebase storage
-
         storageReference = FirebaseStorage.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mUser.getUid();
@@ -539,8 +577,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     public void btnFitbitWatch(View view) {
         startActivity(new Intent(this, FitbitMainActivity.class));
     }
-
-
 
 
 }

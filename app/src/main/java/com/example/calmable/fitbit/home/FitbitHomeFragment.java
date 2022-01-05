@@ -1,6 +1,5 @@
-package com.example.calmable.fitbit;
+package com.example.calmable.fitbit.home;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,6 @@ import com.example.calmable.R;
 import com.example.calmable.data.APIService;
 import com.example.calmable.data.AlertService;
 import com.example.calmable.databinding.FragmentFitbitHomeBinding;
-import com.example.calmable.databinding.FragmentHomeBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +33,7 @@ import okhttp3.ResponseBody;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link FitbitHomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class FitbitHomeFragment extends Fragment {
@@ -176,12 +175,17 @@ public class FitbitHomeFragment extends Fragment {
                 //Extracting the required data from the response
                 ResponseBody responseBody = response.body();
                 String responseData = null;
+
+                Log.d("TAG", "-----XX---onResponse---XX-----: " + responseBody);
+
                 if(responseBody != null){
                     responseData = responseBody.string();
                     try {
                         JSONObject json = new JSONObject(responseData);
                         JSONObject activities = json.getJSONObject("activities-heart-intraday");
                         JSONArray activitiesDataSet = activities.getJSONArray("dataset");
+
+                        Log.d("TAG", "----------onResponse:----------" + responseData);
 
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
@@ -193,7 +197,7 @@ public class FitbitHomeFragment extends Fragment {
                                         String time = element.getString("time");
                                         Integer heartRate = element.getInt("value");
                                         _binding.timestamp.setText(time);
-                                        _binding.heart.setText(heartRate);
+                                        _binding.heart.setText(heartRate.toString());
                                     }else{
                                         AlertService.displaySnackBar(_binding.view, getText(R.string.no_data), false);
                                     }

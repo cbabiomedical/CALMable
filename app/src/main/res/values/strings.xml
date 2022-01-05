@@ -50,7 +50,7 @@
     <string name="start_measure_blood_oxygen">Start Measure Blood Oxygen</string>
     <string name="stop_measure_blood_oxygen">Stop Measure Blood Oxygen</string>
 
-    <string name="heart_rate">Heart Rate:%d</string>
+    <string name="heart_rate">Heart Rate</string>
     <string name="blood_pressure">sbp:%1$d,dbp:%2$d</string>
     <string name="blood_oxygen">blood oxygen:%1$d</string>
 

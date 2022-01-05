@@ -43,6 +43,8 @@ public class DeviceActivity extends AppCompatActivity {
     public static int finalRate;
     boolean stopThread = false;
 
+    String timeAndHR;
+
     private static final String TAG = "DeviceActivity";
     public static final String DEVICE_MACADDR = "device_macaddr";
 
@@ -134,6 +136,7 @@ public class DeviceActivity extends AppCompatActivity {
                         //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
 
+                        // update heart rate after connect watch
                         stopThread = false;
                         ExampleRunnable runnable = new ExampleRunnable();
                         new Thread(runnable).start();
@@ -253,7 +256,14 @@ public class DeviceActivity extends AppCompatActivity {
             for (int q = 0; q >= 0; q++) {
 
                 mBleConnection.startMeasureOnceHeartRate();
-                Log.d(TAG, "run: " + q + " = " + finalRate);
+                Log.d(TAG, "run : " + q + " = " + finalRate);
+
+                timeAndHR = q + " , " + finalRate;
+                //To save
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("timeAndHR", timeAndHR);
+                editor.commit();
 
                 try {
                     Thread.sleep(1000);
@@ -272,10 +282,9 @@ public class DeviceActivity extends AppCompatActivity {
     CRPHeartRateChangeListener mHeartRateChangListener = new CRPHeartRateChangeListener() {
         @Override
         public void onMeasuring(int rate) {
-            Log.d(TAG, "onMeasuring : " + rate);
+            Log.d(TAG, "xxx onMeasuring : " + rate);
             //finalRate = rate;
             updateTextView(tvHeartRate, String.format(getString(R.string.heart_rate), rate));
-
 //            //To save
 //            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
 //            SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -293,6 +302,7 @@ public class DeviceActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("heartRate", rate);
             editor.commit();
+
         }
 
         @Override
