@@ -17,4 +17,24 @@ public class SleepStoryReadActivity extends AppCompatActivity {
     public void btnGoStoryAudio (View view){
         startActivity(new Intent(getApplicationContext(), SleepStoryAudioActivity.class));
     }
+
+    //Sleep story categories
+    public void SleepStory1btn (View view){
+        startActivity(new Intent(getApplicationContext(), SleepStory1.class));
+    }
+    public void SleepStory2btn (View view){
+        startActivity(new Intent(getApplicationContext(), SleepStory2.class));
+    }
+    public void SleepStory3btn (View view){
+        startActivity(new Intent(getApplicationContext(), SleepStory3.class));
+    }
+    public void SleepStory4btn (View view){
+        startActivity(new Intent(getApplicationContext(), SleepStory4.class));
+    }
+    public void SleepStory5btn (View view){
+        startActivity(new Intent(getApplicationContext(), SleepStory5.class));
+    }
+    public void SleepStory6btn (View view){
+        startActivity(new Intent(getApplicationContext(), SleepStory6.class));
+    }
 }
