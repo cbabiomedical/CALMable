@@ -29,6 +29,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable">
         <activity
+            android:name=".Sleep6DarkTheme"
+            android:exported="true" />
+        <activity
+            android:name=".Sleep5DarkTheme"
+            android:exported="true" />
+        <activity
+            android:name=".Sleep4DarkTheme"
+            android:exported="true" />
+        <activity
+            android:name=".Sleep3DarkTheme"
+            android:exported="true" />
+        <activity
+            android:name=".Sleep2DarkTheme"
+            android:exported="true" />
+        <activity
+            android:name=".Sleep1DarkTheme"
+            android:exported="true" />
+        <activity
             android:name=".SleepStory6"
             android:exported="true" />
         <activity
