@@ -6,11 +6,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,13 +28,27 @@ import com.example.calmable.adapter.SuggestionSimpleCursorAdapter;
 import com.example.calmable.db.SuggestionDatabase;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
@@ -43,6 +59,10 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
     private PopUpOneListener listener;
     private EditText editPerson;
     private EditText editPlace;
+    public static String latLong;
+    public static double latitude,longitude;
+    FirebaseUser mUser;
+    File fileName1;
     //AutoCompleteTextView autoCompleteTextView;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -51,6 +71,7 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
 
     ArrayAdapter<String> adapter;
     static ArrayList<String> personList = new ArrayList<>();
+    public static ArrayList<LatLng> addArray = new ArrayList<LatLng>();
 
 
     @NonNull
@@ -84,6 +105,13 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
                         startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
                         Log.d("TAG person-----", person);
                         Log.d("TAG location-----", place);
+
+                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        Gson gson = new Gson();
+                        String json = gson.toJson(addArray);
+                        editor.putString("addArray", json);
+                        editor.commit();
                     }
                 });
 
@@ -159,12 +187,77 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
                         //set address
                         editPlace.setText(addresses.get(0).getAddressLine(0));
 
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                        LatLng place = new LatLng(latitude,longitude);
+                        Log.d("Sydney-----------", String.valueOf(place));
+
+                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
+                        Gson gson = new Gson();
+                        String json = sharedPreferences.getString("addArray", "");
+                        Type type = new TypeToken<Set<LatLng>>() {}.getType();
+                        Set<LatLng> arrayList = gson.fromJson(json, type);
+
+                        if (arrayList == null) {
+                            saveLocation();
+                        } else {
+                            addArray = new ArrayList(arrayList);
+                        }
+                        addArray.add(place);
+
+                        //Uploading stressed location data to firebase
+//                        mUser = FirebaseAuth.getInstance().getCurrentUser();
+//                        mUser.getUid();
+//                        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("locations").push();
+//
+//                        //HashMap<String, Object> Location = new HashMap<>();
+//                        List<Object> locationList = new ArrayList<>();
+//                        locationList.add(Double.toString(location.getLatitude()));
+//                        locationList.add(Double.toString(location.getLongitude()));
+//                        myRef.setValue(locationList);
+
+
+                        latLong = Double.toString(location.getLatitude()) + "," + Double.toString(location.getLongitude());
+                        // latLong = new LatLng(location.getLatitude(), location.getLongitude());
+                        Log.d("Loca LatLong-----------", latLong);
+
+                        //Writing stressed location data to text file
+                        try {
+                            fileName1 = new File(getActivity().getCacheDir() + "/stressedLocation.txt");
+                            fileName1.createNewFile();
+                            if (!fileName1.exists()) {
+                                fileName1.mkdirs();
+                            }
+                            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName1, true));
+
+                            writer.write(latLong);
+                            writer.newLine();
+                            writer.flush();
+
+                            Log.d("TAG", "----------stressed Location File");
+
+                            writer.close();
+
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
+
+
                     }catch (IOException e){
                         e.printStackTrace();
                     }
                 }
             }
         });
+    }
+
+    public void saveLocation(){
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(addArray);
+        editor.putString("addArray", json);
+        editor.commit();
     }
 
 
