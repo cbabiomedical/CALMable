@@ -116,8 +116,85 @@
                         android:text="Add Fitbit"
                         android:layout_marginStart="24dp"/>
 
+                    <Button
+                        android:id="@+id/testStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="btnStartTest"
+                        android:text="Create new TF"
+                        android:visibility="gone"
+                        android:layout_marginStart="24dp"/>
+
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Mark"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="24dp"/>
+
+                    <Button
+                        android:id="@+id/btnAddPlus"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="btnAddPlus"
+                        android:text="+"
+                        android:layout_marginStart="24dp"/>
+
+                    <Button
+                        android:id="@+id/btnAddMinus"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="btnAddMinus"
+                        android:text="-"
+                        android:layout_marginStart="24dp"/>
+
+                    <TextView
+                        android:id="@+id/markValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="0"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="24dp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Downloads File"
+                        android:onClick="btnDownloadTxtFile"
+                        android:layout_marginEnd="16dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clear File"
+                        android:onClick="btnClearTxtFile"/>
+                </LinearLayout>
+
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"

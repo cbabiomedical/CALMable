@@ -44,6 +44,7 @@ public class DeviceActivity extends AppCompatActivity {
     boolean stopThread = false;
 
     String timeAndHR;
+    int q;
 
     private static final String TAG = "DeviceActivity";
     public static final String DEVICE_MACADDR = "device_macaddr";
@@ -144,6 +145,8 @@ public class DeviceActivity extends AppCompatActivity {
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
                         state = R.string.state_connecting;
+                        tvConnectMsg1.setText("");
+                        tvConnectMsg2.setText("");
                         break;
                     case CRPBleConnectionStateListener.STATE_DISCONNECTED:
                         state = R.string.state_disconnected;
@@ -253,17 +256,17 @@ public class DeviceActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            for (int q = 0; q >= 0; q++) {
+            for (q = 0; q >= 0; q++) {
 
                 mBleConnection.startMeasureOnceHeartRate();
                 Log.d(TAG, "run : " + q + " = " + finalRate);
 
-                timeAndHR = q + " , " + finalRate;
-                //To save
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("timeAndHR", timeAndHR);
-                editor.commit();
+//                timeAndHR = q + " , " + finalRate;
+//                //To save
+//                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString("timeAndHR", timeAndHR);
+//                editor.commit();
 
                 try {
                     Thread.sleep(1000);
@@ -282,25 +285,29 @@ public class DeviceActivity extends AppCompatActivity {
     CRPHeartRateChangeListener mHeartRateChangListener = new CRPHeartRateChangeListener() {
         @Override
         public void onMeasuring(int rate) {
-            Log.d(TAG, "xxx onMeasuring : " + rate);
-            //finalRate = rate;
+            Log.d(TAG, q + "s  ,  " + "onMeasuring : " + rate + "bpm");
             updateTextView(tvHeartRate, String.format(getString(R.string.heart_rate), rate));
-//            //To save
-//            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            editor.putInt("heartRate", rate);
-//            editor.commit();
-        }
 
+            timeAndHR = q + "s  ,  " + "onMeasuring : " + rate + "bpm";
+
+            //To save
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("timeAndHR2", timeAndHR);
+            editor.commit();
+        }
         @Override
         public void onOnceMeasureComplete(int rate) {
             finalRate = rate;
-            Log.d(TAG, "onOnceMeasureComplete: " + rate);
+            Log.d(TAG, q + "s  ,  " + "onOnceMeasureComplete: " + rate + "bpm");
+
+            timeAndHR = q + "s  ,  " + "onOnceMeasureComplete: " + rate + "bpm";
 
             //To save
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("heartRate", rate);
+            editor.putString("timeAndHR", timeAndHR);
             editor.commit();
 
         }
@@ -366,7 +373,7 @@ public class DeviceActivity extends AppCompatActivity {
 
         @Override
         public void onTransCpmplete(Date date) {
-            Log.d(TAG, "onTransCpmplete");
+            Log.d(TAG, "onTransComplete");
         }
 
         @Override

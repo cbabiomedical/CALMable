@@ -1,20 +1,26 @@
 package com.example.calmable;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,13 +46,18 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,11 +67,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     TextView txtHtRate;
     TextView txtProgress;
-    File fileName, fileName1 , filNameHeartRate;
+    File fileName, fileName1, filNameHeartRate;
     FirebaseFirestore database;
     FirebaseUser mUser;
+    FirebaseStorage firebaseStorage;
     StorageReference storageReference;
-    FragmentWalletBinding binding;
+    StorageReference res;
     Button happy, awesome, relaxed, sleepy, sad;
 
 
@@ -69,10 +81,19 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     String viewPlace;
     String dateAndTime;
     int finalRateff;
+    List<Object> heartRateList;
+    String timeAndHRCompletedOne;
 
     String timeAndHR;
-
+    String timeAndHR2;
+    String finalHRCompletedOne;
     public static String finalHR;
+    public static String finalHR2;
+
+    int markHeartRate = 0;
+    TextView markHeartRateValue;
+
+    DownloadManager manager;
 
     private Handler mHandler;
 
@@ -96,6 +117,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         relaxed = findViewById(R.id.happyEmoji_3);
         sleepy = findViewById(R.id.happyEmoji_4);
         sad = findViewById(R.id.happyEmoji_5);
+        markHeartRateValue = (TextView) findViewById(R.id.markValue);
 
         this.mHandler = new Handler();
         m_Runnable.run();
@@ -209,8 +231,9 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         super.onPause();
         mHandler.removeCallbacks(m_Runnable);
         finish();
-
     }
+
+
 
 
     // show landing page heart rate
@@ -223,19 +246,26 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         txtProgress.setText(Html.fromHtml(chr + " " + BPM));
 
 
+        // write heart rate to txt - start
         SharedPreferences sharedPreferences1 = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
         timeAndHR = sharedPreferences1.getString("timeAndHR", "0");
+        timeAndHR2 = sharedPreferences1.getString("timeAndHR2", "0");
 
-        //Log.d("TAG", "updateLandingHeartRate:  " + timeAndHR);
 
         finalHR = timeAndHR;
+        finalHR2 = timeAndHR2;
+        String b = String.valueOf(markHeartRateValue);
 
-        List<Object> heartRateList = new ArrayList<>();
+        heartRateList = new ArrayList<>();
+        heartRateList.add(finalHR2);
         heartRateList.add(finalHR);
+        heartRateList.add(markHeartRate);
+        //heartRateList.add(completeList);
+
 
         //Writing data to file
         try {
-            filNameHeartRate = new File(getCacheDir() + "/heartRateReport.txt");
+            filNameHeartRate = new File(getCacheDir() + "/heartRateReport1212.txt");
             //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
             filNameHeartRate.createNewFile();
             if (!filNameHeartRate.exists()) {
@@ -247,7 +277,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                 writer.write(heartRateList.get(i).toString());
                 writer.newLine();
                 writer.flush();
-
                 //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
             }
 
@@ -256,8 +285,36 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-    }
+        // write hr to txt - end
 
+
+        // upload to firebase
+        storageReference = FirebaseStorage.getInstance().getReference();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser.getUid();
+        // Uploading file created to firebase storage
+        StorageReference storageReference1a = storageReference.child("users/" + mUser.getUid());
+        try {
+            StorageReference mountainsRef = storageReference1a.child("/heartRateReport1212.txt");
+            InputStream stream = new FileInputStream(new File(filNameHeartRate.getAbsolutePath()));
+            UploadTask uploadTask = mountainsRef.putStream(stream);
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    Toast.makeText(ConcentrationReportMonthly.this, "File Uploaded", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(ConcentrationReportMonthly.this, "File Uploading Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     // update coins in CALMable
 //    public void updateLandingCoins() {
@@ -578,5 +635,173 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         startActivity(new Intent(this, FitbitMainActivity.class));
     }
 
+    public void btnStartTest(View view) {
+        // Create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter new file name ");
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.custom_layout, null);
+        builder.setView(customLayout);
+
+        // add a button
+        builder.setPositiveButton(
+                "OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // send data from the AlertDialog to the Activity
+                        EditText editText = customLayout.findViewById(R.id.editText);
+                        sendDialogDataToActivity(editText.getText().toString());
+                    }
+                });
+
+        // create and show
+        // the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        //Toast.makeText(Home.this, "Test started", Toast.LENGTH_SHORT).show();
+    }
+
+    // Do something with the data
+    // coming from the AlertDialog
+    private void sendDialogDataToActivity(String data) {
+
+        String newFileName = data + ".txt";
+        Log.d("TAG", "New file name : " + newFileName);
+
+        SharedPreferences sharedPreferences1 = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        timeAndHR = sharedPreferences1.getString("timeAndHR1", "0");
+        String timeAndHRCompletedOne = sharedPreferences1.getString("timeAndHR", "0");
+
+
+        //Log.d("TAG", "updateLandingHeartRate:  " + timeAndHR);
+
+//        finalHR = timeAndHR;
+        finalHRCompletedOne = timeAndHRCompletedOne;
+
+        // add data to arraylist
+        heartRateList = new ArrayList<>();
+        //heartRateList.add(finalHR);
+        heartRateList.add(finalHRCompletedOne);
+
+        Log.d("TAG", "updateLandingHeartRate--------bbb-----: " + timeAndHRCompletedOne);
+
+        //Writing data to file
+        try {
+            filNameHeartRate = new File(getCacheDir() + newFileName);
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            filNameHeartRate.createNewFile();
+            if (!filNameHeartRate.exists()) {
+                filNameHeartRate.mkdirs();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filNameHeartRate, true));
+            int size = heartRateList.size();
+            for (int i = 0; i < size; i++) {
+                writer.write(heartRateList.get(i).toString());
+                writer.newLine();
+                writer.flush();
+
+                //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+            }
+
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+        Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+    }
+
+
+    // add mark
+    public void btnAddPlus(View view) {
+
+        markHeartRate++;
+        markHeartRateValue.setText("" + markHeartRate);
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("markValue1", markHeartRate);
+        editor.commit();
+
+//        Log.d("TAG", "btnAddPlus: " + markHeartRate);
+        //Toast.makeText(getApplicationContext(), "Mark = " + markHeartRateValue, Toast.LENGTH_SHORT).show();
+    }
+
+    public void btnAddMinus(View view) {
+
+        if (markHeartRate <= 0) markHeartRate = 0;
+
+        else markHeartRate--;
+        //Log.d("TAG", "btnAddMinus: " + markHeartRate);
+        markHeartRateValue.setText("" + markHeartRate);
+        //Toast.makeText(getApplicationContext(), "Minus 1", Toast.LENGTH_SHORT).show();
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("markValue2", markHeartRate);
+        editor.commit();
+    }
+
+    // file download action
+    public void btnDownloadTxtFile(View view) {
+
+        storageReference = firebaseStorage.getInstance().getReference();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser.getUid();
+        res = storageReference.child("users/" + mUser.getUid()).child("/heartRateReport1212.txt");
+        res.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String url = uri.toString();
+                downloadFiles(Home.this, "/heartRateReport1212", ".txt", DIRECTORY_DOWNLOADS, url);
+                Toast.makeText(getApplicationContext(), "Check your downloads!", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+
+    }
+
+    // To download text file from firestore to device direct download
+    public void downloadFiles(Context context, String fileNameX, String fileExtension, String destinationDirectory, String url) {
+
+        DownloadManager downloadmanager = (DownloadManager) context
+                .getSystemService(context.DOWNLOAD_SERVICE);
+
+        Uri uri = Uri.parse(url);
+
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, fileNameX + fileExtension);
+
+        downloadmanager.enqueue(request);
+    }
+
+
+    // To clear text file data
+    public void btnClearTxtFile(View view) {
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(getCacheDir() + "/heartRateReport1212.txt");
+            writer.print("");
+            writer.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
+
+    }
 
 }
+

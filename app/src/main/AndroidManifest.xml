@@ -27,7 +27,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CALMable">
+        android:theme="@style/Theme.CALMable"
+        tools:replace="android:icon,android:theme">
         <activity
             android:name=".fitbit.FitbitHomeActivity"
             android:exported="true" />
