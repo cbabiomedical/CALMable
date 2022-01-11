@@ -145,17 +145,17 @@
                     android:layout_marginStart="15dp"
                     app:layout_constraintStart_toEndOf="@+id/SleepStory4btn"
                     app:layout_constraintTop_toTopOf="@+id/SleepStory4btn"
-                    android:onClick="SleepStory8btn"
+                    android:onClick="SleepStory5btn"
                     app:srcCompat="@drawable/moony" />
 
                 <ImageButton
-                    android:id="@+id/SleepStory9btn"
+                    android:id="@+id/SleepStory6btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     app:layout_constraintStart_toEndOf="@+id/SleepStory5btn"
                     app:layout_constraintTop_toTopOf="@+id/SleepStory5btn"
-                    android:onClick="SleepStory9btn"
+                    android:onClick="SleepStory6btn"
                     app:srcCompat="@drawable/stone" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -205,18 +205,18 @@
                     android:layout_marginStart="15dp"
                     app:layout_constraintStart_toEndOf="@+id/SleepStory7btn"
                     app:layout_constraintTop_toTopOf="@+id/SleepStory7btn"
-                    android:onClick="SleepStory5btn"
+                    android:onClick="SleepStory8btn"
                     app:srcCompat="@drawable/ice" />
 
                 <ImageButton
-                    android:id="@+id/SleepStory6btn"
+                    android:id="@+id/SleepStory9btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     app:layout_constraintStart_toEndOf="@+id/SleepStory8btn"
                     app:layout_constraintTop_toTopOf="@+id/SleepStory8btn"
-                    android:onClick="SleepStory6btn"
-                    app:srcCompat="@drawable/fh11" />
+                    android:onClick="SleepStory9btn"
+                    app:srcCompat="@drawable/poundw" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </HorizontalScrollView>
