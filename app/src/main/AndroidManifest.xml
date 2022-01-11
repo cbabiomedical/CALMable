@@ -30,6 +30,24 @@
         android:theme="@style/Theme.CALMable"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".Sleep9DarkTheme"
+            android:exported="true" />
+        <activity
+            android:name=".SleepStory9"
+            android:exported="true" />
+        <activity
+            android:name=".Sleep8DarkTheme"
+            android:exported="true" />
+        <activity
+            android:name=".SleepStory8"
+            android:exported="true" />
+        <activity
+            android:name=".Sleep7DarkTheme"
+            android:exported="true" />
+        <activity
+            android:name=".SleepStory7"
+            android:exported="true" />
+        <activity
             android:name=".Sleep6DarkTheme"
             android:exported="true" />
         <activity
