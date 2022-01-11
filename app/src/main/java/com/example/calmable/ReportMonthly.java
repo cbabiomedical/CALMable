@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -68,9 +69,10 @@ public class ReportMonthly extends AppCompatActivity {
     AppCompatButton daily;
     AppCompatButton yearly;
     AppCompatButton weekly, whereAmI;
+    Button place;
     File fileName, localFile;
     FirebaseUser mUser;
-    TextView place,person,time,tvDate;
+    TextView person,time,tvDate;
     String text,finalValue;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
@@ -282,15 +284,15 @@ public class ReportMonthly extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//
-//        // On click listener of where am i toggle button
-//        whereAmI.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), ConcentrationReportWhereamI.class);
-//                startActivity(intent);
-//            }
-//        });
+
+        place.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),LocationActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

@@ -17,21 +17,9 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/mybutton"
-        android:text="CURRENT LOCATION"
+        android:text="LOCATION"
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
-<!--    <Button-->
-<!--        android:id="@+id/button2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginBottom="30dp"-->
-<!--        android:layout_marginStart="30dp"-->
-<!--        android:layout_marginEnd="30dp"-->
-<!--        android:background="@drawable/mybutton"-->
-<!--        android:text="Retrieve Location"-->
-<!--        android:textColor="#ffffff"-->
-<!--        android:textSize="18sp" />-->
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -31,12 +32,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Set;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -45,14 +52,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         com.google.android.gms.location.LocationListener{
 
     private GoogleMap mMap;
+    public static ArrayList<LatLng> addArray = new ArrayList<LatLng>();
+
+//    LatLng sydney = new LatLng(-34,151);
+//    LatLng brisbane = new LatLng(-27.470125,153.02102);
+//    LatLng dubbo = new LatLng(-32.256943,148.601105);
 
     private GoogleApiClient mGoogleApiClient;
     private Location mLocation;
     private LocationManager mLocationManager;
     private LocationRequest mLocationRequest;
     private com.google.android.gms.location.LocationListener listener;
-    private long UPDATE_INTERVAL = 2000;
-    private long FASTEST_INTERVAL = 5000;
+    private long UPDATE_INTERVAL = 1000*60*60;
+    private long FASTEST_INTERVAL = 1000*60*60;
     private LocationManager locationManager;
     private LatLng latLng;
     private boolean isPermission;
@@ -62,12 +74,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("addArray", "");
+        Type type = new TypeToken<Set<LatLng>>() {}.getType();
+        Set<LatLng> arrayList = gson.fromJson(json, type);
+
         if (requestSinglePermission()) {
             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
             Log.d("TAG", "---------------------B-----------------------");
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
+
+//            addArray.add(sydney);
+//            addArray.add(brisbane);
+//            addArray.add(dubbo);
+
+            addArray = new ArrayList(arrayList);
+            Log.d("addArray Value", String.valueOf(addArray));
 
             Log.d("TAG", "---------------------C-----------------------");
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -165,10 +190,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(latLng!=null){
             Log.d("TAG", "---------------------K-----------------------");
 
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker in Current Location"));
+            mMap.addMarker(new MarkerOptions().position(latLng).title("Your Current Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,14F));
         }
+
+        for (int i=0;i<addArray.size();i++){
+            mMap.addMarker(new MarkerOptions().position(addArray.get(i)).title("Stressed Location"));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(15.0f));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(addArray.get(i)));
+        }
+
     }
+
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -248,6 +281,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        });
 
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        Log.d("latLang----", String.valueOf(latLng));
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -270,4 +304,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            mGoogleApiClient.disconnect();
 //        }
     }
+
 }
