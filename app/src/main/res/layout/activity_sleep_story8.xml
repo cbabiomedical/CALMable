@@ -14,12 +14,12 @@
         android:layout_height="wrap_content">
 
 
-        <ImageView
+        <pl.droidsonroids.gif.GifImageView
             android:id="@+id/forestImg"
             android:layout_width="wrap_content"
-            android:layout_height="265dp"
+            android:layout_height="240dp"
             android:layout_marginTop="0dp"
-            android:src="@drawable/icew"/>
+            android:src="@drawable/sleepcloud"/>
 
         <TextView
             android:id="@+id/theme"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="\n\n\nThe Christmas Hat"
+            android:text="\n\n\nWhat is ICE CREAM?"
             android:textColor="@color/white"
             android:textSize="45sp"
             android:fontFamily="@font/bilbo"
