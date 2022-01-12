@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sea_bg"
-    tools:context=".SleepStory1">
+    tools:context=".SleepStory6">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linear11"
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="240dp"
             android:layout_marginTop="0dp"
-            android:src="@drawable/forest"/>
+            android:src="@drawable/stonew"/>
 
         <TextView
             android:id="@+id/theme"

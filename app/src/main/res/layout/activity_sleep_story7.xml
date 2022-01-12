@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sea_bg"
-    tools:context=".SleepStory1">
+    tools:context=".SleepStory7">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linear11"
@@ -41,9 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="\n\n\nThe Christmas Hat"
+            android:text="\nThe Christmas Hat"
             android:textColor="@color/black"
-            android:textSize="45sp"
+            android:textSize="40sp"
             android:fontFamily="@font/bilbo"
             android:textStyle="bold"/>
 
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="\n\n\n\n\n\n\n\n\n\n\n\nby Tanya Humphreys
+            android:text="\n\n\n\n\nby Tanya Humphreys
        "
             android:textColor="@color/black"
             android:textSize="15sp"

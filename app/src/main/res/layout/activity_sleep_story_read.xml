@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="15dp"
     android:background="@drawable/sea_bg"
     tools:context=".SleepStoryReadActivity">
 
@@ -217,6 +218,16 @@
                     app:layout_constraintTop_toTopOf="@+id/SleepStory8btn"
                     android:onClick="SleepStory9btn"
                     app:srcCompat="@drawable/poundw" />
+
+                <ImageButton
+                    android:id="@+id/SleepStory10btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintStart_toEndOf="@+id/SleepStory9btn"
+                    app:layout_constraintTop_toTopOf="@+id/SleepStory9btn"
+                    android:onClick="SleepStory10btn"
+                    app:srcCompat="@drawable/morning" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </HorizontalScrollView>
