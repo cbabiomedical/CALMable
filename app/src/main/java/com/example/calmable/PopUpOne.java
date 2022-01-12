@@ -205,16 +205,11 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
                         }
                         addArray.add(place);
 
-                        //Uploading stressed location data to firebase
-//                        mUser = FirebaseAuth.getInstance().getCurrentUser();
-//                        mUser.getUid();
-//                        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("locations").push();
-//
-//                        //HashMap<String, Object> Location = new HashMap<>();
-//                        List<Object> locationList = new ArrayList<>();
-//                        locationList.add(Double.toString(location.getLatitude()));
-//                        locationList.add(Double.toString(location.getLongitude()));
-//                        myRef.setValue(locationList);
+                        //Uploading stressed location data to firebase realtime database
+                        mUser = FirebaseAuth.getInstance().getCurrentUser();
+                        mUser.getUid();
+                        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("Stressed locations");
+                        myRef.setValue(addArray);
 
 
                         latLong = Double.toString(location.getLatitude()) + "," + Double.toString(location.getLongitude());
