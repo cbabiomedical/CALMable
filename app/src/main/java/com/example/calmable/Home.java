@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +24,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.crrepa.ble.conn.CRPBleDevice;
 import com.example.calmable.databinding.FragmentWalletBinding;
+
 import com.example.calmable.fitbit.FitbitMainActivity;
 import com.example.calmable.scan.ScanActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,18 +48,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -82,7 +79,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     public static String viewPerson;
     public static String word;
     String viewPlace;
-    String dateAndTime;
+    String time;
     int finalRateff;
     List<Object> heartRateList;
     String timeAndHRCompletedOne;
@@ -351,19 +348,24 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     public void applyText(String person, String place) {
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh:mm:ss a");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
         String dateTime = simpleDateFormat.format(calendar.getTime());
-        dateAndTime = dateTime;
+        String date = simpleDateFormat1.format(calendar.getTime());
+
+        time = dateTime;
         viewPerson = person;
         viewPlace = place;
 
-        Log.d("Date And Time", dateAndTime);
+        Log.d("Date", date);
+        Log.d("Time", time);
         Log.d("Person Value", viewPerson);
         Log.d("Place Value", viewPlace);
 
         HashMap<String, Object> Reports = new HashMap<>();
         List<Object> reportList = new ArrayList<>();
-        reportList.add(dateAndTime);
+        reportList.add(date);
+        reportList.add(time);
         reportList.add(viewPerson);
         reportList.add(viewPlace);
 
@@ -391,6 +393,31 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
+        }
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser.getUid();
+        // Uploading file created to firebase storage
+        StorageReference storageReference1a = storageReference.child("users/" + mUser.getUid());
+        try {
+            StorageReference mountainsRef = storageReference1a.child("stressedPeople.txt");
+            InputStream stream = new FileInputStream(new File(fileName1.getAbsolutePath()));
+            UploadTask uploadTask = mountainsRef.putStream(stream);
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    Toast.makeText(ConcentrationReportMonthly.this, "File Uploaded", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(ConcentrationReportMonthly.this, "File Uploading Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
 //        //get last day of the month to calculate
@@ -517,7 +544,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         //uploading reportList array values to firebase real time db
         Reports.put("Reports", reportList);
-        FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("reportStress").child(dateAndTime).updateChildren(Reports)
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("reportStress").child(date).push().updateChildren(Reports)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -556,8 +583,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         builder.setPositiveButton("NO, I'm Stressed", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //Intent intent = new Intent(Home.this, UserInputPopup.class);
-                //startActivity(intent);
                 PopUpOne popUpOne = new PopUpOne();
                 popUpOne.show(getSupportFragmentManager(), "popup one");
             }
