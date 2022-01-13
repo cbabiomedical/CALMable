@@ -368,7 +368,7 @@
         <activity
             android:name=".StressHome"
             android:exported="true"
-            android:parentActivityName=".Home" />
+            android:parentActivityName=".AddNoteActivity" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

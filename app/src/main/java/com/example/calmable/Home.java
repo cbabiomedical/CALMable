@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crrepa.ble.conn.CRPBleDevice;
 import com.example.calmable.databinding.FragmentWalletBinding;
 import com.example.calmable.fitbit.FitbitMainActivity;
 import com.example.calmable.scan.ScanActivity;
@@ -61,6 +62,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.OnClick;
+
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
     private static final String COINS = "coins";
@@ -93,7 +96,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     int markHeartRate = 0;
     TextView markHeartRateValue;
 
-    DownloadManager manager;
 
     private Handler mHandler;
 
@@ -802,6 +804,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
 
     }
+
 
 }
 

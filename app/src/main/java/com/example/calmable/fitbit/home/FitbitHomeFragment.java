@@ -176,7 +176,6 @@ public class FitbitHomeFragment extends Fragment {
                 ResponseBody responseBody = response.body();
                 String responseData = null;
 
-                Log.d("TAG", "-----XX---onResponse---XX-----: " + responseBody);
 
                 if(responseBody != null){
                     responseData = responseBody.string();
@@ -185,7 +184,15 @@ public class FitbitHomeFragment extends Fragment {
                         JSONObject activities = json.getJSONObject("activities-heart-intraday");
                         JSONArray activitiesDataSet = activities.getJSONArray("dataset");
 
-                        Log.d("TAG", "----------onResponse:----------" + responseData);
+//                        JSONArray jsonArraysubject;
+//                        for (int i = 0; i < activitiesDataSet.length() - 1; i++) {
+//                            activities = activitiesDataSet.getJSONObject(i);
+//                            jsonArraysubject = activities.getJSONArray("subjects");
+//
+//                            Log.d("TAG", "----------onResponse:----------" + jsonArraysubject);
+//                        }
+
+//                        Log.d("TAG", "----------onResponse:----------" + responseData);
 
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
