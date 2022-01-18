@@ -58,7 +58,7 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
 
     private PopUpOneListener listener;
     private EditText editPerson;
-    private EditText editPlace;
+    private EditText editPlace,editReason;
     public static String latLong;
     public static double latitude,longitude;
     FirebaseUser mUser;
@@ -101,10 +101,12 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
                         editPerson.setText(searchView.getQuery());
                         String person = editPerson.getText().toString();
                         String place = editPlace.getText().toString();
-                        listener.applyText(person,place);
+                        String reason = editReason.getText().toString();
+                        listener.applyText(person,place,reason);
                         startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
                         Log.d("TAG person-----", person);
                         Log.d("TAG location-----", place);
+                        Log.d("TAG reason-----", reason);
 
                         SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -116,7 +118,8 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
                 });
 
         editPerson = view.findViewById(R.id.edit_person);
-        editPlace = view.findViewById(R.id.edit_place);
+        editPlace  = view.findViewById(R.id.edit_place);
+        editReason = view.findViewById(R.id.edit_reason);
         //autoCompleteTextView = view.findViewById(R.id.ac_text_view);
 
         //initialize fusedLocationProviderClient
@@ -315,6 +318,6 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
     }
 
     public interface PopUpOneListener{
-        void applyText(String person,String place);
+        void applyText(String person,String place,String reason);
     }
 }

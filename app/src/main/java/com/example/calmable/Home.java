@@ -78,7 +78,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     public static String viewPerson;
     public static String word;
-    String viewPlace;
+    String viewPlace,viewReason;
     String time;
     int finalRateff;
     List<Object> heartRateList;
@@ -345,7 +345,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
 
     @Override
-    public void applyText(String person, String place) {
+    public void applyText(String person, String place, String reason) {
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
@@ -356,11 +356,13 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         time = dateTime;
         viewPerson = person;
         viewPlace = place;
+        viewReason = reason;
 
         Log.d("Date", date);
         Log.d("Time", time);
         Log.d("Person Value", viewPerson);
         Log.d("Place Value", viewPlace);
+        Log.d("Reason Value", viewReason);
 
         HashMap<String, Object> Reports = new HashMap<>();
         List<Object> reportList = new ArrayList<>();
@@ -368,6 +370,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         reportList.add(time);
         reportList.add(viewPerson);
         reportList.add(viewPlace);
+        reportList.add(viewReason);
 
         Log.d("----Array----", String.valueOf(reportList));
 
