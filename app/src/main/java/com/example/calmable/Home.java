@@ -25,9 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.crrepa.ble.conn.CRPBleDevice;
-import com.example.calmable.databinding.FragmentWalletBinding;
-
 import com.example.calmable.fitbit.FitbitMainActivity;
 import com.example.calmable.scan.ScanActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -92,7 +89,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     int markHeartRate = 0;
     TextView markHeartRateValue;
-
 
     private Handler mHandler;
 
@@ -832,7 +828,5 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
 
     }
-
-
 }
 
