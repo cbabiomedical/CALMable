@@ -253,20 +253,20 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                //If task complete navigating from Register Activity to EnterPhone Activity
-                                                Intent intent = new Intent(RegisterUser.this, UserPreferences.class);
-                                                startActivity(intent);
-                                                // Display Toast message "Registration successful"
-                                                Toast.makeText(RegisterUser.this, "User has been registered successfully!", Toast.LENGTH_LONG)
-                                                        .show();
-
-                                                //redirect to login layout
-                                            } else {
-                                                Toast.makeText(RegisterUser.this, "Registration Unsuccessful. Try Again!", Toast.LENGTH_LONG)
-                                                        .show();
-                                            }
-                                            progressBar.setVisibility(View.GONE);
+//                                            if (task.isSuccessful()) {
+//                                                //If task complete navigating from Register Activity to EnterPhone Activity
+//                                                Intent intent = new Intent(RegisterUser.this, UserPreferences.class);
+//                                                startActivity(intent);
+//                                                // Display Toast message "Registration successful"
+//                                                Toast.makeText(RegisterUser.this, "User has been registered successfully!", Toast.LENGTH_LONG)
+//                                                        .show();
+//
+//                                                //redirect to login layout
+//                                            } else {
+//                                                Toast.makeText(RegisterUser.this, "Registration Unsuccessful. Try Again!", Toast.LENGTH_LONG)
+//                                                        .show();
+//                                            }
+//                                            progressBar.setVisibility(View.GONE);
 
                                         }
                                     });

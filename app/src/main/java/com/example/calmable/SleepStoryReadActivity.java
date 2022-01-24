@@ -49,4 +49,7 @@ public class SleepStoryReadActivity extends AppCompatActivity {
     public void SleepStory10btn (View view){
         startActivity(new Intent(getApplicationContext(), SleepStory10.class));
     }
+    public void SleepStory11btn (View view){
+        startActivity(new Intent(getApplicationContext(), SleepStory11.class));
+    }
 }

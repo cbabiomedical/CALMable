@@ -30,17 +30,29 @@
         android:theme="@style/Theme.CALMable"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".Sleep11DarkTheme"
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
+        <activity
+            android:name=".SleepStory11"
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
+        <activity
             android:name=".Sleep10DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory10"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep9DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory9"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep8DarkTheme"
             android:exported="true" />
