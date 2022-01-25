@@ -126,7 +126,7 @@ public class CalenderActivity extends AppCompatActivity {
         int sadValue = sharedPreferences.getInt("sadValue",0);
 
         //put values to dateHashMap
-        //dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"current");
+        dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"current");
 
         if (happyValue == 1) {
 

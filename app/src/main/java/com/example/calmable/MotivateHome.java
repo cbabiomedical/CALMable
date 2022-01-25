@@ -17,13 +17,16 @@ public class MotivateHome extends AppCompatActivity {
 
     public void btnGoSuccessStory (View view) {
         startActivity(new Intent(getApplicationContext() , SuccesStoryActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnGoCreativity (View view) {
         startActivity(new Intent(getApplicationContext() , SuccesStoryActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnGoSelfImpt (View view) {
         startActivity(new Intent(getApplicationContext() , SuccesStoryActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

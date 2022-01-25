@@ -255,6 +255,7 @@ public class ReportHome extends AppCompatActivity {
 
         BarData barData = new BarData(barDataSet);
         barChartdaily.setData(barData);
+        barChartdaily.animateXY(1500, 1500);
 
 
         //1 -----> Scatter chart
@@ -830,6 +831,7 @@ public class ReportHome extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportWeekly.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
@@ -840,6 +842,7 @@ public class ReportHome extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportMonthly.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
         // On click listener of yearly button
@@ -848,6 +851,7 @@ public class ReportHome extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportYearly.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
