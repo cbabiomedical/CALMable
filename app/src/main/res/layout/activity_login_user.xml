@@ -110,7 +110,7 @@
         android:id="@+id/signIn"
         android:layout_width="266dp"
         android:layout_height="55dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/mybutton"
         android:text="LOGIN"
         android:textColor="@color/white"
@@ -128,12 +128,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="128dp"
-        android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:paddingRight="15dp"
         android:text="Forgot Password?"
         android:textColor="@color/dark_blue_100"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
@@ -187,8 +186,8 @@
             android:onClick="btnUserRegister"
             android:paddingStart="8dp"
             android:text="Sign Up"
-            android:textColor="@color/av_red"
-            android:textSize="18dp"
+            android:textColor="#0c2461"
+            android:textSize="19dp"
             android:textStyle="bold" />
 
     </LinearLayout>

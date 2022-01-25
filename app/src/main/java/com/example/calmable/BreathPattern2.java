@@ -64,7 +64,7 @@ public class BreathPattern2 extends AppCompatActivity {
 
         //sessionTxt.setText(MessageFormat.format("{0} min today", prefs2.getSessions()));
         //y = prefs2.getBreaths();
-        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths", prefs2.getBreaths()));
+        breathsTxt.setText(MessageFormat.format("You have completed {0} breaths", prefs2.getBreaths()));
         Log.d("---get breaths value2--", String.valueOf(prefs2.getBreaths()));
 
         x2 = prefs2.getBreaths();

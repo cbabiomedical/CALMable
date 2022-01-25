@@ -61,7 +61,7 @@ public class BreathPattern6 extends AppCompatActivity {
         //startIntroAnimation();
 
         //sessionTxt.setText(MessageFormat.format("{0} min today", prefs6.getSessions()));
-        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths", prefs6.getBreaths()));
+        breathsTxt.setText(MessageFormat.format("You have completed {0} breaths", prefs6.getBreaths()));
 
         Log.d("---get breaths value6--", String.valueOf(prefs6.getBreaths()));
 

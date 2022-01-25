@@ -111,8 +111,8 @@ public class CalenderActivity extends AppCompatActivity {
         dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"current");
 
         if (happyValue == 1) {
-            //dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"happy");
-            dateHashMap.put(31,"happy");
+            dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"happy");
+            //dateHashMap.put(31,"happy");
         }
         if (awesomeValue == 2) {
             //dateHashMap.put(2,"awesome");
@@ -120,13 +120,13 @@ public class CalenderActivity extends AppCompatActivity {
             Log.d("Day valu--------", String.valueOf(Integer.valueOf(day)));
         }
         if (relaxedValue == 3) {
-            // dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"relaxed");
+            dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"relaxed");
         }
         if (sleepyValue == 4) {
-            dateHashMap.put(10,"sleepy");
+            dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"sleepy");
         }
         if (sadValue == 5) {
-            dateHashMap.put(15,"sad");
+            dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"sad");
         }
 
 //        dateHashMap.put(20,"happy");

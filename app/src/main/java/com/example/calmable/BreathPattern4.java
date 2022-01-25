@@ -62,7 +62,7 @@ public class BreathPattern4 extends AppCompatActivity {
         //startIntroAnimation();
 
         //sessionTxt.setText(MessageFormat.format("{0} min today", prefs4.getSessions()));
-        breathsTxt.setText(MessageFormat.format("You have completed {0} Breaths", prefs4.getBreaths()));
+        breathsTxt.setText(MessageFormat.format("You have completed {0} breaths", prefs4.getBreaths()));
 
         Log.d("---get breaths value4--", String.valueOf(prefs4.getBreaths()));
 

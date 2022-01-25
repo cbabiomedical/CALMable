@@ -74,7 +74,7 @@
         android:layout_marginTop="28dp"
         android:gravity="center"
         android:lineSpacingExtra="4dp"
-        android:text="You have completed 44 Breaths !"
+        android:text="You have completed 44 breaths !"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#160E2C"

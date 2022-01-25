@@ -569,7 +569,9 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     private void openDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
         builder.setCancelable(true);
-        builder.setMessage("Do you engage in any physical activity?");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("Stress Alert!");
+        builder.setMessage("Are you engaged in any physical activity?");
 
         builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
             @Override
@@ -633,6 +635,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     }
 
     public void btnStressed(View view) {
+//        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         startActivity(new Intent(this, Relax.class));
     }
 

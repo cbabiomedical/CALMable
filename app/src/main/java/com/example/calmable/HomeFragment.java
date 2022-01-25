@@ -61,16 +61,16 @@ public class HomeFragment extends Fragment {
         txtProgress2.setText(Html.fromHtml(phr+" "+"BPM, "+t+"m ago"));
 
 
-        //"I'm stressed" button
-        stressHomeBtn = (Button) view.findViewById(R.id.stressHomeBtn);
-        stressHomeBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(getActivity(), StressHome.class));
-
-            }
-        });
+//        //"I'm stressed" button
+//        stressHomeBtn = (Button) view.findViewById(R.id.stressHomeBtn);
+//        stressHomeBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//
+//                startActivity(new Intent(getActivity(), StressHome.class));
+//
+//            }
+//        });
 
         //"I'm Sleepy" button
         sleepyHomeBtn = (Button) view.findViewById(R.id.sleepyHomebtn);

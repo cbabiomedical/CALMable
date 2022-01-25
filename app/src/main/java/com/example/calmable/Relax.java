@@ -80,4 +80,11 @@ public class Relax extends AppCompatActivity {
     public void BtnGoChillOutMusic(View view) {
         startActivity(new Intent(getApplicationContext(), ChillOutMusicActivity.class));
     }
+
+    public void BtnGoCalmingVideos(View view) {
+        startActivity(new Intent(getApplicationContext(), VideoPlayerActivity.class));
+    }
+
+
+
 }
