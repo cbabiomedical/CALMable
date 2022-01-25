@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import io.realm.Realm;
+
 public class CalenderActivity extends AppCompatActivity {
     //initialize variable
     CustomCalendar customCalendar;
@@ -101,6 +103,22 @@ public class CalenderActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //int happyValue = intent.getIntExtra("happyValue", 0);
 
+        Realm.init(getApplicationContext());
+        //Realm realm = Realm.getDefaultInstance();
+        Realm realm = Realm.getInstance(RealmUtility.getDefaultConfig());
+
+        //realm.beginTransaction();
+        //Note note = realm.createObject(Note.class);
+        //note.setTitle(title);
+        //note.setDescription(description);
+//        long createdTime = System.currentTimeMillis();
+//        note.setCreatedTime(createdTime);
+//        realm.commitTransaction();
+        //String formatedTime = DateFormat.getDateTimeInstance().format(note.getCreatedTime());
+        //holder.timeOutput.setText(formatedTime);
+//        Date date = null;
+//        date = formatter.parse(events.getEventDate() + " " + events.getEventTime());
+
         int happyValue = sharedPreferences.getInt("happyValue",0);
         int awesomeValue = sharedPreferences.getInt("awesomeValue",0);
         int relaxedValue = sharedPreferences.getInt("relaxedValue",0);
@@ -108,19 +126,29 @@ public class CalenderActivity extends AppCompatActivity {
         int sadValue = sharedPreferences.getInt("sadValue",0);
 
         //put values to dateHashMap
-        dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"current");
+        //dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"current");
 
         if (happyValue == 1) {
+
             dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"happy");
             //dateHashMap.put(31,"happy");
+
+            //dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"happy");
+            //dateHashMap.put(Integer.valueOf(day),"happy");
+
         }
         if (awesomeValue == 2) {
             //dateHashMap.put(2,"awesome");
-            dateHashMap.put(Integer.valueOf(day), "awesome");
+            dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH), "awesome");
             Log.d("Day valu--------", String.valueOf(Integer.valueOf(day)));
         }
         if (relaxedValue == 3) {
+
             dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"relaxed");
+
+            // dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"relaxed");
+            //dateHashMap.put(23,"relaxed");
+
         }
         if (sleepyValue == 4) {
             dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH),"sleepy");

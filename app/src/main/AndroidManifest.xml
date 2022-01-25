@@ -30,68 +30,97 @@
         android:theme="@style/Theme.CALMable"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".Sleep11DarkTheme"
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
+        <activity
+            android:name=".SleepStory11"
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
+        <activity
             android:name=".Sleep10DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory10"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep9DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory9"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep8DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory8"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep7DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory7"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep6DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep5DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep4DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep3DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep2DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".Sleep1DarkTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory6"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory5"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory4"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory3"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory2"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepStory1"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".fitbit.FitbitHomeActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"/>
         <activity
             android:name=".SleepIntro"
             android:exported="true" />

@@ -640,8 +640,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     }
 
     public void btnSleepy(View view) {
-        Intent intent = new Intent(getApplicationContext(), SleepyHome.class);
-        startActivity(intent);
+        startActivity(new Intent(getApplicationContext(), SleepyHome.class));
     }
 
     public void btnMotivate(View view) {

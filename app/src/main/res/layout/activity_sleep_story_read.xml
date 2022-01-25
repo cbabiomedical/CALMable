@@ -179,7 +179,7 @@
         <HorizontalScrollView
             android:id="@+id/horizontal2"
             android:layout_width="369dp"
-            android:layout_height="220dp"
+            android:layout_height="235dp"
             android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -228,6 +228,16 @@
                     app:layout_constraintTop_toTopOf="@+id/SleepStory9btn"
                     android:onClick="SleepStory10btn"
                     app:srcCompat="@drawable/morning" />
+
+                <ImageButton
+                    android:id="@+id/SleepStory11btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintStart_toEndOf="@+id/SleepStory10btn"
+                    app:layout_constraintTop_toTopOf="@+id/SleepStory10btn"
+                    android:onClick="SleepStory11btn"
+                    app:srcCompat="@drawable/bookd" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </HorizontalScrollView>
