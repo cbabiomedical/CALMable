@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -280,4 +281,14 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         //startActivity(new Intent(getApplicationContext() , VerifyPhoneActivity.class));
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            Intent intentg = new Intent(getApplicationContext(), LoginUserActivity.class);
+            startActivity(intentg);
+        }
+    }
 }

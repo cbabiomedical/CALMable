@@ -61,6 +61,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     return;
                 }
                 verifyCode(code);
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), LoginUserActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -94,6 +95,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             Toast.makeText(VerifyPhoneActivity.this, "Authentication is successful", Toast.LENGTH_SHORT).show();
 
                             //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -176,5 +178,11 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                         .setForceResendingToken(token)     // ForceResendingToken from callbacks
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    public void gotoLandingPage(View view) {
+        FirebaseAuth.getInstance().signOut();
+        Intent intentGotoSU = new Intent(VerifyPhoneActivity.this, LoginUserActivity.class);
+        startActivity(intentGotoSU);
     }
 }

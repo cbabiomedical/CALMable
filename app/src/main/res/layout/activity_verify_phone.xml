@@ -101,7 +101,8 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="21sp"
-        app:cornerRadius="21dp" />
+        app:cornerRadius="21dp"
+        android:onClick="gotoLandingPage"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
