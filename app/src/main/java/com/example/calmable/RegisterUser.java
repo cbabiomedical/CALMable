@@ -235,6 +235,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                         //If task complete navigating from Register Activity to EnterPhone Activity
                                         Intent intent = new Intent(RegisterUser.this, UserPreferences.class);
                                         startActivity(intent);
+                                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                         // Display Toast message "Registration successful"
                                         Toast.makeText(RegisterUser.this, "User has been registered successfully!", Toast.LENGTH_LONG)
                                                 .show();

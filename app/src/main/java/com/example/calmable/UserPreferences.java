@@ -193,6 +193,7 @@ public class UserPreferences extends AppCompatActivity {
                                         Toast.makeText(UserPreferences.this, "Successful !", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(UserPreferences.this, EnterPhoneActivity.class);
                                         startActivity(intent);
+                                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                     }
                                 }
 

@@ -97,6 +97,7 @@ public class EnterPhoneActivity extends AppCompatActivity {
                 Intent intent = new Intent(EnterPhoneActivity.this, VerifyPhoneActivity.class);
                 intent.putExtra("phoneNo", phoneNo);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
             }
         });

@@ -91,18 +91,18 @@
 
     <Button
         android:id="@+id/buttonSignIn"
-        android:layout_width="266dp"
+        android:layout_width="265dp"
         android:layout_height="55dp"
         android:layout_below="@id/editTextCode"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
         android:background="@drawable/mybutton"
+        android:onClick="gotoLandingPage"
         android:text="CONTINUE"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="21sp"
-        app:cornerRadius="21dp"
-        android:onClick="gotoLandingPage"/>
+        app:cornerRadius="21dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -167,4 +167,11 @@ public class CalenderActivity extends AppCompatActivity {
         customCalendar.setDate(calendar,dateHashMap);
 
     }
+
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), ProfileMain.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 }

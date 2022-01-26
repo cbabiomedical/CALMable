@@ -61,6 +61,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    // main btns actions
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -71,9 +72,11 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
             //go to forget password page
             case R.id.forgotPassword:
                 startActivity(new Intent(this, ForgotPassword.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
             case R.id.homebtn:
                 startActivity(new Intent(this, Home.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
                 break;
         }
@@ -165,6 +168,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     startActivity(new Intent(LoginUserActivity.this, RoadMapVideoActivity.class));
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
                      /*if (user.isEmailVerified()) {
                         // redirect to user profile
@@ -189,5 +193,6 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
     public void btnUserRegister (View view) {
         startActivity(new Intent(getApplicationContext(), RegisterUser.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }
