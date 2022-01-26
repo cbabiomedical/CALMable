@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.example.calmable.BuildConfig;
+import com.example.calmable.Home;
+import com.example.calmable.R;
 import com.example.calmable.data.AlertService;
 import com.example.calmable.databinding.ActivityFitbitMainBinding;
 
@@ -142,5 +144,13 @@ public class FitbitMainActivity extends AppCompatActivity {
                     RecordAudioRequestCode
             );
         }
+    }
+
+
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), Home.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

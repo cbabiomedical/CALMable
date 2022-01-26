@@ -28,4 +28,12 @@ public class MotivateHome extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext() , SelfImprovementActivity.class));
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
+
+
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), Home.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 }

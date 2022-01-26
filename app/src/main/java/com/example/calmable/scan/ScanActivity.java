@@ -20,6 +20,7 @@ import com.crrepa.ble.conn.listener.CRPBleFirmwareUpgradeListener;
 import com.crrepa.ble.scan.bean.CRPScanDevice;
 import com.crrepa.ble.scan.callback.CRPScanCallback;
 import com.crrepa.ble.trans.upgrade.bean.HSFirmwareInfo;
+import com.example.calmable.Home;
 import com.example.calmable.PermissionUtils;
 import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
@@ -241,5 +242,13 @@ public class ScanActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(
                     this, PERMISSION_UPDATEBANDCONFIG, REQUEST_UPDATEBANDCONFIG);
         }
+    }
+
+
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), Home.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

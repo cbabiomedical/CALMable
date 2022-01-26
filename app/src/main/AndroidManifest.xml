@@ -130,8 +130,7 @@
             android:exported="true" />
         <activity
             android:name=".fitbit.FitbitMainActivity"
-            android:exported="false"
-            android:parentActivityName=".Home" />
+            android:exported="false" />
         <activity
             android:name="net.openid.appauth.RedirectUriReceiverActivity"
             android:exported="true"
@@ -211,7 +210,8 @@
             android:exported="true" />
         <activity
             android:name=".BreathPatterns"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Breath Corner"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -233,8 +233,7 @@
         <activity
             android:name=".SleepyHome"
             android:exported="true"
-            android:label="Sleepy"
-            android:parentActivityName=".Home" />
+            android:label="Sleepy" />
         <activity
             android:name=".MapsActivity"
             android:exported="true"
@@ -278,7 +277,7 @@
         <activity
             android:name=".PainReliefMusicActivity"
             android:exported="false"
-            android:label="Pain Relief"
+            android:label="Calming 528Hz"
             android:parentActivityName=".Relax" />
         <activity
             android:name=".MeditateMusicActivity"
@@ -288,7 +287,7 @@
             android:name=".NatureSoundsActivity"
             android:exported="false"
             android:label="Nature Sounds"
-            android:parentActivityName=".Home" />
+            android:parentActivityName=".Relax" />
         <activity
             android:name=".concentration_music"
             android:exported="false" />
@@ -298,7 +297,7 @@
         <activity
             android:name=".DeepRelaxMusicActivity"
             android:exported="false"
-            android:parentActivityName=".Home"/>
+            android:parentActivityName=".Relax"/>
         <activity
             android:name=".ProfileMain"
             android:exported="false" />
@@ -328,8 +327,7 @@
         <activity
             android:name=".scan.ScanActivity"
             android:exported="true"
-            android:label="Scan"
-            android:parentActivityName=".Home" />
+            android:label="Scan" />
         <activity
             android:name=".BreathLevel1"
             android:exported="true" />
@@ -340,19 +338,19 @@
         <activity
             android:name=".ReportHome"
             android:exported="true"
-            android:label="Report-Daily"
-            android:parentActivityName=".Home" />
+            android:label="Report-Daily" />
         <activity
             android:name=".Challenge"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Challenge"/>
         <activity
             android:name=".Relax"
             android:exported="false"
-            android:largeHeap="true"
-            android:parentActivityName=".Home"/>
+            android:largeHeap="true"/>
         <activity
             android:name=".Journal"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Journal"/>
         <activity
             android:name=".Home"
             android:exported="false"
@@ -404,15 +402,16 @@
             android:parentActivityName=".RegisterUser" />
         <activity
             android:name=".BreathHome"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Breath Game"
+            android:parentActivityName=".Challenge"/>
         <activity
             android:name=".HappyHome"
             android:exported="true" />
         <activity
             android:name=".MotivateHome"
             android:exported="true"
-            android:label="Motivate"
-            android:parentActivityName=".Home" />
+            android:label="Motivate" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

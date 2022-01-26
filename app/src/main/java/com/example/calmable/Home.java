@@ -650,10 +650,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-    public void btnHappy(View view) {
-        startActivity(new Intent(this, VideoPlayerActivity.class));
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-    }
 
     public void btnBreath(View view) {
         startActivity(new Intent(this, BreathPatterns.class));
