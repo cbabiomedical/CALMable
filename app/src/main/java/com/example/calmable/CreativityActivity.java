@@ -45,7 +45,7 @@ public class CreativityActivity extends AppCompatActivity {
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Creativity");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

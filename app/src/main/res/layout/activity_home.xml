@@ -118,6 +118,7 @@
                         android:onClick="btnFitbitWatch"
                         android:text="Add Fitbit"
                         android:padding="12dp"
+                        android:visibility="gone"
                         android:textColor="@color/white"
                         android:layout_marginStart="24dp"
                         android:background="#778ca3"/>
@@ -389,6 +390,5 @@
         app:itemIconTint="@color/teal_700"
         app:itemTextColor="@color/teal_700"
         app:menu="@menu/menu_navigation" />
-
 
 </RelativeLayout>

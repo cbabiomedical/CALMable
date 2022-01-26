@@ -20,10 +20,10 @@ public class MotivateHome extends AppCompatActivity {
     }
 
     public void btnGoCreativity (View view) {
-        startActivity(new Intent(getApplicationContext() , SuccesStoryActivity.class));
+        startActivity(new Intent(getApplicationContext() , CreativityActivity.class));
     }
 
     public void btnGoSelfImpt (View view) {
-        startActivity(new Intent(getApplicationContext() , SuccesStoryActivity.class));
+        startActivity(new Intent(getApplicationContext() , SelfImprovementActivity.class));
     }
 }

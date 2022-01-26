@@ -4,12 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MotivationActivity extends AppCompatActivity {
+public class RoadMapVideoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_motivation);
-
+        setContentView(R.layout.activity_road_map_video);
     }
 }

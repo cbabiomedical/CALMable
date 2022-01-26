@@ -29,6 +29,6 @@ public class SleepyHome extends AppCompatActivity {
     }
 
     public void btnGoSoundScape (View view) {
-        startActivity(new Intent(getApplicationContext(), MeditateMusicActivity.class));
+        startActivity(new Intent(getApplicationContext(), SoundScapeMusicActivity.class));
     }
 }
