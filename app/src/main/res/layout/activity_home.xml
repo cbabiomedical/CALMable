@@ -107,7 +107,8 @@
                         android:text="Add watch"
                         android:padding="12dp"
                         android:textColor="@color/white"
-                        android:background="#4b6584"/>
+                        android:backgroundTint="#4b6584"
+                        android:background="@drawable/home_main_btn" />
 
 
                     <Button

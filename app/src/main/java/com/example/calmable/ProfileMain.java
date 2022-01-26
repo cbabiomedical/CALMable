@@ -30,8 +30,6 @@ import com.squareup.picasso.Picasso;
 public class ProfileMain extends AppCompatActivity {
 
     StorageReference storageReference;
-    ImageView profileImage;
-    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +47,7 @@ public class ProfileMain extends AppCompatActivity {
 
         Button settings = (Button) findViewById(R.id.settings);
         Button signOutBtn = (Button) findViewById(R.id.signOut);
-        Button myDownloadsBtn = (Button) findViewById(R.id.myDownloadsBtn);
+        Button btnHelp = (Button) findViewById(R.id.btnHelp);
         Button myFavouritesBtn = (Button) findViewById(R.id.myFavouritesBtn);
         Button remindersBtn = (Button) findViewById(R.id.remindersBtn);
         Button calenderBtn = (Button) findViewById(R.id.calenderBtn);
@@ -85,10 +83,10 @@ public class ProfileMain extends AppCompatActivity {
 
         });
 
-        myDownloadsBtn.setOnClickListener(new View.OnClickListener() {
+        btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getApplicationContext(), MostStressedPeople.class);
+                Intent in = new Intent(getApplicationContext(), RoadMapVideoActivity.class);
                 startActivity(in);
             }
 

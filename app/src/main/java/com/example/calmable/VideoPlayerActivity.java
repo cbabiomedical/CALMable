@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -22,6 +23,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         vw = (VideoView) findViewById(R.id.vidvw);
         vw.setMediaController(new MediaController(this));
         vw.setOnCompletionListener(this);

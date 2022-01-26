@@ -78,19 +78,6 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/myDownloadsBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/profile_shape"
-                    android:drawableStart="@drawable/ic_baseline_people"
-                    android:drawableEnd="@drawable/ic_arrow"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="10dp"
-                    android:text="Edit Stressed People"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/myFavouritesBtn"
@@ -173,11 +160,26 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="3dp"
                     android:background="@drawable/profile_shape"
-                    android:drawableStart="@drawable/ic_about_icon"
+                    android:drawableStart="@drawable/ic_about_app"
                     android:drawableEnd="@drawable/ic_arrow"
                     android:paddingStart="12dp"
                     android:paddingEnd="10dp"
                     android:text="About App"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/profile_shape"
+                    android:drawableStart="@drawable/ic_about_icon"
+                    android:drawableEnd="@drawable/ic_arrow"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="10dp"
+                    android:text="Help"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />
