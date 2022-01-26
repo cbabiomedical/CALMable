@@ -238,6 +238,7 @@ public class ReportMonthly extends AppCompatActivity {
                             barChartmonthly.getLegend().setEnabled(false);
                             barChartmonthly.getXAxis().setDrawGridLines(false);
                             barChartmonthly.getAxisLeft().setDrawGridLines(false);
+                            barChartmonthly.animateXY(1500, 1500);
 
                             barChartmonthly.invalidate();
 
@@ -263,6 +264,7 @@ public class ReportMonthly extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportHome.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
@@ -273,6 +275,7 @@ public class ReportMonthly extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportWeekly.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
@@ -282,6 +285,7 @@ public class ReportMonthly extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportYearly.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
@@ -290,6 +294,7 @@ public class ReportMonthly extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),LocationActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
@@ -419,23 +424,23 @@ public class ReportMonthly extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(), Home.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.relax:
                         startActivity(new Intent(getApplicationContext(), Relax.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.journal:
                         startActivity(new Intent(getApplicationContext(), Journal.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.challenge:
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(), ProfileMain.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                 }
 

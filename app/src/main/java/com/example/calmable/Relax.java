@@ -35,23 +35,21 @@ public class Relax extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(), Home.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.relax:
                         return true;
                     case R.id.journal:
                         startActivity(new Intent(getApplicationContext(), Journal.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.challenge:
-
-                        ////////////////// edit
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(), ProfileMain.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                 }
 
@@ -63,26 +61,32 @@ public class Relax extends AppCompatActivity {
 
     public void BtnGoDeepRelaxMusic(View view) {
         startActivity(new Intent(getApplicationContext(), DeepRelaxMusicActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void BtnGoNatureSounds(View view) {
         startActivity(new Intent(getApplicationContext(), NatureSoundsActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void BtnGoMeditateMusic(View view) {
         startActivity(new Intent(getApplicationContext(), MeditateMusicActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void BtnGoPainReliefMusic(View view) {
         startActivity(new Intent(getApplicationContext(), PainReliefMusicActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void BtnGoChillOutMusic(View view) {
         startActivity(new Intent(getApplicationContext(), ChillOutMusicActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void BtnGoCalmingVideos(View view) {
         startActivity(new Intent(getApplicationContext(), VideoPlayerActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
 

@@ -606,19 +606,19 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                         return true;
                     case R.id.relax:
                         startActivity(new Intent(getApplicationContext(), Relax.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.journal:
                         startActivity(new Intent(getApplicationContext(), Journal.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.challenge:
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(), ProfileMain.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                 }
 
@@ -632,35 +632,42 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     // landing page btn actions
     public void btnWatch(View view) {
         startActivity(new Intent(this, ScanActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnStressed(View view) {
-//        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         startActivity(new Intent(this, Relax.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnSleepy(View view) {
         startActivity(new Intent(getApplicationContext(), SleepyHome.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnMotivate(View view) {
         startActivity(new Intent(this, MotivateHome.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnHappy(View view) {
         startActivity(new Intent(this, VideoPlayerActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnBreath(View view) {
         startActivity(new Intent(this, BreathPatterns.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnReport(View view) {
         startActivity(new Intent(this, ReportHome.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnFitbitWatch(View view) {
         startActivity(new Intent(this, FitbitMainActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnStartTest(View view) {

@@ -22,13 +22,17 @@ public class SleepyHome extends AppCompatActivity {
 
     public void btnGoSleepyStories (View view) {
         startActivity(new Intent(getApplicationContext(), SleepIntro.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnGoMeditation (View view) {
         startActivity(new Intent(getApplicationContext(), MeditateMusicActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void btnGoSoundScape (View view) {
+
         startActivity(new Intent(getApplicationContext(), SoundScapeMusicActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

@@ -29,9 +29,11 @@ public class BreathPatterns extends AppCompatActivity {
                 if(BreathLevel1.x == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern1Info.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else{
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern1.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
             }
         });
@@ -54,9 +56,11 @@ public class BreathPatterns extends AppCompatActivity {
                 if(BreathLevel2.x2 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern2Info.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else{
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern2.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
             }
         });
@@ -73,9 +77,11 @@ public class BreathPatterns extends AppCompatActivity {
                 if(BreathLevel3.x3 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern3Info.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else{
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern3.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
             }
         });
@@ -92,9 +98,11 @@ public class BreathPatterns extends AppCompatActivity {
                 if(BreathLevel4.x4 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern4Info.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else{
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern4.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
             }
         });
@@ -111,9 +119,11 @@ public class BreathPatterns extends AppCompatActivity {
                 if(BreathLevel5.x5 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern5Info.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else{
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern5.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
             }
         });
@@ -130,9 +140,11 @@ public class BreathPatterns extends AppCompatActivity {
                 if(BreathLevel6.x6 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern6Info.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else{
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern6.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
             }
         });

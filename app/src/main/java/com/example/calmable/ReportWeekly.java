@@ -227,6 +227,7 @@ public class ReportWeekly extends AppCompatActivity {
                             barChartweekly.getLegend().setEnabled(false);
                             barChartweekly.getXAxis().setDrawGridLines(false);
                             barChartweekly.getAxisLeft().setDrawGridLines(false);
+                            barChartweekly.animateXY(1500, 1500);
 
                             barChartweekly.invalidate();
                         }
@@ -252,6 +253,7 @@ public class ReportWeekly extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportHome.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
@@ -262,6 +264,7 @@ public class ReportWeekly extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportMonthly.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
         // On click listener of yearly button
@@ -270,6 +273,7 @@ public class ReportWeekly extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportYearly.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 //
