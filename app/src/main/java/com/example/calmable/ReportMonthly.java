@@ -450,4 +450,11 @@ public class ReportMonthly extends AppCompatActivity {
 
     }
 
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), ReportHome.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
 }

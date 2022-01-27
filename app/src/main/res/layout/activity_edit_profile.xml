@@ -138,7 +138,8 @@
                 android:hint="\tOccupation"
                 android:inputType="textPassword"
                 android:paddingStart="16dp"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/changePassword"
@@ -161,7 +162,7 @@
 
             <Button
                 android:id="@+id/profileSaveBtn"
-                android:layout_width="266dp"
+                android:layout_width="200dp"
                 android:layout_height="55dp"
                 android:layout_margin="50dp"
                 android:background="@drawable/mybutton"

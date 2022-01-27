@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 //import android.provider.CalendarContract;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -21,6 +22,7 @@ public class AboutAppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_app);
+
         Element adsElement = new Element();
         View aboutPage = new AboutPage(this)
                 .isRTL(false)

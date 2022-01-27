@@ -119,4 +119,11 @@ public class ChallengeFragment extends Fragment {
                 });
     }
 
+
+    public void onBackPressed() {
+        getActivity().onBackPressed();
+        Intent intent = new Intent(getContext(), Home.class);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 }

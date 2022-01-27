@@ -23,6 +23,7 @@ public class BreathPattern1Info extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(BreathPattern1Info.this, BreathPattern1.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
     }

@@ -18,10 +18,10 @@
             android:id="@+id/cv"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:alpha="0.7"
+            android:alpha="0.8"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="32dp"
             app:cardBackgroundColor="#E7EBED"
             app:cardCornerRadius="18dp"
             app:cardUseCompatPadding="true">
@@ -59,8 +59,8 @@
             android:layout_height="32dp"
             android:layout_alignTop="@+id/cv"
             android:layout_alignEnd="@+id/cv"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_margin="16dp"
+
             android:background="@drawable/ic_settings_icon"
             android:padding="13dp" />
 
@@ -83,7 +83,7 @@
                     android:id="@+id/myFavouritesBtn"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/profile_shape"
                     android:drawableStart="@drawable/ic_favorites_icon"
                     android:drawableEnd="@drawable/ic_arrow"
@@ -187,7 +187,7 @@
 
                 <Button
                     android:id="@+id/signOut"
-                    android:layout_width="266dp"
+                    android:layout_width="200dp"
                     android:layout_height="55dp"
                     android:layout_marginTop="45dp"
                     android:layout_marginBottom="16dp"

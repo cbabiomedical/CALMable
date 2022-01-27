@@ -27,12 +27,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CALMable"
+        android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
         <activity
             android:name=".RoadMapVideoActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:exported="false"/>
         <activity
             android:name=".Sleep11DarkTheme"
             android:exported="true"
@@ -253,23 +252,19 @@
         <activity
             android:name=".SoundScapeMusicActivity"
             android:exported="false"
-            android:label="Sound Scape"
-            android:parentActivityName=".SleepyHome" />
+            android:label="Sound Scape" />
         <activity
             android:name=".SleepStoryReadActivity"
             android:exported="false"
-            android:label="Sleepy Stories"
-            android:parentActivityName=".SleepyHome" />
+            android:label="Sleepy Stories" />
         <activity
             android:name=".SleepStoryAudioActivity"
             android:exported="false"
-            android:label="Sleepy Stories"
-            android:parentActivityName=".SleepyHome" />
+            android:label="Sleepy Stories" />
         <activity
             android:name=".ChillOutMusicActivity"
             android:exported="false"
-            android:label="Chill Music"
-            android:parentActivityName=".Relax" />
+            android:label="Chill Music" />
         <activity
             android:name=".device.DeviceActivity"
             android:exported="false"
@@ -277,8 +272,7 @@
         <activity
             android:name=".PainReliefMusicActivity"
             android:exported="false"
-            android:label="Calming 528Hz"
-            android:parentActivityName=".Relax" />
+            android:label="Calming 528Hz" />
         <activity
             android:name=".MeditateMusicActivity"
             android:exported="false"
@@ -286,8 +280,7 @@
         <activity
             android:name=".NatureSoundsActivity"
             android:exported="false"
-            android:label="Nature Sounds"
-            android:parentActivityName=".Relax" />
+            android:label="Nature Sounds" />
         <activity
             android:name=".concentration_music"
             android:exported="false" />
@@ -296,8 +289,7 @@
             android:exported="false" />
         <activity
             android:name=".DeepRelaxMusicActivity"
-            android:exported="false"
-            android:parentActivityName=".Relax"/>
+            android:exported="false"/>
         <activity
             android:name=".ProfileMain"
             android:exported="false" />
@@ -469,11 +461,6 @@
             android:name=".NoteEditorActivity"
             android:exported="true"
             android:label="Note" />
-        <activity
-            android:name=".BreathActivity"
-            android:exported="true"
-            android:label="Breathing Exercises"
-            android:parentActivityName=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

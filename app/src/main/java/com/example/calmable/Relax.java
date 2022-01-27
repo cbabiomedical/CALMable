@@ -22,12 +22,6 @@ public class Relax extends AppCompatActivity {
         NavigationBar();
     }
 
-    public void onBackPressed() {
-        finish();
-        Intent intent = new Intent(Relax.this, Home.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-    }
 
     private void NavigationBar() {
 
@@ -95,6 +89,11 @@ public class Relax extends AppCompatActivity {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(Relax.this, Home.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 
 }
