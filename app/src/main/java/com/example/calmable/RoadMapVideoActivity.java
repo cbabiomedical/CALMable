@@ -29,11 +29,13 @@ public class RoadMapVideoActivity extends AppCompatActivity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 startActivity(new Intent(getApplicationContext(),Home.class));
+                finish();
             }
         });
     }
 
     public void btnSkipVideo(View view) {
         startActivity(new Intent(getApplicationContext() , Home.class));
+        finish();
     }
 }

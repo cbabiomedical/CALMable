@@ -35,7 +35,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -197,6 +201,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         });
 
         NavigationBar();
+        getData();
     }
 
     //refresh activity
@@ -833,6 +838,33 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
 
+    }
+
+    //call user name to home page\
+    private void getData() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = user.getUid();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(userid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String name = snapshot.child("fullName").getValue(String.class);
+
+                Log.d("TAG", "edit profile: name-------------" + name);
+
+                TextView textView = (TextView) findViewById(R.id.userName);
+                textView.setText(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
     }
 }
 
