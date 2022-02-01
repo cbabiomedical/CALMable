@@ -76,6 +76,7 @@ public class Journal extends AppCompatActivity {
             }
         });
 
+        Realm.removeDefaultConfiguration();
 
     }
 

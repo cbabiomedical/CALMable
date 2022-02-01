@@ -3,6 +3,7 @@ package com.example.calmable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -41,8 +42,8 @@ public class AddNoteActivity extends AppCompatActivity {
                 note.setCreatedTime(createdTime);
                 realm.commitTransaction();
                 Toast.makeText(getApplicationContext(),"Note saved",Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "onClick: " + note);
                 finish();
-
 
             }
         });
