@@ -76,7 +76,7 @@ public class BreathLevel6 extends AppCompatActivity {
 
                 Intent intent = new Intent(BreathLevel6.this, BreathPatterns.class);
                 startActivity(intent);
-                //startActivity(new Intent(getActivity(),breathLevel1.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
             }
         });

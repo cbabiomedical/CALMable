@@ -84,6 +84,7 @@ public class BreathLevel1 extends AppCompatActivity {
 
                 Intent intent = new Intent(BreathLevel1.this, BreathHome.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 //startActivity(new Intent(getActivity(),breathLevel1.class));
 
             }

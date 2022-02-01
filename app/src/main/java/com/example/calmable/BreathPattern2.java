@@ -73,7 +73,7 @@ public class BreathPattern2 extends AppCompatActivity {
 
                 Intent intent = new Intent(BreathPattern2.this, BreathPatterns.class);
                 startActivity(intent);
-                //startActivity(new Intent(getActivity(),breathLevel1.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
             }
         });
