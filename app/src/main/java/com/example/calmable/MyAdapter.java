@@ -1,5 +1,6 @@
 package com.example.calmable;
 
+
 import android.app.Activity;
 
 import android.content.Context;
@@ -11,7 +12,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import org.w3c.dom.Text;
+
 
 import java.text.DateFormat;
 
@@ -21,6 +24,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.calmable.Note;
 import com.example.calmable.R;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -28,6 +34,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
     RealmResults<Note> notesList;
+    private LocalBroadcastManager broadcaster;
+    private Realm realm;
 
     public MyAdapter(Context context, RealmResults<Note> notesList) {
         this.context = context;
@@ -49,6 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         String formatedTime = DateFormat.getDateTimeInstance().format(note.getCreatedTime());
         holder.timeOutput.setText(formatedTime);
 
+
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -59,8 +68,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getTitle().equals("DELETE")){
+
+                            broadcaster = LocalBroadcastManager.getInstance(context);
+                            Realm.init(context);
                             //delete the note
-                            Realm realm = Realm.getDefaultInstance();
+                            realm = Realm.getDefaultInstance();
                             realm.beginTransaction();
                             note.deleteFromRealm();
                             realm.commitTransaction();

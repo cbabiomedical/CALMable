@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import io.realm.Realm;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,8 +41,8 @@ public class AddNoteActivity extends AppCompatActivity {
                 note.setCreatedTime(createdTime);
                 realm.commitTransaction();
                 Toast.makeText(getApplicationContext(),"Note saved",Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "onClick: " + note);
                 finish();
-
 
             }
         });
