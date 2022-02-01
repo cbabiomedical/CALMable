@@ -1,52 +1,30 @@
 package com.example.calmable;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class Journal extends AppCompatActivity {
-//
-//
-//    static ArrayList<String> listOfNotes = new ArrayList<>();
-//    static ArrayAdapter listViewNoteAdapter;
-//
-//    ListView listViewJournal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
 
-        NavigationBar();
 
         Button addNoteBtn = findViewById(R.id.addnewnotebtn);
 
@@ -58,8 +36,7 @@ public class Journal extends AppCompatActivity {
         });
 
         Realm.init(getApplicationContext());
-        //Realm realm = Realm.getDefaultInstance();
-        Realm realm = Realm.getInstance(RealmUtility.getDefaultConfig());
+        Realm realm = Realm.getDefaultInstance();
 
         RealmResults<Note> notesList = realm.where(Note.class).sort("createdTime", Sort.DESCENDING).findAll();
 
@@ -78,6 +55,7 @@ public class Journal extends AppCompatActivity {
 
 
     }
+
 
 
 //        Toast.makeText(getApplicationContext(), "Write your day here!", Toast.LENGTH_SHORT).show();

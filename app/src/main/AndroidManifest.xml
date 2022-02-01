@@ -178,7 +178,8 @@
         <activity
             android:name=".MyAdapter"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".AddNoteActivity"
             android:exported="true"

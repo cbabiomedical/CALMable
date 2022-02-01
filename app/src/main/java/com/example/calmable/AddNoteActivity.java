@@ -1,15 +1,15 @@
 package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.realm.Realm;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import io.realm.Realm;
+import com.google.android.material.button.MaterialButton;
 
 public class AddNoteActivity extends AppCompatActivity {
 
@@ -24,8 +24,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
 
         Realm.init(getApplicationContext());
-        //Realm realm = Realm.getDefaultInstance();
-        Realm realm = Realm.getInstance(RealmUtility.getDefaultConfig());
+        Realm realm = Realm.getDefaultInstance();
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
