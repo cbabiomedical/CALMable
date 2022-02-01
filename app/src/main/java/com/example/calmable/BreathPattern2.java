@@ -49,21 +49,13 @@ public class BreathPattern2 extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
-        timerminutes= (TextView) findViewById(R.id.timerminutes);
         info = (TextView) findViewById(R.id.info);
 
         /////////////////////////////////////////////////////////////////
         breathsTxt = findViewById(R.id.breathsTakenTxt);
 
-        //timeTxt = findViewById(R.id.last);
-        //sessionTxt = findViewById(R.id.todayminutes);
-        //guideTxt = findViewById(R.id.guideTxt);
         prefs2 = new Prefs2(this);
 
-        //startIntroAnimation();
-
-        //sessionTxt.setText(MessageFormat.format("{0} min today", prefs2.getSessions()));
-        //y = prefs2.getBreaths();
         breathsTxt.setText(MessageFormat.format("You have completed {0} breaths", prefs2.getBreaths()));
         Log.d("---get breaths value2--", String.valueOf(prefs2.getBreaths()));
 
@@ -84,6 +76,7 @@ public class BreathPattern2 extends AppCompatActivity {
             }
         });
 
+
         startButton = findViewById(R.id.startbutton);
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -94,7 +87,6 @@ public class BreathPattern2 extends AppCompatActivity {
 
                 startAnimation();
                 startButton.setVisibility(View.GONE);
-                timerminutes.setText(" Seconds");
                 new CountDownTimer(121000, 1000){
                     public void onTick(long millisUntilFinished){
                         timerseconds.setText(String.valueOf(counter));
@@ -106,19 +98,8 @@ public class BreathPattern2 extends AppCompatActivity {
                     }
                     public  void onFinish(){
                         timerseconds.setText(" Done !");
-                        timerminutes.setText("");
                     }
                 }.start();
-                //////////////////////////////////
-                /*new CountDownTimer(20000, 20000){
-                    public void onTick(long millisUntilFinished){
-                        timerminutes.setText(String.valueOf(counter2));
-                        counter2++;
-                    }
-                    public  void onFinish(){
-                        timerminutes.setText("02: ");
-                    }
-                }.start();*/
             }
         });
 
@@ -127,6 +108,7 @@ public class BreathPattern2 extends AppCompatActivity {
     //to got to info of the breath pattern 2 page
     public void btnInfo (View view){
         startActivity(new Intent(getApplicationContext(), BreathPattern2Info.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     /*private void startIntroAnimation(){
@@ -177,20 +159,6 @@ public class BreathPattern2 extends AppCompatActivity {
                 .accelerate()
                 .duration(2000)
 
-//                //adding a music sound to holding part only
-//                .onStart(new AnimationListener.Start() {
-//                    @Override
-//                    public void onStart() {
-//                        mysong4.start();
-//                        Handler handler=new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mysong4.pause();
-//                            }
-//                        }, 2 * 1000);
-//                    }
-//                })
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -240,20 +208,6 @@ public class BreathPattern2 extends AppCompatActivity {
                 .accelerate()
                 .duration(2000)
 
-//                //adding a music sound to holding part only
-//                .onStart(new AnimationListener.Start() {
-//                    @Override
-//                    public void onStart() {
-//                        mysong4.start();
-//                        Handler handler=new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mysong4.pause();
-//                            }
-//                        }, 2 * 1000);
-//                    }
-//                })
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -303,20 +257,6 @@ public class BreathPattern2 extends AppCompatActivity {
                 .accelerate()
                 .duration(2000)
 
-//                //adding a music sound to holding part only
-//                .onStart(new AnimationListener.Start() {
-//                    @Override
-//                    public void onStart() {
-//                        mysong4.start();
-//                        Handler handler=new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mysong4.pause();
-//                            }
-//                        }, 2 * 1000);
-//                    }
-//                })
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -367,20 +307,6 @@ public class BreathPattern2 extends AppCompatActivity {
                 .accelerate()
                 .duration(2000)
 
-//                //adding a music sound to holding part only
-//                .onStart(new AnimationListener.Start() {
-//                    @Override
-//                    public void onStart() {
-//                        mysong4.start();
-//                        Handler handler=new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mysong4.pause();
-//                            }
-//                        }, 2 * 1000);
-//                    }
-//                })
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -494,20 +420,6 @@ public class BreathPattern2 extends AppCompatActivity {
                 .accelerate()
                 .duration(2000)
 
-//                //adding a music sound to holding part only
-//                .onStart(new AnimationListener.Start() {
-//                    @Override
-//                    public void onStart() {
-//                        mysong4.start();
-//                        Handler handler=new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mysong4.pause();
-//                            }
-//                        }, 2 * 1000);
-//                    }
-//                })
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -558,20 +470,6 @@ public class BreathPattern2 extends AppCompatActivity {
                 .accelerate()
                 .duration(2000)
 
-//                //adding a music sound to holding part only
-//                .onStart(new AnimationListener.Start() {
-//                    @Override
-//                    public void onStart() {
-//                        mysong4.start();
-//                        Handler handler=new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mysong4.pause();
-//                            }
-//                        }, 2 * 1000);
-//                    }
-//                })
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)
@@ -621,21 +519,6 @@ public class BreathPattern2 extends AppCompatActivity {
                 .rotation(360)
                 .accelerate()
                 .duration(2000)
-
-//                //adding a music sound to holding part only
-//                .onStart(new AnimationListener.Start() {
-//                    @Override
-//                    public void onStart() {
-//                        mysong4.start();
-//                        Handler handler=new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mysong4.pause();
-//                            }
-//                        }, 2 * 1000);
-//                    }
-//                })
 
                 .thenAnimate(imageView)
                 .scale(1.5f, 0.002f)

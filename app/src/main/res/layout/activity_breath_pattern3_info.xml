@@ -53,7 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Training your mind and body to move from a Sympathetic Nervous System to a Parasympathetic Nervous System is one of the greatest survival skills you can ever master. It is stepping from ‘fight, flight, freeze’ to ‘relax and recover’ through breathing and connecting to the body. It takes time to master, but the 5-2-8 breathing technique will give you a little insight to this.\n"
+                android:text="The 4-2-4 Breathing technique is great to use when you feel stressed or tense because it can help to calm
+the nervous system, clear the head of distractions and reduce stress. Focus your attention on a specific object, image, sound or even your breath to free your mind from distractions.\n"
                 android:textAlignment="textStart"
                 android:textColor="@color/dark_blue_300"
                 android:textSize="16dp"
@@ -79,9 +80,9 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:text="1. Close your mouth and inhale quietly through your nose to a mental count of 4.
+                android:text="1. Breathe in through your nose for a count of 4, taking the breath into your stomach.
                           \n\n2. Hold your breath for a count of 2.
-                          \n\n3. Exhale completely through your mouth to a count of 4.
+                          \n\n3. Release your breath through your mouth with a whooshing sound for a count of 4.
                       \n\n4. This is one breath. Now inhale again and repeat the cycle 11 more times for a total of 12 breaths.\n\n"/>
             <!--<Button
                 android:id="@+id/Btn1"

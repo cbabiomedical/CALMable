@@ -25,8 +25,8 @@ public class BreathPatterns extends AppCompatActivity {
                 PatternMethod();
             }
             private void PatternMethod() {
-                Log.d("--BreathLevel1.x value-", String.valueOf(BreathLevel1.x));
-                if(BreathLevel1.x == 0){
+                Log.d("BreathPattern1.x value-", String.valueOf(BreathPattern1.x));
+                if(BreathPattern1.x == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern1Info.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -52,8 +52,8 @@ public class BreathPatterns extends AppCompatActivity {
                 PatternMethod2();
             }
             private void PatternMethod2() {
-                Log.d("-BreathLevel2.x2 value-", String.valueOf(BreathLevel2.x2));
-                if(BreathLevel2.x2 == 0){
+                Log.d("BreathPattern2.x2 value", String.valueOf(BreathPattern2.x2));
+                if(BreathPattern2.x2 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern2Info.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -73,12 +73,13 @@ public class BreathPatterns extends AppCompatActivity {
                 PatternMethod3();
             }
             private void PatternMethod3() {
-                Log.d("-BreathLevel3.x3 value-", String.valueOf(BreathLevel3.x3));
-                if(BreathLevel3.x3 == 0){
+                Log.d("BreathPattern3.x3 value", String.valueOf(BreathPattern3.x3));
+                if(BreathPattern3.x3 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern3Info.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else{
+                    Log.d("past3.x3 value", String.valueOf(BreathPattern3.x3));
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern3.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -94,8 +95,8 @@ public class BreathPatterns extends AppCompatActivity {
                 PatternMethod4();
             }
             private void PatternMethod4() {
-                Log.d("-BreathLevel4.x4 value-", String.valueOf(BreathLevel4.x4));
-                if(BreathLevel4.x4 == 0){
+                Log.d("BreathPattern4.x4 value", String.valueOf(BreathPattern4.x4));
+                if(BreathPattern4.x4 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern4Info.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -115,8 +116,8 @@ public class BreathPatterns extends AppCompatActivity {
                 PatternMethod5();
             }
             private void PatternMethod5() {
-                Log.d("-BreathLevel5.x5 value-", String.valueOf(BreathLevel5.x5));
-                if(BreathLevel5.x5 == 0){
+                Log.d("BreathPattern5.x5 value", String.valueOf(BreathPattern5.x5));
+                if(BreathPattern5.x5 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern5Info.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -136,8 +137,8 @@ public class BreathPatterns extends AppCompatActivity {
                 PatternMethod6();
             }
             private void PatternMethod6() {
-                Log.d("-BreathLevel6.x6 value-", String.valueOf(BreathLevel6.x6));
-                if(BreathLevel6.x6 == 0){
+                Log.d("BreathPattern6.x6 value", String.valueOf(BreathPattern6.x6));
+                if(BreathPattern6.x6 == 0){
                     Intent intent = new Intent(BreathPatterns.this, BreathPattern6Info.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -148,7 +149,6 @@ public class BreathPatterns extends AppCompatActivity {
                 }
             }
         });
-
     }
 
 

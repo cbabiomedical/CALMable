@@ -31,8 +31,8 @@ public class BreathPattern5 extends AppCompatActivity {
 
     private ImageView imageView;
     public int counter, counter2;
-    private TextView breathsTxt, timeTxt, sessionTxt, guideTxt, timerseconds, timerminutes, info;
-    private Button startButton;
+    private TextView breathsTxt, timerseconds, info;
+    private Button startButton, backButton2;
     public static Prefs5 prefs5;
 
     @Override
@@ -49,26 +49,34 @@ public class BreathPattern5 extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView2);
         timerseconds= (TextView) findViewById(R.id.timerseconds);
-        timerminutes= (TextView) findViewById(R.id.timerminutes);
         info = (TextView) findViewById(R.id.info);
 
         /////////////////////////////////////////////////////////////////
         breathsTxt = findViewById(R.id.breathsTakenTxt);
-        //timeTxt = findViewById(R.id.last);
-        //sessionTxt = findViewById(R.id.todayminutes);
-        //guideTxt = findViewById(R.id.guideTxt);
+
         prefs5 = new Prefs5(this);
 
-        //startIntroAnimation();
-
-        //sessionTxt.setText(MessageFormat.format("{0} min today", prefs5.getSessions()));
         breathsTxt.setText(MessageFormat.format("You have completed {0} breaths", prefs5.getBreaths()));
 
         Log.d("---get breaths value5--", String.valueOf(prefs5.getBreaths()));
 
         x5 = prefs5.getBreaths();
 
-        //timeTxt.setText(prefs.getDate());
+
+        //button to go back
+        backButton2 = findViewById(R.id.backbutton2);
+        backButton2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                onPause();
+
+                Intent intent = new Intent(BreathPattern5.this, BreathPatterns.class);
+                startActivity(intent);
+                //startActivity(new Intent(getActivity(),breathLevel1.class));
+
+            }
+        });
 
 
         startButton = findViewById(R.id.startbutton);
@@ -76,31 +84,18 @@ public class BreathPattern5 extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 startAnimation();
-                timerminutes.setText(" Seconds");
+                startButton.setVisibility(View.GONE);
                 new CountDownTimer(161000, 1000){
                     public void onTick(long millisUntilFinished){
                         timerseconds.setText(String.valueOf(counter));
                         counter++;
-                        /*if(counter == 20){
-                            counter--;
-                        }*/
 
                     }
                     public  void onFinish(){
                         timerseconds.setText(" Done !");
-                        timerminutes.setText("");
                     }
                 }.start();
-                //////////////////////////////////
-                /*new CountDownTimer(20000, 20000){
-                    public void onTick(long millisUntilFinished){
-                        timerminutes.setText(String.valueOf(counter2));
-                        counter2++;
-                    }
-                    public  void onFinish(){
-                        timerminutes.setText("02: ");
-                    }
-                }.start();*/
+
             }
         });
 
@@ -109,21 +104,10 @@ public class BreathPattern5 extends AppCompatActivity {
     //to got to info of the breath pattern 5 page
     public void btnInfo (View view){
         startActivity(new Intent(getApplicationContext(), BreathPattern5Info.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-    /*private void startIntroAnimation(){
-        ViewAnimator
-                .animate(guideTxt)
-                .scale(0, 1)
-                .duration(1500)
-                .onStart(new AnimationListener.Start() {
-                    @Override
-                    public void onStart() {
-                        guideTxt.setText("Breathe");
-                    }
-                })
-                .start();
-    }*/
+
     private void startAnimation(){
         ViewAnimator
                 .animate(imageView)
