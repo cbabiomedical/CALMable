@@ -69,6 +69,8 @@ public class BreathPattern1 extends AppCompatActivity {
                 public void onClick(View view) {
 
                     onPause();
+                    mysong2.pause();
+                    mysong.pause();
 
                     Intent intent = new Intent(BreathPattern1.this, BreathPatterns.class);
                     startActivity(intent);
@@ -85,6 +87,7 @@ public class BreathPattern1 extends AppCompatActivity {
 
                     startAnimation();
                     startButton.setVisibility(View.GONE);
+                    //backButton2.setVisibility(View.GONE);
 
                     new CountDownTimer(121000, 1000){
                         public void onTick(long millisUntilFinished){
@@ -765,6 +768,7 @@ public class BreathPattern1 extends AppCompatActivity {
                     .onStop(new AnimationListener.Stop() {
                         @Override
                         public void onStop() {
+                            //backButton2.setVisibility(View.VISIBLE);
                             //guideTxt.setText("Good Job");
                             imageView.setScaleX(1.0f);
                             imageView.setScaleY(1.0f);

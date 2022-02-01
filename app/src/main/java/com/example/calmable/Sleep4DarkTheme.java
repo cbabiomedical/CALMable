@@ -18,4 +18,12 @@ public class Sleep4DarkTheme extends AppCompatActivity {
     public void btnTheme (View view){
         startActivity(new Intent(getApplicationContext(), SleepStory4.class));
     }
+
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), SleepStoryReadActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
 }

@@ -82,8 +82,6 @@ public class BreathLevel1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                onPause();
-
                 Intent intent = new Intent(BreathLevel1.this, BreathHome.class);
                 startActivity(intent);
                 //startActivity(new Intent(getActivity(),breathLevel1.class));
@@ -97,6 +95,7 @@ public class BreathLevel1 extends AppCompatActivity {
             public void onClick(View view){
                 startAnimation();
                 startButton.setVisibility(View.GONE);
+                backButton2.setVisibility(View.GONE);
                 //
                 //mysong.start();
 
@@ -340,6 +339,7 @@ public class BreathLevel1 extends AppCompatActivity {
                 .onStop(new AnimationListener.Stop() {
                     @Override
                     public void onStop() {
+                        backButton2.setVisibility(View.VISIBLE);
                         //guideTxt.setText("Good Job");
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);

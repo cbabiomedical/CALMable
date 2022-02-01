@@ -74,8 +74,6 @@ public class BreathLevel6 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                onPause();
-
                 Intent intent = new Intent(BreathLevel6.this, BreathPatterns.class);
                 startActivity(intent);
                 //startActivity(new Intent(getActivity(),breathLevel1.class));
@@ -89,6 +87,7 @@ public class BreathLevel6 extends AppCompatActivity {
             public void onClick(View view){
                 startAnimation();
                 startButton.setVisibility(View.GONE);
+
                 timerminutes.setText(" Seconds");
                 new CountDownTimer(121000, 1000){
                     public void onTick(long millisUntilFinished){
@@ -257,6 +256,7 @@ public class BreathLevel6 extends AppCompatActivity {
                 .onStop(new AnimationListener.Stop() {
                     @Override
                     public void onStop() {
+
                         //guideTxt.setText("Good Job");
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
