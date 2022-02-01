@@ -236,7 +236,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
 
 
-
     // show landing page heart rate
     public void updateLandingHeartRate() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
@@ -246,7 +245,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         String BPM = getColoredSpanned("\u1D2E\u1D3E\u1D39", "#000000");
         txtProgress.setText(Html.fromHtml(chr + " " + BPM));
 
+        //writeHRData();
 
+    }
+
+    // for collect data
+    private void writeHRData() {
         // write heart rate to txt - start
         SharedPreferences sharedPreferences1 = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
         timeAndHR = sharedPreferences1.getString("timeAndHR", "0");
@@ -314,7 +318,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     // update coins in CALMable
