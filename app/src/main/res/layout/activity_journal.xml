@@ -96,6 +96,7 @@
         app:itemBackground="@color/white"
         app:itemIconTint="@color/teal_700"
         app:itemTextColor="@color/teal_700"
+        android:background="@color/white"
         app:menu="@menu/menu_navigation" />
 
 </RelativeLayout>

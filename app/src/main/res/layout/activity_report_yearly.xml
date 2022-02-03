@@ -114,6 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/white"
+        android:background="@color/white"
         app:itemIconTint="@color/teal_700"
         app:itemTextColor="@color/teal_700"
         app:menu="@menu/menu_navigation" />

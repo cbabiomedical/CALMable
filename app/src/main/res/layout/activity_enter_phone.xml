@@ -47,11 +47,12 @@
         android:layout_below="@+id/linearLayout1"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="32dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <com.hbb20.CountryCodePicker
             android:id="@+id/txtCcp"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="50dp"
             app:ccp_autoDetectCountry="true"
             app:ccp_autoFormatNumber="true"
@@ -66,14 +67,13 @@
 
         <EditText
             android:id="@+id/editTextPhone"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
             android:hint="771234567"
             android:inputType="phone"
             android:maxLength="10"
-            android:textColor="@color/dark_blue_100"
-            android:paddingStart="10dp"/>
+            android:paddingStart="10dp"
+            android:textColor="@color/dark_blue_100" />
 
     </LinearLayout>
 

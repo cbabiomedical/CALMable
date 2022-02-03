@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation">
 
         <ScrollView
@@ -58,85 +58,78 @@
                 </LinearLayout>
 
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="-35dp">
+                    android:layout_margin="32dp">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill"
-                        android:layout_margin="55dp"
                         android:alpha="0.9"
                         android:outlineAmbientShadowColor="@color/black"
                         android:outlineSpotShadowColor="@color/black"
                         app:cardBackgroundColor="#cfd8dc"
-                        app:cardCornerRadius="18dp"
-                        app:cardElevation="8dp"
-                        app:cardUseCompatPadding="true">
+                        app:cardCornerRadius="18dp">
 
                         <ProgressBar
                             android:id="@+id/progressBar2"
                             style="?android:attr/progressBarStyle"
-                            android:layout_width="411dp"
-                            android:layout_height="231dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:indeterminateDrawable="@drawable/heartratebar1" />
 
                         <com.airbnb.lottie.LottieAnimationView
-                            android:layout_width="270dp"
+                            android:layout_width="match_parent"
                             android:layout_height="155dp"
-                            android:layout_weight="1"
-                            android:paddingStart="1dp"
-                            android:paddingTop="65dp"
+                            android:layout_gravity="center"
                             app:lottie_autoPlay="true"
                             app:lottie_fileName="heart.json"
                             app:lottie_loop="true" />
 
                         <TextView
                             android:id="@+id/txtProgress"
-                            android:layout_width="270dp"
-                            android:layout_height="250dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:hint="00"
-                            android:paddingStart="95dp"
-                            android:paddingTop="135dp"
+                            android:gravity="center |bottom"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:textSize="27sp"
+                            android:textSize="28sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/txtPastProgress"
-                            android:layout_width="270dp"
+                            android:layout_width="match_parent"
                             android:layout_height="250dp"
                             android:paddingStart="72dp"
                             android:paddingTop="215dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textSize="17sp" />
 
+
                     </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="-50dp">
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/connectWatch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:onClick="btnWatch"
-                        android:text="Add watch"
-                        android:padding="12dp"
-                        android:textColor="@color/white"
+                        android:background="@drawable/home_main_btn"
                         android:backgroundTint="#4b6584"
-                        android:background="@drawable/home_main_btn" />
+                        android:onClick="btnWatch"
+                        android:padding="12dp"
+                        android:text="Add watch"
+                        android:textColor="@color/white" />
 
 
                     <Button
@@ -144,23 +137,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:onClick="btnFitbitWatch"
-                        android:text="Add Fitbit"
-                        android:padding="12dp"
-                        android:visibility="gone"
-                        android:textColor="@color/white"
                         android:layout_marginStart="24dp"
-                        android:background="#778ca3"/>
+                        android:background="#778ca3"
+                        android:onClick="btnFitbitWatch"
+                        android:padding="12dp"
+                        android:text="Add Fitbit"
+                        android:textColor="@color/white"
+                        android:visibility="gone" />
 
                     <Button
                         android:id="@+id/testStart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginStart="24dp"
                         android:onClick="btnStartTest"
                         android:text="Create new TF"
-                        android:visibility="gone"
-                        android:layout_marginStart="24dp"/>
+                        android:visibility="gone" />
 
 
                 </LinearLayout>
@@ -168,48 +161,47 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginStart="24dp"
                         android:text="Mark"
-                        android:textSize="18dp"
                         android:textColor="@color/black"
-                        android:layout_marginStart="24dp"/>
+                        android:textSize="18dp" />
 
                     <Button
                         android:id="@+id/btnAddPlus"
                         android:layout_width="45dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginStart="24dp"
                         android:onClick="btnAddPlus"
-                        android:text="+"
-                        android:layout_marginStart="24dp"/>
+                        android:text="+" />
 
                     <Button
                         android:id="@+id/btnAddMinus"
                         android:layout_width="45dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginStart="24dp"
                         android:onClick="btnAddMinus"
-                        android:text="-"
-                        android:layout_marginStart="24dp"/>
+                        android:text="-" />
 
                     <TextView
                         android:id="@+id/markValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="0"
-                        android:textSize="18dp"
-                        android:textColor="@color/black"
                         android:layout_marginStart="24dp"
-                        />
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -222,28 +214,28 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Downloads File"
+                        android:layout_marginEnd="16dp"
                         android:onClick="btnDownloadTxtFile"
-                        android:layout_marginEnd="16dp"/>
+                        android:text="Downloads File" />
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Clear File"
-                        android:onClick="btnClearTxtFile"/>
+                        android:onClick="btnClearTxtFile"
+                        android:text="Clear File" />
                 </LinearLayout>
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:alpha="0.9"
                     android:layout_marginStart="32dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="32dp"
+                    android:alpha="0.9"
                     app:cardBackgroundColor="#E7EBED"
                     app:cardCornerRadius="18dp"
-                    app:cardUseCompatPadding="true"
-                    android:layout_marginTop="12dp">
+                    app:cardUseCompatPadding="true">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -272,8 +264,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center">
+                                android:layout_gravity="center"
+                                android:orientation="horizontal">
 
 
                                 <Button
@@ -332,14 +324,14 @@
                         android:layout_row="0"
                         android:layout_rowWeight="1"
                         android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="12dp"
                         android:background="@drawable/home_main_btn"
                         android:onClick="btnStressed"
                         android:padding="16dp"
-                        android:layout_columnWeight="1"
                         android:text="Want to \nrelax"
                         android:textAllCaps="false"
-                        android:layout_gravity="fill"
-                        android:layout_margin="12dp"
                         android:textColor="@color/white" />
 
                     <Button
@@ -348,44 +340,44 @@
                         android:layout_rowWeight="1"
                         android:layout_column="1"
                         android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="12dp"
                         android:background="@drawable/home_main_btn"
                         android:onClick="btnSleepy"
                         android:padding="16dp"
                         android:text="Time to \nsleep"
                         android:textAllCaps="false"
-                        android:layout_gravity="fill"
-                        android:layout_margin="12dp"
                         android:textColor="@color/white" />
 
                     <Button
                         android:id="@+id/motivateHomeBtn"
                         android:layout_row="1"
                         android:layout_rowWeight="1"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="12dp"
                         android:background="@drawable/home_main_btn"
                         android:onClick="btnMotivate"
                         android:padding="16dp"
-                        android:layout_column="0"
-                        android:layout_columnWeight="1"
                         android:text="Need \nmotivate"
                         android:textAllCaps="false"
-                        android:layout_gravity="fill"
-                        android:layout_margin="12dp"
                         android:textColor="@color/white" />
 
                     <Button
                         android:id="@+id/breathHomeBtn"
                         android:layout_row="1"
                         android:layout_rowWeight="1"
-                        android:background="@drawable/home_main_btn"
-                        android:padding="16dp"
                         android:layout_column="1"
                         android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="12dp"
+                        android:background="@drawable/home_main_btn"
                         android:onClick="btnBreath"
+                        android:padding="16dp"
                         android:text="Take a \nbreath"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:layout_gravity="fill"
-                        android:layout_margin="12dp" />
+                        android:textColor="@color/white" />
 
                 </GridLayout>
 
@@ -477,11 +469,11 @@
                         android:layout_width="155dp"
                         android:layout_height="45dp"
                         android:background="@drawable/home_main_btn"
+                        android:backgroundTint="#079992"
                         android:onClick="btnReport"
                         android:text="Report"
-                        android:textSize="17dp"
-                        android:backgroundTint="#079992"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="17dp" />
 
                 </LinearLayout>
 
@@ -503,8 +495,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/white"
+        android:background="@color/white"
         app:itemIconTint="@color/teal_700"
         app:itemTextColor="@color/teal_700"
         app:menu="@menu/menu_navigation" />
+
+<!--    <me.ibrahimsn.lib.SmoothBottomBar-->
+<!--        android:id="@+id/bottomBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        app:backgroundColor="@color/teal_700"-->
+<!--        app:menu="@menu/menu_navigation"/>-->
 
 </RelativeLayout>

@@ -229,6 +229,7 @@
         app:itemBackground="@color/white"
         app:itemIconTint="@color/teal_700"
         app:itemTextColor="@color/teal_700"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/menu_navigation"
+        android:background="@color/white"/>
 
 </RelativeLayout>

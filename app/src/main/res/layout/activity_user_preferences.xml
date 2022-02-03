@@ -22,13 +22,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:gravity="center"
-          android:layout_marginTop="12dp"
+          android:layout_marginTop="20dp"
           android:layout_marginStart="28dp">
 
         <ImageView
@@ -50,163 +51,116 @@
 
       <CheckBox
           android:id="@+id/c1"
-          android:layout_marginStart="122dp"
           android:layout_width="211dp"
           android:layout_height="44dp"
           android:drawableStart="@drawable/music_selector"
           android:button="@null"
           android:text="  Travel Music"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
           tools:ignore="MissingConstraints" />
 
       <CheckBox
           android:id="@+id/c2"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/inspiration_selector"
           android:button="@null"
-          android:text="  Inspiration"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c1"/>
+          android:text="  Inspiration" />
 
       <CheckBox
           android:id="@+id/c3"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/music_selector"
           android:button="@null"
-          android:text="  Relax Music"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c2"/>
+          android:text="  Relax Music" />
 
       <CheckBox
           android:id="@+id/c4"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/tree_selector"
           android:button="@null"
-          android:text=" Nature Sounds"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c3" />
+          android:text=" Nature Sounds" />
+
       <CheckBox
           android:id="@+id/c5"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/meditation_selector"
           android:button="@null"
-          android:text="   Meditate"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c4" />
+          android:text="   Meditate" />
+
       <CheckBox
           android:id="@+id/c6"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/music_selector"
           android:button="@null"
-          android:text="   Country Music"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c5" />
+          android:text="   Country Music" />
+
       <CheckBox
           android:id="@+id/c7"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/night_selector"
           android:button="@null"
-          android:text="   Sleep Stories"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c6"/>
+          android:text="   Sleep Stories" />
+
       <CheckBox
           android:id="@+id/c8"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/music_selector"
           android:button="@null"
-          android:text="   Chill out music"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c7"/>
+          android:text="   Chill out music" />
+
       <CheckBox
           android:id="@+id/c9"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/music_selector"
           android:button="@null"
-          android:text="   Classical Music"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c8"/>
+          android:text="   Classical Music" />
+
       <CheckBox
           android:id="@+id/c10"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/video_selector"
           android:button="@null"
-          android:text="   Videos"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c9" />
+          android:text="   Videos" />
+
       <CheckBox
           android:id="@+id/c11"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/games_selector"
           android:button="@null"
-          android:text="   Games"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c10"/>
+          android:text="   Games" />
+
       <CheckBox
           android:id="@+id/c12"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/smile_selector"
           android:button="@null"
-          android:text="   Breathing Exercise"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c11"/>
+          android:text="   Breathing Exercise" />
 
       <CheckBox
           android:id="@+id/c13"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/star_selector"
           android:button="@null"
-          android:text="   Success Stories"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c12"/>
+          android:text="   Success Stories" />
 
       <CheckBox
           android:id="@+id/c14"
           android:layout_width="211dp"
           android:layout_height="44dp"
-          android:layout_marginStart="122dp"
           android:drawableStart="@drawable/yoga_selector"
           android:button="@null"
-          android:text="   Yoga"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/c13"/>
+          android:text="   Yoga" />
 
       <Button
           android:id="@+id/done"
@@ -215,9 +169,8 @@
           android:layout_marginTop="18dp"
           android:textColor="@color/white"
           android:text="done"
-          android:textSize="21sp"
+          android:textSize="20sp"
           android:textStyle="bold"
-          app:cornerRadius="15dp"
           android:background="@drawable/mybutton"
           android:layout_gravity="center"/>
 
