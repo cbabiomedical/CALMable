@@ -905,4 +905,12 @@ public class BreathPattern3 extends AppCompatActivity {
         mysong2.release();
         mysong4.release();
     }
+
+    // for go back
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), BreathPatterns.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 }
