@@ -31,11 +31,11 @@ public class AboutAppActivity extends AppCompatActivity {
                         "Come and join with us to get a better relaxed experience in your busy life...")
                 .addItem(new Element().setTitle("Version 1.0"))
                 .addGroup("CONNECT WITH US!")
-                .addEmail("calmable@gmail.com ")          //email
+                .addEmail("calmable2021@gmail.com ")          //email
                 .addWebsite("http://www.cba.lk/")         //website
                 .addYoutube("https://www.youtube.com/")   //youtube link
                 .addPlayStore("com.example.calmable")     //Play store link
-                .addInstagram("clamable")                 //instagram id
+                .addInstagram("calmable")                 //instagram id
                 .addItem(createCopyright())
                 .create();
         setContentView(aboutPage);

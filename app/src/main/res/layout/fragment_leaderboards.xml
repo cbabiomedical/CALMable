@@ -12,7 +12,7 @@
         android:layout_height="150dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/ic_leaderboard2"
-        android:layout_gravity="center |top"/>
+        android:layout_gravity="center|top"/>
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/watchGif"
