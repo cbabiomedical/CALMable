@@ -51,18 +51,18 @@ public class LeaderboardsAdapter extends RecyclerView.Adapter<LeaderboardsAdapte
                 .into(holder.binding.imageView7);*/
         //load profile picture to the imageview
 
-        storageReference = FirebaseStorage.getInstance().getReference();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userid = user.getUid();
-        StorageReference profileRef = storageReference.child("users/" + userid + "/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(holder.binding.imageView7);
-                //holder.binding.imageView7.setImageURI(Uri.parse("users/" + userid + "/profile.jpg"));
-            }
-        });
+//        storageReference = FirebaseStorage.getInstance().getReference();
+//
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        String userid = user.getUid();
+//        StorageReference profileRef = storageReference.child("users/" + userid + "/profile.jpg");
+//        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//            @Override
+//            public void onSuccess(Uri uri) {
+//                Picasso.get().load(uri).into(holder.binding.imageView7);
+//                //holder.binding.imageView7.setImageURI(Uri.parse("users/" + userid + "/profile.jpg"));
+//            }
+//        });
     }
 
     @Override

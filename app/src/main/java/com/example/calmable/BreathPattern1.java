@@ -775,8 +775,14 @@ public class BreathPattern1 extends AppCompatActivity {
                             imageView.setScaleY(1.0f);
 
                             prefs.setBreaths(prefs.getBreaths() + 1);
+
+                            //getting number of interventions for the relax average
+                            BreathingReport.numOfIntervention = BreathingReport.numOfIntervention + 1;
+
                             //Log.d(TAG, "-----------------x-----------------");
                             prefs.setDate(SystemClock.currentThreadTimeMillis());
+                            Intent intent = new Intent(getApplicationContext(), BreathingRate.class);
+                            startActivity(intent);
 
                         }
                     })
