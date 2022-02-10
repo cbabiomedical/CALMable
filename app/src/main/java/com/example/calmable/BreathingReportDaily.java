@@ -564,7 +564,7 @@ public class BreathingReportDaily extends AppCompatActivity {
     }
 
     public void weekly(View view) {
-        Intent intent2 = new Intent(this, ReportWeekly.class);
+        Intent intent2 = new Intent(this, BreathingReportWeekly.class);
         startActivity(intent2);
     }
 

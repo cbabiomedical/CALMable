@@ -62,23 +62,6 @@ public class BreathPattern6 extends AppCompatActivity {
         x6 = prefs6.getBreaths();
 
 
-        //button to go back
-        backButton2 = findViewById(R.id.backbutton2);
-        backButton2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-
-                onPause();
-                mysong2.pause();
-                mysong.pause();
-
-                Intent intent = new Intent(BreathPattern6.this, BreathPatterns.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-            }
-        });
-
 
         startButton = findViewById(R.id.startbutton);
         startButton.setOnClickListener(new View.OnClickListener(){
@@ -506,7 +489,7 @@ public class BreathPattern6 extends AppCompatActivity {
                 .onStop(new AnimationListener.Stop() {
                     @Override
                     public void onStop() {
-                        backButton2.setVisibility(View.VISIBLE);
+
                         //guideTxt.setText("Good Job");
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
@@ -514,6 +497,10 @@ public class BreathPattern6 extends AppCompatActivity {
                         prefs6.setSessions(prefs6.getSessions() + 1);
                         prefs6.setBreaths(prefs6.getBreaths() + 1);
                         prefs6.setDate(SystemClock.currentThreadTimeMillis());
+
+                        Intent intent = new Intent(getApplicationContext(), BreathingRate.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
 
                     }

@@ -109,30 +109,18 @@
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <Button
-        android:id="@+id/backbutton2"
-        android:layout_width="180dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/breathsTakenTxt"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/home_main_btn"
-        android:text="Go Back"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
 
     <Button
         android:id="@+id/startbutton"
         android:layout_width="180dp"
         android:layout_height="45dp"
         android:layout_below="@+id/breathsTakenTxt"
-        android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
         android:background="@drawable/home_main_btn"
         android:text="Get Started"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
 </RelativeLayout>

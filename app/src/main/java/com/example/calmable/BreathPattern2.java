@@ -61,22 +61,6 @@ public class BreathPattern2 extends AppCompatActivity {
 
         x2 = prefs2.getBreaths();
 
-        //button to go back
-        backButton2 = findViewById(R.id.backbutton2);
-        backButton2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-
-                onPause();
-                mysong2.pause();
-                mysong.pause();
-
-                Intent intent = new Intent(BreathPattern2.this, BreathPatterns.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-            }
-        });
 
 
         startButton = findViewById(R.id.startbutton);
@@ -84,12 +68,8 @@ public class BreathPattern2 extends AppCompatActivity {
             @Override
             public void onClick(View view){
 
-                //
-                mysong.start();
-
                 startAnimation();
                 startButton.setVisibility(View.GONE);
-                backButton2.setVisibility(View.GONE);
 
                 new CountDownTimer(121000, 1000){
                     public void onTick(long millisUntilFinished){
@@ -549,7 +529,6 @@ public class BreathPattern2 extends AppCompatActivity {
                 .onStop(new AnimationListener.Stop() {
                     @Override
                     public void onStop() {
-                        backButton2.setVisibility(View.VISIBLE);
                         //guideTxt.setText("Good Job");
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
@@ -557,6 +536,10 @@ public class BreathPattern2 extends AppCompatActivity {
                         prefs2.setSessions(prefs2.getSessions() + 1);
                         prefs2.setBreaths(prefs2.getBreaths() + 1);
                         prefs2.setDate(SystemClock.currentThreadTimeMillis());
+
+                        Intent intent = new Intent(getApplicationContext(), BreathingRate.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
 
                     }
