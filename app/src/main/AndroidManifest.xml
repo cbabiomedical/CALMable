@@ -30,6 +30,12 @@
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".BreathingReportYearly"
+            android:exported="true" />
+        <activity
+            android:name=".BreathingReportMonthly"
+            android:exported="true" />
+        <activity
             android:name=".BreathingReportWeekly"
             android:exported="true" />
         <activity

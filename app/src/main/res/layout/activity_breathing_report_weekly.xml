@@ -35,7 +35,7 @@
                 android:layout_marginRight="20dp"
                 android:fontFamily="@font/droidserif_italic"
                 android:gravity="center"
-                android:text="Weekly Relax Level Report"
+                android:text="Weekly Relax Progress Report"
                 android:textColor="@color/dark_blue_300"
                 android:textSize="18sp"
                 android:textStyle="bold" />

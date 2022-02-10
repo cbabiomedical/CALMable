@@ -99,7 +99,7 @@ public class BreathingReportDaily extends AppCompatActivity {
         monthly.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent2 = new Intent(BreathingReportDaily.this, ReportMonthly.class);
+                Intent intent2 = new Intent(BreathingReportDaily.this, BreathingReportMonthly.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -119,7 +119,7 @@ public class BreathingReportDaily extends AppCompatActivity {
         yearly.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent2 = new Intent(BreathingReportDaily.this, ReportYearly.class);
+                Intent intent2 = new Intent(BreathingReportDaily.this, BreathingReportYearly.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
