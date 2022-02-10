@@ -12,11 +12,13 @@ package com.example.calmable;
         import androidx.appcompat.widget.AppCompatButton;
 
         import android.content.Intent;
+        import android.os.CountDownTimer;
         import android.os.Handler;
         import android.util.Log;
         import android.view.MenuItem;
         import android.view.View;
         import android.view.WindowManager;
+        import android.widget.Button;
         import android.widget.ImageView;
         import android.widget.TextView;
 
@@ -61,7 +63,7 @@ package com.example.calmable;
 public class BreathingReportDaily extends AppCompatActivity {
 
     private Context context;
-    AppCompatButton monthly, yearly, weekly;
+    private Button monthly, yearly, weekly;
     FirebaseUser mUser;
     ImageView concentrationBtn;
     String text;
@@ -92,9 +94,38 @@ public class BreathingReportDaily extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breathing_report_daily);
 
+
         monthly = findViewById(R.id.monthly);
-        yearly = findViewById(R.id.yearly);
+        monthly.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent2 = new Intent(BreathingReportDaily.this, ReportMonthly.class);
+                startActivity(intent2);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+
         weekly = findViewById(R.id.weekly);
+        weekly.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent2 = new Intent(BreathingReportDaily.this, BreathingReportWeekly.class);
+                startActivity(intent2);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+
+        yearly = findViewById(R.id.yearly);
+        yearly.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent2 = new Intent(BreathingReportDaily.this, ReportYearly.class);
+                startActivity(intent2);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+
+
         c1 = findViewById(R.id.c1);
         c2 = findViewById(R.id.c2);
         lineChart = findViewById(R.id.lineChartDaily);
@@ -552,21 +583,21 @@ public class BreathingReportDaily extends AppCompatActivity {
 //    }
 
 
-    public void monthly(View v) {
-        Intent intent2 = new Intent(this, ReportMonthly.class);
-        startActivity(intent2);
-
-    }
-
-    public void yearly(View view) {
-        Intent intent2 = new Intent(this, ReportYearly.class);
-        startActivity(intent2);
-    }
-
-    public void weekly(View view) {
-        Intent intent2 = new Intent(this, BreathingReportWeekly.class);
-        startActivity(intent2);
-    }
+//    public void monthly(View v) {
+//        Intent intent2 = new Intent(this, ReportMonthly.class);
+//        startActivity(intent2);
+//
+//    }
+//
+//    public void yearly(View view) {
+//        Intent intent2 = new Intent(this, ReportYearly.class);
+//        startActivity(intent2);
+//    }
+//
+//    public void weekly(View view) {
+//        Intent intent2 = new Intent(this, BreathingReportWeekly.class);
+//        startActivity(intent2);
+//    }
 
             private void NavigationBar() {
 

@@ -78,7 +78,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
                     android:id="@+id/weekly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -86,9 +86,10 @@
                     android:text="Weekly"
 
                     android:textAllCaps="false"
-                    android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+                    android:textColor="@color/white">
+                </Button>
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
                     android:id="@+id/monthly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,10 +98,11 @@
                     android:text="Monthly"
 
                     android:textAllCaps="false"
-                    android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+                    android:textColor="@color/white">
+                </Button>
 
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
                     android:id="@+id/yearly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,7 +111,8 @@
                     android:text="Yearly"
 
                     android:textAllCaps="false"
-                    android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+                    android:textColor="@color/white">
+                </Button>
             </LinearLayout>
 
 
