@@ -66,7 +66,7 @@ import java.util.Locale;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class BreathingReportMonthly extends AppCompatActivity {
+public class MusicReportMonthly extends AppCompatActivity {
 
 
     private Context context;
@@ -89,7 +89,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breathing_report_monthly);
+        setContentView(R.layout.activity_music_report_monthly);
 
         daily = findViewById(R.id.daily);
         weekly = findViewById(R.id.weekly);
@@ -133,7 +133,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
         daily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BreathingReportDaily.class);
+                Intent intent = new Intent(getApplicationContext(), MusicReportDaily.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -142,7 +142,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
         weekly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BreathingReportWeekly.class);
+                Intent intent = new Intent(getApplicationContext(), MusicReportWeekly.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -151,7 +151,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
         yearly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BreathingReportYearly.class);
+                Intent intent = new Intent(getApplicationContext(), MusicReportYearly.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -186,7 +186,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
 
 
                 lineEntries = new ArrayList();
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                         .child(String.valueOf(1));
 
                 reference.addValueEventListener(new ValueEventListener() {
@@ -214,7 +214,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                             average1 = 0L;
                         }
 
-                        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                 .child(String.valueOf(2));
 
                         reference1.addValueEventListener(new ValueEventListener() {
@@ -242,7 +242,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                     average2 = 0L;
                                 }
 
-                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                         .child(String.valueOf(3));
 
                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -270,7 +270,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                             average3 = 0L;
                                         }
 
-                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                 .child(String.valueOf(4));
 
                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -297,7 +297,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                 } else {
                                                     average4 = 0L;
                                                 }
-                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                         .child(String.valueOf(5));
 
                                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -325,7 +325,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                             average5 = 0L;
                                                         }
 
-                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                 .child(String.valueOf(6));
 
                                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -352,7 +352,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                 } else {
                                                                     average6 = 0L;
                                                                 }
-                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                         .child(String.valueOf(7));
 
                                                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -379,7 +379,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                         } else {
                                                                             average7 = 0L;
                                                                         }
-                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                 .child(String.valueOf(8));
 
                                                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -406,7 +406,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                                 } else {
                                                                                     average8 = 0L;
                                                                                 }
-                                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                         .child(String.valueOf(9));
 
                                                                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -433,7 +433,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                                         } else {
                                                                                             average9 = 0L;
                                                                                         }
-                                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                                 .child(String.valueOf(10));
 
                                                                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -460,7 +460,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                                                 } else {
                                                                                                     average10 = 0L;
                                                                                                 }
-                                                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                                         .child(String.valueOf(11));
 
                                                                                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -487,7 +487,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                                                         } else {
                                                                                                             average11 = 0L;
                                                                                                         }
-                                                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                                                 .child(String.valueOf(12));
 
                                                                                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -698,7 +698,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
 
     public void onBackPressed() {
         finish();
-        Intent intent = new Intent(getApplicationContext(), BreathPatterns.class);
+        Intent intent = new Intent(getApplicationContext(), Home.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

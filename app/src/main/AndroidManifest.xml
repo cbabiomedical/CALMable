@@ -30,6 +30,21 @@
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".MusicReportMonthly"
+            android:exported="true" />
+        <activity
+            android:name=".MusicReportYearly"
+            android:exported="true" />
+        <activity
+            android:name=".MusicReportWeekly"
+            android:exported="true" />
+        <activity
+            android:name=".MusicRate"
+            android:exported="true" />
+        <activity
+            android:name=".MusicReportDaily"
+            android:exported="true" />
+        <activity
             android:name=".BreathingReportYearly"
             android:exported="true" />
         <activity
