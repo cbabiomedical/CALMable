@@ -42,6 +42,7 @@
     <string name="state_connecting">Connecting</string>
     <string name="state_connected">Connected</string>
     <string name="state_disconnected">Disconnected</string>
+    <string name="state_not_connected">Not Connected</string>
 
     <string name="start_measure_heart_rate">Start Measure Heart Rate</string>
     <string name="stop_measure_heart_rate">Stop Measure Heart Rate</string>

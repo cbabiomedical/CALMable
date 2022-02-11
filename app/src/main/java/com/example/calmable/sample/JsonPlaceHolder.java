@@ -4,6 +4,8 @@ package com.example.calmable.sample;
 import com.google.gson.internal.LinkedTreeMap;
 import com.squareup.okhttp.ResponseBody;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,21 +37,25 @@ public interface JsonPlaceHolder {
 //    @GET("memory")
 //    Call<List<Memory>> getMemoryValues();
 
-    @FormUrlEncoded
-    @POST("memory")
-    Call<Void> PostMemoryData(
-            @Field("alpha") int alpha,
-            @Field("beta") int beta,
-            @Field("gamma") int gamma,
-            @Field("theta") int theta,
-            @Field("delta") int delta
-    );
+//    @FormUrlEncoded
+//    @POST("memory")
+//    Call<Void> PostMemoryData(
+//            @Field("alpha") int alpha,
+//            @Field("beta") int beta,
+//            @Field("gamma") int gamma,
+//            @Field("theta") int theta,
+//            @Field("delta") int delta
+//    );
 
-    @POST("brain_waves")
-    Call<List> PostBrainWaveData(@Body List brain_waves);
 
-    @POST("calibration")
-    Call<List> PostCalibrationData(@Body ArrayList brain_waves);
+    @POST("relaxation")
+    Call<Object> PostRelaxationData(@Body JSONArray relaxation);
+
+//    @POST("brain_waves")
+//    Call<List> PostBrainWaveData(@Body List brain_waves);
+//
+//    @POST("calibration")
+//    Call<List> PostCalibrationData(@Body ArrayList brain_waves);
 
 
 //    @FormUrlEncoded
@@ -71,16 +77,14 @@ public interface JsonPlaceHolder {
 //            @Field("beta") Object beta,
 //            @Field("theta") Object gamma
 //    );
-
-    @POST("concentration")
-    Call<Object> PostConcentrationData(@Body Object concentration);
-
-    @POST("relaxation")
-    Call<Object> PostRelaxationData(@Body Object relaxation);
-
-    @POST("memory")
-    Call<Object> PostMemoryData(@Body Object memory);
-
+//
+//    @POST("concentration")
+//    Call<Object> PostConcentrationData(@Body Object concentration);
+//
+//
+//    @POST("memory")
+//    Call<Object> PostMemoryData(@Body Object memory);
+//
 //    @FormUrlEncoded
 //    @POST("eeg_values")
 //    Call<Void> PostData(
@@ -90,16 +94,15 @@ public interface JsonPlaceHolder {
 //            @Field("theta") int theta,
 //            @Field("delta") int delta
 //    );
-
-
-    @FormUrlEncoded
-    @POST("")
-    Call<Void> createPostVal(
-            @Field("name") String name,
-            @Field("age") String age,
-            @Field("school") String school
-    );
-
+//
+//
+//    @FormUrlEncoded
+//    @POST("")
+//    Call<Void> createPostVal(
+//            @Field("sHeartRate") int sHeartRate
+//            @Field("age") String age,
+//            @Field("school") String school
+//    );
 
 //    @GET("")
 //    Call<List<Post>> getPost();

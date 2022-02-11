@@ -2,9 +2,6 @@ package com.example.calmable;
 
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -18,13 +15,14 @@ import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.calmable.fitbit.FitbitMainActivity;
 import com.example.calmable.scan.ScanActivity;
@@ -60,8 +58,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
-import butterknife.OnClick;
 
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
@@ -112,6 +108,11 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         TextView txtProgress2 = (TextView) findViewById(R.id.txtPastProgress);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
+
+        Intent mIntent = getIntent();
+        int intValue = mIntent.getIntExtra("data" ,0);
+
+
         happy = findViewById(R.id.happyEmoji_1);
         awesome = findViewById(R.id.happyEmoji_2);
         relaxed = findViewById(R.id.happyEmoji_3);
@@ -122,16 +123,18 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         this.mHandler = new Handler();
         m_Runnable.run();
 
+        Log.d("TAG", "--------------->onCreate: " + finalRateff);
+
         // this.mHandler = new Handler();
         //m_Runnable_popup.run();
 
         //for testing
-        finalRateff = 100;
-        //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
-        if (finalRateff > 80) {
-            openDialog();
-            Log.d("TAG", String.valueOf(finalRateff));
-        }
+//        finalRateff = 100;
+//        //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
+//        if (finalRateff > 80) {
+//            openDialog();
+//            Log.d("TAG", String.valueOf(finalRateff));
+//        }
 
         //updateLandingCoins();
 

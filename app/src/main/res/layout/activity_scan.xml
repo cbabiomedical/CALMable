@@ -12,7 +12,7 @@
         android:id="@+id/watchGif"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="45dp"
         android:gravity="center"
         android:src="@drawable/watch_gif2" />
 
@@ -52,11 +52,9 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="100dp"
+        android:layout_marginBottom="32dp"
         android:foregroundGravity="center"
-        android:scrollbars="vertical"
-        android:layout_marginBottom="16dp"/>
-
-
+        android:scrollbars="vertical" />
 
 
     <LinearLayout

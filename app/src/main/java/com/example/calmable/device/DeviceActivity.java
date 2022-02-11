@@ -1,8 +1,5 @@
 package com.example.calmable.device;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.crrepa.ble.CRPBleClient;
 import com.crrepa.ble.conn.CRPBleConnection;
@@ -28,26 +28,56 @@ import com.crrepa.ble.conn.listener.CRPHeartRateChangeListener;
 import com.example.calmable.Home;
 import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
+import com.example.calmable.sample.JsonPlaceHolder;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DeviceActivity extends AppCompatActivity {
 
-
-    public static int finalRate;
-    boolean stopThread = false;
-
-    String timeAndHR;
-    int q;
-
     private static final String TAG = "DeviceActivity";
     public static final String DEVICE_MACADDR = "device_macaddr";
+
+    // send HR to server
+    ArrayList<Integer> listOFServerHRData;
+    ArrayList<Integer> listOfTxtData;
+    File filNameHeartRate;
+    JsonPlaceHolder jsonPlaceHolder;
+    Retrofit retrofit;
+    JSONObject objHRServer;
+    HashMap<String, Object> srHashMap;
+
+    public static int finalRate;
+    public static int measuringHR;
+    boolean stopThread = false;
+    String timeAndHR;
+    int q;
 
     ProgressDialog mProgressDialog;
     CRPBleClient mBleClient;
@@ -105,6 +135,16 @@ public class DeviceActivity extends AppCompatActivity {
         }
 
 
+        // clear server datatxt when activity create
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(getCacheDir() + "/serverData.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        writer.print("");
+        writer.close();
+
     }
 
     @Override
@@ -141,6 +181,9 @@ public class DeviceActivity extends AppCompatActivity {
                         stopThread = false;
                         ExampleRunnable runnable = new ExampleRunnable();
                         new Thread(runnable).start();
+
+
+                        filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
 
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
@@ -285,8 +328,12 @@ public class DeviceActivity extends AppCompatActivity {
     CRPHeartRateChangeListener mHeartRateChangListener = new CRPHeartRateChangeListener() {
         @Override
         public void onMeasuring(int rate) {
+
+            measuringHR = rate;
+
             Log.d(TAG, q + "s  ,  " + "onMeasuring : " + rate + "bpm");
-            updateTextView(tvHeartRate, String.format(getString(R.string.heart_rate), rate));
+
+            //updateTextView(tvHeartRate, String.format(getString(R.string.heart_rate), rate));
 
             timeAndHR = q + "s  ,  " + "onMeasuring : " + rate + "bpm";
 
@@ -295,7 +342,20 @@ public class DeviceActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("timeAndHR2", timeAndHR);
             editor.commit();
+
+
+            listOFServerHRData = new ArrayList<>();
+            listOFServerHRData.add(measuringHR);
+
+            // call writeData method
+            try {
+                writeHRData();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
+
         @Override
         public void onOnceMeasureComplete(int rate) {
             finalRate = rate;
@@ -303,12 +363,25 @@ public class DeviceActivity extends AppCompatActivity {
 
             timeAndHR = q + "s  ,  " + "onOnceMeasureComplete: " + rate + "bpm";
 
-            //To save
+            //To save HR data
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("heartRate", rate);
             editor.putString("timeAndHR", timeAndHR);
             editor.commit();
+
+
+            // add HR to save for txt
+            listOFServerHRData = new ArrayList<>();
+            listOFServerHRData.add(finalRate);
+
+
+            // call writeData method
+            try {
+                writeHRData();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
 
         }
 
@@ -409,10 +482,138 @@ public class DeviceActivity extends AppCompatActivity {
         });
     }
 
-
     public void GoHome(View view) {
         startActivity(new Intent(this, Home.class));
+        finish();
     }
 
+    //Server part
+    private void shareHRToServer() {
 
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .connectTimeout(100, TimeUnit.SECONDS)
+//                .readTimeout(100,TimeUnit.SECONDS).build();
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+
+        // setting custom timeouts
+//        OkHttpClient.Builder client = new OkHttpClient.Builder();
+//        client.connectTimeout(15, TimeUnit.SECONDS);
+//        client.readTimeout(15, TimeUnit.SECONDS);
+//        client.writeTimeout(15, TimeUnit.SECONDS);
+//
+//        if (retrofit == null) {
+//            retrofit = new Retrofit.Builder()
+//                    .baseUrl("http://192.168.8.186:5000/")
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .client(client.build())
+//                    .build();
+//        }
+
+
+        jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
+
+
+        JSONArray jsArray = new JSONArray(listOfTxtData);
+
+        Log.d(TAG, "txt file data : " + listOfTxtData);
+        Log.d(TAG, "json arr data : " + jsArray);
+
+        Call<Object> call3 = jsonPlaceHolder.PostRelaxationData(jsArray);
+        call3.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                Toast.makeText(getApplicationContext(), "Post Successful", Toast.LENGTH_SHORT).show();
+
+                //Log.d(TAG, "-----onResponse-----: " + response);
+
+                Log.d(TAG, "* response code : "  + response.code());
+                Log.d(TAG, "response message : "  + response.message());
+                Log.d(TAG, "Relax index : "  + response.body());
+                Log.d(TAG, "response code : "  + response.body().getClass().getSimpleName());
+
+
+            }
+
+            //
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed Post Relaxation", Toast.LENGTH_SHORT).show();
+                Log.d("ErrorVal:Relaxation", String.valueOf(t));
+                Log.d(TAG, "onFailure: " + t);
+
+            }
+        });
+
+    }
+
+    private void writeHRData() throws FileNotFoundException {
+
+        //Writing data to txt file
+        try {
+            //File filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            filNameHeartRate.createNewFile();
+            if (!filNameHeartRate.exists()) {
+                filNameHeartRate.mkdirs();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filNameHeartRate, true));
+            int size = listOFServerHRData.size();
+            for (int i = 0; i < size; i++) {
+                writer.write(listOFServerHRData.get(i).toString());
+                writer.newLine();
+                writer.flush();
+                //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+            }
+
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        // write hr to txt - end
+
+
+        // read txt file server data
+        listOfTxtData = new ArrayList<Integer>();
+        int arrSize;
+
+        Scanner s = new Scanner(new File(getCacheDir() + "/serverData.txt"));
+        while (s.hasNext()) {
+            listOfTxtData.add(Integer.valueOf(s.next()));
+        }
+
+        arrSize = listOfTxtData.size();
+        Log.d(TAG, "txt data ---> : " + listOfTxtData);
+        Log.d(TAG, "array size ---> : " + arrSize);
+        s.close();
+
+
+        if (arrSize == 10) {
+
+            shareHRToServer();
+
+        } else if (arrSize >= 10) {
+            // clear txt file
+            PrintWriter writer;
+            try {
+                writer = new PrintWriter(getCacheDir() + "/serverData.txt");
+                writer.print("");
+                writer.close();
+            } catch (
+                    FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
