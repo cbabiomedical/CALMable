@@ -216,6 +216,12 @@ public class MusicPlayer extends AppCompatActivity {
                         mediaPlayer.stop();
                         imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
 
+
+                        //to go to rate page
+                        Intent intent = new Intent(getApplicationContext(), MusicRate.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
                     }
 
                     if (currentPosition > totalDuration) {
@@ -230,6 +236,11 @@ public class MusicPlayer extends AppCompatActivity {
                                 .setAutoCancel(true);
                         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.notify(0, builder.build());
+
+                        //to go to rate page
+                        Intent intent = new Intent(getApplicationContext(), MusicRate.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
                         //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 

@@ -62,23 +62,6 @@ public class BreathPattern4 extends AppCompatActivity {
 
         x4 = prefs4.getBreaths();
 
-        //button to go back
-        backButton2 = findViewById(R.id.backbutton2);
-        backButton2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-
-                onPause();
-                mysong2.pause();
-                mysong.pause();
-
-                Intent intent = new Intent(BreathPattern4.this, BreathPatterns.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-            }
-        });
-
 
         startButton = findViewById(R.id.startbutton);
         startButton.setOnClickListener(new View.OnClickListener(){
@@ -87,7 +70,6 @@ public class BreathPattern4 extends AppCompatActivity {
                 startAnimation();
 
                 startButton.setVisibility(View.GONE);
-                backButton2.setVisibility(View.GONE);
 
                 new CountDownTimer(121000, 1000){
                     public void onTick(long millisUntilFinished){
@@ -758,7 +740,6 @@ public class BreathPattern4 extends AppCompatActivity {
                 .onStop(new AnimationListener.Stop() {
                     @Override
                     public void onStop() {
-                        backButton2.setVisibility(View.VISIBLE);
                         //guideTxt.setText("Good Job");
                         imageView.setScaleX(1.0f);
                         imageView.setScaleY(1.0f);
@@ -766,6 +747,10 @@ public class BreathPattern4 extends AppCompatActivity {
                         prefs4.setSessions(prefs4.getSessions() + 1);
                         prefs4.setBreaths(prefs4.getBreaths() + 1);
                         prefs4.setDate(SystemClock.currentThreadTimeMillis());
+
+                        Intent intent = new Intent(getApplicationContext(), BreathingRate.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
 
                     }

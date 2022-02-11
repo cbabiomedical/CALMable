@@ -35,6 +35,7 @@ public class BreathPattern1 extends AppCompatActivity {
         private Button startButton, backButton2;
         public static Prefs prefs;
 
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -776,13 +777,15 @@ public class BreathPattern1 extends AppCompatActivity {
 
                             prefs.setBreaths(prefs.getBreaths() + 1);
 
-                            //getting number of interventions for the relax average
-                            BreathingReport.numOfIntervention = BreathingReport.numOfIntervention + 1;
+//                            //getting number of interventions for the relax average
+//                            BreathingReport.numOfInterventions = BreathingReport.numOfInterventions + 1;
+//                            Log.d("NoInterv---------------", String.valueOf(BreathingReport.numOfInterventions));
 
                             //Log.d(TAG, "-----------------x-----------------");
                             prefs.setDate(SystemClock.currentThreadTimeMillis());
                             Intent intent = new Intent(getApplicationContext(), BreathingRate.class);
                             startActivity(intent);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
                         }
                     })

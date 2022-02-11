@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BreathingRate extends AppCompatActivity {
+public class MusicRate extends AppCompatActivity {
 
     Button ratingBtn, backBtn2;
     RatingBar ratingStars;
@@ -36,7 +36,7 @@ public class BreathingRate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breathing_rate);
+        setContentView(R.layout.activity_music_rate);
 
         ratingBtn = findViewById(R.id.ratingBtn);
         backBtn2 = findViewById(R.id.backBtn2);
@@ -69,7 +69,7 @@ public class BreathingRate extends AppCompatActivity {
                         message = "Awesome!";
                         break;
                 }
-                Toast.makeText(BreathingRate.this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MusicRate.this, message, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -118,15 +118,15 @@ public class BreathingRate extends AppCompatActivity {
         ratingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(BreathingRate.this,String.valueOf(myRating), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MusicRate.this,String.valueOf(myRating), Toast.LENGTH_SHORT).show();
                 totalRating = totalRating + myRating;
 
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                         .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(a));
 
                 reference.setValue(myRating);
 
-                Intent intent = new Intent(getApplicationContext(), BreathingReportDaily.class);
+                Intent intent = new Intent(getApplicationContext(), MusicReportDaily.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -139,12 +139,12 @@ public class BreathingRate extends AppCompatActivity {
             public void onClick(View view) {
                 totalRating = totalRating + myRating;
 
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(now.get(Calendar.YEAR)))
+                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                         .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(a));
                 reference.setValue(myRating);
 
 
-                Intent intent = new Intent(getApplicationContext(), BreathPatterns.class);
+                Intent intent = new Intent(getApplicationContext(), Home.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -155,7 +155,7 @@ public class BreathingRate extends AppCompatActivity {
     // for go back
     public void onBackPressed() {
         finish();
-        Intent intent = new Intent(getApplicationContext(), BreathPatterns.class);
+        Intent intent = new Intent(getApplicationContext(), Home.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
