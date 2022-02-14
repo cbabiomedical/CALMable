@@ -24,10 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:fontFamily="@font/bilbo"
+            android:fontFamily="@font/roboto_light"
             android:gravity="center"
             android:text="CALMable"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/teal_dark"
             android:textSize="28dp"
             android:textStyle="bold" />
 
