@@ -53,9 +53,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -90,6 +92,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     int markHeartRate = 0;
     TextView markHeartRateValue;
+
 
     private Handler mHandler;
 
@@ -553,8 +556,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         final Handler handler = new Handler();
         final int delay = 5000;
 
-        //uploading reportList array values to firebase real time db
-        Reports.put("Reports", reportList);
+
         FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("reportStress").child(date).push().updateChildren(Reports)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

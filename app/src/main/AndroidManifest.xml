@@ -32,6 +32,21 @@
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".SleepReportYearly"
+            android:exported="true" />
+        <activity
+            android:name=".SleepReportMonthly"
+            android:exported="true" />
+        <activity
+            android:name=".SleepReportWeekly"
+            android:exported="true" />
+        <activity
+            android:name=".SleepReportDaily"
+            android:exported="true" />
+        <activity
+            android:name=".SleepRate"
+            android:exported="true" />
+        <activity
             android:name=".MusicReportMonthly"
             android:exported="true" />
         <activity

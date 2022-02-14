@@ -66,7 +66,7 @@ import java.util.Locale;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class MusicReportMonthly extends AppCompatActivity {
+public class SleepReportMonthly extends AppCompatActivity {
 
 
     private Context context;
@@ -89,7 +89,7 @@ public class MusicReportMonthly extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_report_monthly);
+        setContentView(R.layout.activity_sleep_report_monthly);
 
         daily = findViewById(R.id.daily);
         weekly = findViewById(R.id.weekly);
@@ -133,7 +133,7 @@ public class MusicReportMonthly extends AppCompatActivity {
         daily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportDaily.class);
+                Intent intent = new Intent(getApplicationContext(), SleepReportDaily.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -142,7 +142,7 @@ public class MusicReportMonthly extends AppCompatActivity {
         weekly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportWeekly.class);
+                Intent intent = new Intent(getApplicationContext(), SleepReportWeekly.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -151,7 +151,7 @@ public class MusicReportMonthly extends AppCompatActivity {
         yearly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportYearly.class);
+                Intent intent = new Intent(getApplicationContext(), SleepReportYearly.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -186,7 +186,7 @@ public class MusicReportMonthly extends AppCompatActivity {
 
 
                 lineEntries = new ArrayList();
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                         .child(String.valueOf(1));
 
                 reference.addValueEventListener(new ValueEventListener() {
@@ -215,7 +215,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                             average1 = 0L;
                         }
 
-                        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                 .child(String.valueOf(2));
 
                         reference1.addValueEventListener(new ValueEventListener() {
@@ -244,7 +244,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                     average2 = 0L;
                                 }
 
-                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                         .child(String.valueOf(3));
 
                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -273,7 +273,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                             average3 = 0L;
                                         }
 
-                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                 .child(String.valueOf(4));
 
                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -301,7 +301,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                                 } else {
                                                     average4 = 0L;
                                                 }
-                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                         .child(String.valueOf(5));
 
                                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -330,7 +330,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                                             average5 = 0L;
                                                         }
 
-                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                 .child(String.valueOf(6));
 
                                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -358,7 +358,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                                                 } else {
                                                                     average6 = 0L;
                                                                 }
-                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                         .child(String.valueOf(7));
 
                                                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -386,7 +386,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                                                         } else {
                                                                             average7 = 0L;
                                                                         }
-                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                 .child(String.valueOf(8));
 
                                                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -414,7 +414,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                                                                 } else {
                                                                                     average8 = 0L;
                                                                                 }
-                                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                         .child(String.valueOf(9));
 
                                                                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -442,7 +442,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                                                                         } else {
                                                                                             average9 = 0L;
                                                                                         }
-                                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                                 .child(String.valueOf(10));
 
                                                                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -470,7 +470,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                                                                                 } else {
                                                                                                     average10 = 0L;
                                                                                                 }
-                                                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                                         .child(String.valueOf(11));
 
                                                                                                 reference2.addValueEventListener(new ValueEventListener() {
@@ -498,7 +498,7 @@ public class MusicReportMonthly extends AppCompatActivity {
                                                                                                         } else {
                                                                                                             average11 = 0L;
                                                                                                         }
-                                                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                                                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
                                                                                                                 .child(String.valueOf(12));
 
                                                                                                         reference2.addValueEventListener(new ValueEventListener() {
@@ -710,7 +710,7 @@ public class MusicReportMonthly extends AppCompatActivity {
 
     public void onBackPressed() {
         finish();
-        Intent intent = new Intent(getApplicationContext(), Home.class);
+        Intent intent = new Intent(getApplicationContext(), SleepStoryReadActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

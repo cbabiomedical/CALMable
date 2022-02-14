@@ -163,7 +163,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
     private void getEntries() {
         Handler handler = new Handler();
         final int delay = 5000;
-        ArrayList sumElement = new ArrayList();
+
 
         Calendar now = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -192,6 +192,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ArrayList sumElement = new ArrayList();
                         int sum = (0);
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -220,6 +221,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                         reference1.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                ArrayList sumElement = new ArrayList();
                                 int sum = (0);
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                     Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -248,6 +250,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                 reference2.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        ArrayList sumElement = new ArrayList();
                                         int sum = (0);
                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                             Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -276,6 +279,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                         reference2.addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                ArrayList sumElement = new ArrayList();
                                                 int sum = (0);
                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                     Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -303,6 +307,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                 reference2.addValueEventListener(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                        ArrayList sumElement = new ArrayList();
                                                         int sum = (0);
                                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                             Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -331,6 +336,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                         reference2.addValueEventListener(new ValueEventListener() {
                                                             @Override
                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                ArrayList sumElement = new ArrayList();
                                                                 int sum = (0);
                                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                     Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -358,6 +364,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                 reference2.addValueEventListener(new ValueEventListener() {
                                                                     @Override
                                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                        ArrayList sumElement = new ArrayList();
                                                                         int sum = (0);
                                                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                             Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -385,6 +392,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                         reference2.addValueEventListener(new ValueEventListener() {
                                                                             @Override
                                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                ArrayList sumElement = new ArrayList();
                                                                                 int sum = (0);
                                                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                                     Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -412,6 +420,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                                 reference2.addValueEventListener(new ValueEventListener() {
                                                                                     @Override
                                                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                        ArrayList sumElement = new ArrayList();
                                                                                         int sum = (0);
                                                                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                                             Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -439,6 +448,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                                         reference2.addValueEventListener(new ValueEventListener() {
                                                                                             @Override
                                                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                                ArrayList sumElement = new ArrayList();
                                                                                                 int sum = (0);
                                                                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                                                     Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -466,6 +476,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                                                 reference2.addValueEventListener(new ValueEventListener() {
                                                                                                     @Override
                                                                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                                        ArrayList sumElement = new ArrayList();
                                                                                                         int sum = (0);
                                                                                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                                                             Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));
@@ -493,6 +504,7 @@ public class BreathingReportMonthly extends AppCompatActivity {
                                                                                                         reference2.addValueEventListener(new ValueEventListener() {
                                                                                                             @Override
                                                                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                                                ArrayList sumElement = new ArrayList();
                                                                                                                 int sum = (0);
                                                                                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                                                                     Log.d("Month Val", String.valueOf(dataSnapshot.getValue()));

@@ -174,7 +174,7 @@ public class MusicReportWeekly extends AppCompatActivity {
 
 
                 lineEntries = new ArrayList();
-                ArrayList sumElement = new ArrayList();
+
 
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
@@ -185,6 +185,7 @@ public class MusicReportWeekly extends AppCompatActivity {
 
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ArrayList sumElement = new ArrayList();
                         int sum = (0);
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             Log.d("Weekly Val", String.valueOf(dataSnapshot.getValue()));
@@ -211,6 +212,7 @@ public class MusicReportWeekly extends AppCompatActivity {
 
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                ArrayList sumElement = new ArrayList();
                                 int sum = (0);
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                     Log.d("Weekly2 Val", String.valueOf(dataSnapshot.getValue()));
@@ -238,6 +240,7 @@ public class MusicReportWeekly extends AppCompatActivity {
 
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        ArrayList sumElement = new ArrayList();
                                         int sum = (0);
                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                             Log.d("Weekly3 Val", String.valueOf(dataSnapshot.getValue()));
@@ -265,6 +268,7 @@ public class MusicReportWeekly extends AppCompatActivity {
 
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                ArrayList sumElement = new ArrayList();
                                                 int sum = (0);
                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                     Log.d("Weekly4 Val", String.valueOf(dataSnapshot.getValue()));
