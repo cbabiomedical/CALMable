@@ -53,6 +53,8 @@ public class Journal extends AppCompatActivity {
             }
         });
 
+
+        NavigationBar();
     }
 
 

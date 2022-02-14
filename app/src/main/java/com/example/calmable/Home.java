@@ -129,12 +129,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         //m_Runnable_popup.run();
 
         //for testing
-//        finalRateff = 100;
-//        //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
-//        if (finalRateff > 80) {
-//            openDialog();
-//            Log.d("TAG", String.valueOf(finalRateff));
-//        }
+        finalRateff = 100;
+        //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
+        if (finalRateff > 80) {
+            openDialog();
+            Log.d("TAG", String.valueOf(finalRateff));
+        }
 
         //updateLandingCoins();
 
