@@ -1,13 +1,19 @@
 package com.example.calmable;
 
+import static android.content.ContentValues.TAG;
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,9 +29,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.calmable.fitbit.FitbitMainActivity;
 import com.example.calmable.scan.ScanActivity;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,6 +53,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -56,12 +69,28 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
     private static final String COINS = "coins";
+
+    boolean stopThread = false;
+
+    Date currentTime;
+
+    // for check location
+    FusedLocationProviderClient fusedLocationProviderClient;
+    String userLocationFullAddress;
+    public static double latitude, longitude;
+    File locationTxt , displayLocationTxt;
+    ArrayList<String> listOFLocations;
+    ArrayList<String> listOfTxtLocations;
+
 
     TextView txtHtRate;
     TextView txtProgress;
@@ -103,6 +132,15 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //call thread method
+        stopThread = false;
+        GetLocationRunnable runnable = new GetLocationRunnable();
+        new Thread(runnable).start();
+
+        locationTxt = new File(getCacheDir() + "/locationData.txt");
+        displayLocationTxt = new File(getCacheDir() + "/displayLocationTxt.txt");
+
+
         txtHtRate = (TextView) findViewById(R.id.htRate);
         txtProgress = (TextView) findViewById(R.id.txtProgress);
         TextView txtProgress2 = (TextView) findViewById(R.id.txtPastProgress);
@@ -110,7 +148,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
 
         Intent mIntent = getIntent();
-        int intValue = mIntent.getIntExtra("data" ,0);
+        int intValue = mIntent.getIntExtra("data", 0);
 
 
         happy = findViewById(R.id.happyEmoji_1);
@@ -235,6 +273,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         super.onPause();
         mHandler.removeCallbacks(m_Runnable);
         finish();
+
+
+        //call thread method
+        stopThread = false;
+        GetLocationRunnable runnable = new GetLocationRunnable();
+        new Thread(runnable).start();
     }
 
 
@@ -846,7 +890,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     }
 
-    //call user name to home page\
+    //call user name to home page
     private void getData() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -859,7 +903,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
                 String name = snapshot.child("fullName").getValue(String.class);
 
-                Log.d("TAG", "edit profile: name-------------" + name);
+                Log.d("TAG", "edit profile name : " + name);
 
                 TextView textView = (TextView) findViewById(R.id.userName);
                 textView.setText(name);
@@ -872,5 +916,214 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         });
     }
+
+
+    class GetLocationRunnable implements Runnable {
+
+        @Override
+        public void run() {
+
+            for (int i = 0; i >= 0; i++) {
+
+                //initialize fusedLocationProviderClient
+                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    //when permission granted
+                    getLocation();
+                } else {
+                    //when permission denied
+                    ActivityCompat.requestPermissions(Home.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+                }
+
+
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void stopThread(View view) {
+        stopThread = true;
+    }
+
+    public void getLocation() {
+
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+                if (location != null) {
+                    try {
+                        //initialize geocoder
+                        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                        //initialize address list
+                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                        //set address
+                        userLocationFullAddress = addresses.get(0).getAddressLine(0);
+                        //Log.d(TAG, "User current location address : " + userLocationFullAddress);
+
+                        String str1 = String.valueOf(userLocationFullAddress);
+                        //Removes the white spaces using regex.
+                        str1 = str1.replaceAll("\\s+", "");
+
+                        currentTime = Calendar.getInstance().getTime();
+                        //Log.d(TAG, "time---- : " + currentTime);
+
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                        LatLng place = new LatLng(latitude, longitude);
+                        //Log.d("PLACE --------", String.valueOf(place));
+
+                        //Creating a JSONObject object
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("address", userLocationFullAddress);
+                        jsonObject.put("index", place);
+                        jsonObject.put("time", currentTime);
+
+                        Log.d("Json array : ", String.valueOf(jsonObject));
+
+                        listOFLocations = new ArrayList<>();
+                        // add json object to array
+                        //listOFLocations.add(String.valueOf(jsonObject));
+                        // add current location address to array
+                        listOFLocations.add(str1);
+                        Log.d(TAG, "Write array" + listOFLocations);
+
+                        writeHRData1();
+
+
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+
+    }
+
+    private void writeHRData1() throws FileNotFoundException {
+
+        //Writing data to txt file
+        try {
+            //File locationTxt = new File(getCacheDir() + "/serverData.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            locationTxt.createNewFile();
+            if (!locationTxt.exists()) {
+                locationTxt.mkdirs();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(locationTxt, true));
+            int size = listOFLocations.size();
+            for (int i = 0; i < size; i++) {
+                writer.write(listOFLocations.get(i).toString());
+                writer.newLine();
+                writer.flush();
+                //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+            }
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        // write hr to txt - end
+
+
+        // read txt file server data
+        listOfTxtLocations = new ArrayList<String>();
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File(getCacheDir() + "/locationData.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (scanner.hasNext()) {
+            listOfTxtLocations.add(scanner.next());
+        }
+
+        int arrSize = listOfTxtLocations.size();
+        Log.d("TAG", "txt locations data --> : " + listOfTxtLocations);
+        Log.d("TAG", "locations array size --> : " + arrSize);
+        scanner.close();
+
+
+        if (arrSize == 4) {
+
+            String val1 = listOfTxtLocations.get(0);
+            String val2 = listOfTxtLocations.get(0);
+            String val3 = listOfTxtLocations.get(0);
+            String val4 = listOfTxtLocations.get(0);
+
+
+            Log.d(TAG, "writeHRData1: " + val1);
+            Log.d(TAG, "writeHRData2: " + val2);
+            Log.d(TAG, "writeHRData3: " + val3);
+            Log.d(TAG, "writeHRData4: " + val4);
+
+
+            if (val1 == val2 && val2 == val3 && val3 == val4) {
+
+                ArrayList<String> displayLocationsList = new ArrayList<>();
+                displayLocationsList.add(val1);
+
+
+                Log.d(TAG, "save location ->" + displayLocationsList);
+
+                //Writing data to txt file
+                try {
+                    //File locationTxt = new File(getCacheDir() + "/serverData.txt");
+                    //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+                    displayLocationTxt.createNewFile();
+                    if (!displayLocationTxt.exists()) {
+                        displayLocationTxt.mkdirs();
+                    }
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(displayLocationTxt, true));
+                    int size = displayLocationsList.size();
+                    for (int i = 0; i < size; i++) {
+                        writer.write(displayLocationsList.get(i).toString());
+                        writer.newLine();
+                        writer.flush();
+                        //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+                    }
+                    writer.close();
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                // write hr to txt - end
+
+
+
+                // clear txt file
+                PrintWriter writer;
+                try {
+                    writer = new PrintWriter(getCacheDir() + "/locationData.txt");
+                    writer.print("");
+                    writer.close();
+                } catch (
+                        FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+    }
+
 }
 

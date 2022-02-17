@@ -364,7 +364,7 @@
                         android:background="@drawable/home_main_btn"
                         android:onClick="btnMotivate"
                         android:padding="16dp"
-                        android:text="Need \nmotivate"
+                        android:text="Need to \nmotivate"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
 
