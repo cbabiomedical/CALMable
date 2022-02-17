@@ -31,29 +31,44 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
-        <activity
-            android:name=".LocationReminderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MusicReportMonthly"
-            android:exported="true" />
-        <activity
-            android:name=".MusicReportYearly"
-            android:exported="true" />
-        <activity
-            android:name=".MusicReportWeekly"
-            android:exported="true" />
-        <activity
-            android:name=".MusicRate"
-            android:exported="true" />
-        <activity
-            android:name=".MusicReportDaily"
-            android:exported="true" />
-        <activity
-            android:name=".BreathingReportYearly"
-            android:exported="true" />
-        <activity
-            android:name=".BreathingReportMonthly"
+            <activity
+                android:name=".LocationReminderActivity"
+                android:exported="false" />
+            <activity
+                android:name=".SleepReportYearly"
+                android:exported="true" />
+            <activity
+                android:name=".SleepReportMonthly"
+                android:exported="true" />
+            <activity
+                android:name=".SleepReportWeekly"
+                android:exported="true" />
+            <activity
+                android:name=".SleepReportDaily"
+                android:exported="true" />
+            <activity
+                android:name=".SleepRate"
+                android:exported="true" />
+            <activity
+                android:name=".MusicReportMonthly"
+                android:exported="true" />
+            <activity
+                android:name=".MusicReportYearly"
+                android:exported="true" />
+            <activity
+                android:name=".MusicReportWeekly"
+                android:exported="true" />
+            <activity
+                android:name=".MusicRate"
+                android:exported="true" />
+            <activity
+                android:name=".MusicReportDaily"
+                android:exported="true" />
+            <activity
+                android:name=".BreathingReportYearly"
+                android:exported="true" />
+            <activity
+                android:name=".BreathingReportMonthly"
             android:exported="true" />
         <activity
             android:name=".BreathingReportWeekly"

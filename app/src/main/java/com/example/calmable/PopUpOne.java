@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -87,35 +88,74 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
         searchView.setOnQueryTextListener(this);
         searchView.setOnSuggestionListener(this);
 
-        builder.setView(view)
-                .setTitle("")
-                .setNegativeButton("Skip", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+        Button skip = view.findViewById(R.id.skip);
+        Button submit = view.findViewById(R.id.submit);
 
-                    }
-                })
-                .setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        editPerson.setText(searchView.getQuery());
-                        String person = editPerson.getText().toString();
-                        String place = editPlace.getText().toString();
-                        String reason = editReason.getText().toString();
-                        listener.applyText(person,place,reason);
-                        startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
-                        Log.d("TAG person-----", person);
-                        Log.d("TAG location-----", place);
-                        Log.d("TAG reason-----", reason);
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
 
-                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        Gson gson = new Gson();
-                        String json = gson.toJson(addArray);
-                        editor.putString("addArray", json);
-                        editor.commit();
-                    }
-                });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editPerson.setText(searchView.getQuery());
+                String person = editPerson.getText().toString();
+                String place = editPlace.getText().toString();
+                String reason = editReason.getText().toString();
+
+                //check if person and reason entered
+                if(reason.isEmpty() || person.isEmpty()){
+                    editReason.setError("Both Fields are Required");
+                    editReason.requestFocus();
+                    return;
+                }
+
+                listener.applyText(person,place,reason);
+                startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
+                Log.d("TAG person-----", person);
+                Log.d("TAG location-----", place);
+                Log.d("TAG reason-----", reason);
+
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(addArray);
+                editor.putString("addArray", json);
+                editor.commit();
+            }
+        });
+
+        builder.setView(view);
+//                .setNegativeButton("Skip", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                    }
+//                })
+//                .setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        editPerson.setText(searchView.getQuery());
+//                        String person = editPerson.getText().toString();
+//                        String place = editPlace.getText().toString();
+//                        String reason = editReason.getText().toString();
+//                        listener.applyText(person,place,reason);
+//                        startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
+//                        Log.d("TAG person-----", person);
+//                        Log.d("TAG location-----", place);
+//                        Log.d("TAG reason-----", reason);
+//
+//                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        Gson gson = new Gson();
+//                        String json = gson.toJson(addArray);
+//                        editor.putString("addArray", json);
+//                        editor.commit();
+//                    }
+//                });
 
         editPerson = view.findViewById(R.id.edit_person);
         editPlace  = view.findViewById(R.id.edit_place);

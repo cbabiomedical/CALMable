@@ -168,11 +168,12 @@ public class BreathingReportYearly extends AppCompatActivity {
 
 
                 lineEntries = new ArrayList();
-                ArrayList sumElement = new ArrayList();
+
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Breathing Patterns").child(String.valueOf(year1));
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ArrayList sumElement = new ArrayList();
                         int sum = (0);
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
@@ -197,6 +198,7 @@ public class BreathingReportYearly extends AppCompatActivity {
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                ArrayList sumElement = new ArrayList();
                                 int sum = (0);
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                     for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
@@ -221,6 +223,7 @@ public class BreathingReportYearly extends AppCompatActivity {
                                 reference.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        ArrayList sumElement = new ArrayList();
                                         int sum = (0);
                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                             for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
@@ -244,6 +247,7 @@ public class BreathingReportYearly extends AppCompatActivity {
                                         reference.addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                ArrayList sumElement = new ArrayList();
                                                 int sum = (0);
                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                     for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {

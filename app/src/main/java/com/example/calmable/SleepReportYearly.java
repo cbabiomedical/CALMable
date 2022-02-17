@@ -67,7 +67,7 @@ import java.util.Locale;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class MusicReportYearly extends AppCompatActivity {
+public class SleepReportYearly extends AppCompatActivity {
 
     AppCompatButton daily, weekly, monthly;
     String text;
@@ -87,7 +87,7 @@ public class MusicReportYearly extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_report_yearly);
+        setContentView(R.layout.activity_sleep_report_yearly);
         daily = findViewById(R.id.daily);
         weekly = findViewById(R.id.weekly);
         monthly = findViewById(R.id.monthly);
@@ -116,7 +116,7 @@ public class MusicReportYearly extends AppCompatActivity {
         daily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportDaily.class);
+                Intent intent = new Intent(getApplicationContext(), SleepReportDaily.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -125,7 +125,7 @@ public class MusicReportYearly extends AppCompatActivity {
         weekly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportWeekly.class);
+                Intent intent = new Intent(getApplicationContext(), SleepReportWeekly.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -134,7 +134,7 @@ public class MusicReportYearly extends AppCompatActivity {
         monthly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportMonthly.class);
+                Intent intent = new Intent(getApplicationContext(), SleepReportMonthly.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -169,7 +169,7 @@ public class MusicReportYearly extends AppCompatActivity {
 
                 lineEntries = new ArrayList();
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year1));
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(year1));
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -194,7 +194,7 @@ public class MusicReportYearly extends AppCompatActivity {
                             average1 = 0L;
                         }
 
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year2));
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(year2));
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -219,7 +219,7 @@ public class MusicReportYearly extends AppCompatActivity {
                                     average2 = 0L;
                                 }
 
-                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year3));
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(year3));
                                 reference.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -243,7 +243,7 @@ public class MusicReportYearly extends AppCompatActivity {
                                         } else {
                                             average3 = 0L;
                                         }
-                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)));
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)));
                                         reference.addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -370,7 +370,7 @@ public class MusicReportYearly extends AppCompatActivity {
 
     public void onBackPressed() {
         finish();
-        Intent intent = new Intent(getApplicationContext(), Home.class);
+        Intent intent = new Intent(getApplicationContext(), SleepStoryReadActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

@@ -67,33 +67,34 @@ import java.util.Locale;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class MusicReportYearly extends AppCompatActivity {
+public class SleepReportWeekly extends AppCompatActivity {
 
-    AppCompatButton daily, weekly, monthly;
-    String text;
-    ImageView concentrationBtn, relaxationBtn;
-    FirebaseUser mUser;
     GifImageView c1gif, c2gif;
     int color;
     View c1, c2;
+    AppCompatButton daily, yearly, monthly;
+    FirebaseUser mUser;
+    ImageView concentrationBtn,relaxationBtn;
+    String text;
     LineChart lineChart;
     LineData lineData;
     LineDataSet lineDataSet;
     ArrayList lineEntries;
-    Long average, average1, average2, average3;
+    Long average1, average2, average3, average4;
     TextView tvDate;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_report_yearly);
-        daily = findViewById(R.id.daily);
-        weekly = findViewById(R.id.weekly);
+        setContentView(R.layout.activity_sleep_report_weekly);
+
         monthly = findViewById(R.id.monthly);
+        yearly = findViewById(R.id.yearly);
+        daily = findViewById(R.id.daily);
         c1 = findViewById(R.id.c1);
         c2 = findViewById(R.id.c2);
-        lineChart = findViewById(R.id.lineChartYearly);
+        lineChart = findViewById(R.id.lineChartWeekly);
 
         tvDate = (TextView) findViewById(R.id.tvDate);
 
@@ -102,39 +103,45 @@ public class MusicReportYearly extends AppCompatActivity {
         String date = sdf.format(realDate);
         tvDate.setText("Until " + date);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         NavigationBar();
-        ////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
 
         getEntries();
 
 
-        //Initializing arraylist and storing input data to arraylist
+//
+        mUser = FirebaseAuth.getInstance().getCurrentUser(); // get current user
+        mUser.getUid();
+
+        // On click listener of daily button
         daily.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportDaily.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SleepReportDaily.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
-        // On click listener of weekly button
-        weekly.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportWeekly.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            }
-        });
+
         // On click listener of monthly button
         monthly.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MusicReportMonthly.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SleepReportMonthly.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+
+        // On click listener of yearly button
+        yearly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SleepReportYearly.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -143,6 +150,9 @@ public class MusicReportYearly extends AppCompatActivity {
     }
 
     private void getEntries() {
+        Handler handler = new Handler();
+        final int delay = 5000;
+
 
         Calendar now = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -152,15 +162,11 @@ public class MusicReportYearly extends AppCompatActivity {
         Log.d("DAY", String.valueOf(now.get(Calendar.DAY_OF_WEEK)));
         Format f = new SimpleDateFormat("EEEE");
         String str = f.format(new Date());
-        int year1 = now.get(Calendar.YEAR) - 3;
-        int year2 = now.get(Calendar.YEAR) - 2;
-        int year3 = now.get(Calendar.YEAR) - 1;
-        //prints day name
+//prints day name
         System.out.println("Day Name: " + str);
         Log.d("Day Name", str);
 
-        Handler handler = new Handler();
-        final int delay = 5000;
+        int month = now.get(Calendar.MONTH) + 1;
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -169,49 +175,56 @@ public class MusicReportYearly extends AppCompatActivity {
 
                 lineEntries = new ArrayList();
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year1));
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
+                        .child(String.valueOf(month)).child(String.valueOf(1));
+
                 reference.addValueEventListener(new ValueEventListener() {
+
+
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         ArrayList sumElement = new ArrayList();
                         int sum = (0);
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Log.d("Weekly Val", String.valueOf(dataSnapshot.getValue()));
                             for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                                for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                                    for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-                                        Log.d("Yearly", String.valueOf(snapshot3.getValue()));
-                                        Long av1 = (Long) snapshot3.getValue();
-                                        sumElement.add(snapshot1.getValue());
-                                        sum += av1;
-                                    }
-                                }
+                                Log.d("Array", String.valueOf(snapshot1.getValue()));
+                                Long av1 = (Long) snapshot1.getValue();
+                                sumElement.add(snapshot1.getValue());
+                                sum += av1;
+
+
                             }
                         }
+                        Log.d("Weekly Array", String.valueOf(sumElement));
                         Log.d("SUM", String.valueOf(sum));
                         if (sum != 0) {
                             average1 = sum / Long.parseLong(String.valueOf(sumElement.size()));
                         } else {
                             average1 = 0L;
                         }
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
+                                .child(String.valueOf(month)).child(String.valueOf(2));
 
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year2));
                         reference.addValueEventListener(new ValueEventListener() {
+
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 ArrayList sumElement = new ArrayList();
                                 int sum = (0);
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                    Log.d("Weekly2 Val", String.valueOf(dataSnapshot.getValue()));
                                     for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                                        for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                                            for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-                                                Log.d("Yearly", String.valueOf(snapshot3.getValue()));
-                                                Long av1 = (Long) snapshot3.getValue();
-                                                sumElement.add(snapshot1.getValue());
-                                                sum += av1;
-                                            }
-                                        }
+                                        Log.d("Array", String.valueOf(snapshot1.getValue()));
+                                        Long av1 = (Long) snapshot1.getValue();
+                                        sumElement.add(snapshot1.getValue());
+                                        sum += av1;
+
+
                                     }
                                 }
+                                Log.d("Weekly Array", String.valueOf(sumElement));
                                 Log.d("SUM", String.valueOf(sum));
                                 if (sum != 0) {
                                     average2 = sum / Long.parseLong(String.valueOf(sumElement.size()));
@@ -219,64 +232,72 @@ public class MusicReportYearly extends AppCompatActivity {
                                     average2 = 0L;
                                 }
 
-                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year3));
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
+                                        .child(String.valueOf(month)).child(String.valueOf(3));
+
                                 reference.addValueEventListener(new ValueEventListener() {
+
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         ArrayList sumElement = new ArrayList();
                                         int sum = (0);
                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                            Log.d("Weekly3 Val", String.valueOf(dataSnapshot.getValue()));
                                             for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                                                for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                                                    for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-                                                        Log.d("Yearly", String.valueOf(snapshot3.getValue()));
-                                                        Long av1 = (Long) snapshot3.getValue();
-                                                        sumElement.add(snapshot1.getValue());
-                                                        sum += av1;
-                                                    }
-                                                }
+                                                Log.d("Array", String.valueOf(snapshot1.getValue()));
+                                                Long av1 = (Long) snapshot1.getValue();
+                                                sumElement.add(snapshot1.getValue());
+                                                sum += av1;
+
+
                                             }
                                         }
+                                        Log.d("Weekly 3 Array", String.valueOf(sumElement));
                                         Log.d("SUM", String.valueOf(sum));
                                         if (sum != 0) {
                                             average3 = sum / Long.parseLong(String.valueOf(sumElement.size()));
                                         } else {
                                             average3 = 0L;
                                         }
-                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)));
+
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Sleep").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                .child(String.valueOf(month)).child(String.valueOf(4));
+
                                         reference.addValueEventListener(new ValueEventListener() {
+
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 ArrayList sumElement = new ArrayList();
                                                 int sum = (0);
                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                    Log.d("Weekly4 Val", String.valueOf(dataSnapshot.getValue()));
                                                     for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                                                        for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                                                            for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-                                                                Log.d("Yearly", String.valueOf(snapshot3.getValue()));
-                                                                Long av1 = (Long) snapshot3.getValue();
-                                                                sumElement.add(snapshot1.getValue());
-                                                                sum += av1;
-                                                            }
-                                                        }
+                                                        Log.d("Array", String.valueOf(snapshot1.getValue()));
+                                                        Long av1 = (Long) snapshot1.getValue();
+                                                        sumElement.add(snapshot1.getValue());
+                                                        sum += av1;
+
+
                                                     }
                                                 }
+                                                Log.d("Weekly 4 Array", String.valueOf(sumElement));
                                                 Log.d("SUM", String.valueOf(sum));
                                                 if (sum != 0) {
-                                                    average = sum / Long.parseLong(String.valueOf(sumElement.size()));
+                                                    average4 = sum / Long.parseLong(String.valueOf(sumElement.size()));
                                                 } else {
-                                                    average = 0L;
+                                                    average4 = 0L;
                                                 }
-                                                Log.d("Average", String.valueOf(average));
-                                                Log.d("Average1", String.valueOf(average1));
-                                                Log.d("Average2", String.valueOf(average2));
-                                                Log.d("Average4", String.valueOf(average3));
 
+                                                Log.d("Average Week1", String.valueOf(average1));
+                                                Log.d("Average Week2", String.valueOf(average2));
+                                                Log.d("Average Week3", String.valueOf(average3));
+                                                Log.d("Average Week3", String.valueOf(average4));
 
-                                                lineEntries.add(new Entry(year1, average1));
-                                                lineEntries.add(new Entry(year2, average2));
-                                                lineEntries.add(new Entry(year3, average3));
-                                                lineEntries.add(new Entry(now.get(Calendar.YEAR), average));
+                                                lineEntries.add(new Entry(1, average1));
+                                                lineEntries.add(new Entry(2, average2));
+                                                lineEntries.add(new Entry(3, average3));
+                                                lineEntries.add(new Entry(4, average4));
+
                                                 lineDataSet = new LineDataSet(lineEntries, "Relax Progress");
                                                 lineData = new LineData(lineDataSet);
                                                 lineChart.setData(lineData);
@@ -291,6 +312,7 @@ public class MusicReportYearly extends AppCompatActivity {
                                                 lineChart.getAxisLeft().setDrawGridLines(false);
                                                 lineChart.getXAxis().setDrawGridLines(false);
                                                 lineChart.getAxisRight().setDrawGridLines(false);
+                                                lineChart.getXAxis().setTextColor(R.color.white);
                                                 lineChart.getAxisRight().setTextColor(getResources().getColor(R.color.white));
                                                 lineChart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
                                                 lineChart.getLegend().setTextColor(getResources().getColor(R.color.white));
@@ -306,6 +328,8 @@ public class MusicReportYearly extends AppCompatActivity {
 
                                             }
                                         });
+
+
                                     }
 
                                     @Override
@@ -313,12 +337,17 @@ public class MusicReportYearly extends AppCompatActivity {
 
                                     }
                                 });
+
+
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
+
                             }
                         });
+
+
                     }
 
                     @Override
@@ -329,6 +358,7 @@ public class MusicReportYearly extends AppCompatActivity {
             }
         }, 3000);
     }
+
 
     private void NavigationBar() {
 
@@ -370,9 +400,10 @@ public class MusicReportYearly extends AppCompatActivity {
 
     public void onBackPressed() {
         finish();
-        Intent intent = new Intent(getApplicationContext(), Home.class);
+        Intent intent = new Intent(getApplicationContext(), SleepStoryReadActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
+
 
 }

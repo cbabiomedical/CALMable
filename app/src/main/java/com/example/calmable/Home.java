@@ -66,6 +66,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -119,6 +120,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     int markHeartRate = 0;
     TextView markHeartRateValue;
+
 
     private Handler mHandler;
 
@@ -405,6 +407,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         String dateTime = simpleDateFormat.format(calendar.getTime());
         String date = simpleDateFormat1.format(calendar.getTime());
 
+        int month=calendar.get(Calendar.MONTH)+1;
+        Format f = new SimpleDateFormat("EEEE");
+        String day = f.format(new Date());
+
         time = dateTime;
         viewPerson = person;
         viewPlace = place;
@@ -597,9 +603,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         final Handler handler = new Handler();
         final int delay = 5000;
 
-        //uploading reportList array values to firebase real time db
-        Reports.put("Reports", reportList);
-        FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("reportStress").child(date).push().updateChildren(Reports)
+        //uploading reportList array values to firebase real time db-----
+
+        //Reports.put("Reports", reportList);
+        Report report = new Report(date,time,viewPerson,viewPlace,viewReason);
+        FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("reportStress").child(String.valueOf(calendar.get(Calendar.YEAR)))
+                .child(String.valueOf(month)).child(String.valueOf(calendar.get(Calendar.WEEK_OF_MONTH))).child(day).push().setValue(report)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
