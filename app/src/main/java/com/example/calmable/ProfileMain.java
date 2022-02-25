@@ -3,6 +3,8 @@ package com.example.calmable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -158,8 +160,34 @@ public class ProfileMain extends AppCompatActivity {
 
         });
 
+        openDialog();
     }
+    //for testing stressed locations
+    private void openDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProfileMain.this);
+        builder.setCancelable(true);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("Stress Alert!");
+        builder.setMessage("We noticed that you've been stressed today!");
 
+        builder.setNegativeButton("VIEW", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent in = new Intent(getApplicationContext(), StressedLocationsActivity.class);
+                startActivity(in);
+            }
+        });
+//
+//        //display getting user inputs popup
+//        builder.setPositiveButton("NO, I'm Stressed", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                PopUpOne popUpOne = new PopUpOne();
+//                popUpOne.show(getSupportFragmentManager(), "popup one");
+//            }
+//        });
+        builder.show();
+    }
 
     private void getData() {
 
