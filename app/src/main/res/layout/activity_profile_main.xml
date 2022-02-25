@@ -110,6 +110,22 @@
                     android:textStyle="bold" />
 
                 <Button
+                    android:id="@+id/locationReminderBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/profile_shape"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawableEnd="@drawable/ic_arrow"
+                    android:onClick="BtnLocationReminder"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="10dp"
+                    android:text="location Reminder"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <Button
                     android:id="@+id/calenderBtn"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -210,10 +226,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/white"
         app:itemBackground="@color/white"
         app:itemIconTint="@color/teal_700"
         app:itemTextColor="@color/teal_700"
-        app:menu="@menu/menu_navigation"
-        android:background="@color/white"/>
+        app:menu="@menu/menu_navigation" />
 
 </RelativeLayout>
