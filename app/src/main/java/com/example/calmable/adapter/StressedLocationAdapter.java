@@ -2,6 +2,7 @@ package com.example.calmable.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.calmable.GetSkippedStressedDetails;
 import com.example.calmable.R;
 import com.example.calmable.db.StressedLocationsDB;
 
@@ -45,6 +47,16 @@ public class StressedLocationAdapter extends RecyclerView.Adapter<StressedLocati
         holder.location_id.setText(String.valueOf(list_location_id.get(position)));
         holder.location_address.setText(String.valueOf(list_location_address.get(position)));
         holder.location_time.setText(String.valueOf(list_location_time.get(position)));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, GetSkippedStressedDetails.class);
+                intent.putExtra("id", String.valueOf(list_location_id.get(position)));
+                intent.putExtra("address", String.valueOf(list_location_address.get(position)));
+                intent.putExtra("time", String.valueOf(list_location_time.get(position)));
+                activity.startActivityForResult(intent, 1);
+            }
+        });
     }
 
     @Override
