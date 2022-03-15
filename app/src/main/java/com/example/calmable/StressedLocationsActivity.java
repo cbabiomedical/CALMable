@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -60,5 +61,13 @@ public class StressedLocationsActivity extends AppCompatActivity {
                 list_location_time.add(cursor.getString(2));
             }
         }
+    }
+
+    // for go back
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), Home.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

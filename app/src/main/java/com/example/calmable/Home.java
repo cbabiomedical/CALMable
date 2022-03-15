@@ -17,6 +17,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
@@ -118,6 +119,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     public static String finalHR;
     public static String finalHR2;
 
+    String selectedOption = "1";
+
     int markHeartRate = 0;
     TextView markHeartRateValue;
 
@@ -168,13 +171,13 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         // this.mHandler = new Handler();
         //m_Runnable_popup.run();
 
-        //for testing
-        finalRateff = 100;
-        //Checking the stress level (TODO: finalRate should be added here instead of StressLevel)
-        if (finalRateff > 80) {
-            openDialog();
-            Log.d("TAG", String.valueOf(finalRateff));
-        }
+        //for testing (TODO: htRate value from the server should be added here instead of finalRateff to get the popup)
+//        finalRateff = 100;
+//        //Checking the stress level
+//        if (finalRateff > 80) {
+//            openDialog();
+//            Log.d("TAG", String.valueOf(finalRateff));
+//        }
 
         //updateLandingCoins();
 
@@ -242,6 +245,89 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                 Log.d("sad value-------", String.valueOf(myIntent));
             }
         });
+
+        // get current time in hour only
+        SimpleDateFormat simpleformat = new SimpleDateFormat("HH");
+        String strHour = simpleformat.format(new Date());
+        int hour = Integer.parseInt(strHour);
+        Log.d("Current HOUR-------", strHour);
+        Log.d("INT HOUR-------", String.valueOf(hour));
+
+            if (hour > 18) {
+                //for testing stressed locations
+                AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+                builder.setCancelable(true);
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+                builder.setTitle("Stress Alert!");
+                builder.setMessage("We noticed that you've been stressed today!");
+
+                builder.setPositiveButton("VIEW", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent in = new Intent(getApplicationContext(), StressedLocationsActivity.class);
+                        startActivity(in);
+                    }
+                });
+                builder.setNegativeButton("SKIP", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String[] options ={"1","2","3"};
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(Home.this);
+                        builder1.setTitle("Remind me again in __ hour/s");
+                        builder1.setSingleChoiceItems(options, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                selectedOption = options[i];
+                            }
+                        });
+                        builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Log.d("OPTION----",selectedOption);
+
+                                int newHour = hour + Integer.parseInt(selectedOption);
+                                Log.d("NEW Hour----", String.valueOf(newHour));
+
+                                //To save newHour & selected option
+                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putInt("selectedOption",Integer.parseInt(selectedOption));
+                                editor.putInt("newHour", newHour);
+                                editor.commit();
+
+                                dialogInterface.dismiss();
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+                builder.show();
+            }
+
+            //access selected hour from shared preference
+        SharedPreferences sharedPreferences1 = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        int newHour = sharedPreferences1.getInt("newHour", 0);
+        int selectedHour = sharedPreferences1.getInt("selectedOption",0);
+        Log.d("nHour SHARED---", String.valueOf(newHour));
+        Log.d("selectedHour SHARED---", String.valueOf(selectedHour));
+
+        //display skipped location popup according to selected hour
+            if (newHour > 18 + selectedHour){
+                AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+                builder.setCancelable(true);
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+                builder.setTitle("Stress Alert!");
+                builder.setMessage("We noticed that you've been stressed today!");
+
+                builder.setNegativeButton("VIEW", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent in = new Intent(getApplicationContext(), StressedLocationsActivity.class);
+                        startActivity(in);
+                    }
+                });
+                builder.show();
+            }
 
         NavigationBar();
         getData();
