@@ -23,8 +23,11 @@
     <style name="Theme.CALMable.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.CALMable.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
-
     </style>
 
+    <style name="Theme.AppCompat.Light.Dialog" parent="Base.Theme.AppCompat.Light.Dialog" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
 </resources>

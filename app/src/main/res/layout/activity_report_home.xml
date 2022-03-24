@@ -18,8 +18,17 @@
         android:layout_above="@id/bottom_navigation">
 
         <RelativeLayout
+            android:id="@+id/rl1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Happiness chart"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="16dp"
+                android:onClick="btnGoHpyChtReport"/>
 
             <RelativeLayout
                 android:id="@+id/toggleBtn"
@@ -60,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginRight="20dp"
                 android:fontFamily="@font/droidserif_italic"
                 android:gravity="center"

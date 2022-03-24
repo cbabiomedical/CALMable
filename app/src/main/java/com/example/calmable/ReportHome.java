@@ -1045,4 +1045,9 @@ public class ReportHome extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
+
+    public void btnGoHpyChtReport(View view){
+        startActivity(new Intent(getApplicationContext() , HpyChtReportActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 }

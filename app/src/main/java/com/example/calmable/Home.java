@@ -31,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.calmable.db.HpyChtLocationDB;
 import com.example.calmable.fitbit.FitbitMainActivity;
 import com.example.calmable.scan.ScanActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -82,8 +83,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     boolean stopThread = false;
 
-    Date currentTime;
-
     // for check location
     FusedLocationProviderClient fusedLocationProviderClient;
     String userLocationFullAddress;
@@ -95,6 +94,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     TextView txtHtRate;
     TextView txtProgress;
+    TextView streesIndex , stressBanner;
     File fileName, fileName1, filNameHeartRate;
     FirebaseFirestore database;
     FirebaseUser mUser;
@@ -134,6 +134,15 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        streesIndex = (TextView) findViewById(R.id.streesIndex);
+        stressBanner = (TextView) findViewById(R.id.stressBanner);
+
+        int random = (int) (Math.random() * (100 + 1));
+
+        String y = String.valueOf(random);
+        streesIndex.setText(y);
+
+
         //call thread method
         stopThread = false;
         GetLocationRunnable runnable = new GetLocationRunnable();
@@ -141,7 +150,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         locationTxt = new File(getCacheDir() + "/locationData.txt");
         displayLocationTxt = new File(getCacheDir() + "/displayLocationTxt.txt");
-
 
         txtHtRate = (TextView) findViewById(R.id.htRate);
         txtProgress = (TextView) findViewById(R.id.txtProgress);
@@ -927,8 +935,11 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     }
 
 
+    /**
+     *   call getLocation() method every 15 mins
+     *   save every 15 mins current location
+     */
     class GetLocationRunnable implements Runnable {
-
         @Override
         public void run() {
 
@@ -959,6 +970,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         stopThread = true;
     }
 
+
+    // get current location
     public void getLocation() {
 
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -990,8 +1003,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                         //Removes the white spaces using regex.
                         str1 = str1.replaceAll("\\s+", "");
 
-                        currentTime = Calendar.getInstance().getTime();
-                        //Log.d(TAG, "time---- : " + currentTime);
+                        // take current time
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH.mm.ss", Locale.getDefault());
+                        String currentDateandTime = sdf.format(new Date());
+                        Log.d(TAG, "time---- : " + currentDateandTime);
 
                         latitude = location.getLatitude();
                         longitude = location.getLongitude();
@@ -1001,10 +1016,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                         //Creating a JSONObject object
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("address", userLocationFullAddress);
-                        jsonObject.put("index", place);
-                        jsonObject.put("time", currentTime);
+                        //jsonObject.put("index", place);
+                        jsonObject.put("time", currentDateandTime);
 
-                        Log.d("Json array : ", String.valueOf(jsonObject));
+                        //Log.d("Json array  : ", String.valueOf(jsonObject));
 
                         listOFLocations = new ArrayList<>();
                         // add json object to array
@@ -1013,7 +1028,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                         listOFLocations.add(str1);
                         Log.d(TAG, "Write array" + listOFLocations);
 
-                        writeHRData1();
+
+                        addLocationToDB();
 
 
                     } catch (IOException | JSONException e) {
@@ -1026,7 +1042,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     }
 
-    private void writeHRData1() throws FileNotFoundException {
+
+
+    // write location address to txt file
+    private void addLocationToDB() throws FileNotFoundException {
 
         //Writing data to txt file
         try {
@@ -1052,7 +1071,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         // write hr to txt - end
 
 
-        // read txt file server data
+        // read txt file location data
         listOfTxtLocations = new ArrayList<String>();
 
         Scanner scanner = null;
@@ -1071,52 +1090,40 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         scanner.close();
 
 
+        /**
+         *    check past hour user stayed same place or not
+         *    if same place it display in Profile(ProfileMain) --> Location Reminder(LocationReminderActivity)
+         */
         if (arrSize == 4) {
-
             String val1 = listOfTxtLocations.get(0);
             String val2 = listOfTxtLocations.get(0);
             String val3 = listOfTxtLocations.get(0);
             String val4 = listOfTxtLocations.get(0);
 
-
-            Log.d(TAG, "writeHRData1: " + val1);
-            Log.d(TAG, "writeHRData2: " + val2);
-            Log.d(TAG, "writeHRData3: " + val3);
-            Log.d(TAG, "writeHRData4: " + val4);
+//            Log.d(TAG, "writeHRData1: " + val1);
+//            Log.d(TAG, "writeHRData2: " + val2);
+//            Log.d(TAG, "writeHRData3: " + val3);
+//            Log.d(TAG, "writeHRData4: " + val4);
 
 
             if (val1 == val2 && val2 == val3 && val3 == val4) {
 
                 ArrayList<String> displayLocationsList = new ArrayList<>();
-                displayLocationsList.add(val1);
 
+                // take current time
+                SimpleDateFormat sdf = new SimpleDateFormat("HH.mm.ss | dd-MM-yyyy ", Locale.getDefault());
+                String currentDateandTime = sdf.format(new Date());
+                //Log.d(TAG, "time---- : " + currentDateandTime);
+
+                String saveLocation = val1;
+                String saveDate = currentDateandTime;
+                displayLocationsList.add(saveLocation);
+
+                // add locations to locationDB
+                HpyChtLocationDB myDB = new HpyChtLocationDB(Home.this);
+                myDB.addHpyLocation(saveLocation , saveDate);
 
                 Log.d(TAG, "save location ->" + displayLocationsList);
-
-                //Writing data to txt file
-                try {
-                    //File locationTxt = new File(getCacheDir() + "/serverData.txt");
-                    //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
-                    displayLocationTxt.createNewFile();
-                    if (!displayLocationTxt.exists()) {
-                        displayLocationTxt.mkdirs();
-                    }
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(displayLocationTxt, true));
-                    int size = displayLocationsList.size();
-                    for (int i = 0; i < size; i++) {
-                        writer.write(displayLocationsList.get(i).toString());
-                        writer.newLine();
-                        writer.flush();
-                        //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
-                    }
-                    writer.close();
-
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-                // write hr to txt - end
-
-
 
                 // clear txt file
                 PrintWriter writer;
