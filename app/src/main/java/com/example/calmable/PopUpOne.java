@@ -1,5 +1,7 @@
 package com.example.calmable;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -26,6 +28,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.ActivityCompat;
 
 import com.example.calmable.adapter.SuggestionSimpleCursorAdapter;
+import com.example.calmable.db.StressedLocationsDB;
 import com.example.calmable.db.SuggestionDatabase;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -44,7 +47,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -94,6 +99,26 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String place = editPlace.getText().toString();
+                Log.d("SKIPPED location-----", place);
+
+                // take current time
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a", Locale.getDefault());
+                String currentTime = sdf.format(new Date());
+                Log.d(TAG, "SKIPPED time---- : " + currentTime);
+
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(addArray);
+                editor.putString("addArray", json);
+                editor.commit();
+
+                // add locations to locationDB
+                StressedLocationsDB myDB = new StressedLocationsDB(getActivity().getApplicationContext());
+                myDB.addStressedLocation(place,currentTime);
+
+                startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
                 dismiss();
             }
         });
@@ -253,7 +278,6 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
                         mUser.getUid();
                         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("Stressed locations");
                         myRef.setValue(addArray);
-
 
                         latLong = Double.toString(location.getLatitude()) + "," + Double.toString(location.getLongitude());
                         // latLong = new LatLng(location.getLatitude(), location.getLongitude());
