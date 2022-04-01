@@ -26,6 +26,7 @@ import com.crrepa.ble.conn.listener.CRPBloodOxygenChangeListener;
 import com.crrepa.ble.conn.listener.CRPBloodPressureChangeListener;
 import com.crrepa.ble.conn.listener.CRPHeartRateChangeListener;
 import com.example.calmable.Home;
+import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
 import com.example.calmable.sample.JsonPlaceHolder;
@@ -72,6 +73,7 @@ public class DeviceActivity extends AppCompatActivity {
     Retrofit retrofit;
     JSONObject objHRServer;
     HashMap<String, Object> srHashMap;
+    ArrayList musicIntervention = new ArrayList();
 
     public static int finalRate;
     public static int measuringHR;
@@ -346,6 +348,9 @@ public class DeviceActivity extends AppCompatActivity {
 
             listOFServerHRData = new ArrayList<>();
             listOFServerHRData.add(measuringHR);
+            if (MusicPlayer.isStarted) {
+                musicIntervention.add(measuringHR);
+            }
 
             // call writeData method
             try {
@@ -499,7 +504,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.159:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -524,6 +529,8 @@ public class DeviceActivity extends AppCompatActivity {
 
 
         JSONArray jsArray = new JSONArray(listOfTxtData);
+        JSONArray jsArray1 = new JSONArray(musicIntervention);
+
 
         Log.d(TAG, "txt file data : " + listOfTxtData);
         Log.d(TAG, "json arr data : " + jsArray);
@@ -537,10 +544,10 @@ public class DeviceActivity extends AppCompatActivity {
 
                 //Log.d(TAG, "-----onResponse-----: " + response);
 
-                Log.d(TAG, "* response code : "  + response.code());
-                Log.d(TAG, "response message : "  + response.message());
-                Log.d(TAG, "Relax index : "  + response.body());
-                Log.d(TAG, "response code : "  + response.body().getClass().getSimpleName());
+                Log.d(TAG, "* response code : " + response.code());
+                Log.d(TAG, "response message : " + response.message());
+                Log.d(TAG, "Relax index : " + response.body());
+                Log.d(TAG, "response code : " + response.body().getClass().getSimpleName());
 
 
             }
@@ -554,6 +561,33 @@ public class DeviceActivity extends AppCompatActivity {
 
             }
         });
+
+        Call<Object> call = jsonPlaceHolder.PostRelaxationData(jsArray1);
+        call.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                Toast.makeText(getApplicationContext(), "Post Successful", Toast.LENGTH_SHORT).show();
+
+                //Log.d(TAG, "-----onResponse-----: " + response);
+
+                Log.d(TAG, "* music response code : " + response.code());
+                Log.d(TAG, "music response message : " + response.message());
+                Log.d(TAG, "music Relax index : " + response.body());
+                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+
+
+            }
+
+            //
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed Music Post Relaxation", Toast.LENGTH_SHORT).show();
+                Log.d("ErrorVal:Relaxation", String.valueOf(t));
+                Log.d(TAG, "onFailure: " + t);
+            }
+        });
+
 
     }
 
