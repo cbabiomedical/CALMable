@@ -254,6 +254,11 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             }
         });
 
+
+
+//        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child("1");
+//        reference.setValue(81);
+
         // get current time in hour only
         SimpleDateFormat simpleformat = new SimpleDateFormat("HH");
         String strHour = simpleformat.format(new Date());
