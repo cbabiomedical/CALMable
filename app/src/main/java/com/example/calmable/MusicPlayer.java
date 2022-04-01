@@ -48,6 +48,7 @@ public class MusicPlayer extends AppCompatActivity {
     TextView textCurrentTime, textTotalTimeDuration, music_title;
     SeekBar playSeekBar;
     Thread updateSeekBar;
+    public static boolean isStarted=true;
 
     FirebaseFirestore database;
 
@@ -87,6 +88,7 @@ public class MusicPlayer extends AppCompatActivity {
         mediaPlayer = new MediaPlayer();
         play = mediaPlayer.isPlaying();
         mediaPlayer = new MediaPlayer();
+        isStarted=true;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mediaPlayer.setAudioAttributes(
@@ -207,6 +209,12 @@ public class MusicPlayer extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            isStarted=false;
+                        }
+                    });
 
 
                     /**
@@ -391,6 +399,7 @@ public class MusicPlayer extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mediaPlayer.pause();
+        isStarted=false;
     }
 
 
