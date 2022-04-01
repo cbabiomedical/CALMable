@@ -76,9 +76,9 @@ public class HpyChtLocationDB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if (result == -1) {
-            Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
         }
     }
 

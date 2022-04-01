@@ -80,6 +80,8 @@ import java.util.Scanner;
 
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
+    //done
+
     private static final String COINS = "coins";
 
     boolean stopThread = false;
@@ -124,7 +126,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     int markHeartRate = 0;
     TextView markHeartRateValue;
 
-
     private Handler mHandler;
 
     private String getColoredSpanned(String text, String color) {
@@ -140,10 +141,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         streesIndex = (TextView) findViewById(R.id.streesIndex);
         stressBanner = (TextView) findViewById(R.id.stressBanner);
 
-        int random = (int) (Math.random() * (100 + 1));
-
-        String y = String.valueOf(random);
-        streesIndex.setText(y);
+//        int random = (int) (Math.random() * (100 + 1));
+//
+//        String y = String.valueOf(random);
+//        streesIndex.setText(y);
 
 
         //call thread method
@@ -174,18 +175,18 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         this.mHandler = new Handler();
         m_Runnable.run();
 
-        Log.d("TAG", "--------------->onCreate: " + finalRateff);
+        Log.d("TAG", "------------>onCreate: " + finalRateff);
 
         // this.mHandler = new Handler();
         //m_Runnable_popup.run();
 
         //for testing (TODO: htRate value from the server should be added here instead of finalRateff to get the popup)
-//        finalRateff = 100;
-//        //Checking the stress level
-//        if (finalRateff > 80) {
-//            openDialog();
-//            Log.d("TAG", String.valueOf(finalRateff));
-//        }
+        finalRateff = 100;
+        //Checking the stress level
+        if (finalRateff > 80) {
+            openDialog();
+            Log.d("TAG", String.valueOf(finalRateff));
+        }
 
         //updateLandingCoins();
 
@@ -350,6 +351,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     private final Runnable m_Runnable = new Runnable() {
         public void run() {
             updateLandingHeartRate();
+
+            int random = (int) (Math.random() * (100 + 1));
+
+            String y = String.valueOf(random);
+            streesIndex.setText(y);
+
             //Toast.makeText(Home.this, "in runnable", Toast.LENGTH_SHORT).show();
             Home.this.mHandler.postDelayed(m_Runnable, 1000);
         }
