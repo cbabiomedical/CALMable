@@ -23,12 +23,16 @@
             android:layout_height="fill_parent">
 
             <Button
+                android:id="@+id/btnHpy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Happiness chart"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="16dp"
-                android:onClick="btnGoHpyChtReport"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="btnGoHpyChtReport"
+                android:text="Happiness chart" />
 
             <RelativeLayout
                 android:id="@+id/toggleBtn"
@@ -69,11 +73,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="70dp"
+                android:layout_below="@+id/btnHpy"
                 android:layout_marginRight="20dp"
                 android:fontFamily="@font/droidserif_italic"
                 android:gravity="center"
                 android:text=""
+                android:layout_marginTop="16dp"
                 android:textColor="@color/dark_blue_300"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -107,7 +112,9 @@
                     android:text="Weekly"
                     android:textAllCaps="false"
                     android:textColor="@color/dark_blue_300"
-                    android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+                    android:textStyle="bold">
+
+                </androidx.appcompat.widget.AppCompatButton>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/monthly"
@@ -117,7 +124,9 @@
                     android:text="Monthly"
                     android:textAllCaps="false"
                     android:textColor="@color/dark_blue_300"
-                    android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+                    android:textStyle="bold">
+
+                </androidx.appcompat.widget.AppCompatButton>
 
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -197,17 +206,18 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <com.github.mikephil.charting.charts.ScatterChart
                 android:id="@+id/chart1"
                 android:layout_width="232dp"
                 android:layout_height="295dp"
                 android:layout_marginLeft="104dp"
                 android:layout_marginTop="590dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
             </LinearLayout>
 
             <com.github.mikephil.charting.charts.ScatterChart
