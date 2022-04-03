@@ -30,6 +30,8 @@ import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
 import com.example.calmable.sample.JsonPlaceHolder;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -44,6 +46,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -70,10 +73,12 @@ public class DeviceActivity extends AppCompatActivity {
     ArrayList<String> listOfTxtData;
     File filNameHeartRate;
     JsonPlaceHolder jsonPlaceHolder;
+    public static ArrayList musicRelaxation_index=new ArrayList();
     Retrofit retrofit;
-    JSONObject objHRServer = null;
+    JSONObject objHRServer;
+    public static boolean connected = false;
     HashMap<String, Object> srHashMap;
-    ArrayList musicIntervention = new ArrayList();
+    public static ArrayList musicIntervention = new ArrayList();
 
     public static int finalRate;
     public static int measuringHR;
@@ -83,7 +88,7 @@ public class DeviceActivity extends AppCompatActivity {
 
     ProgressDialog mProgressDialog;
     CRPBleClient mBleClient;
-    CRPBleDevice mBleDevice;
+    static CRPBleDevice mBleDevice;
     CRPBleConnection mBleConnection;
     boolean isUpgrade = false;
 
@@ -134,6 +139,7 @@ public class DeviceActivity extends AppCompatActivity {
         mBleDevice = mBleClient.getBleDevice(macAddr);
         if (mBleDevice != null && !mBleDevice.isConnected()) {
             connect();
+            connected = true;
         }
 
 
@@ -353,49 +359,8 @@ public class DeviceActivity extends AppCompatActivity {
             listOFServerHRData.add(measuringHR);
 
 
-            Log.d(TAG, "onMeasuring: _------------" + listOFServerHRData);
+            Log.d(TAG, "onMeasuring: --" + listOFServerHRData);
 
-//            ArrayList<String> timeArry = new ArrayList<>();
-//            timeArry.add(String.valueOf(q));
-//
-//            //Log.d(TAG, "+++++++++++++++++++++: " + timeArry);
-//
-//            ArrayList<String> hrArry = new ArrayList<>();
-//            hrArry.add(String.valueOf(rate));
-//
-//            //Log.d(TAG, "+++++++++++++++++++++: " + hrArry);
-//
-//            JSONArray jsonArrayTime = new JSONArray();
-//            jsonArrayTime.put(timeArry);
-//
-////            Log.d(TAG, "==========" + timeArry);
-//
-//
-//            try {
-//                objHRServer.put("time", timeArry);
-//                Log.d(TAG, "***********"  + objHRServer);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//
-//            JSONArray jsonArrayHR = new JSONArray();
-//            jsonArrayHR.put(hrArry);
-//
-//
-//            try {
-//                objHRServer.put("hr", hrArry);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//            ArrayList<Object> obbb = new ArrayList<>();
-//            obbb.add(objHRServer);
-
-
-            Log.d(TAG, "--------------------listOFServerHRData-----------------" + objHRServer);
-            Log.d(TAG, "--------------------listOFServerHRData-----------------" + objHRServer);
-            Log.d(TAG, "--------------------listOFServerHRData-----------------" + objHRServer);
 
             if (MusicPlayer.isStarted) {
                 musicIntervention.add(measuringHR);
@@ -553,7 +518,8 @@ public class DeviceActivity extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.40.242:5000/")
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -611,7 +577,8 @@ public class DeviceActivity extends AppCompatActivity {
             }
         });
 
-        Call<Object> call = jsonPlaceHolder.PostRelaxationData(jsArray1);
+        JSONArray jsonArray1 = new JSONArray(DeviceActivity.musicIntervention);
+        Call<Object> call = jsonPlaceHolder.PostRelaxationData(jsonArray1);
         call.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
@@ -624,11 +591,16 @@ public class DeviceActivity extends AppCompatActivity {
                 Log.d(TAG, "music response message : " + response.message());
                 Log.d(TAG, "music Relax index : " + response.body());
                 Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+                ArrayList list=new ArrayList();
+                list= (ArrayList) response.body();
+                Log.d("ArrayListMusic", String.valueOf(list));
+                musicRelaxation_index.add(list.get(0));
+                Log.d("Relaxation Indexes", String.valueOf(musicRelaxation_index));
 
 
             }
 
-            //
+
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Failed Music Post Relaxation", Toast.LENGTH_SHORT).show();

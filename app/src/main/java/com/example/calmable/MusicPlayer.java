@@ -1,5 +1,7 @@
 package com.example.calmable;
 
+import static android.os.ParcelFileDescriptor.MODE_APPEND;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.NotificationCompat;
@@ -48,13 +50,14 @@ public class MusicPlayer extends AppCompatActivity {
     TextView textCurrentTime, textTotalTimeDuration, music_title;
     SeekBar playSeekBar;
     Thread updateSeekBar;
-    public static boolean isStarted=true;
+    public static boolean isStarted = true;
 
     FirebaseFirestore database;
 
     boolean play = true;
 
     String uri;
+    int a;
     String name;
     String timerString;
 
@@ -88,7 +91,7 @@ public class MusicPlayer extends AppCompatActivity {
         mediaPlayer = new MediaPlayer();
         play = mediaPlayer.isPlaying();
         mediaPlayer = new MediaPlayer();
-        isStarted=true;
+        isStarted = true;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mediaPlayer.setAudioAttributes(
@@ -109,6 +112,25 @@ public class MusicPlayer extends AppCompatActivity {
                 imageViewPlayPause.setBackgroundResource(R.drawable.ic_pause_circle);
             }
         });
+        SharedPreferences prefsTimeCon = getSharedPreferences("prefsMusic", MODE_PRIVATE);
+        int firstStartTimeCon = prefsTimeCon.getInt("firstStartMusic", 0);
+
+        SharedPreferences sh = getSharedPreferences("prefsMusic", MODE_APPEND);
+
+// The value will be default as empty string because for
+// the very first time when the app is opened, there is nothing to show
+
+        a = sh.getInt("firstStartMusic", 0);
+
+// We can then use the data
+        Log.d("A Count", String.valueOf(a));
+
+        int y = a + 1;
+
+        SharedPreferences prefsCount1 = getSharedPreferences("prefsMusic", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefsCount1.edit();
+        editor.putInt("firstStartMusic", y);
+        editor.apply();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -212,7 +234,7 @@ public class MusicPlayer extends AppCompatActivity {
                     mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mp) {
-                            isStarted=false;
+                            isStarted = false;
                         }
                     });
 
@@ -399,7 +421,7 @@ public class MusicPlayer extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mediaPlayer.pause();
-        isStarted=false;
+        isStarted = false;
     }
 
 
