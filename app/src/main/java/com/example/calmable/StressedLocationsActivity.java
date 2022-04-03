@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +25,14 @@ public class StressedLocationsActivity extends AppCompatActivity {
     StressedLocationsDB myDB;
     ArrayList<String>list_location_id, list_location_address, list_location_time;
     StressedLocationAdapter stressedLocationAdapter;
+    TextView noDataTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stressed_locations);
+
+        noDataTv = (TextView) findViewById(R.id.noData);
 
         locationRecyclerView = findViewById(R.id.locationRecyclerView);
 
@@ -53,9 +57,14 @@ public class StressedLocationsActivity extends AppCompatActivity {
     private void storeDataInArrays() {
         Cursor cursor = myDB.readAllLocationData();
         if(cursor.getCount() == 0){
+
+            noDataTv.setVisibility(View.VISIBLE);
+
             Toast.makeText(getApplicationContext(), "No data!", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
+                noDataTv.setVisibility(View.INVISIBLE);
+
                 list_location_id.add(cursor.getString(0));
                 list_location_address.add(cursor.getString(1));
                 list_location_time.add(cursor.getString(2));
