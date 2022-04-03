@@ -80,7 +80,6 @@ import java.util.Scanner;
 
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
-    //done
 
     private static final String COINS = "coins";
 

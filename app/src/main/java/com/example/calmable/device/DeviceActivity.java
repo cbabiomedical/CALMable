@@ -67,11 +67,11 @@ public class DeviceActivity extends AppCompatActivity {
 
     // send HR to server
     ArrayList<Integer> listOFServerHRData;
-    ArrayList<Integer> listOfTxtData;
+    ArrayList<String> listOfTxtData;
     File filNameHeartRate;
     JsonPlaceHolder jsonPlaceHolder;
     Retrofit retrofit;
-    JSONObject objHRServer;
+    JSONObject objHRServer = null;
     HashMap<String, Object> srHashMap;
     ArrayList musicIntervention = new ArrayList();
 
@@ -174,8 +174,8 @@ public class DeviceActivity extends AppCompatActivity {
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.disconnect));
                         tvConnectState.setTextColor(Color.GREEN);
-                        tvConnectMsg1.setText("Your watch is successfully connected.");
-                        tvConnectMsg2.setText(" Press \'GO HOME\' button and enjoy the CALMable");
+                        //tvConnectMsg1.setText("Your watch is successfully connected.");
+                        //tvConnectMsg2.setText(" Press \'GO HOME\' button and enjoy the CALMable");
                         //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
 
@@ -184,8 +184,9 @@ public class DeviceActivity extends AppCompatActivity {
                         ExampleRunnable runnable = new ExampleRunnable();
                         new Thread(runnable).start();
 
-
                         filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
+
+                        startActivity(new Intent(getApplicationContext(), Home.class));
 
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
@@ -198,9 +199,10 @@ public class DeviceActivity extends AppCompatActivity {
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.connect));
                         tvConnectState.setTextColor(Color.RED);
-                        tvConnectMsg1.setText("Your watch is not connected.");
-                        tvConnectMsg2.setText("Go back and try again");
+                        //tvConnectMsg1.setText("Your watch is not connected.");
+                        //tvConnectMsg2.setText("Go back and try again");
                         //imgDisconnect.setVisibility(View.VISIBLE);
+
                         break;
                 }
                 updateConnectState(state);
@@ -278,7 +280,7 @@ public class DeviceActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        Log.d(TAG, "onPause:");
+        Log.d(TAG, "------onPause:------");
 
 //        stopThread = false;
 //        ExampleRunnable runnable = new ExampleRunnable();
@@ -347,7 +349,54 @@ public class DeviceActivity extends AppCompatActivity {
 
 
             listOFServerHRData = new ArrayList<>();
+            listOFServerHRData.add(q);
             listOFServerHRData.add(measuringHR);
+
+
+            Log.d(TAG, "onMeasuring: _------------" + listOFServerHRData);
+
+//            ArrayList<String> timeArry = new ArrayList<>();
+//            timeArry.add(String.valueOf(q));
+//
+//            //Log.d(TAG, "+++++++++++++++++++++: " + timeArry);
+//
+//            ArrayList<String> hrArry = new ArrayList<>();
+//            hrArry.add(String.valueOf(rate));
+//
+//            //Log.d(TAG, "+++++++++++++++++++++: " + hrArry);
+//
+//            JSONArray jsonArrayTime = new JSONArray();
+//            jsonArrayTime.put(timeArry);
+//
+////            Log.d(TAG, "==========" + timeArry);
+//
+//
+//            try {
+//                objHRServer.put("time", timeArry);
+//                Log.d(TAG, "***********"  + objHRServer);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//            JSONArray jsonArrayHR = new JSONArray();
+//            jsonArrayHR.put(hrArry);
+//
+//
+//            try {
+//                objHRServer.put("hr", hrArry);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//            ArrayList<Object> obbb = new ArrayList<>();
+//            obbb.add(objHRServer);
+
+
+            Log.d(TAG, "--------------------listOFServerHRData-----------------" + objHRServer);
+            Log.d(TAG, "--------------------listOFServerHRData-----------------" + objHRServer);
+            Log.d(TAG, "--------------------listOFServerHRData-----------------" + objHRServer);
+
             if (MusicPlayer.isStarted) {
                 musicIntervention.add(measuringHR);
             }
@@ -378,7 +427,7 @@ public class DeviceActivity extends AppCompatActivity {
 
             // add HR to save for txt
             listOFServerHRData = new ArrayList<>();
-            listOFServerHRData.add(finalRate);
+            //listOFServerHRData.add(finalRate);
 
 
             // call writeData method
@@ -488,7 +537,7 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
     public void GoHome(View view) {
-        startActivity(new Intent(this, Home.class));
+        startActivity(new Intent(getApplicationContext(), Home.class));
         finish();
     }
 
@@ -504,7 +553,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.159:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.40.242:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -603,9 +652,13 @@ public class DeviceActivity extends AppCompatActivity {
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(filNameHeartRate, true));
             int size = listOFServerHRData.size();
+
+            writer.newLine();
+
             for (int i = 0; i < size; i++) {
                 writer.write(listOFServerHRData.get(i).toString());
-                writer.newLine();
+                writer.write(",");
+
                 writer.flush();
                 //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
             }
@@ -619,12 +672,12 @@ public class DeviceActivity extends AppCompatActivity {
 
 
         // read txt file server data
-        listOfTxtData = new ArrayList<Integer>();
+        listOfTxtData = new ArrayList<String>();
         int arrSize;
 
         Scanner s = new Scanner(new File(getCacheDir() + "/serverData.txt"));
         while (s.hasNext()) {
-            listOfTxtData.add(Integer.valueOf(s.next()));
+            listOfTxtData.add(s.next());
         }
 
         arrSize = listOfTxtData.size();
