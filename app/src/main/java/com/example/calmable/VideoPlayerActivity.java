@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,11 +14,13 @@ import android.widget.VideoView;
 
 import java.util.ArrayList;
 
-public class VideoPlayerActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
+public class VideoPlayerActivity extends AppCompatActivity {
 
     VideoView vw;
     ArrayList<Integer> videolist = new ArrayList<>();
     int currvideo = 0;
+    public static boolean isStarted = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +31,20 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
 
         vw = (VideoView) findViewById(R.id.vidvw);
         vw.setMediaController(new MediaController(this));
-        vw.setOnCompletionListener(this);
+//        vw.setOnCompletionListener(this);
 
         // video name should be in lower case alphabet.
         videolist.add(R.raw.calming_video_01);
         videolist.add(R.raw.calming_video_03);
         setVideo(videolist.get(0));
+        isStarted = true;
+        vw.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                isStarted=false;
+                startActivity(new Intent(getApplicationContext(), VideoReportDaily.class));
+            }
+        });
 
     }
 
@@ -69,5 +80,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
                 setVideo(videolist.get(currvideo));
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }

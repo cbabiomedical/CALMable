@@ -31,30 +31,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
-            <activity
-                android:name=".HpyChtReportActivity"
-                android:exported="false" />
-            <activity
-                android:name=".HpyChtUpdateActivity"
-                android:exported="false"
-                android:label=""
-                android:screenOrientation="portrait"
-                android:theme="@style/Theme.AppCompat.Light.Dialog" />
-            <activity
-                android:name=".LocationReminderActivity"
-                android:exported="false"
-                android:screenOrientation="portrait" />
-
-            <activity
-                android:name=".GetSkippedStressedDetails"
-                android:exported="true" />
-            <activity
-                android:name=".PopUpTwo"
-                android:exported="true" />
-            <activity
-                android:name=".StressedLocationsActivity"
-                android:exported="true"
-                android:screenOrientation="portrait" />
+        <activity
+            android:name=".VideoReportWeekly"
+            android:exported="false" />
+        <activity
+            android:name=".VideoReportDaily"
+            android:exported="false" />
+        <activity
+            android:name=".HpyChtReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HpyChtUpdateActivity"
+            android:exported="false"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".LocationReminderActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GetSkippedStressedDetails"
+            android:exported="true" />
+        <activity
+            android:name=".PopUpTwo"
+            android:exported="true" />
+        <activity
+            android:name=".StressedLocationsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SleepReportYearly"
             android:exported="true"
@@ -115,17 +120,17 @@
             android:name=".BreathingRate"
             android:exported="true"
             android:screenOrientation="portrait" />
-            <activity
-                android:name=".UserProfile1"
-                android:exported="false" />
-            <activity
-                android:name=".RoadMapVideoActivity"
-                android:exported="false"
-                android:screenOrientation="portrait" />
-            <activity
-                android:name=".Sleep11DarkTheme"
-                android:exported="true"
-                android:parentActivityName=".SleepStoryReadActivity"
+        <activity
+            android:name=".UserProfile1"
+            android:exported="false" />
+        <activity
+            android:name=".RoadMapVideoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Sleep11DarkTheme"
+            android:exported="true"
+            android:parentActivityName=".SleepStoryReadActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SleepStory11"

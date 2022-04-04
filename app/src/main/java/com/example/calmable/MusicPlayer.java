@@ -274,6 +274,13 @@ public class MusicPlayer extends AppCompatActivity {
                 }
             };
 
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    isStarted=false;
+                }
+            });
+
             playSeekBar.setMax(mediaPlayer.getDuration());
             updateSeekBar.start();
             playSeekBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.MULTIPLY);
