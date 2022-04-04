@@ -126,10 +126,10 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editPerson.setText(searchView.getQuery());
+                editPerson.setText(searchView.getQuery()); // -------
                 String person = editPerson.getText().toString();
                 String place = editPlace.getText().toString();
-                String reason = editReason.getText().toString();
+                String reason = editReason.getText().toString(); //
 
                 //check if person and reason entered
                 if(reason.isEmpty() || person.isEmpty()){
@@ -334,6 +334,7 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
 
     }
 
+    //-------send db
     @Override
     public boolean onQueryTextSubmit(String query) {
         long result = database.insertSuggestion(query);
@@ -341,6 +342,8 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
         return result != -1;
     }
 
+
+    // sug -----------part
     @Override
     public boolean onQueryTextChange(String newText) {
 
@@ -370,6 +373,7 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
         return false;
     }
 
+    // set search view
     @Override
     public boolean onSuggestionClick(int position) {
 

@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tag_person"
-        android:queryHint="Who are you with?"
         android:layout_marginTop="10dp"
-        android:iconifiedByDefault="false"/>
+        android:iconifiedByDefault="false"
+        android:queryHint="Who are you with?" />
 
     <TextView
         android:id="@+id/tag_person"

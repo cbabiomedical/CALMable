@@ -39,7 +39,6 @@ import org.json.JSONObject;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -71,6 +70,7 @@ public class DeviceActivity extends AppCompatActivity {
     ArrayList<Integer> listOFServerHRData;
     ArrayList<String> listOfTxtData;
     ArrayList<String> listOfServerReportData;
+    ArrayList<String> listOfTxtReportData;
     File filNameHeartRate, fileNameServerReportData;
     JsonPlaceHolder jsonPlaceHolder;
     public static ArrayList musicRelaxation_index = new ArrayList();
@@ -561,8 +561,8 @@ public class DeviceActivity extends AppCompatActivity {
         Log.d(TAG, "txt file data : " + listOfTxtData);
         Log.d(TAG, "json arr data : " + jsArray);
 
+        //send heart rate to the server
         Call<Object> call3 = jsonPlaceHolder.PostRelaxationData(jsArray);
-
         call3.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
@@ -571,9 +571,9 @@ public class DeviceActivity extends AppCompatActivity {
 
                 //Log.d(TAG, "-----onResponse-----: " + response);
 
-                Log.d(TAG, "* response code : " + response.code());
-                Log.d(TAG, "response message : " + response.message());
-                Log.d(TAG, "Relax index : " + response.body());
+                Log.d(TAG, "HR - response code : " + response.code());
+                Log.d(TAG, "HR - response message : " + response.message());
+                Log.d(TAG, "HR - Relax index : " + response.body());
 //                Log.d(TAG, "response code : " + response.body().getClass().getSimpleName());
 
                 serverData = String.valueOf(response.body());
@@ -615,9 +615,9 @@ public class DeviceActivity extends AppCompatActivity {
 //                Log.d(TAG, "* music response code : " + response.code());
 //                Log.d(TAG, "music response message : " + response.message());
 //                Log.d(TAG, "music Relax index : " + response.body());
-//                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
-//                ArrayList list=new ArrayList();
-//                list= (ArrayList) response.body();
+////                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+//                ArrayList list = new ArrayList();
+//                list = (ArrayList) response.body();
 //                Log.d("ArrayListMusic", String.valueOf(list));
 //                musicRelaxation_index.add(list.get(0));
 //                Log.d("Relaxation Indexes", String.valueOf(musicRelaxation_index));
@@ -634,6 +634,108 @@ public class DeviceActivity extends AppCompatActivity {
 //            }
 //        });
 
+
+//        /**
+//         *   report part
+//         */
+//        Call<Object> call4 = jsonPlaceHolder.PostReportData(jsArray);
+//        call4.enqueue(new Callback<Object>() {
+//            @Override
+//            public void onResponse(Call<Object> call, Response<Object> response) {
+//
+//                Toast.makeText(getApplicationContext(), "Post Successful - Report", Toast.LENGTH_SHORT).show();
+//
+//                //Log.d(TAG, "-----onResponse-----: " + response);
+//
+//                Log.d(TAG, "RPT - response code : " + response.code());
+//                Log.d(TAG, "RPT - response message : " + response.message());
+//                Log.d(TAG, "RPT - Relax index : " + response.body());
+////                Log.d(TAG, "response code : " + response.body().getClass().getSimpleName());
+//
+//
+//            }
+//
+//            //
+//            @Override
+//            public void onFailure(Call<Object> call, Throwable t) {
+//                Toast.makeText(getApplicationContext(), "Failed Post Relaxation", Toast.LENGTH_SHORT).show();
+//                Log.d("ErrorVal:Report", String.valueOf(t));
+//                Log.d(TAG, "onFailure: " + t);
+//
+//            }
+//        });
+
+    }
+
+    private void shareRptDataToServer() {
+
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .connectTimeout(100, TimeUnit.SECONDS)
+//                .readTimeout(100,TimeUnit.SECONDS).build();
+
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.150:5000/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+
+        // setting custom timeouts
+//        OkHttpClient.Builder client = new OkHttpClient.Builder();
+//        client.connectTimeout(15, TimeUnit.SECONDS);
+//        client.readTimeout(15, TimeUnit.SECONDS);
+//        client.writeTimeout(15, TimeUnit.SECONDS);
+//
+//        if (retrofit == null) {
+//            retrofit = new Retrofit.Builder()
+//                    .baseUrl("http://192.168.8.186:5000/")
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .client(client.build())
+//                    .build();
+//        }
+
+        jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
+
+        JSONArray jsArray = new JSONArray(listOfTxtReportData);
+        //JSONArray jsArray1 = new JSONArray(musicIntervention);
+
+
+        Log.d(TAG, "server method report : " + listOfTxtReportData);
+        Log.d(TAG, "json arr data : " + jsArray);
+
+        /**
+         *   report part
+         */
+        Call<Object> call4 = jsonPlaceHolder.PostReportData(jsArray);
+        call4.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                Toast.makeText(getApplicationContext(), "Post Successful - Report", Toast.LENGTH_SHORT).show();
+
+                //Log.d(TAG, "-----onResponse-----: " + response);
+
+                Log.d(TAG, "RPT - response code : " + response.code());
+                Log.d(TAG, "RPT - response message : " + response.message());
+                Log.d(TAG, "RPT - Relax index : " + response.body());
+//                Log.d(TAG, "response code : " + response.body().getClass().getSimpleName());
+
+            }
+
+            //
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed Post Relaxation", Toast.LENGTH_SHORT).show();
+                Log.d("ErrorVal:Report", String.valueOf(t));
+                Log.d(TAG, "onFailure: " + t);
+
+            }
+        });
 
     }
 
@@ -701,8 +803,8 @@ public class DeviceActivity extends AppCompatActivity {
         }
     }
 
-    public void writeServerReportData() throws FileNotFoundException {
 
+    public void writeServerReportData() throws FileNotFoundException {
 
         //Writing data to txt file
         try {
@@ -728,6 +830,40 @@ public class DeviceActivity extends AppCompatActivity {
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
+        }
+
+        // read data
+        // read txt file server data
+        listOfTxtReportData = new ArrayList<String>();
+        int arrSize;
+
+        Scanner s = new Scanner(new File(getCacheDir() + "/ServerReportData.txt"));
+        while (s.hasNext()) {
+            listOfTxtReportData.add(s.next());
+        }
+
+        arrSize = listOfTxtReportData.size();
+        Log.d(TAG, "++++ report txt data ++++> : " + listOfTxtReportData);
+        Log.d(TAG, "array size ++++> : " + arrSize);
+        s.close();
+
+
+        if (arrSize == 12) {
+
+            shareRptDataToServer();
+
+
+        } else if (arrSize >= 12) {
+            // clear txt file
+            PrintWriter writer;
+            try {
+                writer = new PrintWriter(getCacheDir() + "/ServerReportData.txt");
+                writer.print("");
+                writer.close();
+            } catch (
+                    FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
     }

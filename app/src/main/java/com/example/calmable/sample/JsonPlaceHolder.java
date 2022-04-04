@@ -54,8 +54,8 @@ public interface JsonPlaceHolder {
     @POST("relaxation")
     Call<Object> PostMusicInterventionData(@Body JSONArray relaxation);
 
-//    @POST("brain_waves")
-//    Call<List> PostBrainWaveData(@Body List brain_waves);
+    @POST("report")
+    Call<Object> PostReportData(@Body JSONArray report);
 //
 //    @POST("calibration")
 //    Call<List> PostCalibrationData(@Body ArrayList brain_waves);
