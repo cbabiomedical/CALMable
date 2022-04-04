@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.calmable.device.DeviceActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,7 @@ public class MusicRate extends AppCompatActivity {
     float myRating = 0;
     public static float totalRating;
     int a;
+    int x;
 
     FirebaseUser mUser;
 
@@ -41,6 +43,8 @@ public class MusicRate extends AppCompatActivity {
         ratingBtn = findViewById(R.id.ratingBtn);
         backBtn2 = findViewById(R.id.backBtn2);
         ratingStars = findViewById(R.id.ratingBar);
+        SharedPreferences prefsTimeMem = getSharedPreferences("prefsMusic", MODE_PRIVATE);
+        int firstStartTimeMem = prefsTimeMem.getInt("firstStartMusic", 0);
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -76,22 +80,20 @@ public class MusicRate extends AppCompatActivity {
         Log.d("rating before click---------", String.valueOf(myRating));
 
 
-
-
         Calendar now = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-        Log.d("WEEK",String.valueOf(now.get(Calendar.WEEK_OF_MONTH)));
-        Log.d("MONTH",String.valueOf(now.get(Calendar.MONTH)));
-        Log.d("YEAR",String.valueOf(now.get(Calendar.YEAR)));
-        Log.d("DAY",String.valueOf(now.get(Calendar.DAY_OF_MONTH)));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Log.d("WEEK", String.valueOf(now.get(Calendar.WEEK_OF_MONTH)));
+        Log.d("MONTH", String.valueOf(now.get(Calendar.MONTH)));
+        Log.d("YEAR", String.valueOf(now.get(Calendar.YEAR)));
+        Log.d("DAY", String.valueOf(now.get(Calendar.DAY_OF_MONTH)));
 
-        int month=now.get(Calendar.MONTH)+1;
-        int day=now.get(Calendar.DAY_OF_MONTH)+1;
+        int month = now.get(Calendar.MONTH) + 1;
+        int day = now.get(Calendar.DAY_OF_MONTH) + 1;
         Format f = new SimpleDateFormat("EEEE");
         String str = f.format(new Date());
 //prints day name
-        System.out.println("Day Name: "+str);
-        Log.d("Day Name",str);
+        System.out.println("Day Name: " + str);
+        Log.d("Day Name", str);
 
 
         SharedPreferences sh = getSharedPreferences("prefsCount", MODE_APPEND);
@@ -113,15 +115,25 @@ public class MusicRate extends AppCompatActivity {
 
         Log.d("A Count2", String.valueOf(a1));
 
+        SharedPreferences sh1 = getSharedPreferences("prefsMusic", MODE_APPEND);
+        x = sh1.getInt("firstStartMusic", 0);
 
+        int y = x + 1;
+        SharedPreferences prefsCount = getSharedPreferences("prefsMusic", MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = prefsCount.edit();
+        editor1.putInt("firstStartMusic", y);
+        editor1.apply();
+        SharedPreferences sha1 = getSharedPreferences("prefsMusic", MODE_APPEND);
+
+        Log.d("CHECK", String.valueOf(DeviceActivity.musicRelaxation_index));
 
         ratingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MusicRate.this,String.valueOf(myRating), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MusicRate.this, String.valueOf(myRating), Toast.LENGTH_SHORT).show();
                 totalRating = totalRating + myRating;
 
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                         .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(a));
 
                 reference.setValue(myRating);
@@ -133,13 +145,12 @@ public class MusicRate extends AppCompatActivity {
         });
 
 
-
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 totalRating = totalRating + myRating;
 
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
                         .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(a));
                 reference.setValue(myRating);
 

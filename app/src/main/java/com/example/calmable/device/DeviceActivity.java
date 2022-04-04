@@ -30,25 +30,26 @@ import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
 import com.example.calmable.sample.JsonPlaceHolder;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 import butterknife.BindView;
@@ -69,21 +70,20 @@ public class DeviceActivity extends AppCompatActivity {
 
     // send HR to server
     ArrayList<Integer> listOFServerHRData;
-    ArrayList<String> listOfTxtData;
-    ArrayList<String> listOfServerReportData;
-    File filNameHeartRate, fileNameServerReportData;
+    ArrayList<Integer> listOfTxtData;
+    File filNameHeartRate;
     JsonPlaceHolder jsonPlaceHolder;
-    public static ArrayList musicRelaxation_index = new ArrayList();
+    public static ArrayList musicRelaxation_index=new ArrayList();
     Retrofit retrofit;
-    JSONObject objHRServer;
     public static boolean connected = false;
+    JSONObject objHRServer;
     HashMap<String, Object> srHashMap;
     public static ArrayList musicIntervention = new ArrayList();
 
     public static int finalRate;
     public static int measuringHR;
     boolean stopThread = false;
-    String timeAndHR, serverData;
+    String timeAndHR;
     int q;
 
     ProgressDialog mProgressDialog;
@@ -125,7 +125,6 @@ public class DeviceActivity extends AppCompatActivity {
         tvConnectMsg2 = findViewById(R.id.tvConnectMsg2);
 
         //button2 = findViewById(R.id.btn_start_measure_heart_rate);
-
 
         ButterKnife.bind(this);
         //initView();
@@ -181,8 +180,8 @@ public class DeviceActivity extends AppCompatActivity {
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.disconnect));
                         tvConnectState.setTextColor(Color.GREEN);
-                        //tvConnectMsg1.setText("Your watch is successfully connected.");
-                        //tvConnectMsg2.setText(" Press \'GO HOME\' button and enjoy the CALMable");
+//                        tvConnectMsg1.setText("Your watch is successfully connected.");
+//                        tvConnectMsg2.setText(" Press \'GO HOME\' button and enjoy the CALMable");
                         //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
 
@@ -191,13 +190,10 @@ public class DeviceActivity extends AppCompatActivity {
                         ExampleRunnable runnable = new ExampleRunnable();
                         new Thread(runnable).start();
 
-                        // to send data for the server
+
                         filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
 
-                        // create file for save final server date
-                        fileNameServerReportData = new File(getCacheDir() + "/ServerReportData.txt");
-
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        startActivity(new Intent(getApplicationContext(),Home.class));
 
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
@@ -210,10 +206,9 @@ public class DeviceActivity extends AppCompatActivity {
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.connect));
                         tvConnectState.setTextColor(Color.RED);
-                        //tvConnectMsg1.setText("Your watch is not connected.");
-                        //tvConnectMsg2.setText("Go back and try again");
+                        tvConnectMsg1.setText("Your watch is not connected.");
+                        tvConnectMsg2.setText("Go back and try again");
                         //imgDisconnect.setVisibility(View.VISIBLE);
-
                         break;
                 }
                 updateConnectState(state);
@@ -291,7 +286,7 @@ public class DeviceActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        Log.d(TAG, "------onPause:------");
+        Log.d(TAG, "onPause:");
 
 //        stopThread = false;
 //        ExampleRunnable runnable = new ExampleRunnable();
@@ -360,15 +355,12 @@ public class DeviceActivity extends AppCompatActivity {
 
 
             listOFServerHRData = new ArrayList<>();
-            listOFServerHRData.add(q);
             listOFServerHRData.add(measuringHR);
-
-
-            Log.d(TAG, "onMeasuring: --" + listOFServerHRData);
-
-
             if (MusicPlayer.isStarted) {
                 musicIntervention.add(measuringHR);
+                if(musicIntervention.size()%10==0){
+                    postMusicIntervention();
+                }
             }
 
             // call writeData method
@@ -397,7 +389,7 @@ public class DeviceActivity extends AppCompatActivity {
 
             // add HR to save for txt
             listOFServerHRData = new ArrayList<>();
-            //listOFServerHRData.add(finalRate);
+            listOFServerHRData.add(finalRate);
 
 
             // call writeData method
@@ -435,6 +427,57 @@ public class DeviceActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void postMusicIntervention() {
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .connectTimeout(100, TimeUnit.SECONDS)
+//                .readTimeout(100,TimeUnit.SECONDS).build();
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.137:5000/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+
+        JSONArray jsonArray1 = new JSONArray(DeviceActivity.musicIntervention);
+        Call<Object> call = jsonPlaceHolder.PostRelaxationData(jsonArray1);
+        call.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                Toast.makeText(getApplicationContext(), "Post Successful", Toast.LENGTH_SHORT).show();
+
+                //Log.d(TAG, "-----onResponse-----: " + response);
+
+                Log.d(TAG, "* music response code : " + response.code());
+                Log.d(TAG, "music response message : " + response.message());
+                Log.d(TAG, "music Relax index : " + response.body());
+//                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+                ArrayList list = new ArrayList();
+                list = (ArrayList) response.body();
+                Log.d("ArrayListMusic", String.valueOf(list));
+                musicRelaxation_index.add(list.get(0));
+                Log.d("Relaxation Indexes", String.valueOf(musicRelaxation_index));
+
+
+            }
+
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed Music Post Relaxation", Toast.LENGTH_SHORT).show();
+                Log.d("ErrorVal:Relaxation", String.valueOf(t));
+                Log.d(TAG, "onFailure: " + t);
+            }
+        });
+
+
+    }
 
 
     CRPBloodPressureChangeListener mBloodPressureChangeListener = new CRPBloodPressureChangeListener() {
@@ -507,7 +550,7 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
     public void GoHome(View view) {
-        startActivity(new Intent(getApplicationContext(), Home.class));
+        startActivity(new Intent(this, Home.class));
         finish();
     }
 
@@ -523,8 +566,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.150:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.137:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -547,22 +589,15 @@ public class DeviceActivity extends AppCompatActivity {
 
         jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HH:mm:ss", Locale.getDefault());
-        String currentDateandTime = sdf.format(new Date());
-
-        Log.d(TAG, "Current Date and Time--->" + currentDateandTime);
-
-        listOfTxtData.add(11, currentDateandTime);
 
         JSONArray jsArray = new JSONArray(listOfTxtData);
-        //JSONArray jsArray1 = new JSONArray(musicIntervention);
+        JSONArray jsArray1 = new JSONArray(musicIntervention);
 
 
         Log.d(TAG, "txt file data : " + listOfTxtData);
         Log.d(TAG, "json arr data : " + jsArray);
 
         Call<Object> call3 = jsonPlaceHolder.PostRelaxationData(jsArray);
-
         call3.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
@@ -574,21 +609,8 @@ public class DeviceActivity extends AppCompatActivity {
                 Log.d(TAG, "* response code : " + response.code());
                 Log.d(TAG, "response message : " + response.message());
                 Log.d(TAG, "Relax index : " + response.body());
-//                Log.d(TAG, "response code : " + response.body().getClass().getSimpleName());
+                Log.d(TAG, "response code : " + response.body().getClass().getSimpleName());
 
-                serverData = String.valueOf(response.body());
-                Log.d(TAG, "server data string : " + serverData);
-
-                listOfServerReportData = new ArrayList<>();
-                listOfServerReportData.add(serverData);
-
-                Log.d(TAG, "onResponse: " + listOfServerReportData);
-
-                try {
-                    writeServerReportData();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
 
             }
 
@@ -601,39 +623,6 @@ public class DeviceActivity extends AppCompatActivity {
 
             }
         });
-
-//        JSONArray jsonArray1 = new JSONArray(DeviceActivity.musicIntervention);
-//        Call<Object> call = jsonPlaceHolder.PostRelaxationData(jsonArray1);
-//        call.enqueue(new Callback<Object>() {
-//            @Override
-//            public void onResponse(Call<Object> call, Response<Object> response) {
-//
-//                Toast.makeText(getApplicationContext(), "Post Successful", Toast.LENGTH_SHORT).show();
-//
-//                //Log.d(TAG, "-----onResponse-----: " + response);
-//
-//                Log.d(TAG, "* music response code : " + response.code());
-//                Log.d(TAG, "music response message : " + response.message());
-//                Log.d(TAG, "music Relax index : " + response.body());
-//                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
-//                ArrayList list=new ArrayList();
-//                list= (ArrayList) response.body();
-//                Log.d("ArrayListMusic", String.valueOf(list));
-//                musicRelaxation_index.add(list.get(0));
-//                Log.d("Relaxation Indexes", String.valueOf(musicRelaxation_index));
-//
-//
-//            }
-//
-//
-//            @Override
-//            public void onFailure(Call<Object> call, Throwable t) {
-//                Toast.makeText(getApplicationContext(), "Failed Music Post Relaxation", Toast.LENGTH_SHORT).show();
-//                Log.d("ErrorVal:Relaxation", String.valueOf(t));
-//                Log.d(TAG, "onFailure: " + t);
-//            }
-//        });
-
 
     }
 
@@ -649,13 +638,9 @@ public class DeviceActivity extends AppCompatActivity {
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(filNameHeartRate, true));
             int size = listOFServerHRData.size();
-
-            writer.newLine();
-
             for (int i = 0; i < size; i++) {
                 writer.write(listOFServerHRData.get(i).toString());
-                writer.write(",");
-
+                writer.newLine();
                 writer.flush();
                 //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
             }
@@ -669,12 +654,12 @@ public class DeviceActivity extends AppCompatActivity {
 
 
         // read txt file server data
-        listOfTxtData = new ArrayList<String>();
+        listOfTxtData = new ArrayList<Integer>();
         int arrSize;
 
         Scanner s = new Scanner(new File(getCacheDir() + "/serverData.txt"));
         while (s.hasNext()) {
-            listOfTxtData.add(s.next());
+            listOfTxtData.add(Integer.valueOf(s.next()));
         }
 
         arrSize = listOfTxtData.size();
@@ -683,11 +668,11 @@ public class DeviceActivity extends AppCompatActivity {
         s.close();
 
 
-        if (arrSize == 11) {
+        if (arrSize == 10) {
 
             shareHRToServer();
 
-        } else if (arrSize >= 11) {
+        } else if (arrSize >= 10) {
             // clear txt file
             PrintWriter writer;
             try {
@@ -699,36 +684,5 @@ public class DeviceActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void writeServerReportData() throws FileNotFoundException {
-
-
-        //Writing data to txt file
-        try {
-            //File filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
-            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
-            fileNameServerReportData.createNewFile();
-            if (!fileNameServerReportData.exists()) {
-                fileNameServerReportData.mkdirs();
-            }
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileNameServerReportData, true));
-            int size = listOfServerReportData.size();
-
-            writer.newLine();
-
-            for (int i = 0; i < size; i++) {
-                writer.write(listOfServerReportData.get(i).toString());
-                //writer.write(",");
-                writer.flush();
-                //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
-            }
-
-            writer.close();
-
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-
     }
 }
