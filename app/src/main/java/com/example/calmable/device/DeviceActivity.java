@@ -75,8 +75,8 @@ public class DeviceActivity extends AppCompatActivity {
     JsonPlaceHolder jsonPlaceHolder;
     public static ArrayList musicRelaxation_index = new ArrayList();
     Retrofit retrofit;
-    JSONObject objHRServer;
     public static boolean connected = false;
+    JSONObject objHRServer;
     HashMap<String, Object> srHashMap;
     public static ArrayList musicIntervention = new ArrayList();
 
@@ -125,7 +125,6 @@ public class DeviceActivity extends AppCompatActivity {
         tvConnectMsg2 = findViewById(R.id.tvConnectMsg2);
 
         //button2 = findViewById(R.id.btn_start_measure_heart_rate);
-
 
         ButterKnife.bind(this);
         //initView();
@@ -181,8 +180,8 @@ public class DeviceActivity extends AppCompatActivity {
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.disconnect));
                         tvConnectState.setTextColor(Color.GREEN);
-                        //tvConnectMsg1.setText("Your watch is successfully connected.");
-                        //tvConnectMsg2.setText(" Press \'GO HOME\' button and enjoy the CALMable");
+//                        tvConnectMsg1.setText("Your watch is successfully connected.");
+//                        tvConnectMsg2.setText(" Press \'GO HOME\' button and enjoy the CALMable");
                         //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
 
@@ -210,10 +209,9 @@ public class DeviceActivity extends AppCompatActivity {
                         mProgressDialog.dismiss();
                         updateTextView(btnBleDisconnect, getString(R.string.connect));
                         tvConnectState.setTextColor(Color.RED);
-                        //tvConnectMsg1.setText("Your watch is not connected.");
-                        //tvConnectMsg2.setText("Go back and try again");
+                        tvConnectMsg1.setText("Your watch is not connected.");
+                        tvConnectMsg2.setText("Go back and try again");
                         //imgDisconnect.setVisibility(View.VISIBLE);
-
                         break;
                 }
                 updateConnectState(state);
@@ -291,7 +289,7 @@ public class DeviceActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        Log.d(TAG, "------onPause:------");
+        Log.d(TAG, "onPause:");
 
 //        stopThread = false;
 //        ExampleRunnable runnable = new ExampleRunnable();
@@ -363,12 +361,13 @@ public class DeviceActivity extends AppCompatActivity {
             listOFServerHRData.add(q);
             listOFServerHRData.add(measuringHR);
 
-
             Log.d(TAG, "onMeasuring: --" + listOFServerHRData);
-
 
             if (MusicPlayer.isStarted) {
                 musicIntervention.add(measuringHR);
+                if (musicIntervention.size() % 10 == 0) {
+                    postMusicIntervention();
+                }
             }
 
             // call writeData method
@@ -435,6 +434,57 @@ public class DeviceActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void postMusicIntervention() {
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .connectTimeout(100, TimeUnit.SECONDS)
+//                .readTimeout(100,TimeUnit.SECONDS).build();
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.137:5000/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+
+        JSONArray jsonArray1 = new JSONArray(DeviceActivity.musicIntervention);
+        Call<Object> call = jsonPlaceHolder.PostRelaxationData(jsonArray1);
+        call.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                Toast.makeText(getApplicationContext(), "Post Successful", Toast.LENGTH_SHORT).show();
+
+                //Log.d(TAG, "-----onResponse-----: " + response);
+
+                Log.d(TAG, "* music response code : " + response.code());
+                Log.d(TAG, "music response message : " + response.message());
+                Log.d(TAG, "music Relax index : " + response.body());
+//                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+                ArrayList list = new ArrayList();
+                list = (ArrayList) response.body();
+                Log.d("ArrayListMusic", String.valueOf(list));
+                musicRelaxation_index.add(list.get(0));
+                Log.d("Relaxation Indexes", String.valueOf(musicRelaxation_index));
+
+
+            }
+
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed Music Post Relaxation", Toast.LENGTH_SHORT).show();
+                Log.d("ErrorVal:Relaxation", String.valueOf(t));
+                Log.d(TAG, "onFailure: " + t);
+            }
+        });
+
+
+    }
 
 
     CRPBloodPressureChangeListener mBloodPressureChangeListener = new CRPBloodPressureChangeListener() {
@@ -507,7 +557,7 @@ public class DeviceActivity extends AppCompatActivity {
     }
 
     public void GoHome(View view) {
-        startActivity(new Intent(getApplicationContext(), Home.class));
+        startActivity(new Intent(this, Home.class));
         finish();
     }
 
@@ -667,6 +717,7 @@ public class DeviceActivity extends AppCompatActivity {
 
     }
 
+
     private void shareRptDataToServer() {
 
         Gson gson = new GsonBuilder().setLenient().create();
@@ -802,7 +853,6 @@ public class DeviceActivity extends AppCompatActivity {
             }
         }
     }
-
 
     public void writeServerReportData() throws FileNotFoundException {
 

@@ -50,9 +50,10 @@ public class MusicPlayer extends AppCompatActivity {
     TextView textCurrentTime, textTotalTimeDuration, music_title;
     SeekBar playSeekBar;
     Thread updateSeekBar;
-    public static boolean isStarted = true;
+    public static boolean isStarted = false;
 
     FirebaseFirestore database;
+
 
     boolean play = true;
 
@@ -231,12 +232,6 @@ public class MusicPlayer extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            isStarted = false;
-                        }
-                    });
 
 
                     /**
@@ -266,7 +261,7 @@ public class MusicPlayer extends AppCompatActivity {
                                 .setAutoCancel(true);
                         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.notify(0, builder.build());
-
+                        isStarted = false;
                         //to go to rate page
                         Intent intent = new Intent(getApplicationContext(), MusicRate.class);
                         startActivity(intent);
@@ -421,7 +416,7 @@ public class MusicPlayer extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mediaPlayer.pause();
-        isStarted = false;
+        isStarted=false;
     }
 
 
