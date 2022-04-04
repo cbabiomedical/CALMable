@@ -30,6 +30,8 @@ public class MusicRate extends AppCompatActivity {
     float myRating = 0;
     public static float totalRating;
     int a;
+    Double average = 0.0;
+    Double sum = 0.0;
     int x;
 
     FirebaseUser mUser;
@@ -126,6 +128,17 @@ public class MusicRate extends AppCompatActivity {
         SharedPreferences sha1 = getSharedPreferences("prefsMusic", MODE_APPEND);
 
         Log.d("CHECK", String.valueOf(DeviceActivity.musicRelaxation_index));
+
+        for (int i = 0; i < DeviceActivity.musicRelaxation_index.size(); i++) {
+            sum += (Double) DeviceActivity.musicRelaxation_index.get(i);
+        }
+
+        average = sum / DeviceActivity.musicRelaxation_index.size();
+
+        Double averageD = Double.valueOf(String.format("%.3g%n", average));
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(x));
+        reference.setValue(averageD);
+
 
         ratingBtn.setOnClickListener(new View.OnClickListener() {
             @Override

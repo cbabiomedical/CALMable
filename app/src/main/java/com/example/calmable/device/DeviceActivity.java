@@ -29,11 +29,13 @@ import com.example.calmable.Home;
 import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
+import com.example.calmable.VideoPlayerActivity;
 import com.example.calmable.sample.JsonPlaceHolder;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.internal.LinkedTreeMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +54,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import a.b.a.J;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -73,7 +76,9 @@ public class DeviceActivity extends AppCompatActivity {
     ArrayList<Integer> listOfTxtData;
     File filNameHeartRate;
     JsonPlaceHolder jsonPlaceHolder;
-    public static ArrayList musicRelaxation_index=new ArrayList();
+    public static ArrayList videoRelaxation_index = new ArrayList();
+    ArrayList videoIntervention = new ArrayList();
+    public static ArrayList musicRelaxation_index = new ArrayList();
     Retrofit retrofit;
     public static boolean connected = false;
     JSONObject objHRServer;
@@ -193,7 +198,7 @@ public class DeviceActivity extends AppCompatActivity {
 
                         filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
 
-                        startActivity(new Intent(getApplicationContext(),Home.class));
+                        startActivity(new Intent(getApplicationContext(), Home.class));
 
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
@@ -356,10 +361,17 @@ public class DeviceActivity extends AppCompatActivity {
 
             listOFServerHRData = new ArrayList<>();
             listOFServerHRData.add(measuringHR);
-            if (MusicPlayer.isStarted) {
+            if(MusicPlayer.isStarted){
                 musicIntervention.add(measuringHR);
                 if(musicIntervention.size()%10==0){
                     postMusicIntervention();
+                }
+            }
+            if (VideoPlayerActivity.isStarted) {
+                videoIntervention.add(measuringHR);
+                if (videoIntervention.size() % 10 == 0) {
+                    Log.d("VideoData", String.valueOf(videoIntervention));
+                    postVideoData();
                 }
             }
 
@@ -428,6 +440,60 @@ public class DeviceActivity extends AppCompatActivity {
         }
     };
 
+    private void postVideoData() {
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .connectTimeout(100, TimeUnit.SECONDS)
+//                .readTimeout(100,TimeUnit.SECONDS).build();
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.137:5000/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        JSONArray jsArray = new JSONArray(videoIntervention);
+
+        Call<Object> call3 = jsonPlaceHolder.PostVideoData(jsArray);
+        call3.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                Toast.makeText(getApplicationContext(), "Post Successful", Toast.LENGTH_SHORT).show();
+
+                //Log.d(TAG, "-----onResponse-----: " + response);
+
+                Log.d(TAG, "* video response code : " + response.code());
+                Log.d(TAG, "video response message : " + response.message());
+                Log.d(TAG, "video Relax index : " + response.body());
+                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
+
+                ArrayList list = new ArrayList();
+                list = (ArrayList) response.body();
+                Log.d("List", String.valueOf(list));
+                Log.d("VideoData", String.valueOf(videoIntervention));
+
+                LinkedTreeMap treeMap = (LinkedTreeMap) list.get(0);
+
+                videoRelaxation_index.add(treeMap.get("relaxation"));
+                Log.d("VideoIndexList", String.valueOf(videoRelaxation_index));
+
+
+            }
+
+            //
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed Video Post Relaxation", Toast.LENGTH_SHORT).show();
+                Log.d("ErrorVal:Relaxation", String.valueOf(t));
+                Log.d(TAG, "onFailure: " + t);
+
+            }
+        });
+    }
+
     private void postMusicIntervention() {
         Gson gson = new GsonBuilder().setLenient().create();
 
@@ -442,11 +508,10 @@ public class DeviceActivity extends AppCompatActivity {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
+        JSONArray jsArray1 = new JSONArray(musicIntervention);
 
-
-        JSONArray jsonArray1 = new JSONArray(DeviceActivity.musicIntervention);
-        Call<Object> call = jsonPlaceHolder.PostRelaxationData(jsonArray1);
-        call.enqueue(new Callback<Object>() {
+        Call<Object> call3 = jsonPlaceHolder.PostMusicData(jsArray1);
+        call3.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
 
@@ -457,26 +522,30 @@ public class DeviceActivity extends AppCompatActivity {
                 Log.d(TAG, "* music response code : " + response.code());
                 Log.d(TAG, "music response message : " + response.message());
                 Log.d(TAG, "music Relax index : " + response.body());
-//                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
-                Log.d("ArrayListMusic", String.valueOf(list));
-                musicRelaxation_index.add(list.get(0));
-                Log.d("Relaxation Indexes", String.valueOf(musicRelaxation_index));
+                Log.d("List", String.valueOf(list));
+                Log.d("MusicData", String.valueOf(musicIntervention));
+
+                LinkedTreeMap treeMap = (LinkedTreeMap) list.get(0);
+
+                musicRelaxation_index.add(treeMap.get("relaxation"));
+                Log.d("MusicIndexList", String.valueOf(musicRelaxation_index));
 
 
             }
 
-
+            //
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Failed Music Post Relaxation", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Failed Video Post Relaxation", Toast.LENGTH_SHORT).show();
                 Log.d("ErrorVal:Relaxation", String.valueOf(t));
                 Log.d(TAG, "onFailure: " + t);
+
             }
         });
-
-
     }
 
 
