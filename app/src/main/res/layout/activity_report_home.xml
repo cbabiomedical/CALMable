@@ -22,17 +22,32 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/droidserif_italic"
+                android:gravity="center"
+                android:text=""
+                android:layout_marginTop="16dp"
+                android:textColor="@color/dark_blue_300"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
             <Button
                 android:id="@+id/btnHpy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
                 android:onClick="btnGoHpyChtReport"
-                android:text="Happiness chart" />
+                android:text="Happiness chart"
+                android:layout_below="@+id/tvDate"/>
 
             <RelativeLayout
                 android:id="@+id/toggleBtn"
@@ -68,30 +83,16 @@
                 android:text="According to your age"
                 android:textColor="@color/dark_blue_300"/>
 
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_below="@+id/btnHpy"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/droidserif_italic"
-                android:gravity="center"
-                android:text=""
-                android:layout_marginTop="16dp"
-                android:textColor="@color/dark_blue_300"
-                android:textSize="15sp"
-                android:textStyle="bold" />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChartDaily"
                 android:layout_width="325dp"
                 android:layout_height="350dp"
-                android:layout_below="@+id/toggleBtn"
+                android:layout_below="@+id/btnHpy"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="8dp"
                 app:cornerRadius="13dp"
                 tools:ignore="MissingClass" />
 
@@ -100,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/barChartDaily"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -225,7 +226,8 @@
                 android:layout_width="232dp"
                 android:layout_height="295dp"
                 android:layout_marginLeft="104dp"
-                android:layout_marginTop="990dp" />
+                android:layout_marginTop="990dp"
+                android:layout_marginBottom="8dp"/>
 
 
         </RelativeLayout>

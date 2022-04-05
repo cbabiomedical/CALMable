@@ -140,11 +140,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         streesIndex = (TextView) findViewById(R.id.streesIndex);
         stressBanner = (TextView) findViewById(R.id.stressBanner);
 
-//        int random = (int) (Math.random() * (100 + 1));
-//
-//        String y = String.valueOf(random);
-//        streesIndex.setText(y);
-
 
         //call thread method
         stopThread = false;
