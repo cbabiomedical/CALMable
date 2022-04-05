@@ -2,6 +2,7 @@ package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,9 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -26,11 +29,14 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 //import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -41,6 +47,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,8 +76,10 @@ public class ReportYearly extends AppCompatActivity {
     File fileName, localFile;
     StorageReference storageReference;
     FirebaseUser mUser;
-    String text;
-    TextView tvDate;
+    String text,finalValue;
+    Button place;
+    TextView person,time,tvDate;
+    public static String word;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
 
@@ -83,6 +92,9 @@ public class ReportYearly extends AppCompatActivity {
         monthly = findViewById(R.id.monthly);
         weekly = findViewById(R.id.weekly);
         daily = findViewById(R.id.daily);
+        place = findViewById(R.id.tv4);
+        person = findViewById(R.id.tv5);
+        time = findViewById(R.id.tv6);
 
         tvDate = (TextView) findViewById(R.id.tvDate);
 
@@ -90,6 +102,10 @@ public class ReportYearly extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String date = sdf.format(realDate);
         tvDate.setText(date);
+
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+//        finalValue = sharedPreferences.getString("word", null);
+//        person.setText(String.valueOf(finalValue));
 
         NavigationBar();
 
@@ -278,6 +294,15 @@ public class ReportYearly extends AppCompatActivity {
             }
         });
 
+        place.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),LocationActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+
 //        // On click listener of where am i toggle button
 //        whereAmI.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -286,6 +311,59 @@ public class ReportYearly extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+
+        //get max word
+        try {
+            String line = "";
+            word = "";
+            int count = 0, maxCount = 0;
+            ArrayList<String> words = new ArrayList<String>();
+
+            //Opens file in read mode
+            FileReader file = new FileReader(getCacheDir() + "/stressedPeopleMonthly.txt");
+            BufferedReader br = new BufferedReader(file);
+
+            //Reads each line
+            while ((line = br.readLine()) != null) {
+                String string[] = line.toLowerCase().split("([,.\\s]+) ");
+                //Adding all words generated in previous step into words
+                for (String s : string) {
+                    words.add(s);
+                }
+            }
+
+            //Determine the most repeated word in a file
+            for (int i = 0; i < words.size(); i++) {
+                count = 1;
+                //Count each word in the file and store it in variable count
+                for (int j = i + 1; j < words.size(); j++) {
+                    if (words.get(i).equals(words.get(j))) {
+                        count++;
+                    }
+                }
+                //If maxCount is less than count then store value of count in maxCount
+                //and corresponding word to variable word
+                if (count > maxCount) {
+                    maxCount = count;
+                    word = words.get(i);
+                }
+            }
+
+//            //To save
+//            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            editor.putString("word", word);
+//            editor.commit();
+
+            System.out.println("Most repeated word: " + word);
+            person.setText(String.valueOf(word));
+            br.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
