@@ -97,7 +97,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     TextView txtHtRate;
     TextView txtProgress;
     TextView streesIndex , stressBanner;
-    File fileName, fileName1, filNameHeartRate;
+    File fileName, fileName1,fileName2, filNameHeartRate;
     FirebaseFirestore database;
     FirebaseUser mUser;
     FirebaseStorage firebaseStorage;
@@ -109,7 +109,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     public static String viewPerson;
     public static String word;
     String viewPlace,viewReason;
-    String time;
+    String time,finalword;
     int finalRateff;
     List<Object> heartRateList;
     String timeAndHRCompletedOne;
@@ -261,7 +261,11 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         Log.d("Current HOUR-------", strHour);
         Log.d("INT HOUR-------", String.valueOf(hour));
 
-            if (hour > 18) {
+        SharedPreferences shaP = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        int checkCount = shaP.getInt("count", 0);
+        Log.d("checkCount SHARED---", String.valueOf(checkCount));
+
+            if (hour > 18 && checkCount != 1) {
                 //for testing stressed locations
                 AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
                 builder.setCancelable(true);
@@ -310,6 +314,13 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                     }
                 });
                 builder.show();
+
+                //To save the first count
+                int count =1;
+                SharedPreferences sp = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+                SharedPreferences.Editor e = sp.edit();
+                e.putInt("count", count);
+                e.commit();
             }
 
             //access selected hour from shared preference
@@ -319,8 +330,10 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         Log.d("nHour SHARED---", String.valueOf(newHour));
         Log.d("selectedHour SHARED---", String.valueOf(selectedHour));
 
+        SharedPreferences sha = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        int checkCount1 = sha.getInt("count1", 0);
         //display skipped location popup according to selected hour
-            if (newHour > 18 + selectedHour){
+            if (newHour > 18 + selectedHour && checkCount1 !=2){
                 AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
                 builder.setCancelable(true);
                 builder.setIcon(android.R.drawable.ic_dialog_alert);
@@ -335,11 +348,91 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                     }
                 });
                 builder.show();
+
+                int count =2;
+                SharedPreferences sp = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+                SharedPreferences.Editor e = sp.edit();
+                e.putInt("count1", count);
+                e.commit();
             }
+
+        //get last day of the month to calculate
+        int lastDay = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        //get today date
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("dd");
+        String date2 = simpleDateFormat2.format(calendar.getTime());
+        Log.d("today DATE---", date2);
+        Log.d("last DATE---", String.valueOf(lastDay));
+
+        if (date2 == String.valueOf(lastDay)) {
+            //Writing most stressed person to monthly text file in the end of every month
+            try {
+                fileName2 = new File(getCacheDir() + "/stressedPeopleMonthly.txt");
+                //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+                fileName2.createNewFile();
+                if (!fileName2.exists()) {
+                    fileName2.mkdirs();
+                }
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName2, true));
+
+                SharedPreferences sp = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+                finalword = sp.getString("word", null);
+
+                writer.write(finalword);
+                writer.newLine();
+                writer.flush();
+
+                Log.d("TAG", "----------stressedPeopleMonthly File");
+                //Toast.makeText(this, "Data has been written to stressedPeople File", Toast.LENGTH_SHORT).show();
+
+                writer.close();
+
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+
+
+//        Calendar cal = Calendar.getInstance();
+//        Format f = new SimpleDateFormat("EEEE");
+//        String today = f.format(new Date());
+//
+//        SharedPreferences shared= this.getSharedPreferences("com.example.calmable", 0);
+//        String prevDay = shared.getString("prevDay", null);
+//
+//        Log.d("TODAY shared------", today);
+//        //Log.d("PREVDAY shared-----", prevDay);
+//
+//        if(prevDay != today){
+//            SharedPreferences.Editor ed = sharedPreferences.edit();
+//            ed.putString("prevDay", today);
+//            ed.commit();
+//            removeDataFromPref();
+//        }
+
+        // clear necessary shared preferences daily after 10 pm
+        if (hour > 21){
+            removeDataFromPref();
+        }
 
         NavigationBar();
         getData();
     }
+
+    public void removeDataFromPref() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.calmable",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("count");
+        editor.remove("count1");
+        editor.remove("newHour");
+        editor.remove("selectedOption");
+        editor.apply();
+        Log.d("TAG", "CLEARED SP-----");
+    }
+
 
     //refresh activity
     private final Runnable m_Runnable = new Runnable() {
@@ -581,11 +674,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             e.printStackTrace();
         }
 
-//        //get last day of the month to calculate
-//        Calendar cal = Calendar.getInstance();
-//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-//        Date lastDay = cal.getTime();
-//        if (day == lastDay) {
+
         //get max word
         try {
             String line = "";
@@ -630,6 +719,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             editor.commit();
 
             System.out.println("Most repeated word: " + word);
+
 
             //uploading most stressed person to realtime db
             mUser = FirebaseAuth.getInstance().getCurrentUser();

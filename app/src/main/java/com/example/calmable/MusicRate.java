@@ -136,6 +136,10 @@ public class MusicRate extends AppCompatActivity {
         average = sum / DeviceActivity.musicRelaxation_index.size();
 
         Double averageD = Double.valueOf(String.format("%.3g%n", average));
+        Log.d("AverageD", String.valueOf(average));
+        if(sum==0.0){
+            averageD=0.0;
+        }
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(x));
         reference.setValue(averageD);
 

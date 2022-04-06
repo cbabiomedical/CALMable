@@ -35,6 +35,9 @@
             android:name=".Calming396HzActivity"
             android:exported="false" />
         <activity
+            android:name=".VideoReportMonthly"
+            android:exported="false" />
+        <activity
             android:name=".VideoReportWeekly"
             android:exported="false" />
         <activity

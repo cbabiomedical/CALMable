@@ -106,6 +106,108 @@
                     android:textColor="@color/dark_blue_300"
                     android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/placeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/btnLayout"
+                android:layout_marginTop="32dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:paddingStart="16dp"
+                    android:layout_marginStart="6dp"
+                    android:text="Most Stressed Places :"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/tv4"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="60dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/tv1"
+                    android:text="View"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/personLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/placeLayout"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tv1"
+                    android:paddingStart="16dp"
+                    android:text="Most Stressed Person :"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv5"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tv4"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/tv1"
+                    android:text="None"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/timeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/personLayout"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tv2"
+                    android:paddingStart="16dp"
+                    android:text="Most Stressed Time    :"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv6"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tv5"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/tv1"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
         </RelativeLayout>
     </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView

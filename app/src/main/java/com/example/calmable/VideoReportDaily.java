@@ -18,8 +18,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.calmable.device.DeviceActivity;
+import com.example.calmable.sample.JsonPlaceHolder;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -39,6 +41,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.internal.LinkedTreeMap;
+
+import org.json.JSONArray;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -56,7 +63,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import pl.droidsonroids.gif.GifImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class VideoReportDaily extends AppCompatActivity {
     Double average = 0.0;
@@ -68,6 +82,8 @@ public class VideoReportDaily extends AppCompatActivity {
 
     ImageView concentrationBtn;
     String text;
+    Retrofit retrofit;
+    JsonPlaceHolder jsonPlaceHolder;
     GifImageView c1gif, c2gif;
     int color;
     View c1, c2;
@@ -93,9 +109,52 @@ public class VideoReportDaily extends AppCompatActivity {
 
         Log.d("VideoINReport", String.valueOf(DeviceActivity.videoRelaxation_index));
         if (DeviceActivity.videoRelaxation_index.size() > 0) {
+            Gson gson = new GsonBuilder().setLenient().create();
+
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .connectTimeout(100, TimeUnit.SECONDS)
+//                .readTimeout(100,TimeUnit.SECONDS).build();
+
+
+            retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+            JSONArray jsArray=new JSONArray(DeviceActivity.videoReportData);
+            Log.d("VideoJson", String.valueOf(jsArray));
+//            Call<Object> call3 = jsonPlaceHolder.PostVideoReportData(jsArray);
+//            call3.enqueue(new Callback<Object>() {
+//                @Override
+//                public void onResponse(Call<Object> call, Response<Object> response) {
+//
+//                    Toast.makeText(getApplicationContext(), "Post Time Successful", Toast.LENGTH_SHORT).show();
+//
+//                    //Log.d(TAG, "-----onResponse-----: " + response);
+//
+//                    Log.d("TAG", "* time response code : " + response.code());
+//                    Log.d("TAG", "time response message : " + response.message());
+//                    Log.d("TAG", "time Relax index : " + response.body());
+////                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
+//
+//                }
+//
+//                //
+//                @Override
+//                public void onFailure(Call<Object> call, Throwable t) {
+//                    Toast.makeText(getApplicationContext(), "Failed Time Post Relaxation", Toast.LENGTH_SHORT).show();
+//                    Log.d("ErrorVal:Relaxation", String.valueOf(t));
+//                    Log.d("TAG", "onFailure: " + t);
+//
+//                }
+//            });
             for (int i = 0; i < DeviceActivity.videoRelaxation_index.size(); i++) {
                 sum += (Double) DeviceActivity.videoRelaxation_index.get(i);
             }
+
             average = sum / DeviceActivity.videoRelaxation_index.size();
             Calendar now = Calendar.getInstance();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -112,6 +171,9 @@ public class VideoReportDaily extends AppCompatActivity {
             int month = now.get(Calendar.MONTH) + 1;
 
             Double averageD = Double.valueOf(String.format("%.3g%n", average));
+            if (sum == 0.0) {
+                averageD = 0.0;
+            }
 
             SharedPreferences prefsTimeMem = getSharedPreferences("prefsVideo", MODE_PRIVATE);
             int firstStartTimeMem = prefsTimeMem.getInt("firstStartVideo", 0);
@@ -129,13 +191,14 @@ public class VideoReportDaily extends AppCompatActivity {
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(x));
             reference.setValue(averageD);
+
         }
 
         monthly = findViewById(R.id.monthly);
         monthly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getApplicationContext(), MusicReportMonthly.class);
+                Intent intent2 = new Intent(getApplicationContext(), VideoReportMonthly.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -145,7 +208,7 @@ public class VideoReportDaily extends AppCompatActivity {
         weekly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getApplicationContext(), MusicReportWeekly.class);
+                Intent intent2 = new Intent(getApplicationContext(), VideoReportWeekly.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -155,7 +218,7 @@ public class VideoReportDaily extends AppCompatActivity {
         yearly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getApplicationContext(), MusicReportYearly.class);
+                Intent intent2 = new Intent(getApplicationContext(), VideoReportYearly.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -298,7 +361,6 @@ public class VideoReportDaily extends AppCompatActivity {
                         .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday");
 
                 reference0.addValueEventListener(new ValueEventListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         ArrayList sumElement = new ArrayList();
@@ -307,14 +369,14 @@ public class VideoReportDaily extends AppCompatActivity {
 
                             Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                            Double av1 = (Double) dataSnapshot.getValue();
+                            Double av1 = Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                             Log.d("AV1", String.valueOf(av1));
                             sumElement.add(av1);
                             sum += av1;
 
                         }
                         Log.d("SUM", String.valueOf(sum));
-                        if (sum != 0) {
+                        if (sum != 0.0) {
                             average1 = sum / sumElement.size();
                             Log.d("Average Mon", String.valueOf(average1));
                         } else {
@@ -332,14 +394,14 @@ public class VideoReportDaily extends AppCompatActivity {
 
                                     Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                    Double av1 = (Double) dataSnapshot.getValue();
+                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                     Log.d("AV1", String.valueOf(av1));
                                     sumElement.add(av1);
                                     sum += av1;
 
                                 }
                                 Log.d("SUM", String.valueOf(sum));
-                                if (sum != 0) {
+                                if (sum != 0.0) {
                                     average2 = sum / sumElement.size();
                                     Log.d("Average Tue", String.valueOf(average2));
 
@@ -359,14 +421,14 @@ public class VideoReportDaily extends AppCompatActivity {
 
                                             Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                            Double av1 = (Double) dataSnapshot.getValue();
+                                            Double av1 = Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                             Log.d("AV1", String.valueOf(av1));
                                             sumElement.add(av1);
                                             sum += av1;
 
                                         }
                                         Log.d("SUM", String.valueOf(sum));
-                                        if (sum != 0) {
+                                        if (sum != 0.0) {
                                             average3 = sum / sumElement.size();
                                             Log.d("Average Wed", String.valueOf(average3));
 
@@ -411,14 +473,14 @@ public class VideoReportDaily extends AppCompatActivity {
 
                                                             Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                            Double av1 = (Double) dataSnapshot.getValue();
+                                                            Double av1 = Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                             Log.d("AV1", String.valueOf(av1));
                                                             sumElement.add(av1);
                                                             sum += av1;
 
                                                         }
                                                         Log.d("SUM", String.valueOf(sum));
-                                                        if (sum != 0) {
+                                                        if (sum != 0.0) {
                                                             average5 = sum / sumElement.size();
                                                             Log.d("Average Fri", String.valueOf(average5));
                                                         } else {
@@ -437,19 +499,19 @@ public class VideoReportDaily extends AppCompatActivity {
 
                                                                     Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                                    Double av1 = (Double) dataSnapshot.getValue();
+                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                                     Log.d("AV1", String.valueOf(av1));
                                                                     sumElement.add(av1);
                                                                     sum += av1;
 
                                                                 }
                                                                 Log.d("SUM", String.valueOf(sum));
-                                                                if (sum != 0) {
-                                                                    average6 = sum /sumElement.size();
+                                                                if (sum != 0.0) {
+                                                                    average6 = sum / sumElement.size();
                                                                     Log.d("Average Sat", String.valueOf(average6));
 
                                                                 } else {
-                                                                    average6 =0.0;
+                                                                    average6 = 0.0;
                                                                 }
 
                                                                 DatabaseReference reference6 = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)))
@@ -464,14 +526,14 @@ public class VideoReportDaily extends AppCompatActivity {
 
                                                                             Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                                            Double av1 = (Double) dataSnapshot.getValue();
+                                                                            Double av1 = Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                                             Log.d("AV1", String.valueOf(av1));
                                                                             sumElement.add(av1);
                                                                             sum += av1;
 
                                                                         }
                                                                         Log.d("SUM", String.valueOf(sum));
-                                                                        if (sum != 0) {
+                                                                        if (sum != 0.0) {
                                                                             average7 = sum / sumElement.size();
                                                                             Log.d("Average Sun", String.valueOf(average7));
                                                                         } else {
@@ -485,7 +547,7 @@ public class VideoReportDaily extends AppCompatActivity {
                                                                         Log.d("Average Outside6", String.valueOf(average6));
                                                                         Log.d("Average Outside7", String.valueOf(average7));
 
-                                                                        lineEntries.add(new Entry(1,Float.parseFloat(String.valueOf(average7))));
+                                                                        lineEntries.add(new Entry(1, Float.parseFloat(String.valueOf(average7))));
                                                                         lineEntries.add(new Entry(2, Float.parseFloat(String.valueOf(average1))));
                                                                         lineEntries.add(new Entry(3, Float.parseFloat(String.valueOf(average2))));
                                                                         lineEntries.add(new Entry(4, Float.parseFloat(String.valueOf(average3))));
@@ -548,7 +610,6 @@ public class VideoReportDaily extends AppCompatActivity {
 
                                                                     }
                                                                 });
-
 
 
                                                             }
