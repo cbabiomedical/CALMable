@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.calmable.device.DeviceActivity;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -81,6 +82,7 @@ public class MusicReportYearly extends AppCompatActivity {
     LineDataSet lineDataSet;
     ArrayList lineEntries;
     Long average, average1, average2, average3;
+    Double averageW, average11, average12, average13;
     TextView tvDate;
 
 
@@ -169,163 +171,325 @@ public class MusicReportYearly extends AppCompatActivity {
 
                 lineEntries = new ArrayList();
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year1));
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        ArrayList sumElement = new ArrayList();
-                        int sum = (0);
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                                for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                                    for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-                                        Log.d("Yearly", String.valueOf(snapshot3.getValue()));
-                                        Long av1 = (Long) snapshot3.getValue();
-                                        sumElement.add(snapshot1.getValue());
-                                        sum += av1;
+                if (DeviceActivity.connected) {
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(year1));
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ArrayList sumElement = new ArrayList();
+                            Double sum = (0.0);
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                                    for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                                        for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+                                            Log.d("Yearly", String.valueOf(snapshot3.getValue()));
+                                            Double av1 = Double.parseDouble(String.valueOf(snapshot3.getValue()));
+                                            sumElement.add(snapshot1.getValue());
+                                            sum += av1;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        Log.d("SUM", String.valueOf(sum));
-                        if (sum != 0) {
-                            average1 = sum / Long.parseLong(String.valueOf(sumElement.size()));
-                        } else {
-                            average1 = 0L;
-                        }
+                            Log.d("SUM", String.valueOf(sum));
+                            if (sum != 0) {
+                                average11 = sum / sumElement.size();
+                            } else {
+                                average11 = 0.0;
+                            }
 
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year2));
-                        reference.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                ArrayList sumElement = new ArrayList();
-                                int sum = (0);
-                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                    for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                                        for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                                            for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-                                                Log.d("Yearly", String.valueOf(snapshot3.getValue()));
-                                                Long av1 = (Long) snapshot3.getValue();
-                                                sumElement.add(snapshot1.getValue());
-                                                sum += av1;
-                                            }
-                                        }
-                                    }
-                                }
-                                Log.d("SUM", String.valueOf(sum));
-                                if (sum != 0) {
-                                    average2 = sum / Long.parseLong(String.valueOf(sumElement.size()));
-                                } else {
-                                    average2 = 0L;
-                                }
-
-                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year3));
-                                reference.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        ArrayList sumElement = new ArrayList();
-                                        int sum = (0);
-                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                            for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                                                for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                                                    for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-                                                        Log.d("Yearly", String.valueOf(snapshot3.getValue()));
-                                                        Long av1 = (Long) snapshot3.getValue();
-                                                        sumElement.add(snapshot1.getValue());
-                                                        sum += av1;
-                                                    }
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(year2));
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    ArrayList sumElement = new ArrayList();
+                                    Double sum = (0.0);
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                        for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                                            for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                                                for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+                                                    Log.d("Yearly", String.valueOf(snapshot3.getValue()));
+                                                    Double av1 = Double.parseDouble(String.valueOf(snapshot3.getValue()));
+                                                    sumElement.add(snapshot1.getValue());
+                                                    sum += av1;
                                                 }
                                             }
                                         }
-                                        Log.d("SUM", String.valueOf(sum));
-                                        if (sum != 0) {
-                                            average3 = sum / Long.parseLong(String.valueOf(sumElement.size()));
-                                        } else {
-                                            average3 = 0L;
-                                        }
-                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)));
-                                        reference.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                ArrayList sumElement = new ArrayList();
-                                                int sum = (0);
-                                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                                    for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                                                        for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                                                            for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-                                                                Log.d("Yearly", String.valueOf(snapshot3.getValue()));
-                                                                Long av1 = (Long) snapshot3.getValue();
-                                                                sumElement.add(snapshot1.getValue());
-                                                                sum += av1;
-                                                            }
+                                    }
+                                    Log.d("SUM", String.valueOf(sum));
+                                    if (sum != 0) {
+                                        average12 = sum / sumElement.size();
+                                    } else {
+                                        average12 = 0.0;
+                                    }
+
+                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(year3));
+                                    reference.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            ArrayList sumElement = new ArrayList();
+                                            Double sum = (0.0);
+                                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                                                    for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                                                        for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+                                                            Log.d("Yearly", String.valueOf(snapshot3.getValue()));
+                                                            Double av1 = Double.parseDouble(String.valueOf(snapshot3.getValue()));
+                                                            sumElement.add(snapshot1.getValue());
+                                                            sum += av1;
                                                         }
                                                     }
                                                 }
-                                                Log.d("SUM", String.valueOf(sum));
-                                                if (sum != 0) {
-                                                    average = sum / Long.parseLong(String.valueOf(sumElement.size()));
-                                                } else {
-                                                    average = 0L;
+                                            }
+                                            Log.d("SUM", String.valueOf(sum));
+                                            if (sum != 0) {
+                                                average13 = sum / sumElement.size();
+                                            } else {
+                                                average13 = 0.0;
+                                            }
+                                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)));
+                                            reference.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    ArrayList sumElement = new ArrayList();
+                                                    Double sum = (0.0);
+                                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                        for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                                                            for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                                                                for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+                                                                    Log.d("Yearly", String.valueOf(snapshot3.getValue()));
+                                                                    Double av1 = Double.parseDouble(String.valueOf(snapshot3.getValue()));
+                                                                    sumElement.add(snapshot1.getValue());
+                                                                    sum += av1;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    Log.d("SUM", String.valueOf(sum));
+                                                    if (sum != 0) {
+                                                        averageW = sum / sumElement.size();
+                                                    } else {
+                                                        averageW = 0.0;
+                                                    }
+                                                    Log.d("Average", String.valueOf(averageW));
+                                                    Log.d("Average1", String.valueOf(average1));
+                                                    Log.d("Average2", String.valueOf(average2));
+                                                    Log.d("Average4", String.valueOf(average3));
+
+
+                                                    lineEntries.add(new Entry(year1, Float.parseFloat(String.valueOf(average11))));
+                                                    lineEntries.add(new Entry(year2, Float.parseFloat(String.valueOf(average12))));
+                                                    lineEntries.add(new Entry(year3, Float.parseFloat(String.valueOf(average13))));
+                                                    lineEntries.add(new Entry(now.get(Calendar.YEAR), Float.parseFloat(String.valueOf(averageW))));
+                                                    lineDataSet = new LineDataSet(lineEntries, "Relax Progress");
+                                                    lineData = new LineData(lineDataSet);
+                                                    lineChart.setData(lineData);
+
+                                                    lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+                                                    lineDataSet.setValueTextColor(Color.WHITE);
+                                                    lineDataSet.setValueTextSize(10f);
+
+                                                    lineChart.setGridBackgroundColor(Color.TRANSPARENT);
+                                                    lineChart.setBorderColor(Color.TRANSPARENT);
+                                                    lineChart.setGridBackgroundColor(Color.TRANSPARENT);
+                                                    lineChart.getAxisLeft().setDrawGridLines(false);
+                                                    lineChart.getXAxis().setDrawGridLines(false);
+                                                    lineChart.getAxisRight().setDrawGridLines(false);
+                                                    lineChart.getAxisRight().setTextColor(getResources().getColor(R.color.white));
+                                                    lineChart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
+                                                    lineChart.getLegend().setTextColor(getResources().getColor(R.color.white));
+                                                    lineChart.getDescription().setTextColor(R.color.white);
+                                                    lineChart.invalidate();
+                                                    lineChart.refreshDrawableState();
+
+
                                                 }
-                                                Log.d("Average", String.valueOf(average));
-                                                Log.d("Average1", String.valueOf(average1));
-                                                Log.d("Average2", String.valueOf(average2));
-                                                Log.d("Average4", String.valueOf(average3));
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                } else {
 
 
-                                                lineEntries.add(new Entry(year1, average1));
-                                                lineEntries.add(new Entry(year2, average2));
-                                                lineEntries.add(new Entry(year3, average3));
-                                                lineEntries.add(new Entry(now.get(Calendar.YEAR), average));
-                                                lineDataSet = new LineDataSet(lineEntries, "Relax Progress");
-                                                lineData = new LineData(lineDataSet);
-                                                lineChart.setData(lineData);
-
-                                                lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-                                                lineDataSet.setValueTextColor(Color.WHITE);
-                                                lineDataSet.setValueTextSize(10f);
-
-                                                lineChart.setGridBackgroundColor(Color.TRANSPARENT);
-                                                lineChart.setBorderColor(Color.TRANSPARENT);
-                                                lineChart.setGridBackgroundColor(Color.TRANSPARENT);
-                                                lineChart.getAxisLeft().setDrawGridLines(false);
-                                                lineChart.getXAxis().setDrawGridLines(false);
-                                                lineChart.getAxisRight().setDrawGridLines(false);
-                                                lineChart.getAxisRight().setTextColor(getResources().getColor(R.color.white));
-                                                lineChart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
-                                                lineChart.getLegend().setTextColor(getResources().getColor(R.color.white));
-                                                lineChart.getDescription().setTextColor(R.color.white);
-                                                lineChart.invalidate();
-                                                lineChart.refreshDrawableState();
-
-
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-                                        });
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year1));
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ArrayList sumElement = new ArrayList();
+                            int sum = (0);
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                                    for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                                        for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+                                            Log.d("Yearly", String.valueOf(snapshot3.getValue()));
+                                            Long av1 = (Long) snapshot3.getValue();
+                                            sumElement.add(snapshot1.getValue());
+                                            sum += av1;
+                                        }
                                     }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
+                                }
+                            }
+                            Log.d("SUM", String.valueOf(sum));
+                            if (sum != 0) {
+                                average1 = sum / Long.parseLong(String.valueOf(sumElement.size()));
+                            } else {
+                                average1 = 0L;
                             }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                            }
-                        });
-                    }
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year2));
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    ArrayList sumElement = new ArrayList();
+                                    int sum = (0);
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                        for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                                            for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                                                for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+                                                    Log.d("Yearly", String.valueOf(snapshot3.getValue()));
+                                                    Long av1 = (Long) snapshot3.getValue();
+                                                    sumElement.add(snapshot1.getValue());
+                                                    sum += av1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Log.d("SUM", String.valueOf(sum));
+                                    if (sum != 0) {
+                                        average2 = sum / Long.parseLong(String.valueOf(sumElement.size()));
+                                    } else {
+                                        average2 = 0L;
+                                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(year3));
+                                    reference.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            ArrayList sumElement = new ArrayList();
+                                            int sum = (0);
+                                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                                                    for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                                                        for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+                                                            Log.d("Yearly", String.valueOf(snapshot3.getValue()));
+                                                            Long av1 = (Long) snapshot3.getValue();
+                                                            sumElement.add(snapshot1.getValue());
+                                                            sum += av1;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Log.d("SUM", String.valueOf(sum));
+                                            if (sum != 0) {
+                                                average3 = sum / Long.parseLong(String.valueOf(sumElement.size()));
+                                            } else {
+                                                average3 = 0L;
+                                            }
+                                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Report").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)));
+                                            reference.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    ArrayList sumElement = new ArrayList();
+                                                    int sum = (0);
+                                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                        for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                                                            for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                                                                for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+                                                                    Log.d("Yearly", String.valueOf(snapshot3.getValue()));
+                                                                    Long av1 = (Long) snapshot3.getValue();
+                                                                    sumElement.add(snapshot1.getValue());
+                                                                    sum += av1;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    Log.d("SUM", String.valueOf(sum));
+                                                    if (sum != 0) {
+                                                        average = sum / Long.parseLong(String.valueOf(sumElement.size()));
+                                                    } else {
+                                                        average = 0L;
+                                                    }
+                                                    Log.d("Average", String.valueOf(average));
+                                                    Log.d("Average1", String.valueOf(average1));
+                                                    Log.d("Average2", String.valueOf(average2));
+                                                    Log.d("Average4", String.valueOf(average3));
 
-                    }
-                });
+
+                                                    lineEntries.add(new Entry(year1, average1));
+                                                    lineEntries.add(new Entry(year2, average2));
+                                                    lineEntries.add(new Entry(year3, average3));
+                                                    lineEntries.add(new Entry(now.get(Calendar.YEAR), average));
+                                                    lineDataSet = new LineDataSet(lineEntries, "Relax Progress");
+                                                    lineData = new LineData(lineDataSet);
+                                                    lineChart.setData(lineData);
+
+                                                    lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+                                                    lineDataSet.setValueTextColor(Color.WHITE);
+                                                    lineDataSet.setValueTextSize(10f);
+
+                                                    lineChart.setGridBackgroundColor(Color.TRANSPARENT);
+                                                    lineChart.setBorderColor(Color.TRANSPARENT);
+                                                    lineChart.setGridBackgroundColor(Color.TRANSPARENT);
+                                                    lineChart.getAxisLeft().setDrawGridLines(false);
+                                                    lineChart.getXAxis().setDrawGridLines(false);
+                                                    lineChart.getAxisRight().setDrawGridLines(false);
+                                                    lineChart.getAxisRight().setTextColor(getResources().getColor(R.color.white));
+                                                    lineChart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
+                                                    lineChart.getLegend().setTextColor(getResources().getColor(R.color.white));
+                                                    lineChart.getDescription().setTextColor(R.color.white);
+                                                    lineChart.invalidate();
+                                                    lineChart.refreshDrawableState();
+
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
             }
         }, 3000);
     }

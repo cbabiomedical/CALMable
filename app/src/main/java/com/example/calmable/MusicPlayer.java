@@ -52,6 +52,8 @@ public class MusicPlayer extends AppCompatActivity {
     Thread updateSeekBar;
     public static boolean isStarted = false;
 
+
+
     FirebaseFirestore database;
 
 
@@ -277,7 +279,7 @@ public class MusicPlayer extends AppCompatActivity {
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
-                    isStarted=false;
+                    isStarted = false;
                 }
             });
 
@@ -423,7 +425,7 @@ public class MusicPlayer extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mediaPlayer.pause();
-        isStarted=false;
+        isStarted = false;
     }
 
 

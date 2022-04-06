@@ -78,7 +78,8 @@ public class DeviceActivity extends AppCompatActivity {
     ArrayList<String> listOfTxtData;
     ArrayList<String> listOfServerReportData;
     ArrayList<String> listOfTxtReportData;
-    File filNameHeartRate , fileNameServerReportData;
+    public static ArrayList videoReportData=new ArrayList();
+    File filNameHeartRate, fileNameServerReportData;
     JsonPlaceHolder jsonPlaceHolder;
     public static ArrayList videoRelaxation_index = new ArrayList();
     ArrayList videoIntervention = new ArrayList();
@@ -92,7 +93,7 @@ public class DeviceActivity extends AppCompatActivity {
     public static int finalRate;
     public static int measuringHR;
     boolean stopThread = false;
-    String timeAndHR , serverData;
+    String timeAndHR, serverData;
     int q;
 
     ProgressDialog mProgressDialog;
@@ -369,20 +370,30 @@ public class DeviceActivity extends AppCompatActivity {
             listOFServerHRData = new ArrayList<>();
             listOFServerHRData.add(q);
             listOFServerHRData.add(measuringHR);
+            Log.d("LISTCHECK", String.valueOf(listOFServerHRData));
+            String rating=q+","+measuringHR+",";
+            Log.d("Rate",rating);
 
 
-            if(MusicPlayer.isStarted){
-                musicIntervention.add(measuringHR);
-                if(musicIntervention.size()%10==0){
+
+
+            if (MusicPlayer.isStarted) {
+                musicIntervention.add(rating);
+                Log.d("ListMus", String.valueOf(musicIntervention));
+                if (musicIntervention.size() == 12) {
                     postMusicIntervention();
+                    musicIntervention.clear();
                 }
             }
 
             if (VideoPlayerActivity.isStarted) {
-                videoIntervention.add(measuringHR);
-                if (videoIntervention.size() % 10 == 0) {
+                videoIntervention.add(rating);
+//                videoIntervention.remove(0);
+                Log.d("ListVid", String.valueOf(videoIntervention));
+                if (videoIntervention.size()==12) {
                     Log.d("VideoData", String.valueOf(videoIntervention));
                     postVideoData();
+                    videoIntervention.clear();
                 }
             }
 
@@ -412,7 +423,8 @@ public class DeviceActivity extends AppCompatActivity {
 
             // add HR to save for txt
             listOFServerHRData = new ArrayList<>();
-            listOFServerHRData.add(finalRate);
+            if(videoIntervention.add(finalRate))
+                listOFServerHRData.add(finalRate);
 
 
             // call writeData method
@@ -461,11 +473,24 @@ public class DeviceActivity extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HH:mm:ss", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+//
+//        Log.d(TAG, "Current Date and Time--->" + currentDateandTime);
+        Log.d("VideoInterventionSize", String.valueOf(videoIntervention.size()));
+        Log.d("VideoIntervention", String.valueOf(videoIntervention));
+        videoIntervention.remove(0);
+        videoIntervention.add(11, currentDateandTime);
+
         JSONArray jsArray = new JSONArray(videoIntervention);
+        Log.d("JsonArray", String.valueOf(jsArray));
 
         Call<Object> call3 = jsonPlaceHolder.PostVideoData(jsArray);
         call3.enqueue(new Callback<Object>() {
@@ -479,11 +504,13 @@ public class DeviceActivity extends AppCompatActivity {
                 Log.d(TAG, "* video response code : " + response.code());
                 Log.d(TAG, "video response message : " + response.message());
                 Log.d(TAG, "video Relax index : " + response.body());
-                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
+//                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
 
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
-                Log.d("List", String.valueOf(list));
+                Log.d("ListCheck", String.valueOf(list));
+                videoReportData.add(response.body());
+                Log.d("VideoRel", String.valueOf(videoReportData));
                 Log.d("VideoData", String.valueOf(videoIntervention));
 
                 LinkedTreeMap treeMap = (LinkedTreeMap) list.get(0);
@@ -514,8 +541,13 @@ public class DeviceActivity extends AppCompatActivity {
 //        OkHttpClient client = new OkHttpClient.Builder()
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HH:mm:ss", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+        musicIntervention.remove(0);
+        musicIntervention.add(11, currentDateandTime);
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -533,11 +565,12 @@ public class DeviceActivity extends AppCompatActivity {
                 Log.d(TAG, "* music response code : " + response.code());
                 Log.d(TAG, "music response message : " + response.message());
                 Log.d(TAG, "music Relax index : " + response.body());
-                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+//                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
+//                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
 
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
-                Log.d("List", String.valueOf(list));
+                Log.d("MusicList", String.valueOf(list));
                 Log.d("MusicData", String.valueOf(musicIntervention));
 
                 LinkedTreeMap treeMap = (LinkedTreeMap) list.get(0);
@@ -646,8 +679,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -674,11 +706,15 @@ public class DeviceActivity extends AppCompatActivity {
         String currentDateandTime = sdf.format(new Date());
 
         Log.d(TAG, "Current Date and Time--->" + currentDateandTime);
+        Log.d("List", String.valueOf(listOfTxtData));
 
         listOfTxtData.add(11, currentDateandTime);
 
         JSONArray jsArray = new JSONArray(listOfTxtData);
+
         //JSONArray jsArray1 = new JSONArray(musicIntervention);
+
+        Log.d("Json", String.valueOf(jsArray));
 
 
         Log.d(TAG, "txt file data : " + listOfTxtData);
@@ -802,7 +838,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -825,6 +861,7 @@ public class DeviceActivity extends AppCompatActivity {
         jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
 
         JSONArray jsArray = new JSONArray(listOfTxtReportData);
+
         //JSONArray jsArray1 = new JSONArray(musicIntervention);
 
 
@@ -834,6 +871,8 @@ public class DeviceActivity extends AppCompatActivity {
         /**
          *   report part
          */
+        Log.d("Json List", String.valueOf(listOfTxtReportData));
+        Log.d("JsonReport", String.valueOf(jsArray));
         Call<Object> call4 = jsonPlaceHolder.PostReportData(jsArray);
         call4.enqueue(new Callback<Object>() {
             @Override
