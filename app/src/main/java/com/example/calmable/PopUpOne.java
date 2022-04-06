@@ -42,8 +42,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -59,6 +62,7 @@ import java.util.Set;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQueryTextListener, SearchView.OnSuggestionListener {
 
@@ -66,9 +70,10 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
     private EditText editPerson;
     private EditText editPlace,editReason;
     public static String latLong;
+    public static String word;
     public static double latitude,longitude;
     FirebaseUser mUser;
-    File fileName1;
+    File fileName1,fileName;
     //AutoCompleteTextView autoCompleteTextView;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -228,7 +233,106 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
 //            }
 //        });
 
+        getTime();
+
         return builder.create();
+    }
+
+    //get stressed times and writing to text file
+    private void getTime() {
+        SimpleDateFormat simpleformat = new SimpleDateFormat("HH");
+        String strHour = simpleformat.format(new Date());
+        int hour = Integer.parseInt(strHour);
+        Log.d("stressed HOUR------", String.valueOf(hour));
+
+        //Writing stressed time in hour to text file
+        try {
+            fileName = new File(getActivity().getCacheDir() + "/stressedTime.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            fileName.createNewFile();
+            if (!fileName.exists()) {
+                fileName.mkdirs();
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+
+            writer.write(String.valueOf(hour));
+            writer.newLine();
+            writer.flush();
+
+            Log.d("TAG", "----------stressedTime File");
+            //Toast.makeText(this, "Data has been written to stressedPeople File", Toast.LENGTH_SHORT).show();
+
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+        //get max word
+        try {
+            String line = "";
+            word = "";
+            int count = 0, maxCount = 0;
+            ArrayList<String> words = new ArrayList<String>();
+
+            //Opens file in read mode
+            FileReader file = new FileReader(getContext().getCacheDir() + "/stressedTime.txt");
+            BufferedReader br = new BufferedReader(file);
+
+            //Reads each line
+            while ((line = br.readLine()) != null) {
+                String string[] = line.toLowerCase().split("([,.\\s]+) ");
+                //Adding all words generated in previous step into words
+                for (String s : string) {
+                    words.add(s);
+                }
+            }
+
+            //Determine the most repeated word in a file
+            for (int i = 0; i < words.size(); i++) {
+                count = 1;
+                //Count each word in the file and store it in variable count
+                for (int j = i + 1; j < words.size(); j++) {
+                    if (words.get(i).equals(words.get(j))) {
+                        count++;
+                    }
+                }
+                //If maxCount is less than count then store value of count in maxCount
+                //and corresponding word to variable word
+                if (count > maxCount) {
+                    maxCount = count;
+                    word = words.get(i);
+                }
+            }
+
+            //To save
+            SharedPreferences sharedPreferences = getContext().getSharedPreferences("com.example.calmable", 0);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("time", word);
+            editor.commit();
+
+            System.out.println("Most repeated time: " + word);
+
+
+//            //uploading most stressed person to realtime db
+//            mUser = FirebaseAuth.getInstance().getCurrentUser();
+//            mUser.getUid();
+//            FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("MostStressedPerson").setValue(word)
+//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            //Toast.makeText(getContext().this, "Successful", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+
+            br.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void getLocation() {

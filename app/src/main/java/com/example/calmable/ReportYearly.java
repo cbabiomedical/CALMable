@@ -76,7 +76,8 @@ public class ReportYearly extends AppCompatActivity {
     File fileName, localFile;
     StorageReference storageReference;
     FirebaseUser mUser;
-    String text,finalValue;
+    String text,finalValue,finalTime;
+    String stressedTime;
     Button place;
     TextView person,time,tvDate;
     public static String word;
@@ -103,9 +104,12 @@ public class ReportYearly extends AppCompatActivity {
         String date = sdf.format(realDate);
         tvDate.setText(date);
 
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
-//        finalValue = sharedPreferences.getString("word", null);
-//        person.setText(String.valueOf(finalValue));
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        finalTime = sharedPreferences.getString("time", null);
+        stressedTime = Integer.parseInt(finalTime)+ ":00" + " - " +(Integer.parseInt(finalTime)+1)+ ":00";
+        Log.d("stressedTimeWeekly----", stressedTime);
+
+        time.setText(stressedTime);
 
         NavigationBar();
 

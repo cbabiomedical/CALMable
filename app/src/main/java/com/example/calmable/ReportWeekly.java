@@ -74,7 +74,8 @@ public class ReportWeekly extends AppCompatActivity {
     FirebaseUser mUser;
     TextView tvDate;
     TextView person,time;
-    String text,finalValue;
+    String text,finalValue,finalTime;
+    String stressedTime;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
 
@@ -101,7 +102,12 @@ public class ReportWeekly extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
         finalValue = sharedPreferences.getString("word", null);
+        finalTime = sharedPreferences.getString("time", null);
+        stressedTime = Integer.parseInt(finalTime)+ ":00" + " - " +(Integer.parseInt(finalTime)+1)+ ":00";
+        Log.d("stressedTimeWeekly----", stressedTime);
+
         person.setText(String.valueOf(finalValue));
+        time.setText(stressedTime);
 
         NavigationBar();
 

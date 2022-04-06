@@ -73,7 +73,8 @@ public class ReportMonthly extends AppCompatActivity {
     File fileName, localFile;
     FirebaseUser mUser;
     TextView person,time,tvDate;
-    String text,finalValue;
+    String text,finalValue,finalTime;
+    String stressedTime;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
 
@@ -97,9 +98,15 @@ public class ReportMonthly extends AppCompatActivity {
         String date = sdf.format(realDate);
         tvDate.setText(date);
 
+        //get most stressed person/time and set to textViews
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
         finalValue = sharedPreferences.getString("word", null);
+        finalTime = sharedPreferences.getString("time", null);
+        stressedTime = Integer.parseInt(finalTime)+ ":00" + " - " +(Integer.parseInt(finalTime)+1)+ ":00";
+        Log.d("stressedTime----", stressedTime);
+
         person.setText(String.valueOf(finalValue));
+        time.setText(stressedTime);
 
         NavigationBar();
 
