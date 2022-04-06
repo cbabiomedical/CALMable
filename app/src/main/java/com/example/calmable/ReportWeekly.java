@@ -2,6 +2,7 @@ package com.example.calmable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -67,10 +69,12 @@ public class ReportWeekly extends AppCompatActivity {
     StorageReference storageReference;
     AppCompatButton yearly;
     AppCompatButton daily, whereAmI;
+    Button place;
     File fileName, localFile;
     FirebaseUser mUser;
     TextView tvDate;
-    String text;
+    TextView person,time;
+    String text,finalValue;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<Float> floatList = new ArrayList<>();
 
@@ -84,6 +88,9 @@ public class ReportWeekly extends AppCompatActivity {
         monthly = findViewById(R.id.monthly);
         yearly = findViewById(R.id.yearly);
         daily = findViewById(R.id.daily);
+        place = findViewById(R.id.tv4);
+        person = findViewById(R.id.tv5);
+        time = findViewById(R.id.tv6);
 
         tvDate = (TextView) findViewById(R.id.tvDate);
 
@@ -91,6 +98,10 @@ public class ReportWeekly extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String date = sdf.format(realDate);
         tvDate.setText(date);
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+        finalValue = sharedPreferences.getString("word", null);
+        person.setText(String.valueOf(finalValue));
 
         NavigationBar();
 
@@ -272,6 +283,15 @@ public class ReportWeekly extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReportYearly.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+
+        place.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),LocationActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
