@@ -70,17 +70,16 @@
         android:layout_marginStart="43dp"
         android:layout_marginTop="10dp"
         android:hint="  Why were you stressed?"
-        android:visibility="invisible"
         android:textSize="18sp" />
 
-    <SearchView
-        android:id="@+id/popUpPlaceYouStressed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv"
-        android:layout_marginTop="10dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="  Why were you stressed?" />
+<!--    <SearchView-->
+<!--        android:id="@+id/popUpPlaceYouStressed"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:iconifiedByDefault="false"-->
+<!--        android:queryHint="  Why were you stressed?" />-->
 
     <LinearLayout
         android:layout_width="match_parent"

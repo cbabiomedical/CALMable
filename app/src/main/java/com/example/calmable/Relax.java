@@ -89,6 +89,11 @@ public class Relax extends AppCompatActivity {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
+    public void BtnGoCalming396Hz(View view) {
+        startActivity(new Intent(getApplicationContext(), Calming396HzActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
     // for go back
     public void onBackPressed() {
         finish();

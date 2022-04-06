@@ -206,6 +206,8 @@ public class DeviceActivity extends AppCompatActivity {
                         fileNameServerReportData = new File(getCacheDir() + "/ServerReportData.txt");
 
                         startActivity(new Intent(getApplicationContext(), Home.class));
+                        Toast.makeText(getApplicationContext(), "Device successfully connected", Toast.LENGTH_SHORT).show();
+                        finish();
 
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
