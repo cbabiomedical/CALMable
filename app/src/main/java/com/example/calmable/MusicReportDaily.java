@@ -260,8 +260,9 @@ public class MusicReportDaily extends AppCompatActivity {
             @Override
             public void run() {
                 if (DeviceActivity.connected) {
+                    lineEntries=new ArrayList();
                     Log.d("STATE", "Connected");
-                    DatabaseReference reference0 = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                    DatabaseReference reference0 = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)))
                             .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday");
 
                     reference0.addValueEventListener(new ValueEventListener() {
@@ -274,7 +275,7 @@ public class MusicReportDaily extends AppCompatActivity {
 
                                 Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                Double av1 = (Double) dataSnapshot.getValue();
+                                Double av1 =Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                 Log.d("AV1", String.valueOf(av1));
                                 sumElement.add(av1);
                                 sum += av1;
@@ -287,7 +288,7 @@ public class MusicReportDaily extends AppCompatActivity {
                             } else {
                                 average11 = 0.0;
                             }
-                            DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                            DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)))
                                     .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Tuesday");
 
                             reference1.addValueEventListener(new ValueEventListener() {
@@ -299,7 +300,7 @@ public class MusicReportDaily extends AppCompatActivity {
 
                                         Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                        Double av1 = (Double) dataSnapshot.getValue();
+                                        Double av1 =Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                         Log.d("AV1", String.valueOf(av1));
                                         sumElement.add(av1);
                                         sum += av1;
@@ -314,7 +315,7 @@ public class MusicReportDaily extends AppCompatActivity {
                                         average12 = 0.0;
                                     }
 
-                                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)))
                                             .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Wednesday");
 
                                     reference2.addValueEventListener(new ValueEventListener() {
@@ -326,7 +327,7 @@ public class MusicReportDaily extends AppCompatActivity {
 
                                                 Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                Double av1 = (Double) dataSnapshot.getValue();
+                                                Double av1 =Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                 Log.d("AV1", String.valueOf(av1));
                                                 sumElement.add(av1);
                                                 sum += av1;
@@ -341,7 +342,7 @@ public class MusicReportDaily extends AppCompatActivity {
                                                 average13 = 0.0;
                                             }
 
-                                            DatabaseReference reference3 = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                            DatabaseReference reference3 = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)))
                                                     .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Thursday");
 
                                             reference3.addValueEventListener(new ValueEventListener() {
@@ -353,7 +354,7 @@ public class MusicReportDaily extends AppCompatActivity {
 
                                                         Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                        Double av1 = (Double) dataSnapshot.getValue();
+                                                        Double av1 =Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                         Log.d("AV1", String.valueOf(av1));
                                                         sumElement.add(av1);
                                                         sum += av1;
@@ -366,7 +367,7 @@ public class MusicReportDaily extends AppCompatActivity {
                                                     } else {
                                                         average14 = 0.0;
                                                     }
-                                                    DatabaseReference reference4 = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                    DatabaseReference reference4 = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)))
                                                             .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Friday");
 
                                                     reference4.addValueEventListener(new ValueEventListener() {
@@ -378,7 +379,7 @@ public class MusicReportDaily extends AppCompatActivity {
 
                                                                 Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                                Double av1 = (Double) dataSnapshot.getValue();
+                                                                Double av1 =Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                                 Log.d("AV1", String.valueOf(av1));
                                                                 sumElement.add(av1);
                                                                 sum += av1;
@@ -391,7 +392,7 @@ public class MusicReportDaily extends AppCompatActivity {
                                                             } else {
                                                                 average15 = 0.0;
                                                             }
-                                                            DatabaseReference reference5 = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                            DatabaseReference reference5 = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)))
                                                                     .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Saturday");
 
                                                             reference5.addValueEventListener(new ValueEventListener() {
@@ -404,7 +405,7 @@ public class MusicReportDaily extends AppCompatActivity {
 
                                                                         Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                                        Double av1 = (Double) dataSnapshot.getValue();
+                                                                        Double av1 =Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                                         Log.d("AV1", String.valueOf(av1));
                                                                         sumElement.add(av1);
                                                                         sum += av1;
@@ -419,7 +420,7 @@ public class MusicReportDaily extends AppCompatActivity {
                                                                         average16 = 0.0;
                                                                     }
 
-                                                                    DatabaseReference reference6 = FirebaseDatabase.getInstance().getReference("ReportWW").child("VideoIntervention").child(mUser.getUid()).child("Music").child(String.valueOf(now.get(Calendar.YEAR)))
+                                                                    DatabaseReference reference6 = FirebaseDatabase.getInstance().getReference("ReportWW").child("MusicIntervention").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR)))
                                                                             .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Sunday");
 
                                                                     reference6.addValueEventListener(new ValueEventListener() {
@@ -431,7 +432,7 @@ public class MusicReportDaily extends AppCompatActivity {
 
                                                                                 Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                                                Double av1 = (Double) dataSnapshot.getValue();
+                                                                                Double av1 =Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                                                 Log.d("AV1", String.valueOf(av1));
                                                                                 sumElement.add(av1);
                                                                                 sum += av1;

@@ -32,6 +32,12 @@
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".Calming396HzActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VideoReportMonthly"
+            android:exported="false" />
+        <activity
             android:name=".VideoReportWeekly"
             android:exported="false" />
         <activity
