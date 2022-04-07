@@ -77,9 +77,10 @@ public class DeviceActivity extends AppCompatActivity {
     ArrayList<Integer> listOFServerHRData;
     ArrayList<String> listOfTxtData;
     ArrayList<String> listOfServerReportData;
-    ArrayList<String> listOfTxtReportData;
+    public static ArrayList<String> listOfTxtReportData;
+    public static ArrayList<String> listOfTxtVideoReportData;
     public static ArrayList videoReportData=new ArrayList();
-    File filNameHeartRate, fileNameServerReportData;
+    File filNameHeartRate, fileNameServerReportData, fileNameVideoReportData;
     JsonPlaceHolder jsonPlaceHolder;
     public static ArrayList videoRelaxation_index = new ArrayList();
     ArrayList videoIntervention = new ArrayList();
@@ -205,6 +206,8 @@ public class DeviceActivity extends AppCompatActivity {
 
                         // create file for save final server date
                         fileNameServerReportData = new File(getCacheDir() + "/ServerReportData.txt");
+                        fileNameVideoReportData = new File(getCacheDir() + "/ServerVideoReportData.txt");
+
 
                         startActivity(new Intent(getApplicationContext(), Home.class));
                         Toast.makeText(getApplicationContext(), "Device successfully connected", Toast.LENGTH_SHORT).show();
@@ -511,14 +514,21 @@ public class DeviceActivity extends AppCompatActivity {
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
                 Log.d("ListCheck", String.valueOf(list));
-                videoReportData.add(response.body());
-                Log.d("VideoRel", String.valueOf(videoReportData));
+                videoReportData.add(String.valueOf(response.body()));
+                Log.d("JsonRel", String.valueOf(videoReportData));
                 Log.d("VideoData", String.valueOf(videoIntervention));
 
                 LinkedTreeMap treeMap = (LinkedTreeMap) list.get(0);
 
+
                 videoRelaxation_index.add(treeMap.get("relaxation"));
                 Log.d("VideoIndexList", String.valueOf(videoRelaxation_index));
+
+                try {
+                    writeVideoReportData();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -532,6 +542,46 @@ public class DeviceActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void writeVideoReportData() throws FileNotFoundException {
+        try {
+            //File filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            fileNameVideoReportData.createNewFile();
+            if (!fileNameVideoReportData.exists()) {
+                fileNameVideoReportData.mkdirs();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileNameVideoReportData, true));
+            int size = videoReportData.size();
+
+            writer.newLine();
+
+            for (int i = 0; i < size; i++) {
+                writer.write(videoReportData.get(i).toString());
+                //writer.write(",");
+                writer.flush();
+                //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+            }
+
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+        // read data
+        // read txt file server data
+        listOfTxtVideoReportData = new ArrayList<String>();
+        int arrSize;
+
+        Scanner s = new Scanner(new File(getCacheDir() + "/ServerVideoReportData.txt"));
+        while (s.hasNext()) {
+            listOfTxtVideoReportData.add(s.next());
+            Log.d("SERVERREPORTADDVID", String.valueOf(listOfTxtVideoReportData));
+        }
+        Log.d("SERVERREPORTVID", String.valueOf(listOfTxtVideoReportData));
+
     }
 
     private void postMusicIntervention() {
@@ -1004,9 +1054,11 @@ public class DeviceActivity extends AppCompatActivity {
         Scanner s = new Scanner(new File(getCacheDir() + "/ServerReportData.txt"));
         while (s.hasNext()) {
             listOfTxtReportData.add(s.next());
+            Log.d("SERVERREPORTADD", String.valueOf(listOfTxtReportData));
         }
 
         arrSize = listOfTxtReportData.size();
+        Log.d("SERVERREPORT", String.valueOf(listOfTxtReportData));
         Log.d(TAG, "++++ report txt data ++++> : " + listOfTxtReportData);
         Log.d(TAG, "array size ++++> : " + arrSize);
         s.close();

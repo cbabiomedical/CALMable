@@ -54,6 +54,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,6 +110,8 @@ public class VideoReportDaily extends AppCompatActivity {
 
         Log.d("VideoINReport", String.valueOf(DeviceActivity.videoRelaxation_index));
         if (DeviceActivity.videoRelaxation_index.size() > 0) {
+
+            //Posting Report Data
             Gson gson = new GsonBuilder().setLenient().create();
 
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -118,39 +121,50 @@ public class VideoReportDaily extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-
             retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
-
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
-            JSONArray jsArray=new JSONArray(DeviceActivity.videoReportData);
+            jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
+
+            JSONArray jsArray = new JSONArray(DeviceActivity.listOfTxtVideoReportData);
+            JSONArray jsonArray = new JSONArray(DeviceActivity.listOfTxtReportData);
+            Log.d("VideoTesting", String.valueOf(jsonArray));
             Log.d("VideoJson", String.valueOf(jsArray));
-//            Call<Object> call3 = jsonPlaceHolder.PostVideoReportData(jsArray);
-//            call3.enqueue(new Callback<Object>() {
-//                @Override
-//                public void onResponse(Call<Object> call, Response<Object> response) {
-//
-//                    Toast.makeText(getApplicationContext(), "Post Time Successful", Toast.LENGTH_SHORT).show();
-//
-//                    //Log.d(TAG, "-----onResponse-----: " + response);
-//
-//                    Log.d("TAG", "* time response code : " + response.code());
-//                    Log.d("TAG", "time response message : " + response.message());
-//                    Log.d("TAG", "time Relax index : " + response.body());
-////                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
-//
-//                }
-//
-//                //
-//                @Override
-//                public void onFailure(Call<Object> call, Throwable t) {
-//                    Toast.makeText(getApplicationContext(), "Failed Time Post Relaxation", Toast.LENGTH_SHORT).show();
-//                    Log.d("ErrorVal:Relaxation", String.valueOf(t));
-//                    Log.d("TAG", "onFailure: " + t);
-//
-//                }
-//            });
+            Call<Object> call3 = jsonPlaceHolder.PostVideoReportData(jsArray);
+            call3.enqueue(new Callback<Object>() {
+                @Override
+                public void onResponse(Call<Object> call, Response<Object> response) {
+
+                    Toast.makeText(getApplicationContext(), "Post Time Successful", Toast.LENGTH_SHORT).show();
+
+                    //Log.d(TAG, "-----onResponse-----: " + response);
+
+                    Log.d("TAG", "* reporttime response code : " + response.code());
+                    Log.d("TAG", "reporttime response message : " + response.message());
+                    Log.d("TAG", "reporttime Relax index : " + response.body());
+//                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
+
+                }
+
+                //
+                @Override
+                public void onFailure(Call<Object> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Failed Time Post Relaxation", Toast.LENGTH_SHORT).show();
+                    Log.d("ErrorVal:Relaxation", String.valueOf(t));
+                    Log.d("TAG", "onFailure: " + t);
+
+                }
+            });
+            PrintWriter writer;
+            try {
+                writer = new PrintWriter(getCacheDir() + "/ServerVideoReportData.txt");
+                writer.print("");
+                writer.close();
+            } catch (
+                    FileNotFoundException e) {
+                e.printStackTrace();
+            }
             for (int i = 0; i < DeviceActivity.videoRelaxation_index.size(); i++) {
                 sum += (Double) DeviceActivity.videoRelaxation_index.get(i);
             }
@@ -448,7 +462,7 @@ public class VideoReportDaily extends AppCompatActivity {
 
                                                     Log.d("Values", String.valueOf(dataSnapshot.getChildren()));
 
-                                                    Double av1 = (Double) dataSnapshot.getValue();
+                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
                                                     Log.d("AV1", String.valueOf(av1));
                                                     sumElement.add(av1);
                                                     sum += av1;
