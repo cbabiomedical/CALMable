@@ -141,7 +141,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         stressBanner = (TextView) findViewById(R.id.stressBanner);
 
 
-        //call thread method
+        //call thread method - location
         stopThread = false;
         GetLocationRunnable runnable = new GetLocationRunnable();
         new Thread(runnable).start();
