@@ -31,14 +31,11 @@ import com.example.calmable.R;
 import com.example.calmable.SampleApplication;
 import com.example.calmable.VideoPlayerActivity;
 import com.example.calmable.sample.JsonPlaceHolder;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.LinkedTreeMap;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
@@ -49,14 +46,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import a.b.a.J;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -479,7 +474,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.190:5000/")
 
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -599,7 +594,7 @@ public class DeviceActivity extends AppCompatActivity {
         musicIntervention.add(11, currentDateandTime);
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.190:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -731,7 +726,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.190:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -890,7 +885,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.43.190:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();

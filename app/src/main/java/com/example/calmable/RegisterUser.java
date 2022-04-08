@@ -6,13 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -71,10 +78,10 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //Occupation
-        //tvOccupation = findViewById(R.id.tvOccupation);
+        tvOccupation = findViewById(R.id.TextInputLayoutOccu);
 
         //Occupation
-        /*tvOccupation.setOnClickListener(new View.OnClickListener() {
+        tvOccupation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // initialize dialog
@@ -92,6 +99,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                 //initialize and assign variable
                 EditText editText = dialog.findViewById(R.id.edOccupation);
                 ListView listView = dialog.findViewById(R.id.listView);
+
+
 
 
                 // Initialize array adapter
@@ -124,11 +133,17 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         //set deleted item on text view
                         tvOccupation.setText(adapterOccupation.getItem(i));
 
+                        String occu = tvOccupation.getText().toString();;
+
+                        Log.d("TAG", "occupation ---------- " + occu);
+                        Log.d("TAG", "occupation ---------- " + occu);
+                        Log.d("TAG", "occupation ---------- " + occu);
+
                         dialog.dismiss();
                     }
                 });
             }
-        });  */
+        });
         // end occupation
 
 
@@ -149,6 +164,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullname.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
+        String occupation = tvOccupation.getText().toString().trim();
         String phoneNumber = "";
 
 
@@ -210,6 +226,13 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        // Notifying user if occupation field is empty
+        if (occupation.isEmpty()) {
+            tvOccupation.setError("Minimum Password length should be 6 characters!");
+            tvOccupation.requestFocus();
+            return;
+        }
+
         // setting progress bar as visible for authentication time
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -218,7 +241,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //Creating user object and passing user input as parameters
-                            User user = new User(fullName, age, email, gender, phoneNumber);
+                            User user = new User(fullName, age, email, gender, phoneNumber, occupation);
 
                             //Log.d("got the gender---------", gender);
 

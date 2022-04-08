@@ -4,7 +4,7 @@ public class User {
 
     // Creating private variables to store user data
     // private variables for encapsulation
-    public String fullName,age, email , gender,phoneNumber, profile;
+    public String fullName,age, email , gender,phoneNumber, profile, occupation;
     public String preference;
     public String journalNote;
     private long coins = 0;
@@ -22,13 +22,23 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public User(String fullName, String age, String email, String gender, String phoneNumber, int sugIndex) {
+//    public User(String fullName, String age, String email, String gender, String phoneNumber, int sugIndex, String occupation) {
+//        this.fullName = fullName;
+//        this.age = age;
+//        this.email = email;
+//        this.gender = gender;
+//        this.phoneNumber = phoneNumber;
+//        this.sugIndex = sugIndex;
+//        this.occupation = occupation;
+//    }
+
+    public User(String fullName, String age, String email, String gender, String phoneNumber, String occupation) {
         this.fullName = fullName;
         this.age = age;
         this.email = email;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
-        this.sugIndex = sugIndex;
+        this.occupation = occupation;
     }
 
     public User(String preference) {
@@ -39,6 +49,7 @@ public class User {
     public User(String preference, String journalNote) {
         this.journalNote = journalNote;
     }
+
 
     public String getPreference() {
         return preference;
