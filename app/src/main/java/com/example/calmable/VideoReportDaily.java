@@ -94,6 +94,7 @@ public class VideoReportDaily extends AppCompatActivity {
     LineDataSet lineDataSet;
     ArrayList lineEntries;
     TextView tvDate;
+    int c;
 
     ArrayList<Float> xVal = new ArrayList<>(Arrays.asList(2f, 4f, 6f, 8f, 10f, 12f, 14f));
     ArrayList<Float> yVal = new ArrayList(Arrays.asList(45f, 36f, 75f, 36f, 73f, 45f, 83f));
@@ -107,6 +108,19 @@ public class VideoReportDaily extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_report_daily);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+        Calendar now = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Log.d("WEEK", String.valueOf(now.get(Calendar.WEEK_OF_MONTH)));
+        Log.d("MONTH", String.valueOf(now.get(Calendar.MONTH)));
+        Log.d("YEAR", String.valueOf(now.get(Calendar.YEAR)));
+        Log.d("DAY", String.valueOf(now.get(Calendar.DAY_OF_WEEK)));
+        Format f = new SimpleDateFormat("EEEE");
+        String str = f.format(new Date());
+//prints day name
+        System.out.println("Day Name: " + str);
+        Log.d("Day Name", str);
+
+        int month = now.get(Calendar.MONTH) + 1;
 
         Log.d("VideoINReport", String.valueOf(DeviceActivity.videoRelaxation_index));
         if (DeviceActivity.videoRelaxation_index.size() > 0) {
@@ -144,7 +158,28 @@ public class VideoReportDaily extends AppCompatActivity {
                     Log.d("TAG", "reporttime response message : " + response.message());
                     Log.d("TAG", "reporttime Relax index : " + response.body());
 //                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
+                    ArrayList list=new ArrayList();
+                    list= (ArrayList) response.body();
 
+                    LinkedTreeMap treeMap=new LinkedTreeMap();
+                    treeMap=(LinkedTreeMap) list.get(0);
+
+                    SharedPreferences sh = getSharedPreferences("prefsReport", MODE_APPEND);
+                    c = sh.getInt("firstStartReport", 0);
+                    Log.d("A Count", String.valueOf(x));
+
+                    int b = c + 1;
+
+                    SharedPreferences prefsCount1 = getSharedPreferences("prefsReport", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefsCount1.edit();
+                    editor.putInt("firstStartReport", b);
+                    editor.apply();
+
+                    DatabaseReference reference =FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(c));
+                    reference.setValue(treeMap.get("time_relaxed"));
+                    DatabaseReference reference1 =FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(c));
+                    reference1.setValue(treeMap.get("time_stressed"));
+                    Log.d("CHECK", String.valueOf(treeMap.get("time_relaxed")));
                 }
 
                 //
@@ -170,19 +205,7 @@ public class VideoReportDaily extends AppCompatActivity {
             }
 
             average = sum / DeviceActivity.videoRelaxation_index.size();
-            Calendar now = Calendar.getInstance();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Log.d("WEEK", String.valueOf(now.get(Calendar.WEEK_OF_MONTH)));
-            Log.d("MONTH", String.valueOf(now.get(Calendar.MONTH)));
-            Log.d("YEAR", String.valueOf(now.get(Calendar.YEAR)));
-            Log.d("DAY", String.valueOf(now.get(Calendar.DAY_OF_WEEK)));
-            Format f = new SimpleDateFormat("EEEE");
-            String str = f.format(new Date());
-//prints day name
-            System.out.println("Day Name: " + str);
-            Log.d("Day Name", str);
 
-            int month = now.get(Calendar.MONTH) + 1;
 
             Double averageD = Double.valueOf(String.format("%.3g%n", average));
             if (sum == 0.0) {

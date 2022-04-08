@@ -40,6 +40,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -61,6 +66,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 
 import com.github.mikephil.charting.data.BubbleEntry;
@@ -79,6 +85,10 @@ public class ReportHome extends AppCompatActivity {
     FirebaseUser mUser;
     TextView tvDate;
     String text;
+    Long average1, average2, average3, average4, average5, average6, average7;
+    Long averageR1, averageR2, averageR3, averageR4, averageR5, averageR6, averageR7;
+    int sum1, sum2, sum3, sum4, sum5, sum6, sum7;
+    int sumR1, sumR2, sumR3, sumR4, sumR5, sumR6, sumR7;
     StorageReference storageReference;
 
     ArrayList<String> list = new ArrayList<>();
@@ -136,7 +146,7 @@ public class ReportHome extends AppCompatActivity {
             for (int i = 0; i < size; i++) {
 //                output.write(dataValues1().get(i).toString() + "\n");
 
-                output.write("X "+ dataValues1().get(i).getX()+
+                output.write("X " + dataValues1().get(i).getX() +
                         " Y " + Arrays.toString(dataValues1().get(i).getYVals()) + "\n");
             }
             output.close();
@@ -172,90 +182,9 @@ public class ReportHome extends AppCompatActivity {
         final Handler handler = new Handler();
         final int delay = 5000;
 
-//        handler.postDelayed(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                StorageReference storageReference = FirebaseStorage.getInstance().getReference(mUser.getUid() + "/reportDaily.txt");
-//                //downloading the uploaded file and storing in arraylist
-//                try {
-//                    localFile = File.createTempFile("tempFile", ".txt");
-//                    text = localFile.getAbsolutePath();Log.d("Values", String.valueOf(dataVals));
-//                    Log.d("Bitmap", text);
-//                    storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-////                            Toast.makeText(ConcentrationReportDaily.this, "Success", Toast.LENGTH_SHORT).show();
-//
-//                            try {
-//                                InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(localFile.getAbsolutePath()));
-//
-//                                Log.d("FileName", localFile.getAbsolutePath());
-//
-//                                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//                                String line = "";
-//
-//                                Log.d("First", line);
-//                                if ((line = bufferedReader.readLine()) != null) {
-//                                    list.add(line);
-//                                }
-//                                while ((line = bufferedReader.readLine()) != null) {
-//
-//                                    list.add(line);
-//                                    Log.d("Line", line);
-//                                }
-//
-//                                Log.d("List", String.valueOf(list));
-//
-//                                for (int i = 0; i < list.size(); i++) {
-//                                    floatList.add(Float.parseFloat(list.get(i)));
-//                                    Log.d("FloatArrayList", String.valueOf(floatList));
-//                                }
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//
-////                            //Stacked BarChart
-////                            int[] colorClassArray = new int[]{Color.GREEN,Color.RED};
-////                            BarDataSet barDataSet = new BarDataSet(dataValues1(),"Stress Time");
-////                            barDataSet.setColors(colorClassArray);
-////                            barDataSet.setStackLabels(new String[]{"Not Stressed", "Stressed", "Not Stressed"});
-////                            String[] daysS = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-////                            XAxis xAxis = barChartdaily.getXAxis();
-////                            xAxis.setValueFormatter(new IndexAxisValueFormatter(daysS));
-////
-////                            BarData barData = new BarData(barDataSet);
-////                            barChartdaily.setData(barData);
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-////                            Toast.makeText(ConcentrationReportDaily.this, "Failed", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//
-//
-//                } catch (IOException exception) {
-//                    exception.printStackTrace();
-//                }
-//            }
-//
-//            //Downloading file and displaying chart
-//        }, delay);
-
         //Stacked BarChart
-        int[] colorClassArray = new int[]{Color.rgb(1,135,134),Color.rgb(255,51,51)};
+        int[] colorClassArray = new int[]{Color.rgb(1, 135, 134), Color.rgb(255, 51, 51)};
         Log.d("DataValues print", "--------String------");
-        BarDataSet barDataSet = new BarDataSet(dataValues1(),"Time");
-        barDataSet.setColors(colorClassArray);
-        barDataSet.setStackLabels(new String[]{"Relaxed Time", "Stressed"});
-        String[] daysS = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-        XAxis xAxis = barChartdaily.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(daysS));
-
-        BarData barData = new BarData(barDataSet);
-        barChartdaily.setData(barData);
-        barChartdaily.animateXY(1500, 1500);
 
 
         //1 -----> Scatter chart
@@ -846,12 +775,391 @@ public class ReportHome extends AppCompatActivity {
             }
         });
         // On click listener of yearly button
+
         yearly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ReportYearly.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                startActivity(new Intent(getApplicationContext(),ReportYearly.class));
+            }
+        });
+
+        Calendar now = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Log.d("WEEK", String.valueOf(now.get(Calendar.WEEK_OF_MONTH)));
+        Log.d("MONTH", String.valueOf(now.get(Calendar.MONTH)));
+        Log.d("YEAR", String.valueOf(now.get(Calendar.YEAR)));
+        Log.d("DAY", String.valueOf(now.get(Calendar.DAY_OF_MONTH)));
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        int month = now.get(Calendar.MONTH) + 1;
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Sunday");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList sumElement = new ArrayList();
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Long av1 = (Long) dataSnapshot.getValue();
+                    Log.d("AV1SUN", String.valueOf(av1));
+                    sum1 += av1;
+                    sumElement.add(av1);
+                }
+                if (sum1 != 0) {
+                    average1 = sum1 / Long.parseLong(String.valueOf(sumElement.size()));
+                    Log.d("AverageSUN", String.valueOf(average1));
+                } else {
+                    average1 = 0L;
+                }
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Sunday");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ArrayList sumElementR = new ArrayList();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Long av2 = (Long) dataSnapshot.getValue();
+                            sumR1 += av2;
+                            sumElementR.add(av2);
+                        }
+                        if (sumR1 != 0) {
+                            averageR1 = sumR1 / Long.parseLong(String.valueOf(sumElementR.size()));
+                        } else {
+                            averageR1 = 0L;
+                        }
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday");
+                        reference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                ArrayList sumElement = new ArrayList();
+
+                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                    Long av1 = (Long) dataSnapshot.getValue();
+                                    Log.d("AV1MON", String.valueOf(av1));
+                                    sum2 += av1;
+                                    sumElement.add(av1);
+                                }
+                                if (sum2 != 0) {
+                                    average2 = sum2 / Long.parseLong(String.valueOf(sumElement.size()));
+                                    Log.d("AverageMon", String.valueOf(average2));
+                                } else {
+                                    average2 = 0L;
+                                }
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday");
+                                reference.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        ArrayList sumElementR = new ArrayList();
+                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                            Long av2 = (Long) dataSnapshot.getValue();
+                                            sumR2 += av2;
+                                            sumElementR.add(av2);
+                                        }
+                                        if (sumR2 != 0) {
+                                            averageR2 = sumR2 / Long.parseLong(String.valueOf(sumElementR.size()));
+                                        } else {
+                                            averageR2 = 0L;
+                                        }
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Tuesday");
+                                        reference.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                ArrayList sumElement = new ArrayList();
+
+                                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                    Long av1 = (Long) dataSnapshot.getValue();
+                                                    Log.d("AV1TUE", String.valueOf(av1));
+                                                    sum3 += av1;
+                                                    sumElement.add(av1);
+                                                }
+                                                if (sum3 != 0) {
+                                                    average3 = sum3 / Long.parseLong(String.valueOf(sumElement.size()));
+                                                    Log.d("AverageTue", String.valueOf(average3));
+                                                } else {
+                                                    average3 = 0L;
+                                                }
+                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Tuesday");
+                                                reference.addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                        ArrayList sumElementR = new ArrayList();
+                                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                            Long av2 = (Long) dataSnapshot.getValue();
+                                                            sumR3 += av2;
+                                                            sumElementR.add(av2);
+                                                        }
+                                                        if (sumR3 != 0) {
+                                                            averageR3 = sumR3 / Long.parseLong(String.valueOf(sumElementR.size()));
+                                                        } else {
+                                                            averageR3 = 0L;
+                                                        }
+                                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Wednesday");
+                                                        reference.addValueEventListener(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                ArrayList sumElement = new ArrayList();
+
+                                                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                                    Long av1 = (Long) dataSnapshot.getValue();
+                                                                    Log.d("AV1WED", String.valueOf(av1));
+                                                                    sum4 += av1;
+                                                                    sumElement.add(av1);
+                                                                }
+                                                                if (sum4 != 0) {
+                                                                    average4 = sum4 / Long.parseLong(String.valueOf(sumElement.size()));
+                                                                    Log.d("AverageWed", String.valueOf(average4));
+                                                                } else {
+                                                                    average4 = 0L;
+                                                                }
+                                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Wednesday");
+                                                                reference.addValueEventListener(new ValueEventListener() {
+                                                                    @Override
+                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                        ArrayList sumElementR = new ArrayList();
+                                                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                                            Long av2 = (Long) dataSnapshot.getValue();
+                                                                            sumR4 += av2;
+                                                                            sumElementR.add(av2);
+                                                                        }
+                                                                        if (sumR4 != 0) {
+                                                                            averageR4 = sumR4 / Long.parseLong(String.valueOf(sumElementR.size()));
+                                                                        } else {
+                                                                            averageR4 = 0L;
+                                                                        }
+                                                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Thursday");
+                                                                        reference.addValueEventListener(new ValueEventListener() {
+                                                                            @Override
+                                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                ArrayList sumElement = new ArrayList();
+
+                                                                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                                                    Long av1 = (Long) dataSnapshot.getValue();
+                                                                                    Log.d("AV1THU", String.valueOf(av1));
+                                                                                    sum5 += av1;
+                                                                                    sumElement.add(av1);
+                                                                                }
+                                                                                if (sum5 != 0) {
+                                                                                    average5 = sum5 / Long.parseLong(String.valueOf(sumElement.size()));
+                                                                                    Log.d("AverageThu", String.valueOf(average5));
+                                                                                } else {
+                                                                                    average5 = 0L;
+                                                                                }
+                                                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Thursday");
+                                                                                reference.addValueEventListener(new ValueEventListener() {
+                                                                                    @Override
+                                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                        ArrayList sumElementR = new ArrayList();
+                                                                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                                                            Long av2 = (Long) dataSnapshot.getValue();
+                                                                                            sumR5 += av2;
+                                                                                            sumElementR.add(av2);
+                                                                                        }
+                                                                                        if (sumR5 != 0) {
+                                                                                            averageR5 = sumR5 / Long.parseLong(String.valueOf(sumElementR.size()));
+                                                                                        } else {
+                                                                                            averageR5 = 0L;
+                                                                                        }
+                                                                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Friday");
+                                                                                        reference.addValueEventListener(new ValueEventListener() {
+                                                                                            @Override
+                                                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                                ArrayList sumElement = new ArrayList();
+
+                                                                                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                                                                    Long av1 = (Long) dataSnapshot.getValue();
+                                                                                                    Log.d("AV1FRI", String.valueOf(av1));
+                                                                                                    sum6 += av1;
+                                                                                                    sumElement.add(av1);
+                                                                                                }
+                                                                                                if (sum6 != 0) {
+                                                                                                    average6 = sum6 / Long.parseLong(String.valueOf(sumElement.size()));
+                                                                                                    Log.d("AverageThu", String.valueOf(average6));
+                                                                                                } else {
+                                                                                                    average6 = 0L;
+                                                                                                }
+                                                                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Friday");
+                                                                                                reference.addValueEventListener(new ValueEventListener() {
+                                                                                                    @Override
+                                                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                                        ArrayList sumElementR = new ArrayList();
+                                                                                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                                                                            Long av2 = (Long) dataSnapshot.getValue();
+                                                                                                            sumR6 += av2;
+                                                                                                            sumElementR.add(av2);
+                                                                                                        }
+                                                                                                        if (sumR6 != 0) {
+                                                                                                            averageR6 = sumR6 / Long.parseLong(String.valueOf(sumElementR.size()));
+                                                                                                        } else {
+                                                                                                            averageR6 = 0L;
+                                                                                                        }
+                                                                                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Saturday");
+                                                                                                        reference.addValueEventListener(new ValueEventListener() {
+                                                                                                            @Override
+                                                                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                                                ArrayList sumElement = new ArrayList();
+
+                                                                                                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                                                                                    Long av1 = (Long) dataSnapshot.getValue();
+                                                                                                                    Log.d("AV1SAT", String.valueOf(av1));
+                                                                                                                    sum6 += av1;
+                                                                                                                    sumElement.add(av1);
+                                                                                                                }
+                                                                                                                if (sum7 != 0) {
+                                                                                                                    average7 = sum7 / Long.parseLong(String.valueOf(sumElement.size()));
+                                                                                                                    Log.d("AverageFri", String.valueOf(average7));
+                                                                                                                } else {
+                                                                                                                    average7 = 0L;
+                                                                                                                }
+                                                                                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Saturday");
+                                                                                                                reference.addValueEventListener(new ValueEventListener() {
+                                                                                                                    @Override
+                                                                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                                                        ArrayList sumElementR = new ArrayList();
+                                                                                                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                                                                                            Long av2 = (Long) dataSnapshot.getValue();
+                                                                                                                            sumR7 += av2;
+                                                                                                                            sumElementR.add(av2);
+                                                                                                                        }
+                                                                                                                        if (sumR7 != 0) {
+                                                                                                                            averageR6 = sumR7 / Long.parseLong(String.valueOf(sumElementR.size()));
+                                                                                                                        } else {
+                                                                                                                            averageR7 = 0L;
+                                                                                                                        }
+                                                                                                                        Log.d("AverageStressSun", String.valueOf(average1));
+                                                                                                                        Log.d("AverageRelaxSun", String.valueOf(averageR1));
+                                                                                                                        Log.d("AverageStressMon", String.valueOf(average2));
+                                                                                                                        Log.d("AverageRelaxMon", String.valueOf(averageR2));
+                                                                                                                        Log.d("AverageStressTue", String.valueOf(average3));
+                                                                                                                        Log.d("AverageRelaxTue", String.valueOf(averageR3));
+                                                                                                                        Log.d("AverageStressWed", String.valueOf(average4));
+                                                                                                                        Log.d("AverageRelaxWed", String.valueOf(averageR4));
+                                                                                                                        Log.d("AverageStressThu", String.valueOf(average5));
+                                                                                                                        Log.d("AverageRelaxThu", String.valueOf(averageR5));
+                                                                                                                        Log.d("AverageStressFri", String.valueOf(average6));
+                                                                                                                        Log.d("AverageRelaxFri", String.valueOf(averageR6));
+                                                                                                                        Log.d("AverageStressSat", String.valueOf(average7));
+                                                                                                                        Log.d("AverageRelaxSat", String.valueOf(averageR7));
+                                                                                                                        ArrayList<BarEntry> dataVals = new ArrayList<>();
+                                                                                                                        dataVals.add(new BarEntry(0, new float[]{averageR1, average1}));
+                                                                                                                        dataVals.add(new BarEntry(1, new float[]{averageR2, average2}));
+                                                                                                                        dataVals.add(new BarEntry(2, new float[]{averageR3, average3}));
+                                                                                                                        dataVals.add(new BarEntry(3, new float[]{averageR4, average4}));
+                                                                                                                        dataVals.add(new BarEntry(4, new float[]{averageR5, average5}));
+                                                                                                                        dataVals.add(new BarEntry(5, new float[]{averageR6, average6}));
+                                                                                                                        dataVals.add(new BarEntry(6, new float[]{averageR7, average7}));
+                                                                                                                        BarDataSet barDataSet = new BarDataSet(dataVals, "Time");
+                                                                                                                        barDataSet.setColors(colorClassArray);
+                                                                                                                        barChartdaily.setDrawGridBackground(false);
+                                                                                                                        barDataSet.setStackLabels(new String[]{"Relaxed Time", "Stressed"});
+                                                                                                                        String[] daysS = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+                                                                                                                        XAxis xAxis = barChartdaily.getXAxis();
+                                                                                                                        xAxis.setValueFormatter(new IndexAxisValueFormatter(daysS));
+
+                                                                                                                        BarData barData = new BarData(barDataSet);
+                                                                                                                        barChartdaily.setData(barData);
+
+                                                                                                                        barChartdaily.animateXY(1500, 1500);
+
+
+                                                                                                                    }
+
+                                                                                                                    @Override
+                                                                                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                                                    }
+                                                                                                                });
+                                                                                                            }
+
+                                                                                                            @Override
+                                                                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                                            }
+                                                                                                        });
+                                                                                                    }
+
+                                                                                                    @Override
+                                                                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                                    }
+                                                                                                });
+                                                                                            }
+
+                                                                                            @Override
+                                                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                            }
+                                                                                        });
+                                                                                    }
+
+                                                                                    @Override
+                                                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                    }
+                                                                                });
+
+                                                                            }
+
+                                                                            @Override
+                                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                            }
+                                                                        });
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                    }
+                                                                });
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                            }
+                                                        });
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                    }
+                                                });
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                Log.d("SumThu", String.valueOf(sum1));
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -861,20 +1169,12 @@ public class ReportHome extends AppCompatActivity {
     private ArrayList<BarEntry> dataValues1() {
         ArrayList<BarEntry> dataVals = new ArrayList<>();
         dataVals.add(new BarEntry(0, new float[]{17, 7}));
-        dataVals.add(new BarEntry(1, new float[]{8, 16}));
-        dataVals.add(new BarEntry(2, new float[]{15, 9}));
-        dataVals.add(new BarEntry(3, new float[]{24,0}));
-        dataVals.add(new BarEntry(4, new float[]{22, 2}));
-        dataVals.add(new BarEntry(5, new float[]{10,14}));
-        dataVals.add(new BarEntry(6, new float[]{18,6}));
 
-        Log.d("Values0", String.valueOf(dataVals.get(0).getX()));
-        Log.d("Values1", String.valueOf(Arrays.toString(dataVals.get(1).getYVals())));
+//        Log.d("Average Outside", String.valueOf(average1));
 
-        for (int i = 0; i < dataVals.size(); i++) {
-            System.out.println(Arrays.toString(dataVals.get(i).getYVals()));
-        }
+
         return dataVals;
+
     }
 
     public class MyBarDataset extends BarDataSet {
@@ -1046,8 +1346,8 @@ public class ReportHome extends AppCompatActivity {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-    public void btnGoHpyChtReport(View view){
-        startActivity(new Intent(getApplicationContext() , HpyChtReportActivity.class));
+    public void btnGoHpyChtReport(View view) {
+        startActivity(new Intent(getApplicationContext(), HpyChtReportActivity.class));
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

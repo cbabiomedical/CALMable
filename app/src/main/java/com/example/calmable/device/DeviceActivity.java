@@ -79,8 +79,10 @@ public class DeviceActivity extends AppCompatActivity {
     ArrayList<String> listOfServerReportData;
     public static ArrayList<String> listOfTxtReportData;
     public static ArrayList<String> listOfTxtVideoReportData;
-    public static ArrayList videoReportData=new ArrayList();
-    File filNameHeartRate, fileNameServerReportData, fileNameVideoReportData;
+    public static ArrayList<String> listOfTxtMusicReportData;
+    public static ArrayList<String> videoReportData;
+    public static ArrayList<String> musicReportData;
+    File filNameHeartRate, fileNameServerReportData, fileNameVideoReportData,fileNameMusicReportData;
     JsonPlaceHolder jsonPlaceHolder;
     public static ArrayList videoRelaxation_index = new ArrayList();
     ArrayList videoIntervention = new ArrayList();
@@ -207,7 +209,7 @@ public class DeviceActivity extends AppCompatActivity {
                         // create file for save final server date
                         fileNameServerReportData = new File(getCacheDir() + "/ServerReportData.txt");
                         fileNameVideoReportData = new File(getCacheDir() + "/ServerVideoReportData.txt");
-
+                        fileNameMusicReportData = new File(getCacheDir() + "/ServerMusicReportData.txt");
 
                         startActivity(new Intent(getApplicationContext(), Home.class));
                         Toast.makeText(getApplicationContext(), "Device successfully connected", Toast.LENGTH_SHORT).show();
@@ -479,7 +481,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
 
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -510,11 +512,12 @@ public class DeviceActivity extends AppCompatActivity {
                 Log.d(TAG, "video response message : " + response.message());
                 Log.d(TAG, "video Relax index : " + response.body());
 //                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
-
+                videoReportData = new ArrayList<>();
+                videoReportData.add(String.valueOf(response.body()));
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
                 Log.d("ListCheck", String.valueOf(list));
-                videoReportData.add(String.valueOf(response.body()));
+
                 Log.d("JsonRel", String.valueOf(videoReportData));
                 Log.d("VideoData", String.valueOf(videoIntervention));
 
@@ -526,7 +529,22 @@ public class DeviceActivity extends AppCompatActivity {
 
                 try {
                     writeVideoReportData();
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(fileNameVideoReportData, true));
+                    int size = videoReportData.size();
+
+                    writer.newLine();
+                    for (int i = 0; i < size; i++) {
+                        writer.write(videoReportData.get(i).toString());
+                        Log.d("VideoReport",videoReportData.get(i).toString());
+//                writer.write(",");
+                        writer.flush();
+                        Toast.makeText(DeviceActivity.this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+                    }
+
+                    writer.close();
                 } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
 
@@ -552,19 +570,9 @@ public class DeviceActivity extends AppCompatActivity {
             if (!fileNameVideoReportData.exists()) {
                 fileNameVideoReportData.mkdirs();
             }
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileNameVideoReportData, true));
-            int size = videoReportData.size();
 
-            writer.newLine();
 
-            for (int i = 0; i < size; i++) {
-                writer.write(videoReportData.get(i).toString());
-                //writer.write(",");
-                writer.flush();
-                //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
-            }
 
-            writer.close();
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
@@ -599,7 +607,7 @@ public class DeviceActivity extends AppCompatActivity {
         musicIntervention.add(11, currentDateandTime);
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -619,7 +627,8 @@ public class DeviceActivity extends AppCompatActivity {
                 Log.d(TAG, "music Relax index : " + response.body());
 //                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
 //                Log.d(TAG, "music response code : " + response.body().getClass().getSimpleName());
-
+                musicReportData = new ArrayList<>();
+                musicReportData.add(String.valueOf(response.body()));
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
                 Log.d("MusicList", String.valueOf(list));
@@ -629,6 +638,27 @@ public class DeviceActivity extends AppCompatActivity {
 
                 musicRelaxation_index.add(treeMap.get("relaxation"));
                 Log.d("MusicIndexList", String.valueOf(musicRelaxation_index));
+
+                try {
+                    writeMusicReportData();
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(fileNameMusicReportData, true));
+                    int size = musicReportData.size();
+
+                    writer.newLine();
+                    for (int i = 0; i < size; i++) {
+                        writer.write(musicReportData.get(i).toString());
+                        Log.d("MusicReport",musicReportData.get(i).toString());
+//                writer.write(",");
+                        writer.flush();
+                        Toast.makeText(DeviceActivity.this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+                    }
+
+                    writer.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -642,6 +672,35 @@ public class DeviceActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void writeMusicReportData() throws FileNotFoundException {
+        try {
+            //File filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            fileNameMusicReportData.createNewFile();
+            if (!fileNameMusicReportData.exists()) {
+                fileNameMusicReportData.mkdirs();
+            }
+
+
+
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+        // read data
+        // read txt file server data
+        listOfTxtMusicReportData = new ArrayList<String>();
+        int arrSize;
+
+        Scanner s = new Scanner(new File(getCacheDir() + "/ServerMusicReportData.txt"));
+        while (s.hasNext()) {
+            listOfTxtMusicReportData.add(s.next());
+            Log.d("SERVERREPORTADDVID", String.valueOf(listOfTxtMusicReportData));
+        }
+        Log.d("SERVERREPORTVID", String.valueOf(listOfTxtMusicReportData));
     }
 
 
@@ -731,7 +790,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -890,7 +949,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -1035,6 +1094,7 @@ public class DeviceActivity extends AppCompatActivity {
 
             for (int i = 0; i < size; i++) {
                 writer.write(listOfServerReportData.get(i).toString());
+                Log.d("LISTOFSERVER",listOfServerReportData.get(i).toString());
                 //writer.write(",");
                 writer.flush();
                 //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
