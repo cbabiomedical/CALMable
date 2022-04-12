@@ -135,7 +135,7 @@ public class VideoReportDaily extends AppCompatActivity {
 //                .connectTimeout(100, TimeUnit.SECONDS)
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
-            retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+            retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
@@ -158,11 +158,11 @@ public class VideoReportDaily extends AppCompatActivity {
                     Log.d("TAG", "reporttime response message : " + response.message());
                     Log.d("TAG", "reporttime Relax index : " + response.body());
 //                Log.d(TAG, "video response code : " + response.body().getClass().getSimpleName());
-                    ArrayList list=new ArrayList();
-                    list= (ArrayList) response.body();
+                    ArrayList list = new ArrayList();
+                    list = (ArrayList) response.body();
 
-                    LinkedTreeMap treeMap=new LinkedTreeMap();
-                    treeMap=(LinkedTreeMap) list.get(0);
+                    LinkedTreeMap treeMap = new LinkedTreeMap();
+                    treeMap = (LinkedTreeMap) list.get(0);
 
                     SharedPreferences sh = getSharedPreferences("prefsReport", MODE_APPEND);
                     c = sh.getInt("firstStartReport", 0);
@@ -175,11 +175,67 @@ public class VideoReportDaily extends AppCompatActivity {
                     editor.putInt("firstStartReport", b);
                     editor.apply();
 
-                    DatabaseReference reference =FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(c));
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(c));
                     reference.setValue(treeMap.get("time_relaxed"));
-                    DatabaseReference reference1 =FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(c));
+                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(String.valueOf(c));
                     reference1.setValue(treeMap.get("time_stressed"));
                     Log.d("CHECK", String.valueOf(treeMap.get("time_relaxed")));
+
+                    DatabaseReference referenceAge = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("age");
+                    LinkedTreeMap finalHashmap = treeMap;
+                    referenceAge.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Log.d("Ageof User", String.valueOf(snapshot.getValue()));
+                            int age = Integer.parseInt(String.valueOf(snapshot.getValue()));
+
+
+                            if (age >= 10 && age <= 20) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("10-20").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                                reference.setValue(finalHashmap.get("time_stressed"));
+
+
+                            } else if (age > 20 && age <= 30) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("20-30").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                                reference.setValue(finalHashmap.get("time_stressed"));
+
+                            } else if (age > 30 && age <= 40) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("30-40").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                                reference.setValue(finalHashmap.get("time_stressed"));
+
+                            } else if (age > 40 && age <= 50) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("40-50").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                                reference.setValue(finalHashmap.get("time_stressed"));
+
+
+                            } else if (age > 50 && age <= 60) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("50-60").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                                reference.setValue(finalHashmap.get("time_stressed"));
+
+                            } else if (age > 60 && age <= 70) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("60-70").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                                reference.setValue(finalHashmap.get("time_stressed"));
+
+
+                            } else if (age > 70 && age <= 80) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("70-80").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                                reference.setValue(finalHashmap.get("time_stressed"));
+
+                            } else if (age > 80 && age <= 90) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("80-90").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                                reference.setValue(finalHashmap.get("time_stressed"));
+
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
                 }
 
                 //
@@ -191,6 +247,7 @@ public class VideoReportDaily extends AppCompatActivity {
 
                 }
             });
+
             PrintWriter writer;
             try {
                 writer = new PrintWriter(getCacheDir() + "/ServerVideoReportData.txt");

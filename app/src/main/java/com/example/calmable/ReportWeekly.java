@@ -194,7 +194,7 @@ public class ReportWeekly extends AppCompatActivity {
                             Log.d("AV1WEEK1", String.valueOf(dataSnapshot.getValue()));
                             for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
-                                Long av1 = (Long) dataSnapshot1.getValue();
+                                Double av1 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                 sum1 += av1;
                                 sumElement.add(av1);
                             }
@@ -213,7 +213,7 @@ public class ReportWeekly extends AppCompatActivity {
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
-                                        Long av2 = (Long) dataSnapshot1.getValue();
+                                        Double av2 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                         sumR1 += av2;
                                         sumElementR.add(av2);
                                     }
@@ -233,7 +233,7 @@ public class ReportWeekly extends AppCompatActivity {
                                             Log.d("AV1WEEK2", String.valueOf(dataSnapshot.getValue()));
                                             for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                                 Log.d("DataSnapshot2", String.valueOf(dataSnapshot1.getValue()));
-                                                Long av1 = (Long) dataSnapshot1.getValue();
+                                                Double av1 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                                 sum2 += av1;
                                                 sumElement.add(av1);
                                             }
@@ -252,7 +252,7 @@ public class ReportWeekly extends AppCompatActivity {
                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
-                                                        Long av2 = (Long) dataSnapshot1.getValue();
+                                                        Double av2 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                                         sumR2 += av2;
                                                         sumElementR.add(av2);
                                                     }
@@ -272,7 +272,7 @@ public class ReportWeekly extends AppCompatActivity {
                                                             Log.d("AV1WEEK3", String.valueOf(dataSnapshot.getValue()));
                                                             for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                                                 Log.d("DataSnapshot3", String.valueOf(dataSnapshot1.getValue()));
-                                                                Long av1 = (Long) dataSnapshot1.getValue();
+                                                                Double av1 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                                                 sum3 += av1;
                                                                 sumElement.add(av1);
                                                             }
@@ -291,7 +291,7 @@ public class ReportWeekly extends AppCompatActivity {
                                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
-                                                                        Long av2 = (Long) dataSnapshot1.getValue();
+                                                                        Double av2 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                                                         sumR3 += av2;
                                                                         sumElementR.add(av2);
                                                                     }
@@ -311,7 +311,7 @@ public class ReportWeekly extends AppCompatActivity {
                                                                             Log.d("AV1WEEK4", String.valueOf(dataSnapshot.getValue()));
                                                                             for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                                                                 Log.d("DataSnapshot4", String.valueOf(dataSnapshot1.getValue()));
-                                                                                Long av1 = (Long) dataSnapshot1.getValue();
+                                                                                Double av1 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                                                                 sum4 += av1;
                                                                                 sumElement.add(av1);
                                                                             }
@@ -330,7 +330,7 @@ public class ReportWeekly extends AppCompatActivity {
                                                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
-                                                                                        Long av2 = (Long) dataSnapshot1.getValue();
+                                                                                        Double av2 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                                                                         sumR4 += av2;
                                                                                         sumElementR.add(av2);
                                                                                     }
@@ -350,7 +350,7 @@ public class ReportWeekly extends AppCompatActivity {
                                                                                             Log.d("AV1WEEK3", String.valueOf(dataSnapshot.getValue()));
                                                                                             for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                                                                                 Log.d("DataSnapshot3", String.valueOf(dataSnapshot1.getValue()));
-                                                                                                Long av1 = (Long) dataSnapshot1.getValue();
+                                                                                                Double av1 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                                                                                 sum5 += av1;
                                                                                                 sumElement.add(av1);
                                                                                             }
@@ -369,7 +369,7 @@ public class ReportWeekly extends AppCompatActivity {
                                                                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                                                                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
-                                                                                                        Long av2 = (Long) dataSnapshot1.getValue();
+                                                                                                        Double av2 = Double.parseDouble(String.valueOf(dataSnapshot1.getValue()));
                                                                                                         sumR5 += av2;
                                                                                                         sumElementR.add(av2);
                                                                                                     }

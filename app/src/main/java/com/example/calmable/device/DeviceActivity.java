@@ -477,7 +477,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -603,7 +603,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -787,7 +787,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -947,7 +947,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
