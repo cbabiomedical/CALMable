@@ -194,7 +194,7 @@ public class ReportMonthly extends AppCompatActivity {
                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                     sum1 += av1;
                                     sumElement.add(av1);
                                 }
@@ -216,7 +216,7 @@ public class ReportMonthly extends AppCompatActivity {
                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                             sumR1 += av2;
                                             sumElementR.add(av2);
                                         }
@@ -239,7 +239,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                     sum2 += av1;
                                                     sumElement.add(av1);
                                                 }
@@ -261,7 +261,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                             sumR2 += av2;
                                                             sumElementR.add(av2);
                                                         }
@@ -284,7 +284,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                     sum3 += av1;
                                                                     sumElement.add(av1);
                                                                 }
@@ -306,7 +306,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                             sumR3 += av2;
                                                                             sumElementR.add(av2);
                                                                         }
@@ -329,7 +329,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                     sum4 += av1;
                                                                                     sumElement.add(av1);
                                                                                 }
@@ -351,7 +351,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                             sumR4 += av2;
                                                                                             sumElementR.add(av2);
                                                                                         }
@@ -374,7 +374,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                     sum5 += av1;
                                                                                                     sumElement.add(av1);
                                                                                                 }
@@ -396,7 +396,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                             sumR5 += av2;
                                                                                                             sumElementR.add(av2);
                                                                                                         }
@@ -419,7 +419,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                     sum6 += av1;
                                                                                                                     sumElement.add(av1);
                                                                                                                 }
@@ -441,7 +441,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                             sumR6 += av2;
                                                                                                                             sumElementR.add(av2);
                                                                                                                         }
@@ -464,7 +464,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                     sum7 += av1;
                                                                                                                                     sumElement.add(av1);
                                                                                                                                 }
@@ -486,7 +486,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                             sumR7 += av2;
                                                                                                                                             sumElementR.add(av2);
                                                                                                                                         }
@@ -509,7 +509,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                     sum8 += av1;
                                                                                                                                                     sumElement.add(av1);
                                                                                                                                                 }
@@ -531,7 +531,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                             sumR8 += av2;
                                                                                                                                                             sumElementR.add(av2);
                                                                                                                                                         }
@@ -554,7 +554,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                                     sum9 += av1;
                                                                                                                                                                     sumElement.add(av1);
                                                                                                                                                                 }
@@ -576,7 +576,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                                             sumR9 += av2;
                                                                                                                                                                             sumElementR.add(av2);
                                                                                                                                                                         }
@@ -599,7 +599,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                                                     sum10 += av1;
                                                                                                                                                                                     sumElement.add(av1);
                                                                                                                                                                                 }
@@ -621,7 +621,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                                                             sumR10 += av2;
                                                                                                                                                                                             sumElementR.add(av2);
                                                                                                                                                                                         }
@@ -644,7 +644,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                                                                     sum11 += av1;
                                                                                                                                                                                                     sumElement.add(av1);
                                                                                                                                                                                                 }
@@ -666,7 +666,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                                                                             sumR11 += av2;
                                                                                                                                                                                                             sumElementR.add(av2);
                                                                                                                                                                                                         }
@@ -689,7 +689,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                                                                                 Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                                                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                                                                                     Log.d("DataSnapshot2", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                                                                                    Long av1 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                                                                                    Double av1 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                                                                                     sum12 += av1;
                                                                                                                                                                                                                     sumElement.add(av1);
                                                                                                                                                                                                                 }
@@ -711,7 +711,7 @@ public class ReportMonthly extends AppCompatActivity {
                                                                                                                                                                                                                         Log.d("DataSnapshot", String.valueOf(dataSnapshot1.getValue()));
                                                                                                                                                                                                                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                                                                                                                                                                                                                             Log.d("DataSnapshot", String.valueOf(dataSnapshot2.getValue()));
-                                                                                                                                                                                                                            Long av2 = (Long) dataSnapshot2.getValue();
+                                                                                                                                                                                                                            Double av2 = Double.parseDouble(String.valueOf(dataSnapshot2.getValue()));
                                                                                                                                                                                                                             sumR12 += av2;
                                                                                                                                                                                                                             sumElementR.add(av2);
                                                                                                                                                                                                                         }

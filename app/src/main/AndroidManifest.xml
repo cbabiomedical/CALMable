@@ -30,6 +30,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CALMable.NoActionBar"
+        android:hardwareAccelerated="true"
         tools:replace="android:icon,android:theme">
         <activity
             android:name=".Calming396HzActivity"
@@ -43,6 +44,7 @@
         <activity
             android:name=".VideoReportDaily"
             android:exported="false" />
+        <activity android:name=".VideoReportYearly"/>
         <activity
             android:name=".HpyChtReportActivity"
             android:exported="false" />

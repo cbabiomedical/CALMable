@@ -1,5 +1,6 @@
 package com.example.calmable;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -16,8 +17,11 @@ import com.example.calmable.device.DeviceActivity;
 import com.example.calmable.sample.JsonPlaceHolder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.LinkedTreeMap;
@@ -49,6 +53,7 @@ public class MusicRate extends AppCompatActivity {
     public static float totalRating;
     int a;
     int c;
+    String occupation;
     Double average = 0.0;
     Retrofit retrofit;
     JsonPlaceHolder jsonPlaceHolder;
@@ -161,7 +166,7 @@ public class MusicRate extends AppCompatActivity {
         SharedPreferences prefsReport = getSharedPreferences("prefsReport", MODE_PRIVATE);
         int firstStartReport = prefsTimeMem.getInt("firstStartReport", 0);
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -183,11 +188,11 @@ public class MusicRate extends AppCompatActivity {
                 Log.d("TAG", "* reporttimem response code : " + response.code());
                 Log.d("TAG", "reporttimem response message : " + response.message());
                 Log.d("TAG", "reporttimem Relax index : " + response.body());
-                Log.d("musicType ",  response.body().getClass().getSimpleName());
-                ArrayList list=new ArrayList();
-                list= (ArrayList) response.body();
-                LinkedTreeMap  treeMap=new LinkedTreeMap();
-                treeMap= (LinkedTreeMap) list.get(0);
+                Log.d("musicType ", response.body().getClass().getSimpleName());
+                ArrayList list = new ArrayList();
+                list = (ArrayList) response.body();
+                LinkedTreeMap treeMap = new LinkedTreeMap();
+                treeMap = (LinkedTreeMap) list.get(0);
                 Log.d("TreeMap", String.valueOf(treeMap));
 
 
@@ -203,13 +208,87 @@ public class MusicRate extends AppCompatActivity {
                 editor.apply();
 
                 // Saving Time Stressed and Relaxed in Firebase
-                DatabaseReference reference =FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday").child(String.valueOf(c));
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Relaxed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday").child(String.valueOf(c));
                 reference.setValue(treeMap.get("time_relaxed"));
 //                reference.setValue(new float[]{(float) treeMap.get("time_relaxed"), (float) treeMap.get("time_stressed")});
-                DatabaseReference reference1 =FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday").child(String.valueOf(c));
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("TimeChart").child("Time Stressed").child(mUser.getUid()).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday").child(String.valueOf(c));
                 reference1.setValue(treeMap.get("time_stressed"));
 //                reference.setValue(new float[]{(float) treeMap.get("time_relaxed"), (float) treeMap.get("time_stressed")});
                 Log.d("CHECK", String.valueOf(treeMap.get("time_relaxed")));
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("occupation");
+                LinkedTreeMap finalTreeMap = treeMap;
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String occupation = String.valueOf(snapshot.getValue());
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child(occupation).child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                        databaseReference1.setValue(finalTreeMap.get("time_stressed"));
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                DatabaseReference referenceAge = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("age");
+                LinkedTreeMap finalHashmap = treeMap;
+                referenceAge.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Log.d("Ageof User", String.valueOf(snapshot.getValue()));
+                        int age = Integer.parseInt(String.valueOf(snapshot.getValue()));
+
+
+                        if (age >= 10 && age <= 20) {
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("10-20").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                            reference.setValue(finalHashmap.get("time_stressed"));
+
+
+                        } else if (age > 20 && age <= 30) {
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("20-30").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                            reference.setValue(finalHashmap.get("time_stressed"));
+
+                        } else if (age > 30 && age <= 40) {
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("30-40").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                            reference.setValue(finalHashmap.get("time_stressed"));
+
+                        } else if (age > 40 && age <= 50) {
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("40-50").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                            reference.setValue(finalHashmap.get("time_stressed"));
+
+
+                        } else if (age > 50 && age <= 60) {
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("50-60").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                            reference.setValue(finalHashmap.get("time_stressed"));
+
+                        } else if (age > 60 && age <= 70) {
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("60-70").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                            reference.setValue(finalHashmap.get("time_stressed"));
+
+
+                        } else if (age > 70 && age <= 80) {
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("70-80").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                            reference.setValue(finalHashmap.get("time_stressed"));
+
+                        } else if (age > 80 && age <= 90) {
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WhereAmI").child("Time Stressed").child("80-90").child(String.valueOf(now.get(Calendar.YEAR))).child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child(str).child(mUser.getUid()).child(String.valueOf(c));
+                            reference.setValue(finalHashmap.get("time_stressed"));
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
             }
 
             //
@@ -221,6 +300,7 @@ public class MusicRate extends AppCompatActivity {
 
             }
         });
+
         PrintWriter writer;
         try {
             writer = new PrintWriter(getCacheDir() + "/ServerMusicReportData.txt");
