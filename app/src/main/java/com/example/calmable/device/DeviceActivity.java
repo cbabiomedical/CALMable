@@ -99,6 +99,7 @@ public class DeviceActivity extends AppCompatActivity {
     static CRPBleDevice mBleDevice;
     CRPBleConnection mBleConnection;
     boolean isUpgrade = false;
+    public static boolean connectStatus = false;
 
     @BindView(R.id.tv_connect_state)
     TextView tvConnectState;
@@ -133,6 +134,8 @@ public class DeviceActivity extends AppCompatActivity {
         tvConnectMsg2 = findViewById(R.id.tvConnectMsg2);
 
         //button2 = findViewById(R.id.btn_start_measure_heart_rate);
+
+        connectStatus = true;
 
         ButterKnife.bind(this);
         //initView();
@@ -193,6 +196,8 @@ public class DeviceActivity extends AppCompatActivity {
                         //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
 
+
+
                         // update heart rate after connect watch
                         stopThread = false;
                         ExampleRunnable runnable = new ExampleRunnable();
@@ -200,7 +205,6 @@ public class DeviceActivity extends AppCompatActivity {
 
                         // to send data for the server
                         filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
-
                         // create file for save final server date
                         fileNameServerReportData = new File(getCacheDir() + "/ServerReportData.txt");
                         fileNameVideoReportData = new File(getCacheDir() + "/ServerVideoReportData.txt");
@@ -209,7 +213,7 @@ public class DeviceActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), Home.class));
                         Toast.makeText(getApplicationContext(), "Device successfully connected", Toast.LENGTH_SHORT).show();
                         finish();
-
+                        connectStatus = true;
                         break;
                     case CRPBleConnectionStateListener.STATE_CONNECTING:
                         state = R.string.state_connecting;
@@ -224,6 +228,7 @@ public class DeviceActivity extends AppCompatActivity {
                         tvConnectMsg1.setText("Your watch is not connected.");
                         tvConnectMsg2.setText("Go back and try again");
                         //imgDisconnect.setVisibility(View.VISIBLE);
+                        connectStatus = false;
                         break;
                 }
                 updateConnectState(state);
@@ -477,7 +482,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -602,7 +607,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -787,7 +792,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -939,8 +944,8 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-        
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
+
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();

@@ -57,6 +57,17 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/homeConnectStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:textColor="@color/av_red"
+                    android:layout_marginEnd="32dp"
+                    android:text="Device is not connected"/>
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"

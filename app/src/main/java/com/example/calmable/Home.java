@@ -3,6 +3,9 @@ package com.example.calmable;
 import static android.content.ContentValues.TAG;
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
+import static com.example.calmable.device.DeviceActivity.connectStatus;
+import static com.example.calmable.device.DeviceActivity.musicIntervention;
+
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
@@ -11,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -32,6 +36,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.calmable.db.HpyChtLocationDB;
+import com.example.calmable.device.DeviceActivity;
 import com.example.calmable.fitbit.FitbitMainActivity;
 import com.example.calmable.scan.ScanActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -79,6 +84,7 @@ import java.util.Scanner;
 
 public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener {
 
+    static Home home;
 
     private static final String COINS = "coins";
 
@@ -95,6 +101,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     TextView txtHtRate;
     TextView txtProgress;
+    TextView homeConnectStatus;
     TextView streesIndexTV, stressBanner;
     File fileName, fileName1,fileName2, filNameHeartRate;
     FirebaseFirestore database;
@@ -153,6 +160,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         TextView txtProgress2 = (TextView) findViewById(R.id.txtPastProgress);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
+        homeConnectStatus = (TextView) findViewById(R.id.homeConnectStatus);
 
         Intent mIntent = getIntent();
         int intValue = mIntent.getIntExtra("data", 0);
@@ -173,8 +181,16 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         this.mHandlerStressedPopUp = new Handler();
         m_RunnableStressedPopup.run();
 
-
         Log.d("TAG", "------------>onCreate: " + finalRateff);
+
+        if (DeviceActivity.connectStatus) {
+
+            if (connectStatus = true){
+                homeConnectStatus.setText("Device is Connected");
+                homeConnectStatus.setTextColor(Color.GREEN);
+            }
+
+        }
 
         // this.mHandler = new Handler();
         //m_Runnable_popup.run();
