@@ -17,7 +17,6 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
@@ -96,7 +95,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     TextView txtHtRate;
     TextView txtProgress;
-    TextView streesIndex , stressBanner;
+    TextView streesIndexTV, stressBanner;
     File fileName, fileName1,fileName2, filNameHeartRate;
     FirebaseFirestore database;
     FirebaseUser mUser;
@@ -110,7 +109,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     public static String word;
     String viewPlace,viewReason;
     String time,finalword;
-    int finalRateff;
+    int finalRateff , stressedIndex;
     List<Object> heartRateList;
     String timeAndHRCompletedOne;
 
@@ -125,7 +124,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     int markHeartRate = 0;
     TextView markHeartRateValue;
 
-    private Handler mHandler;
+    private Handler mHandler , mHandlerStressedPopUp;
 
     private String getColoredSpanned(String text, String color) {
         String input = "<font color=" + color + ">" + text + "</font>";
@@ -137,7 +136,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        streesIndex = (TextView) findViewById(R.id.streesIndex);
+        streesIndexTV = (TextView) findViewById(R.id.streesIndex);
         stressBanner = (TextView) findViewById(R.id.stressBanner);
 
 
@@ -166,8 +165,14 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         sad = findViewById(R.id.happyEmoji_5);
         markHeartRateValue = (TextView) findViewById(R.id.markValue);
 
+        // refresh Home for HR
         this.mHandler = new Handler();
         m_Runnable.run();
+
+        // refresh Home for stressed pop up
+        this.mHandlerStressedPopUp = new Handler();
+        m_RunnableStressedPopup.run();
+
 
         Log.d("TAG", "------------>onCreate: " + finalRateff);
 
@@ -175,12 +180,14 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         //m_Runnable_popup.run();
 
         //for testing (TODO: htRate value from the server should be added here instead of finalRateff to get the popup)
-        finalRateff = 100;
+        //finalRateff = 100;
         //Checking the stress level
-        if (finalRateff > 80) {
-            openDialog();
-            Log.d("TAG", String.valueOf(finalRateff));
-        }
+
+
+//        if (stressedIndex > 0) {
+//            openDialog();
+//            Log.d("TAG", String.valueOf(finalRateff));
+//        }
 
         //updateLandingCoins();
 
@@ -437,15 +444,27 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     //refresh activity
     private final Runnable m_Runnable = new Runnable() {
         public void run() {
+
             updateLandingHeartRate();
 
-            int random = (int) (Math.random() * (100 + 1));
 
-            String y = String.valueOf(random);
-            streesIndex.setText(y);
+            updateLandingStressedIndex();
 
             //Toast.makeText(Home.this, "in runnable", Toast.LENGTH_SHORT).show();
             Home.this.mHandler.postDelayed(m_Runnable, 1000);
+        }
+    };
+
+
+    //refresh stressed popup activity
+    private final Runnable m_RunnableStressedPopup = new Runnable() {
+        public void run() {
+
+            if (stressedIndex > 50) {
+                openDialog();
+            }
+
+            Home.this.mHandlerStressedPopUp.postDelayed(m_RunnableStressedPopup, 15000);
         }
     };
 
@@ -466,7 +485,13 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     @Override
     protected void onPause() {
         super.onPause();
+
+        // for HR refresh
         mHandler.removeCallbacks(m_Runnable);
+        finish();
+
+        // for stressed pop up refresh
+        mHandlerStressedPopUp.removeCallbacks(m_RunnableStressedPopup);
         finish();
 
 
@@ -490,6 +515,21 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         //writeHRData();
 
     }
+
+
+    // show landing page stressed index
+    public void updateLandingStressedIndex() {
+
+        SharedPreferences prefs = getSharedPreferences("com.example.calmable", MODE_PRIVATE);
+        stressedIndex = prefs.getInt("stressedIndex", 0);
+        streesIndexTV.setText(String.valueOf(stressedIndex));
+
+        Log.d(TAG, "=======Stressed index========" + stressedIndex);
+
+        //writeHRData();
+
+    }
+
 
     // for collect data
     private void writeHRData() {

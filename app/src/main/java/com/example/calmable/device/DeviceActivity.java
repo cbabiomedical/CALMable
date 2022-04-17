@@ -77,14 +77,14 @@ public class DeviceActivity extends AppCompatActivity {
     public static ArrayList<String> listOfTxtMusicReportData;
     public static ArrayList<String> videoReportData;
     public static ArrayList<String> musicReportData;
-    File filNameHeartRate, fileNameServerReportData, fileNameVideoReportData,fileNameMusicReportData;
+    File filNameHeartRate, fileNameServerReportData, fileNameVideoReportData, fileNameMusicReportData;
     JsonPlaceHolder jsonPlaceHolder;
     public static ArrayList videoRelaxation_index = new ArrayList();
     ArrayList videoIntervention = new ArrayList();
     public static ArrayList musicRelaxation_index = new ArrayList();
     Retrofit retrofit;
     public static boolean connected = false;
-    JSONObject objHRServer;
+    JSONObject objHRServer, jsonObjectStressIndex;
     HashMap<String, Object> srHashMap;
     public static ArrayList musicIntervention = new ArrayList();
 
@@ -476,8 +476,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -520,7 +519,6 @@ public class DeviceActivity extends AppCompatActivity {
 
 
                 videoRelaxation_index.add(treeMap.get("relaxation"));
-                Log.d("VideoIndexList", String.valueOf(videoRelaxation_index));
 
                 try {
                     writeVideoReportData();
@@ -530,7 +528,7 @@ public class DeviceActivity extends AppCompatActivity {
                     writer.newLine();
                     for (int i = 0; i < size; i++) {
                         writer.write(videoReportData.get(i).toString());
-                        Log.d("VideoReport",videoReportData.get(i).toString());
+                        Log.d("VideoReport", videoReportData.get(i).toString());
 //                writer.write(",");
                         writer.flush();
                         Toast.makeText(DeviceActivity.this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
@@ -602,8 +600,7 @@ public class DeviceActivity extends AppCompatActivity {
         musicIntervention.add(11, currentDateandTime);
 
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -787,7 +784,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -801,7 +798,7 @@ public class DeviceActivity extends AppCompatActivity {
 //
 //        if (retrofit == null) {
 //            retrofit = new Retrofit.Builder()
-//                    .baseUrl("http://192.168.8.186:5000/")
+//                    .baseUrl("http://192.168.8.181:5000/")
 //                    .addConverterFactory(GsonConverterFactory.create())
 //                    .client(client.build())
 //                    .build();
@@ -846,10 +843,31 @@ public class DeviceActivity extends AppCompatActivity {
                 serverData = String.valueOf(response.body());
                 Log.d(TAG, "server data string : " + serverData);
 
+                ArrayList list = new ArrayList();
+                list = (ArrayList) response.body();
+
+                LinkedTreeMap treeMap = new LinkedTreeMap();
+
+                treeMap = (LinkedTreeMap) list.get(0);
+
+                Double y = (Double) treeMap.get("stressed");
+
+                int stressedIndex = (int) Math.round(y);
+
+                Log.d(TAG, "int stressed index -->" + stressedIndex);
+
+
+                //To save stressed index
+                SharedPreferences.Editor editor1 = getSharedPreferences("com.example.calmable", MODE_PRIVATE).edit();
+                editor1.putInt("stressedIndex", stressedIndex);
+                editor1.apply();
+
+
                 listOfServerReportData = new ArrayList<>();
                 listOfServerReportData.add(serverData);
 
                 Log.d(TAG, "onResponse: " + listOfServerReportData);
+
 
                 try {
                     writeServerReportData();
@@ -902,35 +920,7 @@ public class DeviceActivity extends AppCompatActivity {
 //        });
 
 
-//        /**
-//         *   report part
-//         */
-//        Call<Object> call4 = jsonPlaceHolder.PostReportData(jsArray);
-//        call4.enqueue(new Callback<Object>() {
-//            @Override
-//            public void onResponse(Call<Object> call, Response<Object> response) {
-//
-//                Toast.makeText(getApplicationContext(), "Post Successful - Report", Toast.LENGTH_SHORT).show();
-//
-//                //Log.d(TAG, "-----onResponse-----: " + response);
-//
-//                Log.d(TAG, "RPT - response code : " + response.code());
-//                Log.d(TAG, "RPT - response message : " + response.message());
-//                Log.d(TAG, "RPT - Relax index : " + response.body());
-////                Log.d(TAG, "response code : " + response.body().getClass().getSimpleName());
-//
-//
-//            }
-//
-//            //
-//            @Override
-//            public void onFailure(Call<Object> call, Throwable t) {
-//                Toast.makeText(getApplicationContext(), "Failed Post Relaxation", Toast.LENGTH_SHORT).show();
-//                Log.d("ErrorVal:Report", String.valueOf(t));
-//                Log.d(TAG, "onFailure: " + t);
-//
-//            }
-//        });
+
 
     }
 
@@ -946,8 +936,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.101:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -961,7 +950,7 @@ public class DeviceActivity extends AppCompatActivity {
 //
 //        if (retrofit == null) {
 //            retrofit = new Retrofit.Builder()
-//                    .baseUrl("http://192.168.8.186:5000/")
+//                    .baseUrl("http://192.168.8.181:5000/")
 //                    .addConverterFactory(GsonConverterFactory.create())
 //                    .client(client.build())
 //                    .build();
@@ -1121,6 +1110,7 @@ public class DeviceActivity extends AppCompatActivity {
         Log.d(TAG, "array size ++++> : " + arrSize);
         s.close();
 
+        //String value = (String) listOfTxtReportData.get(Integer.parseInt("key_name"));
 
         if (arrSize == 12) {
 
