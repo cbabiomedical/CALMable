@@ -115,6 +115,7 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             songTitle = itemView.findViewById(R.id.songTitle);
             recyclerView = itemView.findViewById(R.id.listOfSongRecycleView);
             imageView = itemView.findViewById(R.id.favImageView);
@@ -156,6 +157,7 @@ public class DeepRelaxMusicAdapter extends RecyclerView.Adapter<DeepRelaxMusicAd
     }
 
     private void readCursorDataDP(FavModel coffeeItem, ViewHolder viewHolder) {
+
         Cursor cursor = favDB.read_all_data(coffeeItem.getId());
         SQLiteDatabase db = favDB.getReadableDatabase();
 

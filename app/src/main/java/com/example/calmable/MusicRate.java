@@ -1,8 +1,5 @@
 package com.example.calmable;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,8 +10,14 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.calmable.device.DeviceActivity;
+import com.example.calmable.model.CalmChart;
 import com.example.calmable.sample.JsonPlaceHolder;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,12 +33,12 @@ import org.json.JSONArray;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -59,6 +62,8 @@ public class MusicRate extends AppCompatActivity {
     JsonPlaceHolder jsonPlaceHolder;
     Double sum = 0.0;
     int x;
+    int songTime;
+    String url , songName ;
 
     FirebaseUser mUser;
 
@@ -74,7 +79,22 @@ public class MusicRate extends AppCompatActivity {
         SharedPreferences prefsTimeMem = getSharedPreferences("prefsMusic", MODE_PRIVATE);
         int firstStartTimeMem = prefsTimeMem.getInt("firstStartMusic", 0);
 
+
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        //-----
+        Bundle extras = getIntent().getExtras();
+
+        url = extras.getString("url");
+        songTime = extras.getInt("time");
+        songName = extras.getString("songName");
+
+        Log.d("TAG", "song---)>: " + url);
+        Log.d("TAG", "song---)>: " + url);
+        Log.d("TAG", "song---)>: " + songName);
+        Log.d("TAG", "song---)>: " + songName);
+
 
         ratingStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -166,7 +186,7 @@ public class MusicRate extends AppCompatActivity {
         SharedPreferences prefsReport = getSharedPreferences("prefsReport", MODE_PRIVATE);
         int firstStartReport = prefsTimeMem.getInt("firstStartReport", 0);
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.103:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -188,12 +208,50 @@ public class MusicRate extends AppCompatActivity {
                 Log.d("TAG", "* reporttimem response code : " + response.code());
                 Log.d("TAG", "reporttimem response message : " + response.message());
                 Log.d("TAG", "reporttimem Relax index : " + response.body());
-                Log.d("musicType ", response.body().getClass().getSimpleName());
+//                Log.d("musicType ", response.body().getClass().getSimpleName());
+
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
                 LinkedTreeMap treeMap = new LinkedTreeMap();
                 treeMap = (LinkedTreeMap) list.get(0);
                 Log.d("TreeMap", String.valueOf(treeMap));
+
+
+
+                // get time to relax index
+                ArrayList listOfTimeToRelax = new ArrayList();
+                listOfTimeToRelax = (ArrayList) response.body();
+                LinkedTreeMap treeMapTimeToRelax = new LinkedTreeMap();
+                treeMapTimeToRelax = (LinkedTreeMap) list.get(0);
+                Double y = (Double) treeMap.get("time to relax");
+                int timeToRelaxIndex = (int) Math.round(y);
+
+                Log.d("TAG", "-------time to relax index-------" + timeToRelaxIndex);
+
+
+                // calm chart
+                HashMap<String, Object> calmChartData = new HashMap<>();
+                calmChartData.put("songName", songName);
+                calmChartData.put("songUrl", url);
+                calmChartData.put("timeToRelax", timeToRelaxIndex);
+
+                Log.d("TAG", "++++++++++++calm chart data+++++++++: " + calmChartData);
+
+
+//                child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+
+
+                CalmChart calmChart = new CalmChart(songName,  url,  timeToRelaxIndex);
+
+                FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("CalmChart").push().setValue(calmChart)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                //Toast.makeText(UserPreferences.this, "Successful", Toast.LENGTH_SHORT).show();
+                                //Intent intent=new Intent(UserPreferences.this,ProfileActivity.class);
+                                //startActivity(intent);
+                            }
+                        });
 
 
                 SharedPreferences sh = getSharedPreferences("prefsReport", MODE_APPEND);
@@ -361,6 +419,13 @@ public class MusicRate extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
+
+
 
     // for go back
     public void onBackPressed() {

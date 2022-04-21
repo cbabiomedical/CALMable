@@ -120,12 +120,12 @@ public class MusicPlayer extends AppCompatActivity {
 
         SharedPreferences sh = getSharedPreferences("prefsMusic", MODE_APPEND);
 
-// The value will be default as empty string because for
-// the very first time when the app is opened, there is nothing to show
+        // The value will be default as empty string because for
+        // the very first time when the app is opened, there is nothing to show
 
         a = sh.getInt("firstStartMusic", 0);
 
-// We can then use the data
+        // We can then use the data
         Log.d("A Count", String.valueOf(a));
 
         int y = a + 1;
@@ -143,6 +143,7 @@ public class MusicPlayer extends AppCompatActivity {
             //time = Integer.parseInt(time_selected);
             music_title.setText(name);
             // image = extras.getInt("image");
+
 
             prepareMediaPlayer();
 
@@ -246,6 +247,8 @@ public class MusicPlayer extends AppCompatActivity {
 
                         //to go to rate page
                         Intent intent = new Intent(getApplicationContext(), MusicRate.class);
+                        intent.putExtra("songName", name);
+                        intent.putExtra("url", uri);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
@@ -266,6 +269,9 @@ public class MusicPlayer extends AppCompatActivity {
                         isStarted = false;
                         //to go to rate page
                         Intent intent = new Intent(getApplicationContext(), MusicRate.class);
+                        intent.putExtra("songName", name);
+                        intent.putExtra("url", uri);
+                        startActivity(intent);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 

@@ -4828,4 +4828,11 @@ public class ReportHome extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), HpyChtReportActivity.class));
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
+
+    public void btnGoHpyCalmChrt(View view) {
+        startActivity(new Intent(getApplicationContext(), CalmChartActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+
 }

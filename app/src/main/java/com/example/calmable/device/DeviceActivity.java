@@ -196,8 +196,6 @@ public class DeviceActivity extends AppCompatActivity {
                         //imgConnect.setVisibility(View.VISIBLE);
                         testSet();
 
-
-
                         // update heart rate after connect watch
                         stopThread = false;
                         ExampleRunnable runnable = new ExampleRunnable();

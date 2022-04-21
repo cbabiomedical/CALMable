@@ -36,18 +36,36 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btnHpy"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:id="@+id/llbtns"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_below="@+id/tvDate"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:onClick="btnGoHpyChtReport"
-                android:text="Happiness chart"
-                android:layout_below="@+id/tvDate"/>
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnHpy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="btnGoHpyChtReport"
+                    android:text="Happiness chart" />
+
+
+                <Button
+                    android:id="@+id/btnClmChrt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="btnGoHpyCalmChrt"
+                    android:text="Calm Chart" />
+
+            </LinearLayout>
+
 
             <RelativeLayout
                 android:id="@+id/toggleBtn"
@@ -88,7 +106,7 @@
                 android:id="@+id/barChartDaily"
                 android:layout_width="325dp"
                 android:layout_height="350dp"
-                android:layout_below="@+id/btnHpy"
+                android:layout_below="@+id/llbtns"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
