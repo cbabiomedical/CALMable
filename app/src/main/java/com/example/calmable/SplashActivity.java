@@ -55,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
         //set animate text
-        animatedText("C A L M a b l e");
+        animatedText("CALMable");
 
         new Handler().postDelayed(new Runnable() {
             @Override
