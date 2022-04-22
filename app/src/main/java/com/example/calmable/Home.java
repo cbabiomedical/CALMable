@@ -192,18 +192,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         }
 
-        // this.mHandler = new Handler();
-        //m_Runnable_popup.run();
-
-        //for testing (TODO: htRate value from the server should be added here instead of finalRateff to get the popup)
-        //finalRateff = 100;
-        //Checking the stress level
-
-
-//        if (stressedIndex > 0) {
-//            openDialog();
-//            Log.d("TAG", String.valueOf(finalRateff));
-//        }
 
         //updateLandingCoins();
 
@@ -480,7 +468,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
                 openDialog();
             }
 
-            Home.this.mHandlerStressedPopUp.postDelayed(m_RunnableStressedPopup, 15000);
+            Home.this.mHandlerStressedPopUp.postDelayed(m_RunnableStressedPopup, 20000);
         }
     };
 
