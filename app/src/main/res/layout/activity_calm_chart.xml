@@ -4,25 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".CalmChartActivity">
+    tools:context=".CalmChartActivity"
+    android:background="@drawable/bg09">
 
     <TextView
         android:id="@+id/activityTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CALM CHART"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center"
-        android:layout_margin="16dp"/>
+        android:textColor="@color/dark_blue_300"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:text="CALM CHART" />
 
+
+    <TextView
+        android:id="@+id/activityDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="Here you can see which music you calm down quickly."
+        android:layout_below="@+id/activityTitle"/>
 
     <TextView
         android:id="@+id/calmChrtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Song Name"
-        android:layout_below="@+id/activityTitle"
+        android:layout_below="@+id/activityDes"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:textColor="@color/dark_blue_100"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/calmChrtIndex"
@@ -31,9 +50,11 @@
         android:text="Time to relax"
         android:layout_alignParentRight="true"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/activityTitle"
+        android:layout_below="@+id/activityDes"
         android:layout_marginEnd="32dp"
-        />
+        android:textColor="@color/dark_blue_100"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
 
 
     <ScrollView

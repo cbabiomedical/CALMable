@@ -1184,7 +1184,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
 
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(900000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

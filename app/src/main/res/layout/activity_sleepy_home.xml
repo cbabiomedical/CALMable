@@ -27,11 +27,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="160dp"
-                android:fontFamily="@font/droidserif_italic"
-                android:text="S l e e p y"
+                android:layout_marginTop="130dp"
+                android:text="S L E E P Y"
                 android:textColor="@color/white"
-                android:textSize="45dp"
+                android:textSize="60dp"
                 android:layout_marginBottom="50dp"/>
 
 

@@ -9,6 +9,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="song name"
+            android:textColor="#EE306081"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="24dp"/>
 
@@ -17,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00"
+        android:textColor="#EE306081"
         android:layout_alignParentRight="true"
         android:layout_marginEnd="45dp"/>
 

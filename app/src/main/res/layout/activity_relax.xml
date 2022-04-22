@@ -9,19 +9,23 @@
 
 
     <TextView
+        android:id="@+id/activityTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="60dp"
+        android:paddingStart="60dp"
+        android:paddingTop="60dp"
+        android:paddingEnd="60dp"
         android:text="RELAX"
         android:textColor="@color/white"
         android:textSize="90dp" />
 
     <ScrollView
+        android:layout_below="@+id/activityTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/bottom_navigation"
-        android:layout_marginTop="250dp">
+        android:layout_marginTop="32dp">
 
 
         <LinearLayout

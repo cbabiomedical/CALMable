@@ -39,44 +39,6 @@ public class CalmChartActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("CalmChart");
 
 
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        listOfCalmChrt = new ArrayList<>();
-//
-//        calmChartAdapter = new CalmChartAdapter(this,listOfCalmChrt);
-
-
-//        LinearLayoutManager manager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(manager);
-//        recyclerView.setHasFixedSize(true);
-//        calmChartAdapter = new CalmChartAdapter(this , listOfCalmChrt);
-//        recyclerView.setAdapter(calmChartAdapter);
-
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-//
-//                    CalmChart calmChart = dataSnapshot.getValue(CalmChart.class);
-//                    listOfCalmChrt.add(calmChart);
-//
-//                    Log.d("TAG", "++++++++++++: " + listOfCalmChrt);
-//
-//                }
-//
-//                calmChartAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
-
         initData();
 
         getDataId();
