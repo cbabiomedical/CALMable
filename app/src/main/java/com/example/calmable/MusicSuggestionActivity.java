@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class MusicSuggestionActivity extends AppCompatActivity {
     private void initData() {
 
         listOfSongs = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Suggestion Music ");
+        Query reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Suggestion Music ").orderByChild("sugIndex");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -76,7 +77,7 @@ public class MusicSuggestionActivity extends AppCompatActivity {
                 Log.d("List-->", String.valueOf(listOfSongs));
 
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child("sugMusic");
+                Query reference = FirebaseDatabase.getInstance().getReference("users").child("sugMusic").orderByChild("sugIndex");
 
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -95,7 +96,15 @@ public class MusicSuggestionActivity extends AppCompatActivity {
                     }
                 });
 
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                musicSuggestionAdapter = new MusicSuggestionAdapter(listOfSongs, getApplicationContext());
+//                recyclerView.setAdapter(musicSuggestionAdapter);
+
+
+                LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                mLayoutManager.setReverseLayout(true);
+                mLayoutManager.setStackFromEnd(true);
+                recyclerView.setLayoutManager(mLayoutManager);
                 musicSuggestionAdapter = new MusicSuggestionAdapter(listOfSongs, getApplicationContext());
                 recyclerView.setAdapter(musicSuggestionAdapter);
 
@@ -112,7 +121,7 @@ public class MusicSuggestionActivity extends AppCompatActivity {
     //get songs id's
     private void getDataId() {
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Suggestion Music ");
+        Query reference = FirebaseDatabase.getInstance().getReference("Songs_Admin").child("Suggestion Music ").orderByChild("sugIndex");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

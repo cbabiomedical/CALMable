@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.calmable.adapter.CalmChartAdapter;
+import com.example.calmable.adapter.MusicSuggestionAdapter;
 import com.example.calmable.model.CalmChart;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -48,7 +50,8 @@ public class CalmChartActivity extends AppCompatActivity {
     private void initData() {
 
         listOfCalmChrt = new ArrayList<>();
-        DatabaseReference reference = (DatabaseReference) FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("CalmChart");
+        Query reference = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("CalmChart")
+                .orderByChild("timeToRelaxIndex");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -63,7 +66,14 @@ public class CalmChartActivity extends AppCompatActivity {
 
                 }
 
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                calmChartAdapter = new CalmChartAdapter(getApplicationContext(), listOfCalmChrt);
+//                recyclerView.setAdapter(calmChartAdapter);
+
+                LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                mLayoutManager.setReverseLayout(true);
+                mLayoutManager.setStackFromEnd(true);
+                recyclerView.setLayoutManager(mLayoutManager);
                 calmChartAdapter = new CalmChartAdapter(getApplicationContext(), listOfCalmChrt);
                 recyclerView.setAdapter(calmChartAdapter);
 
@@ -80,7 +90,7 @@ public class CalmChartActivity extends AppCompatActivity {
     //get songs id's
     private void getDataId() {
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("CalmChart");
+        Query reference = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("CalmChart").orderByChild("timeToRelaxIndex");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
