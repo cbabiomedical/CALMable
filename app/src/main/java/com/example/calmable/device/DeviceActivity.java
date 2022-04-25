@@ -480,7 +480,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -605,7 +605,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -790,7 +790,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -804,7 +804,7 @@ public class DeviceActivity extends AppCompatActivity {
 //
 //        if (retrofit == null) {
 //            retrofit = new Retrofit.Builder()
-//                    .baseUrl("http://192.168.8.181:5000/")
+//                    .baseUrl("http://192.168.8.186:5000/")
 //                    .addConverterFactory(GsonConverterFactory.create())
 //                    .client(client.build())
 //                    .build();
@@ -943,7 +943,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -957,7 +957,7 @@ public class DeviceActivity extends AppCompatActivity {
 //
 //        if (retrofit == null) {
 //            retrofit = new Retrofit.Builder()
-//                    .baseUrl("http://192.168.8.181:5000/")
+//                    .baseUrl("http://192.168.8.186:5000/")
 //                    .addConverterFactory(GsonConverterFactory.create())
 //                    .client(client.build())
 //                    .build();

@@ -48,7 +48,7 @@ public class CalmChartActivity extends AppCompatActivity {
     private void initData() {
 
         listOfCalmChrt = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("CalmChart");
+        DatabaseReference reference = (DatabaseReference) FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("CalmChart");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
