@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HpyChtReportActivity">
+    tools:context=".HpyChtReportActivity"
+    android:background="@drawable/bg08">
+
+    <TextView
+        android:id="@+id/activityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Happiness Chart"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="32dp"
+        android:textSize="32sp"
+        android:textColor="@color/dark_blue_300"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/HpyChtReportRV"
@@ -15,6 +26,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        tools:layout_editor_absoluteY="1dp"
+        android:layout_below="@+id/activityTitle"/>
 
 </RelativeLayout>

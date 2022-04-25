@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sea_bg"
+    android:background="@drawable/bg16"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".AddNoteActivity">
@@ -54,12 +54,10 @@
         android:id="@+id/savebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:text="SAVE NOTE"
-        android:layout_marginTop="45dp"
-        android:textColor="#00B0FF"
-        android:textSize="16dp"
+        android:layout_below="@+id/descriptioninput"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/descriptioninput"/>
+        android:layout_marginTop="45dp"
+        android:text="SAVE NOTE"
+        android:textSize="16dp" />
 
 </RelativeLayout>

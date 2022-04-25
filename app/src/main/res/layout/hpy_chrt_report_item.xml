@@ -28,21 +28,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hpyChtEventRpTV"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_blue_300"/>
 
         <TextView
             android:id="@+id/hpyChtRateRpTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hpyChtEventRpTV"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:textColor="#903C7095"/>
 
 
         <TextView
             android:id="@+id/hpyChtEventRpTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:textColor="@color/dark_blue_100"/>
 
         <SeekBar
             android:id="@+id/seekBarReportRate"

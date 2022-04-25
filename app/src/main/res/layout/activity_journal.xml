@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sea_bg"
+    android:background="@drawable/bg15"
     tools:context=".Journal">
 
     <TextView
@@ -15,14 +15,11 @@
         android:layout_marginTop="12dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:text="J O U R N A L"
+        android:text="JOURNAL"
         android:textAlignment="center"
         android:textColor="@color/dark_blue_100"
         android:textSize="34dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
