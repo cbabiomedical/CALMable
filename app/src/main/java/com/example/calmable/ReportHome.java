@@ -4834,5 +4834,10 @@ public class ReportHome extends AppCompatActivity {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
+    public void btnStressChart(View view) {
+        startActivity(new Intent(getApplicationContext(), ReportSummary.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
 
 }

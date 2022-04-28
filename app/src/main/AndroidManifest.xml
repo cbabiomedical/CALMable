@@ -33,6 +33,18 @@
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".ReportTimeSummary"
+            android:exported="true" />
+        <activity
+            android:name=".ReportPlaceSummary"
+            android:exported="true" />
+        <activity
+            android:name=".ReportSummary"
+            android:exported="true" />
+        <activity
+            android:name=".StressedNotes"
+            android:exported="true" />
+        <activity
             android:name=".CalmChartActivity"
             android:exported="false" />
         <activity

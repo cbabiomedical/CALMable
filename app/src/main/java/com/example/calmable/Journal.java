@@ -25,6 +25,15 @@ public class Journal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
 
+        Button checkBtn = findViewById(R.id.checkbtn);
+
+        checkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Journal.this,StressedNotes.class));
+            }
+        });
+
 
         Button addNoteBtn = findViewById(R.id.addnewnotebtn);
 
@@ -34,6 +43,7 @@ public class Journal extends AppCompatActivity {
                 startActivity(new Intent(Journal.this,AddNoteActivity.class));
             }
         });
+
 
         Realm.init(getApplicationContext());
         Realm realm = Realm.getDefaultInstance();
@@ -59,7 +69,7 @@ public class Journal extends AppCompatActivity {
 
 
 
-//        Toast.makeText(getApplicationContext(), "Write your day here!", Toast.LENGTH_SHORT).show();
+    //        Toast.makeText(getApplicationContext(), "Write your day here!", Toast.LENGTH_SHORT).show();
 //
 //        listViewJournal = (ListView) findViewById(R.id.listViewJournal);
 //
@@ -193,10 +203,10 @@ public class Journal extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ProfileMain.class));
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
-               }
+                }
 //
                 return false;
-           }
+            }
         });
 
     }

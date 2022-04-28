@@ -293,65 +293,65 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         int checkCount = shaP.getInt("count", 0);
         Log.d("checkCount SHARED---", String.valueOf(checkCount));
 
-            if (hour > 18 && checkCount != 1) {
-                //for testing stressed locations
-                AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
-                builder.setCancelable(true);
-                builder.setIcon(android.R.drawable.ic_dialog_alert);
-                builder.setTitle("Stress Alert!");
-                builder.setMessage("We noticed that you've been stressed today!");
+        if (hour > 18 && checkCount != 1) {
+            //for testing stressed locations
+            AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+            builder.setCancelable(true);
+            builder.setIcon(android.R.drawable.ic_dialog_alert);
+            builder.setTitle("Stress Alert!");
+            builder.setMessage("We noticed that you've been stressed today!");
 
-                builder.setPositiveButton("VIEW", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent in = new Intent(getApplicationContext(), StressedLocationsActivity.class);
-                        startActivity(in);
-                    }
-                });
-                builder.setNegativeButton("SKIP", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        String[] options ={"1","2","3"};
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(Home.this);
-                        builder1.setTitle("Remind me again in __ hour/s");
-                        builder1.setSingleChoiceItems(options, 0, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                selectedOption = options[i];
-                            }
-                        });
-                        builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Log.d("OPTION----",selectedOption);
+            builder.setPositiveButton("VIEW", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent in = new Intent(getApplicationContext(), StressedLocationsActivity.class);
+                    startActivity(in);
+                }
+            });
+            builder.setNegativeButton("SKIP", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    String[] options ={"1","2","3"};
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(Home.this);
+                    builder1.setTitle("Remind me again in __ hour/s");
+                    builder1.setSingleChoiceItems(options, 0, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            selectedOption = options[i];
+                        }
+                    });
+                    builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Log.d("OPTION----",selectedOption);
 
-                                int newHour = hour + Integer.parseInt(selectedOption);
-                                Log.d("NEW Hour----", String.valueOf(newHour));
+                            int newHour = hour + Integer.parseInt(selectedOption);
+                            Log.d("NEW Hour----", String.valueOf(newHour));
 
-                                //To save newHour & selected option
-                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putInt("selectedOption",Integer.parseInt(selectedOption));
-                                editor.putInt("newHour", newHour);
-                                editor.commit();
+                            //To save newHour & selected option
+                            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putInt("selectedOption",Integer.parseInt(selectedOption));
+                            editor.putInt("newHour", newHour);
+                            editor.commit();
 
-                                dialogInterface.dismiss();
-                            }
-                        });
-                        builder1.show();
-                    }
-                });
-                builder.show();
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    builder1.show();
+                }
+            });
+            builder.show();
 
-                //To save the first count
-                int count =1;
-                SharedPreferences sp = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
-                SharedPreferences.Editor e = sp.edit();
-                e.putInt("count", count);
-                e.commit();
-            }
+            //To save the first count
+            int count =1;
+            SharedPreferences sp = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+            SharedPreferences.Editor e = sp.edit();
+            e.putInt("count", count);
+            e.commit();
+        }
 
-            //access selected hour from shared preference
+        //access selected hour from shared preference
         SharedPreferences sharedPreferences1 = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
         int newHour = sharedPreferences1.getInt("newHour", 0);
         int selectedHour = sharedPreferences1.getInt("selectedOption",0);
@@ -361,28 +361,28 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         SharedPreferences sha = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
         int checkCount1 = sha.getInt("count1", 0);
         //display skipped location popup according to selected hour
-            if (newHour > 18 + selectedHour && checkCount1 !=2){
-                AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
-                builder.setCancelable(true);
-                builder.setIcon(android.R.drawable.ic_dialog_alert);
-                builder.setTitle("Stress Alert!");
-                builder.setMessage("We noticed that you've been stressed today!");
+        if (newHour > 18 + selectedHour && checkCount1 !=2){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+            builder.setCancelable(true);
+            builder.setIcon(android.R.drawable.ic_dialog_alert);
+            builder.setTitle("Stress Alert!");
+            builder.setMessage("We noticed that you've been stressed today!");
 
-                builder.setNegativeButton("VIEW", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent in = new Intent(getApplicationContext(), StressedLocationsActivity.class);
-                        startActivity(in);
-                    }
-                });
-                builder.show();
+            builder.setNegativeButton("VIEW", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent in = new Intent(getApplicationContext(), StressedLocationsActivity.class);
+                    startActivity(in);
+                }
+            });
+            builder.show();
 
-                int count =2;
-                SharedPreferences sp = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
-                SharedPreferences.Editor e = sp.edit();
-                e.putInt("count1", count);
-                e.commit();
-            }
+            int count =2;
+            SharedPreferences sp = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
+            SharedPreferences.Editor e = sp.edit();
+            e.putInt("count1", count);
+            e.commit();
+        }
 
         //get last day of the month to calculate
         int lastDay = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
