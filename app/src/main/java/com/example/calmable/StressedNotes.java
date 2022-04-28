@@ -60,6 +60,7 @@ public class StressedNotes extends AppCompatActivity {
         myAdapter1 = new MyAdapter1(this, list1);
         recyclerView.setAdapter(myAdapter1);
 
+        //from monday
         DatabaseReference database1 = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("reportStress").child(String.valueOf(now.get(Calendar.YEAR)))
                 .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Monday");
 
@@ -75,6 +76,7 @@ public class StressedNotes extends AppCompatActivity {
                 }
                 myAdapter1.notifyDataSetChanged();
 
+                //from tuesday
                 DatabaseReference database2 = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("reportStress").child(String.valueOf(now.get(Calendar.YEAR)))
                         .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Tuesday");
 
@@ -89,6 +91,7 @@ public class StressedNotes extends AppCompatActivity {
                         }
                         myAdapter1.notifyDataSetChanged();
 
+                        //from wednesday
                         DatabaseReference database3 = FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("reportStress").child(String.valueOf(now.get(Calendar.YEAR)))
                                 .child(String.valueOf(month)).child(String.valueOf(now.get(Calendar.WEEK_OF_MONTH))).child("Wednesday");
 
