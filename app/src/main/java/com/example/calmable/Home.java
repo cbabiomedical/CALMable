@@ -2,13 +2,15 @@ package com.example.calmable;
 
 import static android.content.ContentValues.TAG;
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
-
 import static com.example.calmable.device.DeviceActivity.connectStatus;
-import static com.example.calmable.device.DeviceActivity.musicIntervention;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +21,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -34,6 +37,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.lifecycle.Lifecycle;
 
 import com.example.calmable.db.HpyChtLocationDB;
 import com.example.calmable.device.DeviceActivity;
@@ -103,7 +109,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     TextView txtProgress;
     TextView homeConnectStatus;
     TextView streesIndexTV, stressBanner;
-    File fileName, fileName1,fileName2, filNameHeartRate;
+    File fileName, fileName1,fileName2, filNameHeartRate , fileNameStressedIndexs;
     FirebaseFirestore database;
     FirebaseUser mUser;
     FirebaseStorage firebaseStorage;
@@ -116,9 +122,9 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     public static String word;
     String viewPlace,viewReason;
     String time,finalword;
-    int finalRateff , stressedIndex;
+    int finalRateff , stressedIndex , stressedIndexAvg;
     List<Object> heartRateList;
-    String timeAndHRCompletedOne;
+
 
     String timeAndHR;
     String timeAndHR2;
@@ -147,19 +153,29 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         stressBanner = (TextView) findViewById(R.id.stressBanner);
 
 
+        /**
+         * when click notification call special method
+         *      stressed popup
+         */
+        if (getIntent().hasExtra("fromStressedIndexNotification")) {
+            openDialog();
+        }
+
+
         //call thread method - location
         stopThread = false;
         GetLocationRunnable runnable = new GetLocationRunnable();
         new Thread(runnable).start();
 
+        // create text files in cache
         locationTxt = new File(getCacheDir() + "/locationData.txt");
         displayLocationTxt = new File(getCacheDir() + "/displayLocationTxt.txt");
+
 
         txtHtRate = (TextView) findViewById(R.id.htRate);
         txtProgress = (TextView) findViewById(R.id.txtProgress);
         TextView txtProgress2 = (TextView) findViewById(R.id.txtPastProgress);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
-
         homeConnectStatus = (TextView) findViewById(R.id.homeConnectStatus);
 
         Intent mIntent = getIntent();
@@ -188,6 +204,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             if (connectStatus = true){
                 homeConnectStatus.setText("Device is Connected");
                 homeConnectStatus.setTextColor(Color.GREEN);
+
             }
 
         }
@@ -429,6 +446,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             removeDataFromPref();
         }
 
+
+
         NavigationBar();
         getData();
     }
@@ -462,14 +481,13 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     //refresh stressed popup activity
     private final Runnable m_RunnableStressedPopup = new Runnable() {
+
         public void run() {
 
-            if (stressedIndex > 50) {
-                openDialog();
-            }
+            Home.this.mHandlerStressedPopUp.postDelayed(m_RunnableStressedPopup, 1000);
 
-            Home.this.mHandlerStressedPopUp.postDelayed(m_RunnableStressedPopup, 20000);
         }
+
     };
 
 
@@ -486,9 +504,11 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 //    };
 
 
+
+
+
     @Override
     protected void onPause() {
-        super.onPause();
 
         // for HR refresh
         mHandler.removeCallbacks(m_Runnable);
@@ -499,10 +519,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         finish();
 
 
-        //call thread method
+        //call thread method - get loaction
         stopThread = false;
         GetLocationRunnable runnable = new GetLocationRunnable();
         new Thread(runnable).start();
+
+        super.onPause();
     }
 
 
@@ -520,6 +542,11 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
     }
 
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
 
     // show landing page stressed index
     public void updateLandingStressedIndex() {
@@ -528,9 +555,9 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         stressedIndex = prefs.getInt("stressedIndex", 0);
         streesIndexTV.setText(String.valueOf(stressedIndex));
 
-        Log.d(TAG, "=======Stressed index========" + stressedIndex);
 
-        //writeHRData();
+        stressedIndexAvg = prefs.getInt("stressedIndexAvg", 0);
+        Log.d(TAG, "StressedIndex avg =  " + stressedIndexAvg);
 
     }
 
@@ -554,7 +581,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
         //heartRateList.add(completeList);
 
 
-        //Writing data to file
+        //Writing data to txt file
         try {
             filNameHeartRate = new File(getCacheDir() + "/heartRateReport1212.txt");
             //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
@@ -607,6 +634,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     }
 
     // update coins in CALMable
+
 //    public void updateLandingCoins() {
 //
 //        FirebaseFirestore db = FirebaseFirestore.getInstance();

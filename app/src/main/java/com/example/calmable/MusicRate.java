@@ -91,8 +91,6 @@ public class MusicRate extends AppCompatActivity {
         songName = extras.getString("songName");
 
         Log.d("TAG", "song---)>: " + url);
-        Log.d("TAG", "song---)>: " + url);
-        Log.d("TAG", "song---)>: " + songName);
         Log.d("TAG", "song---)>: " + songName);
 
 
@@ -186,7 +184,7 @@ public class MusicRate extends AppCompatActivity {
         SharedPreferences prefsReport = getSharedPreferences("prefsReport", MODE_PRIVATE);
         int firstStartReport = prefsTimeMem.getInt("firstStartReport", 0);
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();

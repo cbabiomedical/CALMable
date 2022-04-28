@@ -66,14 +66,12 @@ public class HpyChtReportActivity extends AppCompatActivity {
         }else{
             while (cursor.moveToNext()){
 
-
-
                 list_location_id.add(cursor.getString(0));
                 list_event.add(cursor.getString(3));
                 list_rate.add(cursor.getString(1));
                 list_time.add(cursor.getString(2));
 
-                Collections.sort(list_event);
+                //Collections.sort(list_event);
 
                 Log.d("TAG", "---id------****---------"+list_location_id);
                 Log.d("TAG", "---event------****---------"+list_event);

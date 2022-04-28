@@ -9,9 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.calmable.HpyChtReportActivity;
-import com.example.calmable.HpyChtUpdateActivity;
-
 public class HpyChtReportDB extends SQLiteOpenHelper {
 
     private Context context;
@@ -67,7 +64,7 @@ public class HpyChtReportDB extends SQLiteOpenHelper {
 //                null, null, null, date + " ASC, " + semester  + " ASC");
 
 
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COLUMN_RATE + " DESC";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;

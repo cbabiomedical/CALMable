@@ -49,11 +49,39 @@ public class HpyChtReportAdapter extends RecyclerView.Adapter<HpyChtReportAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
 
-        holder.location_id.setText(String.valueOf(list_id.get(position)));
-        holder.hpy_event.setText(String.valueOf(list_event.get(position)));
-        holder.hpy_rate.setText(String.valueOf(list_rate.get(position)));
-        holder.hpy_time.setText(String.valueOf(list_time.get(position)));
+        holder.location_id.setText(String.valueOf(list_id.get(position)));      //id
+        holder.hpy_event.setText(String.valueOf(list_event.get(position)));     //rate
+        holder.hpy_rate.setText(String.valueOf(list_rate.get(position)));       //time
+        holder.hpy_time.setText(String.valueOf(list_time.get(position)));       //event
         //holder.seekBarReportRate.setProgress(Integer.parseInt(String.valueOf(list_event.get(position))))
+
+        Log.d("TAG", "--happiness rates--" + String.valueOf(list_event.get(position)));
+
+        holder.seekBarReportRate.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+               // int rate = (int) list_event.get(position);
+                int rate = Integer.parseInt(String.valueOf(list_event.get(position)));
+
+                progress = rate;
+
+                Log.d("TAG", "_______AAAAA_____AAAAA______" + rate);
+                Log.d("TAG", "_______AAAAA_____AAAAA______" + rate);
+                Log.d("TAG", "_______AAAAA_____AAAAA______" + rate);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
     }
 
@@ -76,7 +104,7 @@ public class HpyChtReportAdapter extends RecyclerView.Adapter<HpyChtReportAdapte
             hpy_rate = itemView.findViewById(R.id.hpyChtRateRpTV);
             hpy_time = itemView.findViewById(R.id.hpyChtTimeRpTV);
             mainLayout = itemView.findViewById(R.id.HptChtReport);
-            seekBarReportRate = itemView.findViewById(R.id.happyRate);
+            seekBarReportRate = itemView.findViewById(R.id.seekBarReportRate);
 
 
 

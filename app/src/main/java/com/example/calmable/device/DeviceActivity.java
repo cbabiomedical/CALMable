@@ -1,9 +1,13 @@
 package com.example.calmable.device;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.crrepa.ble.CRPBleClient;
 import com.crrepa.ble.conn.CRPBleConnection;
@@ -77,7 +83,7 @@ public class DeviceActivity extends AppCompatActivity {
     public static ArrayList<String> listOfTxtMusicReportData;
     public static ArrayList<String> videoReportData;
     public static ArrayList<String> musicReportData;
-    File filNameHeartRate, fileNameServerReportData, fileNameVideoReportData, fileNameMusicReportData;
+    File filNameHeartRate, fileNameServerReportData, fileNameVideoReportData, fileNameMusicReportData, fileNameStressedIndexs;
     JsonPlaceHolder jsonPlaceHolder;
     public static ArrayList videoRelaxation_index = new ArrayList();
     ArrayList videoIntervention = new ArrayList();
@@ -93,6 +99,7 @@ public class DeviceActivity extends AppCompatActivity {
     boolean stopThread = false;
     String timeAndHR, serverData;
     int q;
+    int stressedIndex;
 
     ProgressDialog mProgressDialog;
     CRPBleClient mBleClient;
@@ -100,6 +107,8 @@ public class DeviceActivity extends AppCompatActivity {
     CRPBleConnection mBleConnection;
     boolean isUpgrade = false;
     public static boolean connectStatus = false;
+
+
 
     @BindView(R.id.tv_connect_state)
     TextView tvConnectState;
@@ -136,6 +145,7 @@ public class DeviceActivity extends AppCompatActivity {
         //button2 = findViewById(R.id.btn_start_measure_heart_rate);
 
         connectStatus = true;
+
 
         ButterKnife.bind(this);
         //initView();
@@ -207,6 +217,9 @@ public class DeviceActivity extends AppCompatActivity {
                         fileNameServerReportData = new File(getCacheDir() + "/ServerReportData.txt");
                         fileNameVideoReportData = new File(getCacheDir() + "/ServerVideoReportData.txt");
                         fileNameMusicReportData = new File(getCacheDir() + "/ServerMusicReportData.txt");
+                        // create file for stressed index pop up
+                        fileNameStressedIndexs = new File(getCacheDir() + "/fileNameStressedIndexs.txt");
+
 
                         startActivity(new Intent(getApplicationContext(), Home.class));
                         Toast.makeText(getApplicationContext(), "Device successfully connected", Toast.LENGTH_SHORT).show();
@@ -226,6 +239,7 @@ public class DeviceActivity extends AppCompatActivity {
                         tvConnectMsg1.setText("Your watch is not connected.");
                         tvConnectMsg2.setText("Go back and try again");
                         //imgDisconnect.setVisibility(View.VISIBLE);
+
                         connectStatus = false;
                         break;
                 }
@@ -368,6 +382,7 @@ public class DeviceActivity extends AppCompatActivity {
             //To save
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calmable", 0);
             SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("heartRate", rate);
             editor.putString("timeAndHR2", timeAndHR);
             editor.commit();
 
@@ -378,8 +393,6 @@ public class DeviceActivity extends AppCompatActivity {
             Log.d("LISTCHECK", String.valueOf(listOFServerHRData));
             String rating=q+","+measuringHR+",";
             Log.d("Rate",rating);
-
-
 
 
             if (MusicPlayer.isStarted) {
@@ -479,8 +492,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -604,8 +616,7 @@ public class DeviceActivity extends AppCompatActivity {
         musicIntervention.add(11, currentDateandTime);
 
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -789,26 +800,11 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-
-        // setting custom timeouts
-//        OkHttpClient.Builder client = new OkHttpClient.Builder();
-//        client.connectTimeout(15, TimeUnit.SECONDS);
-//        client.readTimeout(15, TimeUnit.SECONDS);
-//        client.writeTimeout(15, TimeUnit.SECONDS);
-//
-//        if (retrofit == null) {
-//            retrofit = new Retrofit.Builder()
-//                    .baseUrl("http://192.168.8.186:5000/")
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .client(client.build())
-//                    .build();
-//        }
 
 
         jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
@@ -819,6 +815,7 @@ public class DeviceActivity extends AppCompatActivity {
         Log.d(TAG, "Current Date and Time--->" + currentDateandTime);
         Log.d("List", String.valueOf(listOfTxtData));
 
+        //add current data and time
         listOfTxtData.add(11, currentDateandTime);
 
         JSONArray jsArray = new JSONArray(listOfTxtData);
@@ -849,16 +846,14 @@ public class DeviceActivity extends AppCompatActivity {
                 serverData = String.valueOf(response.body());
                 Log.d(TAG, "server data string : " + serverData);
 
+
+                // take stressed index
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
-
                 LinkedTreeMap treeMap = new LinkedTreeMap();
-
                 treeMap = (LinkedTreeMap) list.get(0);
-
                 Double y = (Double) treeMap.get("stressed");
-
-                int stressedIndex = (int) Math.round(y);
+                stressedIndex = (int) Math.round(y);
 
                 Log.d(TAG, "int stressed index -->" + stressedIndex);
 
@@ -867,6 +862,9 @@ public class DeviceActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor1 = getSharedPreferences("com.example.calmable", MODE_PRIVATE).edit();
                 editor1.putInt("stressedIndex", stressedIndex);
                 editor1.apply();
+
+
+                StressedIndexNotification();
 
 
                 listOfServerReportData = new ArrayList<>();
@@ -942,8 +940,7 @@ public class DeviceActivity extends AppCompatActivity {
 //                .readTimeout(100,TimeUnit.SECONDS).build();
 
 
-
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -957,7 +954,7 @@ public class DeviceActivity extends AppCompatActivity {
 //
 //        if (retrofit == null) {
 //            retrofit = new Retrofit.Builder()
-//                    .baseUrl("http://192.168.8.186:5000/")
+//                    .baseUrl("http://192.168.8.181:5000/")
 //                    .addConverterFactory(GsonConverterFactory.create())
 //                    .client(client.build())
 //                    .build();
@@ -1138,4 +1135,163 @@ public class DeviceActivity extends AppCompatActivity {
         }
 
     }
+
+
+    public void StressedIndexNotification() {
+
+        ArrayList<Integer> listOfStressedIndex = new ArrayList<>();
+        listOfStressedIndex.add(stressedIndex);
+
+        //Writing data to txt file
+        try {
+            //File filNameHeartRate = new File(getCacheDir() + "/serverData.txt");
+            //File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            fileNameStressedIndexs.createNewFile();
+            if (!fileNameStressedIndexs.exists()) {
+                fileNameStressedIndexs.mkdirs();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileNameStressedIndexs, true));
+            int size = listOfStressedIndex.size();
+
+            writer.newLine();
+
+            for (int i = 0; i < size; i++) {
+                writer.write(listOfStressedIndex.get(i).toString());
+                Log.d("LISTOFSTRESSEDINDEX", listOfStressedIndex.get(i).toString());
+                //writer.write(",");
+                writer.flush();
+                //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+            }
+
+            writer.close();
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+
+        // read data
+        // read txt file server data
+        ArrayList<Integer> listOfTxtStressedIndexData = new ArrayList<>();
+        int arrSizeStressedIndex;
+
+        Scanner s = null;
+        try {
+            s = new Scanner(new File(getCacheDir() + "/fileNameStressedIndexs.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (s.hasNextInt()) {
+            listOfTxtStressedIndexData.add(s.nextInt());
+            Log.d("SERVERREPORTADD", String.valueOf(listOfTxtStressedIndexData));
+        }
+
+        arrSizeStressedIndex = listOfTxtStressedIndexData.size();
+        Log.d(TAG, "stressed index : " + listOfTxtStressedIndexData);
+        s.close();
+
+
+        int sumOfStressedIndex = 0;
+        int avgOfStressedIndex = 0;
+
+
+        if (arrSizeStressedIndex == 10) {
+
+            // take sum of arraylist
+            for (int num : listOfTxtStressedIndexData) {
+                sumOfStressedIndex += num;
+            }
+
+            // cal avg of stressed indexs
+            avgOfStressedIndex = sumOfStressedIndex / arrSizeStressedIndex;
+
+
+            Log.d(TAG, "AVG of stressed indexes  = " + avgOfStressedIndex);
+
+            //To save stressed index average
+            SharedPreferences.Editor editor1 = getSharedPreferences("com.example.calmable", MODE_PRIVATE).edit();
+            editor1.putInt("stressedIndexAvg", avgOfStressedIndex);
+            editor1.apply();
+
+
+            Log.d(TAG, "stressedIndex : " + stressedIndex);
+
+
+            if (stressedIndex > avgOfStressedIndex) {
+
+                createNotificationChanel();
+
+                /**
+                 *  when click notification call special method
+                 *
+                 */
+                Intent notificationIntent = new Intent(getApplicationContext(), Home.class);
+                notificationIntent.putExtra("fromStressedIndexNotification", true);
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+                /**
+                 *   when click notification open new activity use below code
+                 *   there is issue when come to activity device is disconnected
+                 */
+
+                // Create an Intent for the activity you want to start
+//                Intent resultIntent = new Intent(this, Home.class);
+                // Create the TaskStackBuilder and add the intent, which inflates the back stack
+//                TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+//                stackBuilder.addNextIntentWithParentStack(resultIntent);
+//                // Get the PendingIntent containing the entire back stack
+//                PendingIntent resultPendingIntent =
+//                        stackBuilder.getPendingIntent(0,
+//                                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+                NotificationCompat.Builder builder1 = new NotificationCompat.Builder(this, "CALMable")
+                        .setSmallIcon(R.drawable.logo_calmable)
+                        .setContentTitle("Stress Alert!")
+                        .setContentText("Are you engaged in any physical activity?")
+                        .setAutoCancel(true)
+                        .setContentIntent(pendingIntent)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+
+                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+
+                notificationManagerCompat.notify(100, builder1.build());
+
+            }
+
+
+        } else if (arrSizeStressedIndex >= 10) {
+            // clear txt file
+            PrintWriter writer;
+            try {
+                writer = new PrintWriter(getCacheDir() + "/fileNameStressedIndexs.txt");
+                writer.print("");
+                writer.close();
+            } catch (
+                    FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+
+    public void createNotificationChanel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            CharSequence name = "studentChanel";
+            String description = "Chanel for student notification";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("CALMable", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+    }
+
 }
