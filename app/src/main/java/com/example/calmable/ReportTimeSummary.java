@@ -38,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -167,16 +168,21 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                 if (dataSnapshot1.getKey().equals("time")) {
                                     dataSnapshot1.getValue();
-//                                    String f = (String) dataSnapshot1.getValue();
-
-//                                    String first_word = String.valueOf(dataSnapshot1.getValue()).split(":")[0];
-//
-//                                    Log.d("------HOUR-----", first_word);
+                                    String sm = (String) dataSnapshot1.getValue();
+                                    Log.d("------timesm-----", sm);
+                                    Date date = null;
+                                    try {
+                                        date = new SimpleDateFormat("hh:mm:ss a").parse(sm);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+                                    String newString = new SimpleDateFormat("H").format(date);
+                                    Log.d("----timehr-----", newString);
 
                                     Log.d("------Monday-----", "MondayTime");
                                     Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
-                                    element1.add(dataSnapshot1.getValue());
+                                    element1.add(newString);
                                     Log.d("-------elements--------", String.valueOf(element1));
                                     Log.d("------Monday-----", "MondayTime1");
                                 }
@@ -211,12 +217,24 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                         if (dataSnapshot1.getKey().equals("time")) {
                                             dataSnapshot1.getValue();
+                                            String sm = (String) dataSnapshot1.getValue();
+                                            Log.d("------timesm-----", sm);
+                                            Date date = null;
+                                            try {
+                                                date = new SimpleDateFormat("hh:mm:ss a").parse(sm);
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+                                            String newString = new SimpleDateFormat("H").format(date);
+                                            Log.d("----timehr-----", newString);
+
+                                            Log.d("------Monday-----", "MondayTime");
                                             Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
-                                            element1.add(dataSnapshot1.getValue());
+                                            element1.add(newString);
                                             Log.d("-------elements--------", String.valueOf(element1));
+                                            Log.d("------Monday-----", "MondayTime1");
                                         }
-
 
                                         //Log.d("-------elements--------", String.valueOf(dataSnapshot1.child("person").getValue()));
                                     }
@@ -245,10 +263,23 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                                 if (dataSnapshot1.getKey().equals("time")) {
                                                     dataSnapshot1.getValue();
+                                                    String sm = (String) dataSnapshot1.getValue();
+                                                    Log.d("------timesm-----", sm);
+                                                    Date date = null;
+                                                    try {
+                                                        date = new SimpleDateFormat("hh:mm:ss a").parse(sm);
+                                                    } catch (ParseException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                    String newString = new SimpleDateFormat("H").format(date);
+                                                    Log.d("----timehr-----", newString);
+
+                                                    Log.d("------Monday-----", "MondayTime");
                                                     Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
-                                                    element1.add(dataSnapshot1.getValue());
+                                                    element1.add(newString);
                                                     Log.d("-------elements--------", String.valueOf(element1));
+                                                    Log.d("------Monday-----", "MondayTime1");
                                                 }
 
 
@@ -279,10 +310,23 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                                         if (dataSnapshot1.getKey().equals("time")) {
                                                             dataSnapshot1.getValue();
+                                                            String sm = (String) dataSnapshot1.getValue();
+                                                            Log.d("------timesm-----", sm);
+                                                            Date date = null;
+                                                            try {
+                                                                date = new SimpleDateFormat("hh:mm:ss a").parse(sm);
+                                                            } catch (ParseException e) {
+                                                                e.printStackTrace();
+                                                            }
+                                                            String newString = new SimpleDateFormat("H").format(date);
+                                                            Log.d("----timehr-----", newString);
+
+                                                            Log.d("------Monday-----", "MondayTime");
                                                             Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
-                                                            element1.add(dataSnapshot1.getValue());
+                                                            element1.add(newString);
                                                             Log.d("-------elements--------", String.valueOf(element1));
+                                                            Log.d("------Monday-----", "MondayTime1");
                                                         }
 
 
@@ -313,10 +357,23 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                                                 if (dataSnapshot1.getKey().equals("time")) {
                                                                     dataSnapshot1.getValue();
+                                                                    String sm = (String) dataSnapshot1.getValue();
+                                                                    Log.d("------timesm-----", sm);
+                                                                    Date date = null;
+                                                                    try {
+                                                                        date = new SimpleDateFormat("hh:mm:ss a").parse(sm);
+                                                                    } catch (ParseException e) {
+                                                                        e.printStackTrace();
+                                                                    }
+                                                                    String newString = new SimpleDateFormat("H").format(date);
+                                                                    Log.d("----timehr-----", newString);
+
+                                                                    Log.d("------Monday-----", "MondayTime");
                                                                     Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
-                                                                    element1.add(dataSnapshot1.getValue());
+                                                                    element1.add(newString);
                                                                     Log.d("-------elements--------", String.valueOf(element1));
+                                                                    Log.d("------Monday-----", "MondayTime1");
                                                                 }
 
 
@@ -347,10 +404,23 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                                                         if (dataSnapshot1.getKey().equals("time")) {
                                                                             dataSnapshot1.getValue();
+                                                                            String sm = (String) dataSnapshot1.getValue();
+                                                                            Log.d("------timesm-----", sm);
+                                                                            Date date = null;
+                                                                            try {
+                                                                                date = new SimpleDateFormat("hh:mm:ss a").parse(sm);
+                                                                            } catch (ParseException e) {
+                                                                                e.printStackTrace();
+                                                                            }
+                                                                            String newString = new SimpleDateFormat("H").format(date);
+                                                                            Log.d("----timehr-----", newString);
+
+                                                                            Log.d("------Monday-----", "MondayTime");
                                                                             Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
-                                                                            element1.add(dataSnapshot1.getValue());
+                                                                            element1.add(newString);
                                                                             Log.d("-------elements--------", String.valueOf(element1));
+                                                                            Log.d("------Monday-----", "MondayTime1");
                                                                         }
 
 
@@ -381,10 +451,23 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                                                                 if (dataSnapshot1.getKey().equals("time")) {
                                                                                     dataSnapshot1.getValue();
+                                                                                    String sm = (String) dataSnapshot1.getValue();
+                                                                                    Log.d("------timesm-----", sm);
+                                                                                    Date date = null;
+                                                                                    try {
+                                                                                        date = new SimpleDateFormat("hh:mm:ss a").parse(sm);
+                                                                                    } catch (ParseException e) {
+                                                                                        e.printStackTrace();
+                                                                                    }
+                                                                                    String newString = new SimpleDateFormat("H").format(date);
+                                                                                    Log.d("----timehr-----", newString);
+
+                                                                                    Log.d("------Monday-----", "MondayTime");
                                                                                     Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
-                                                                                    element1.add(dataSnapshot1.getValue());
+                                                                                    element1.add(newString);
                                                                                     Log.d("-------elements--------", String.valueOf(element1));
+                                                                                    Log.d("------Monday-----", "MondayTime1");
                                                                                 }
 
 
