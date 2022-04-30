@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/sea_bg"
+    android:background="@drawable/bg15"
     tools:context=".ReportPlaceSummary">
 
 
@@ -57,7 +57,7 @@
                 android:layout_weight="4"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="Time"
+                android:text="Time (Hour)"
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
