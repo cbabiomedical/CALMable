@@ -62,7 +62,9 @@ public class CalmChartActivity extends AppCompatActivity {
                     CalmChart calmChart = dataSnapshot.getValue(CalmChart.class);
                     listOfCalmChrt.add(calmChart);
 
-                    Log.d("TAG", "++++++++++++: " + listOfCalmChrt);
+                    for(int i = 0; i<listOfCalmChrt.size();i++)
+
+                    Log.d("TAG", "calm chart data  : " + listOfCalmChrt);
 
                 }
 

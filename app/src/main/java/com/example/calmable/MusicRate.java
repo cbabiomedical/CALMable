@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -83,6 +84,9 @@ public class MusicRate extends AppCompatActivity {
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
+
+
+
         //-----
         Bundle extras = getIntent().getExtras();
 
@@ -92,6 +96,7 @@ public class MusicRate extends AppCompatActivity {
 
         Log.d("TAG", "song---)>: " + url);
         Log.d("TAG", "song---)>: " + songName);
+
 
 
         ratingStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -226,7 +231,6 @@ public class MusicRate extends AppCompatActivity {
 
                 Log.d("TAG", "-------time to relax index-------" + timeToRelaxIndex);
 
-
                 // calm chart
                 HashMap<String, Object> calmChartData = new HashMap<>();
                 calmChartData.put("songName", songName);
@@ -236,15 +240,15 @@ public class MusicRate extends AppCompatActivity {
                 Log.d("TAG", "++++++++++++calm chart data+++++++++: " + calmChartData);
 
 
-//                child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-
-
+                // Saving Time Stressed and Relaxed in Firebase
                 CalmChart calmChart = new CalmChart(songName,  url,  timeToRelaxIndex);
 
-                FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("CalmChart").push().setValue(calmChart)
+
+                FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("CalmChart").child(songName).setValue(calmChart)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
+
                                 //Toast.makeText(UserPreferences.this, "Successful", Toast.LENGTH_SHORT).show();
                                 //Intent intent=new Intent(UserPreferences.this,ProfileActivity.class);
                                 //startActivity(intent);

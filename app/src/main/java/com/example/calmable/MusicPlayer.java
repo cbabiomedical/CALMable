@@ -1,12 +1,5 @@
 package com.example.calmable;
 
-import static android.os.ParcelFileDescriptor.MODE_APPEND;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
@@ -28,6 +21,11 @@ import android.view.animation.TranslateAnimation;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.chibde.visualizer.SquareBarVisualizer;
 import com.example.calmable.model.FavModel;
@@ -153,6 +151,12 @@ public class MusicPlayer extends AppCompatActivity {
 
             Log.d("TAG", "name : " + name);
             Log.d("TAG", "url : " + uri);
+
+
+            //To save stressed index average
+            SharedPreferences.Editor editor1 = getSharedPreferences("com.example.calmable", MODE_PRIVATE).edit();
+            editor1.putString("songNameSpre", name);
+            editor1.apply();
 
         } else {
             Log.d("ERROR", "Error in getting null value");

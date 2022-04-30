@@ -557,7 +557,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
 
         stressedIndexAvg = prefs.getInt("stressedIndexAvg", 0);
-        Log.d(TAG, "StressedIndex avg =  " + stressedIndexAvg);
+        //Log.d(TAG, "StressedIndex avg =  " + stressedIndexAvg);
 
     }
 

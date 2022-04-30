@@ -52,7 +52,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:onClick="btnGoHpyChtReport"
-                    android:text="Happiness" />
+                    android:text="Happiness \nChart" />
 
 
                 <Button
@@ -62,7 +62,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:onClick="btnGoHpyCalmChrt"
-                    android:text="Calm Chart" />
+                    android:text="Calm \nChart" />
 
                 <Button
                     android:id="@+id/btnStress"
@@ -71,7 +71,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:onClick="btnStressChart"
-                    android:text="Stress Chart" />
+                    android:text="Stress \nChart" />
 
             </LinearLayout>
 
