@@ -24,7 +24,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -189,7 +188,7 @@ public class MusicRate extends AppCompatActivity {
         SharedPreferences prefsReport = getSharedPreferences("prefsReport", MODE_PRIVATE);
         int firstStartReport = prefsTimeMem.getInt("firstStartReport", 0);
 
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.181:5000/")
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.186:5000/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -218,7 +217,6 @@ public class MusicRate extends AppCompatActivity {
                 LinkedTreeMap treeMap = new LinkedTreeMap();
                 treeMap = (LinkedTreeMap) list.get(0);
                 Log.d("TreeMap", String.valueOf(treeMap));
-
 
 
                 // get time to relax index

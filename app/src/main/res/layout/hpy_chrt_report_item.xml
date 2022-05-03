@@ -53,7 +53,18 @@
             android:id="@+id/seekBarReportRate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="10"/>
+            android:max="10"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/hpyProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="10"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="21dp" />
     </LinearLayout>
 
 </RelativeLayout>

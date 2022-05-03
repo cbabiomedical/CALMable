@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -53,6 +54,8 @@ public class HpyChtReportAdapter extends RecyclerView.Adapter<HpyChtReportAdapte
         holder.hpy_event.setText(String.valueOf(list_event.get(position)));     //rate
         holder.hpy_rate.setText(String.valueOf(list_rate.get(position)));       //time
         holder.hpy_time.setText(String.valueOf(list_time.get(position)));       //event
+
+        holder.progressBar.setProgress(Integer.valueOf(String.valueOf(list_event.get(position))));
         //holder.seekBarReportRate.setProgress(Integer.parseInt(String.valueOf(list_event.get(position))))
 
         Log.d("TAG", "--happiness rates--" + String.valueOf(list_event.get(position)));
@@ -95,6 +98,7 @@ public class HpyChtReportAdapter extends RecyclerView.Adapter<HpyChtReportAdapte
         TextView location_id, hpy_event , hpy_rate, hpy_time;
         RelativeLayout mainLayout;
         SeekBar seekBarReportRate;
+        ProgressBar progressBar;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -103,6 +107,7 @@ public class HpyChtReportAdapter extends RecyclerView.Adapter<HpyChtReportAdapte
             hpy_event = itemView.findViewById(R.id.hpyChtEventRpTV);
             hpy_rate = itemView.findViewById(R.id.hpyChtRateRpTV);
             hpy_time = itemView.findViewById(R.id.hpyChtTimeRpTV);
+            progressBar = itemView.findViewById(R.id.hpyProgressBar);
             mainLayout = itemView.findViewById(R.id.HptChtReport);
             seekBarReportRate = itemView.findViewById(R.id.seekBarReportRate);
 
