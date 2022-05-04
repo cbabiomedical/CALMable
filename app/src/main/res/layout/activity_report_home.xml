@@ -28,52 +28,63 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:fontFamily="@font/droidserif_italic"
                 android:gravity="center"
                 android:text=""
                 android:layout_marginTop="16dp"
                 android:textColor="@color/dark_blue_300"
-                android:textSize="15sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
 
-            <LinearLayout
-                android:id="@+id/llbtns"
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvDate"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:gravity="center">
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="16dp"
+                android:fadeScrollbars="false">
 
-                <Button
-                    android:id="@+id/btnHpy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:onClick="btnGoHpyChtReport"
-                    android:text="Happiness \nChart" />
+                <LinearLayout
+                    android:id="@+id/llbtns"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
 
-                <Button
-                    android:id="@+id/btnClmChrt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:onClick="btnGoHpyCalmChrt"
-                    android:text="Calm \nChart" />
+                    <Button
+                        android:id="@+id/btnHpy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:onClick="btnGoHpyChtReport"
+                        android:text="Happiness \nChart" />
 
-                <Button
-                    android:id="@+id/btnStress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:onClick="btnStressChart"
-                    android:text="Stress \nChart" />
 
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/btnClmChrt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:onClick="btnGoHpyCalmChrt"
+                        android:text="Calm \nChart" />
+
+                    <Button
+                        android:id="@+id/btnStress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:onClick="btnStressChart"
+                        android:text="Stress \nChart" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
 
             <RelativeLayout
@@ -115,7 +126,7 @@
                 android:id="@+id/barChartDaily"
                 android:layout_width="325dp"
                 android:layout_height="350dp"
-                android:layout_below="@+id/llbtns"
+                android:layout_below="@+id/horizontalScrollView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
@@ -182,6 +193,7 @@
                     android:layout_marginTop="600dp"
                     android:background="#000000" />
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

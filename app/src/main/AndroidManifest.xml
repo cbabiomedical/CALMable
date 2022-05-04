@@ -33,36 +33,48 @@
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".MusicRateWithOutDeviceActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReportTimeSummary"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ReportPlaceSummary"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ReportSummary"
             android:exported="true" />
         <activity
             android:name=".StressedNotes"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CalmChartActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Calming396HzActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".VideoReportMonthly"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".VideoReportWeekly"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".VideoReportDaily"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity android:name=".VideoReportYearly" />
         <activity
             android:name=".HpyChtReportActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HpyChtUpdateActivity"
             android:exported="false"
@@ -468,7 +480,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".concentration_music"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MusicPlayer"
             android:exported="false"

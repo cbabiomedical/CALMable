@@ -199,8 +199,8 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
 
         Log.d("TAG", "------------>onCreate: " + finalRateff);
 
-        if (DeviceActivity.connectStatus) {
 
+        if (DeviceActivity.connectStatus) {
             if (connectStatus = true){
                 homeConnectStatus.setText("Device is Connected");
                 homeConnectStatus.setTextColor(Color.GREEN);

@@ -1,5 +1,7 @@
 package com.example.calmable;
 
+import static com.example.calmable.device.DeviceActivity.connectStatus;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
@@ -7,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
@@ -28,6 +31,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.chibde.visualizer.SquareBarVisualizer;
+import com.example.calmable.device.DeviceActivity;
 import com.example.calmable.model.FavModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
@@ -241,47 +245,156 @@ public class MusicPlayer extends AppCompatActivity {
                     }
 
 
+                    if (DeviceActivity.connectStatus) {
+                        if (connectStatus = true){
+
+
+                            /**
+                             * after end music directory
+                             */
+                            if (currentPosition == totalDuration) {
+                                mediaPlayer.stop();
+                                imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
+
+
+                                //to go to rate page
+                                Intent intent = new Intent(getApplicationContext(), MusicRate.class);
+                                intent.putExtra("songName", name);
+                                intent.putExtra("url", uri);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                                Log.d("TAG", "---------------Done----------------" );
+                                Log.d("TAG", "---------------Done----------------" );
+                                Log.d("TAG", "---------------Done----------------" );
+
+                            }
+
+
+
+                            if (currentPosition > totalDuration) {
+                                mediaPlayer.stop();
+
+                                imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
+                                //Intent intent = new Intent(getApplicationContext(), concentration_music.class);
+                                //startActivity(intent);
+                                String notification = "Media finished Playing";
+                                NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
+                                        .setSmallIcon(R.drawable.ic_notifications).setContentTitle("New Notification").setContentText(notification)
+                                        .setAutoCancel(true);
+                                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                notificationManager.notify(0, builder.build());
+                                isStarted = false;
+                                //to go to rate page
+                                Intent intent = new Intent(getApplicationContext(), MusicRate.class);
+                                intent.putExtra("songName", name);
+                                intent.putExtra("url", uri);
+                                startActivity(intent);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                                //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                            }
+
+
+
+                        }
+
+                    } else {
+
+
+                        /**
+                         * after end music directory
+                         */
+                        if (currentPosition == totalDuration) {
+                            mediaPlayer.stop();
+                            imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
+
+
+                            //to go to rate page
+                            Intent intent = new Intent(getApplicationContext(), MusicRateWithOutDeviceActivity.class);
+                            intent.putExtra("songName", name);
+                            intent.putExtra("url", uri);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                            Log.d("TAG", "---------------Done----------------" );
+                            Log.d("TAG", "---------------Done----------------" );
+                            Log.d("TAG", "---------------Done----------------" );
+
+                        }
+
+
+
+                        if (currentPosition > totalDuration) {
+                            mediaPlayer.stop();
+
+                            imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
+                            //Intent intent = new Intent(getApplicationContext(), concentration_music.class);
+                            //startActivity(intent);
+                            String notification = "Media finished Playing";
+                            NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
+                                    .setSmallIcon(R.drawable.ic_notifications).setContentTitle("New Notification").setContentText(notification)
+                                    .setAutoCancel(true);
+                            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                            notificationManager.notify(0, builder.build());
+                            isStarted = false;
+                            //to go to rate page
+                            Intent intent = new Intent(getApplicationContext(), MusicRateWithOutDeviceActivity.class);
+                            intent.putExtra("songName", name);
+                            intent.putExtra("url", uri);
+                            startActivity(intent);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                        }
+
+                    }
+
                     /**
                      * after end music directory
                      */
-                    if (currentPosition == totalDuration) {
-                        mediaPlayer.stop();
-                        imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
+//                    if (currentPosition == totalDuration) {
+//                        mediaPlayer.stop();
+//                        imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
+//
+//
+//                        //to go to rate page
+//                        Intent intent = new Intent(getApplicationContext(), MusicRate.class);
+//                        intent.putExtra("songName", name);
+//                        intent.putExtra("url", uri);
+//                        startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+//
+//                    }
 
-
-                        //to go to rate page
-                        Intent intent = new Intent(getApplicationContext(), MusicRate.class);
-                        intent.putExtra("songName", name);
-                        intent.putExtra("url", uri);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                    }
-
-                    if (currentPosition > totalDuration) {
-                        mediaPlayer.stop();
-
-                        imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
-                        //Intent intent = new Intent(getApplicationContext(), concentration_music.class);
-                        //startActivity(intent);
-                        String notification = "Media finished Playing";
-                        NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
-                                .setSmallIcon(R.drawable.ic_notifications).setContentTitle("New Notification").setContentText(notification)
-                                .setAutoCancel(true);
-                        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        notificationManager.notify(0, builder.build());
-                        isStarted = false;
-                        //to go to rate page
-                        Intent intent = new Intent(getApplicationContext(), MusicRate.class);
-                        intent.putExtra("songName", name);
-                        intent.putExtra("url", uri);
-                        startActivity(intent);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-                    }
+//                    if (currentPosition > totalDuration) {
+//                        mediaPlayer.stop();
+//
+//                        imageViewPlayPause.setBackgroundResource(R.drawable.ic_play_circle);
+//                        //Intent intent = new Intent(getApplicationContext(), concentration_music.class);
+//                        //startActivity(intent);
+//                        String notification = "Media finished Playing";
+//                        NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
+//                                .setSmallIcon(R.drawable.ic_notifications).setContentTitle("New Notification").setContentText(notification)
+//                                .setAutoCancel(true);
+//                        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//                        notificationManager.notify(0, builder.build());
+//                        isStarted = false;
+//                        //to go to rate page
+//                        Intent intent = new Intent(getApplicationContext(), MusicRate.class);
+//                        intent.putExtra("songName", name);
+//                        intent.putExtra("url", uri);
+//                        startActivity(intent);
+//                        startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+//
+//                        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//
+//                    }
 
                 }
             };
