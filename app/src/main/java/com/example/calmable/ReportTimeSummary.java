@@ -183,7 +183,7 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                     Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
                                     element1.add(newString);
-                                    Log.d("-------elements--------", String.valueOf(element1));
+                                    Log.d("-------element1--------", String.valueOf(element1));
                                     Log.d("------Monday-----", "MondayTime1");
                                 }
 
@@ -231,6 +231,7 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                             Log.d("------Monday-----", "MondayTime");
                                             Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
+
                                             element1.add(newString);
                                             Log.d("-------elements--------", String.valueOf(element1));
                                             Log.d("------Monday-----", "MondayTime1");
@@ -276,6 +277,7 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                                     Log.d("------Monday-----", "MondayTime");
                                                     Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
+
 
                                                     element1.add(newString);
                                                     Log.d("-------elements--------", String.valueOf(element1));
@@ -324,6 +326,7 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                             Log.d("------Monday-----", "MondayTime");
                                                             Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
+
                                                             element1.add(newString);
                                                             Log.d("-------elements--------", String.valueOf(element1));
                                                             Log.d("------Monday-----", "MondayTime1");
@@ -370,6 +373,7 @@ public class ReportTimeSummary extends AppCompatActivity  {
 
                                                                     Log.d("------Monday-----", "MondayTime");
                                                                     Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
+
 
                                                                     element1.add(newString);
                                                                     Log.d("-------elements--------", String.valueOf(element1));
@@ -465,6 +469,7 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                     Log.d("------Monday-----", "MondayTime");
                                                                                     Log.d("------time-----", String.valueOf(dataSnapshot1.getValue()));
 
+
                                                                                     element1.add(newString);
                                                                                     Log.d("-------elements--------", String.valueOf(element1));
                                                                                     Log.d("------Monday-----", "MondayTime1");
@@ -506,24 +511,24 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             Log.d("------sorted place----", String.valueOf(i));
                                                                             // Converting HashSet to Array
                                                                             String[] Places = uniqueSet.toArray(new String[uniqueSet.size()]);
+                                                                            Log.d("------1st time----", Places[0]);
                                                                             //String[] Freq = uniqueSet.toArray(new String[Collections.frequency(element, i)]);
 
                                                                             // Accessing elements by index
 
 
                                                                             if (uniqueSet.size() == 1){
-                                                                                Log.d("------1st place----", Places[0]);
-                                                                                place1.setText(Places[0]);
-
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
                                                                             }
                                                                             else if (uniqueSet.size() == 2){
-                                                                                Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
-                                                                                Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -532,11 +537,14 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             }
                                                                             else if (uniqueSet.size() == 3){
                                                                                 Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
                                                                                 Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
                                                                                 Log.d("------3rd person----", Places[2]);
-                                                                                place3.setText(Places[2]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
+                                                                                String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
+                                                                                place3.setText(stressedTime2);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -547,13 +555,17 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             }
                                                                             else if (uniqueSet.size() == 4){
                                                                                 Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
                                                                                 Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
                                                                                 Log.d("------3rd person----", Places[2]);
-                                                                                place3.setText(Places[2]);
                                                                                 Log.d("------4th person----", Places[3]);
-                                                                                place4.setText(Places[3]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
+                                                                                String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
+                                                                                place3.setText(stressedTime2);
+                                                                                String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
+                                                                                place4.setText(stressedTime3);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -566,15 +578,20 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             }
                                                                             else if (uniqueSet.size() == 5){
                                                                                 Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
                                                                                 Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
                                                                                 Log.d("------3rd person----", Places[2]);
-                                                                                place3.setText(Places[2]);
                                                                                 Log.d("------4th person----", Places[3]);
-                                                                                place4.setText(Places[3]);
-                                                                                Log.d("------4th person----", Places[4]);
-                                                                                place5.setText(Places[4]);
+                                                                                Log.d("------5th person----", Places[4]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
+                                                                                String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
+                                                                                place3.setText(stressedTime2);
+                                                                                String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
+                                                                                place4.setText(stressedTime3);
+                                                                                String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
+                                                                                place5.setText(stressedTime4);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -589,17 +606,23 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             }
                                                                             else if (uniqueSet.size() == 6){
                                                                                 Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
                                                                                 Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
                                                                                 Log.d("------3rd person----", Places[2]);
-                                                                                place3.setText(Places[2]);
                                                                                 Log.d("------4th person----", Places[3]);
-                                                                                place4.setText(Places[3]);
                                                                                 Log.d("------5th person----", Places[4]);
-                                                                                place5.setText(Places[4]);
                                                                                 Log.d("------6th person----", Places[5]);
-                                                                                place6.setText(Places[5]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
+                                                                                String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
+                                                                                place3.setText(stressedTime2);
+                                                                                String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
+                                                                                place4.setText(stressedTime3);
+                                                                                String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
+                                                                                place5.setText(stressedTime4);
+                                                                                String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
+                                                                                place6.setText(stressedTime5);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -616,19 +639,26 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             }
                                                                             else if (uniqueSet.size() == 7){
                                                                                 Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
                                                                                 Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
                                                                                 Log.d("------3rd person----", Places[2]);
-                                                                                place3.setText(Places[2]);
                                                                                 Log.d("------4th person----", Places[3]);
-                                                                                place4.setText(Places[3]);
                                                                                 Log.d("------5th person----", Places[4]);
-                                                                                place5.setText(Places[4]);
                                                                                 Log.d("------6th person----", Places[5]);
-                                                                                place6.setText(Places[5]);
                                                                                 Log.d("------7th person----", Places[6]);
-                                                                                place7.setText(Places[5]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
+                                                                                String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
+                                                                                place3.setText(stressedTime2);
+                                                                                String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
+                                                                                place4.setText(stressedTime3);
+                                                                                String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
+                                                                                place5.setText(stressedTime4);
+                                                                                String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
+                                                                                place6.setText(stressedTime5);
+                                                                                String stressedTime6 = Integer.parseInt(Places[6])+ ":00" + " - " +(Integer.parseInt(Places[6])+1)+ ":00";
+                                                                                place7.setText(stressedTime6);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -647,21 +677,29 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             }
                                                                             else if (uniqueSet.size() == 8){
                                                                                 Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
                                                                                 Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
                                                                                 Log.d("------3rd person----", Places[2]);
-                                                                                place3.setText(Places[2]);
                                                                                 Log.d("------4th person----", Places[3]);
-                                                                                place4.setText(Places[3]);
                                                                                 Log.d("------5th person----", Places[4]);
-                                                                                place5.setText(Places[4]);
                                                                                 Log.d("------6th person----", Places[5]);
-                                                                                place6.setText(Places[5]);
                                                                                 Log.d("------7th person----", Places[6]);
-                                                                                place7.setText(Places[6]);
                                                                                 Log.d("------8th person----", Places[7]);
-                                                                                place8.setText(Places[7]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
+                                                                                String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
+                                                                                place3.setText(stressedTime2);
+                                                                                String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
+                                                                                place4.setText(stressedTime3);
+                                                                                String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
+                                                                                place5.setText(stressedTime4);
+                                                                                String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
+                                                                                place6.setText(stressedTime5);
+                                                                                String stressedTime6 = Integer.parseInt(Places[6])+ ":00" + " - " +(Integer.parseInt(Places[6])+1)+ ":00";
+                                                                                place7.setText(stressedTime6);
+                                                                                String stressedTime7 = Integer.parseInt(Places[7])+ ":00" + " - " +(Integer.parseInt(Places[7])+1)+ ":00";
+                                                                                place8.setText(stressedTime7);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -682,23 +720,32 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             }
                                                                             else if (uniqueSet.size() == 9){
                                                                                 Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
                                                                                 Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
                                                                                 Log.d("------3rd person----", Places[2]);
-                                                                                place3.setText(Places[2]);
                                                                                 Log.d("------4th person----", Places[3]);
-                                                                                place4.setText(Places[3]);
                                                                                 Log.d("------5th person----", Places[4]);
-                                                                                place5.setText(Places[4]);
                                                                                 Log.d("------6th person----", Places[5]);
-                                                                                place6.setText(Places[5]);
                                                                                 Log.d("------7th person----", Places[6]);
-                                                                                place7.setText(Places[6]);
                                                                                 Log.d("------8th person----", Places[7]);
-                                                                                place8.setText(Places[7]);
                                                                                 Log.d("------9th person----", Places[8]);
-                                                                                place9.setText(Places[8]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
+                                                                                String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
+                                                                                place3.setText(stressedTime2);
+                                                                                String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
+                                                                                place4.setText(stressedTime3);
+                                                                                String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
+                                                                                place5.setText(stressedTime4);
+                                                                                String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
+                                                                                place6.setText(stressedTime5);
+                                                                                String stressedTime6 = Integer.parseInt(Places[6])+ ":00" + " - " +(Integer.parseInt(Places[6])+1)+ ":00";
+                                                                                place7.setText(stressedTime6);
+                                                                                String stressedTime7 = Integer.parseInt(Places[7])+ ":00" + " - " +(Integer.parseInt(Places[7])+1)+ ":00";
+                                                                                place8.setText(stressedTime7);
+                                                                                String stressedTime8 = Integer.parseInt(Places[8])+ ":00" + " - " +(Integer.parseInt(Places[8])+1)+ ":00";
+                                                                                place9.setText(stressedTime8);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -724,25 +771,35 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             }
                                                                             else {
                                                                                 Log.d("------1st person----", Places[0]);
-                                                                                place1.setText(Places[0]);
                                                                                 Log.d("------2nd person----", Places[1]);
-                                                                                place2.setText(Places[1]);
                                                                                 Log.d("------3rd person----", Places[2]);
-                                                                                place3.setText(Places[2]);
                                                                                 Log.d("------4th person----", Places[3]);
-                                                                                place4.setText(Places[3]);
                                                                                 Log.d("------5th person----", Places[4]);
-                                                                                place5.setText(Places[4]);
                                                                                 Log.d("------6th person----", Places[5]);
-                                                                                place6.setText(Places[5]);
                                                                                 Log.d("------7th person----", Places[6]);
-                                                                                place7.setText(Places[6]);
                                                                                 Log.d("------8th person----", Places[7]);
-                                                                                place8.setText(Places[7]);
                                                                                 Log.d("------9th person----", Places[8]);
-                                                                                place9.setText(Places[8]);
                                                                                 Log.d("------10th person----", Places[9]);
-                                                                                place10.setText(Places[9]);
+                                                                                String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
+                                                                                place1.setText(stressedTime);
+                                                                                String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
+                                                                                place2.setText(stressedTime1);
+                                                                                String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
+                                                                                place3.setText(stressedTime2);
+                                                                                String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
+                                                                                place4.setText(stressedTime3);
+                                                                                String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
+                                                                                place5.setText(stressedTime4);
+                                                                                String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
+                                                                                place6.setText(stressedTime5);
+                                                                                String stressedTime6 = Integer.parseInt(Places[6])+ ":00" + " - " +(Integer.parseInt(Places[6])+1)+ ":00";
+                                                                                place7.setText(stressedTime6);
+                                                                                String stressedTime7 = Integer.parseInt(Places[7])+ ":00" + " - " +(Integer.parseInt(Places[7])+1)+ ":00";
+                                                                                place8.setText(stressedTime7);
+                                                                                String stressedTime8 = Integer.parseInt(Places[8])+ ":00" + " - " +(Integer.parseInt(Places[8])+1)+ ":00";
+                                                                                place9.setText(stressedTime8);
+                                                                                String stressedTime9 = Integer.parseInt(Places[9])+ ":00" + " - " +(Integer.parseInt(Places[9])+1)+ ":00";
+                                                                                place10.setText(stressedTime9);
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
