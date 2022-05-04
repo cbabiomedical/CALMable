@@ -59,6 +59,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -104,7 +105,6 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     ArrayList<String> listOFLocations;
     ArrayList<String> listOfTxtLocations;
 
-
     TextView txtHtRate;
     TextView txtProgress;
     TextView homeConnectStatus;
@@ -117,14 +117,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     StorageReference res;
     Button happy, awesome, relaxed, sleepy, sad;
 
-
     public static String viewPerson;
     public static String word;
     String viewPlace,viewReason;
     String time,finalword;
     int finalRateff , stressedIndex , stressedIndexAvg;
     List<Object> heartRateList;
-
 
     String timeAndHR;
     String timeAndHR2;
@@ -138,6 +136,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     TextView markHeartRateValue;
 
     private Handler mHandler , mHandlerStressedPopUp;
+    private boolean automaticCalmingOption;
 
     private String getColoredSpanned(String text, String color) {
         String input = "<font color=" + color + ">" + text + "</font>";
@@ -148,6 +147,12 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // check current user id
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        String fbID = mUser.getUid();
+        Log.d("TAG", "*Current user ID : " + fbID);
+
 
         streesIndexTV = (TextView) findViewById(R.id.streesIndex);
         stressBanner = (TextView) findViewById(R.id.stressBanner);
@@ -208,6 +213,7 @@ public class Home extends AppCompatActivity implements PopUpOne.PopUpOneListener
             }
 
         }
+
 
 
         //updateLandingCoins();

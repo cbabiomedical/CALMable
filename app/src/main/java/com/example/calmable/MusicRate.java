@@ -83,9 +83,6 @@ public class MusicRate extends AppCompatActivity {
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
-
-
-
         //-----
         Bundle extras = getIntent().getExtras();
 

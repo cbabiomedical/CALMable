@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -25,6 +26,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.calmable.model.CalmChart;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,6 +34,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,16 +47,21 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private RadioButton other;
     private String gender = "";
     Dialog dialog;
-    private Button registerUser;
+    private Button registerUser ;
+    CheckBox checkBoxAutoCalming;
 
+
+    int automaticCalmingOptionStatus;
 
     private FirebaseAuth mAuth;
     FirebaseFirestore database;
+    FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
+
 
         // Assign variables
         mAuth = FirebaseAuth.getInstance();
@@ -74,6 +83,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         male = (RadioButton) findViewById(R.id.radio_male);
         female = (RadioButton) findViewById(R.id.radio_female);
         other = (RadioButton) findViewById(R.id.radio_other);
+
+        checkBoxAutoCalming = (CheckBox) findViewById(R.id.checkBoxAutoCalming);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -145,6 +156,30 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             }
         });
         // end occupation
+
+
+        // automatic calming option check box
+        checkBoxAutoCalming.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxAutoCalming.isChecked()) {
+
+                    automaticCalmingOptionStatus = 1;
+
+                    Log.d("TAG", "-----=+++++DONE-----=+++++" + automaticCalmingOptionStatus );
+                    Log.d("TAG", "-----=+++++DONE-----=+++++" + automaticCalmingOptionStatus );
+                    Log.d("TAG", "-----=+++++DONE-----=+++++" + automaticCalmingOptionStatus );
+                }else {
+
+                    automaticCalmingOptionStatus = 0;
+
+                    Log.d("TAG", "-----=+++++DONE-----=+++++" + automaticCalmingOptionStatus );
+                    Log.d("TAG", "-----=+++++DONE-----=+++++" + automaticCalmingOptionStatus );
+                    Log.d("TAG", "-----=+++++DONE-----=+++++" + automaticCalmingOptionStatus );
+                }
+            }
+        });
 
 
     }
@@ -241,7 +276,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //Creating user object and passing user input as parameters
-                            User user = new User(fullName, age, email, gender, phoneNumber, occupation);
+                            User user = new User(fullName, age, email, gender, phoneNumber, occupation, automaticCalmingOptionStatus);
 
                             //Log.d("got the gender---------", gender);
 

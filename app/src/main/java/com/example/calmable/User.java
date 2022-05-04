@@ -8,8 +8,8 @@ public class User {
     public String preference;
     public String journalNote;
     private long coins = 0;
-
     public int sugIndex;
+    public int automaticCalmingOptionStatus;
 
     public User() {
     }
@@ -32,13 +32,14 @@ public class User {
 //        this.occupation = occupation;
 //    }
 
-    public User(String fullName, String age, String email, String gender, String phoneNumber, String occupation) {
+    public User(String fullName, String age, String email, String gender, String phoneNumber, String occupation , int automaticCalmingOptionStatus) {
         this.fullName = fullName;
         this.age = age;
         this.email = email;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.occupation = occupation;
+        this.automaticCalmingOptionStatus = automaticCalmingOptionStatus;
     }
 
     public User(String preference) {

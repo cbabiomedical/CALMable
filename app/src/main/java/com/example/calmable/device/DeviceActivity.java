@@ -17,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.crrepa.ble.CRPBleClient;
 import com.crrepa.ble.conn.CRPBleConnection;
@@ -34,9 +36,20 @@ import com.crrepa.ble.conn.listener.CRPHeartRateChangeListener;
 import com.example.calmable.Home;
 import com.example.calmable.MusicPlayer;
 import com.example.calmable.R;
+import com.example.calmable.RegisterUser;
 import com.example.calmable.SampleApplication;
 import com.example.calmable.VideoPlayerActivity;
+import com.example.calmable.adapter.CalmChartAdapter;
+import com.example.calmable.model.CalmChart;
 import com.example.calmable.sample.JsonPlaceHolder;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.LinkedTreeMap;
@@ -100,6 +113,7 @@ public class DeviceActivity extends AppCompatActivity {
     String timeAndHR, serverData;
     int q;
     int stressedIndex;
+    int automaticCalmingOptionIndex;
 
     ProgressDialog mProgressDialog;
     CRPBleClient mBleClient;
@@ -1195,7 +1209,7 @@ public class DeviceActivity extends AppCompatActivity {
         int avgOfStressedIndex = 0;
 
 
-        if (arrSizeStressedIndex == 10) {
+        if (arrSizeStressedIndex == 2) {
 
             // take sum of arraylist
             for (int num : listOfTxtStressedIndexData) {
@@ -1217,28 +1231,56 @@ public class DeviceActivity extends AppCompatActivity {
             Log.d(TAG, "stressedIndex : " + stressedIndex);
 
 
-            if (stressedIndex - 5 > avgOfStressedIndex) {
+            /**
+             *      Check user tick automatic calming option or not
+             *      if tick calming option user get stressed notification
+             *      take automatic calming index from firebase
+             */
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String userid = user.getUid();
 
-                createNotificationChanel();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+            reference.child(userid).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                /**
-                 *  when click notification call special method
-                 *
-                 */
-                Intent notificationIntent = new Intent(getApplicationContext(), Home.class);
-                notificationIntent.putExtra("fromStressedIndexNotification", true);
-                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+                    automaticCalmingOptionIndex = snapshot.child("automaticCalmingOptionStatus").getValue(Integer.class);
+
+                    Log.d("TAG", "Calming option status : " + automaticCalmingOptionIndex);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+
+            });
+
+            if (automaticCalmingOptionIndex == 1 ) {
+
+                if (stressedIndex - 5 > avgOfStressedIndex) {
+
+                    createNotificationChanel();
+
+                    /**
+                     *  when click notification call special method
+                     *
+                     */
+                    Intent notificationIntent = new Intent(getApplicationContext(), Home.class);
+                    notificationIntent.putExtra("fromStressedIndexNotification", true);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-                /**
-                 *   when click notification open new activity use below code
-                 *   there is issue when come to activity device is disconnected
-                 */
+                    /**
+                     *   when click notification open new activity use below code
+                     *   there is issue when come to activity device is disconnected
+                     */
 
-                // Create an Intent for the activity you want to start
+                    // Create an Intent for the activity you want to start
 //                Intent resultIntent = new Intent(this, Home.class);
-                // Create the TaskStackBuilder and add the intent, which inflates the back stack
+                    // Create the TaskStackBuilder and add the intent, which inflates the back stack
 //                TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 //                stackBuilder.addNextIntentWithParentStack(resultIntent);
 //                // Get the PendingIntent containing the entire back stack
@@ -1246,23 +1288,26 @@ public class DeviceActivity extends AppCompatActivity {
 //                        stackBuilder.getPendingIntent(0,
 //                                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
-                NotificationCompat.Builder builder1 = new NotificationCompat.Builder(this, "CALMable")
-                        .setSmallIcon(R.drawable.logo_calmable)
-                        .setContentTitle("Stress Alert!")
-                        .setContentText("Are you engaged in any physical activity?")
-                        .setAutoCancel(true)
-                        .setContentIntent(pendingIntent)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                    NotificationCompat.Builder builder1 = new NotificationCompat.Builder(this, "CALMable")
+                            .setSmallIcon(R.drawable.logo_calmable)
+                            .setContentTitle("Stress Alert!")
+                            .setContentText("Are you engaged in any physical activity?")
+                            .setAutoCancel(true)
+                            .setContentIntent(pendingIntent)
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
 
-                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+                    NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
 
-                notificationManagerCompat.notify(100, builder1.build());
+                    notificationManagerCompat.notify(100, builder1.build());
+
+                }
 
             }
 
 
-        } else if (arrSizeStressedIndex >= 10) {
+
+        } else if (arrSizeStressedIndex >= 2) {
             // clear txt file
             PrintWriter writer;
             try {
