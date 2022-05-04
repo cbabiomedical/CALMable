@@ -207,7 +207,7 @@ public class MusicRate extends AppCompatActivity {
                 Log.d("TAG", "* reporttimem response code : " + response.code());
                 Log.d("TAG", "reporttimem response message : " + response.message());
                 Log.d("TAG", "reporttimem Relax index : " + response.body());
-//                Log.d("musicType ", response.body().getClass().getSimpleName());
+//                Log.d("musicType ", response.body().getClass().getSimpleName());p
 
                 ArrayList list = new ArrayList();
                 list = (ArrayList) response.body();
