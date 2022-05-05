@@ -520,6 +520,10 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             if (uniqueSet.size() == 1){
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -527,8 +531,16 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                             else if (uniqueSet.size() == 2){
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -541,10 +553,22 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                 Log.d("------3rd person----", Places[2]);
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
                                                                                 place3.setText(stressedTime2);
+                                                                                if (Integer.parseInt(Places[2]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[2])+ ":00 - 1:00";
+                                                                                    place3.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -560,12 +584,28 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                 Log.d("------4th person----", Places[3]);
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
                                                                                 place3.setText(stressedTime2);
+                                                                                if (Integer.parseInt(Places[2]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[2])+ ":00 - 1:00";
+                                                                                    place3.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
                                                                                 place4.setText(stressedTime3);
+                                                                                if (Integer.parseInt(Places[3]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[3])+ ":00 - 1:00";
+                                                                                    place4.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -584,14 +624,34 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                 Log.d("------5th person----", Places[4]);
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
                                                                                 place3.setText(stressedTime2);
+                                                                                if (Integer.parseInt(Places[2]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[2])+ ":00 - 1:00";
+                                                                                    place3.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
                                                                                 place4.setText(stressedTime3);
+                                                                                if (Integer.parseInt(Places[3]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[3])+ ":00 - 1:00";
+                                                                                    place4.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
                                                                                 place5.setText(stressedTime4);
+                                                                                if (Integer.parseInt(Places[4]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[4])+ ":00 - 1:00";
+                                                                                    place5.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -613,16 +673,40 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                 Log.d("------6th person----", Places[5]);
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
                                                                                 place3.setText(stressedTime2);
+                                                                                if (Integer.parseInt(Places[2]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[2])+ ":00 - 1:00";
+                                                                                    place3.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
                                                                                 place4.setText(stressedTime3);
+                                                                                if (Integer.parseInt(Places[3]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[3])+ ":00 - 1:00";
+                                                                                    place4.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
                                                                                 place5.setText(stressedTime4);
+                                                                                if (Integer.parseInt(Places[4]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[4])+ ":00 - 1:00";
+                                                                                    place5.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
                                                                                 place6.setText(stressedTime5);
+                                                                                if (Integer.parseInt(Places[5]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[5])+ ":00 - 1:00";
+                                                                                    place6.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -647,18 +731,46 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                 Log.d("------7th person----", Places[6]);
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
                                                                                 place3.setText(stressedTime2);
+                                                                                if (Integer.parseInt(Places[2]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[2])+ ":00 - 1:00";
+                                                                                    place3.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
                                                                                 place4.setText(stressedTime3);
+                                                                                if (Integer.parseInt(Places[3]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[3])+ ":00 - 1:00";
+                                                                                    place4.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
                                                                                 place5.setText(stressedTime4);
+                                                                                if (Integer.parseInt(Places[4]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[4])+ ":00 - 1:00";
+                                                                                    place5.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
                                                                                 place6.setText(stressedTime5);
+                                                                                if (Integer.parseInt(Places[5]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[5])+ ":00 - 1:00";
+                                                                                    place6.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime6 = Integer.parseInt(Places[6])+ ":00" + " - " +(Integer.parseInt(Places[6])+1)+ ":00";
                                                                                 place7.setText(stressedTime6);
+                                                                                if (Integer.parseInt(Places[6]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[6])+ ":00 - 1:00";
+                                                                                    place7.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -686,20 +798,52 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                 Log.d("------8th person----", Places[7]);
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
                                                                                 place3.setText(stressedTime2);
+                                                                                if (Integer.parseInt(Places[2]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[2])+ ":00 - 1:00";
+                                                                                    place3.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
                                                                                 place4.setText(stressedTime3);
+                                                                                if (Integer.parseInt(Places[3]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[3])+ ":00 - 1:00";
+                                                                                    place4.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
                                                                                 place5.setText(stressedTime4);
+                                                                                if (Integer.parseInt(Places[4]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[4])+ ":00 - 1:00";
+                                                                                    place5.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
                                                                                 place6.setText(stressedTime5);
+                                                                                if (Integer.parseInt(Places[5]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[5])+ ":00 - 1:00";
+                                                                                    place6.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime6 = Integer.parseInt(Places[6])+ ":00" + " - " +(Integer.parseInt(Places[6])+1)+ ":00";
                                                                                 place7.setText(stressedTime6);
+                                                                                if (Integer.parseInt(Places[6]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[6])+ ":00 - 1:00";
+                                                                                    place7.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime7 = Integer.parseInt(Places[7])+ ":00" + " - " +(Integer.parseInt(Places[7])+1)+ ":00";
                                                                                 place8.setText(stressedTime7);
+                                                                                if (Integer.parseInt(Places[7]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[7])+ ":00 - 1:00";
+                                                                                    place8.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -730,22 +874,58 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                 Log.d("------9th person----", Places[8]);
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
                                                                                 place3.setText(stressedTime2);
+                                                                                if (Integer.parseInt(Places[2]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[2])+ ":00 - 1:00";
+                                                                                    place3.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
                                                                                 place4.setText(stressedTime3);
+                                                                                if (Integer.parseInt(Places[3]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[3])+ ":00 - 1:00";
+                                                                                    place4.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
                                                                                 place5.setText(stressedTime4);
+                                                                                if (Integer.parseInt(Places[4]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[4])+ ":00 - 1:00";
+                                                                                    place5.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
                                                                                 place6.setText(stressedTime5);
+                                                                                if (Integer.parseInt(Places[5]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[5])+ ":00 - 1:00";
+                                                                                    place6.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime6 = Integer.parseInt(Places[6])+ ":00" + " - " +(Integer.parseInt(Places[6])+1)+ ":00";
                                                                                 place7.setText(stressedTime6);
+                                                                                if (Integer.parseInt(Places[6]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[6])+ ":00 - 1:00";
+                                                                                    place7.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime7 = Integer.parseInt(Places[7])+ ":00" + " - " +(Integer.parseInt(Places[7])+1)+ ":00";
                                                                                 place8.setText(stressedTime7);
+                                                                                if (Integer.parseInt(Places[7]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[7])+ ":00 - 1:00";
+                                                                                    place8.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime8 = Integer.parseInt(Places[8])+ ":00" + " - " +(Integer.parseInt(Places[8])+1)+ ":00";
                                                                                 place9.setText(stressedTime8);
+                                                                                if (Integer.parseInt(Places[8]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[8])+ ":00 - 1:00";
+                                                                                    place9.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
@@ -782,24 +962,64 @@ public class ReportTimeSummary extends AppCompatActivity  {
                                                                                 Log.d("------10th person----", Places[9]);
                                                                                 String stressedTime = Integer.parseInt(Places[0])+ ":00" + " - " +(Integer.parseInt(Places[0])+1)+ ":00";
                                                                                 place1.setText(stressedTime);
+                                                                                if (Integer.parseInt(Places[0]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[0])+ ":00 - 1:00";
+                                                                                    place1.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime1 = Integer.parseInt(Places[1])+ ":00" + " - " +(Integer.parseInt(Places[1])+1)+ ":00";
                                                                                 place2.setText(stressedTime1);
+                                                                                if (Integer.parseInt(Places[1]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[1])+ ":00 - 1:00";
+                                                                                    place2.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime2 = Integer.parseInt(Places[2])+ ":00" + " - " +(Integer.parseInt(Places[2])+1)+ ":00";
                                                                                 place3.setText(stressedTime2);
+                                                                                if (Integer.parseInt(Places[2]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[2])+ ":00 - 1:00";
+                                                                                    place3.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime3 = Integer.parseInt(Places[3])+ ":00" + " - " +(Integer.parseInt(Places[3])+1)+ ":00";
                                                                                 place4.setText(stressedTime3);
+                                                                                if (Integer.parseInt(Places[3]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[3])+ ":00 - 1:00";
+                                                                                    place4.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime4 = Integer.parseInt(Places[4])+ ":00" + " - " +(Integer.parseInt(Places[4])+1)+ ":00";
                                                                                 place5.setText(stressedTime4);
+                                                                                if (Integer.parseInt(Places[4]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[4])+ ":00 - 1:00";
+                                                                                    place5.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime5 = Integer.parseInt(Places[5])+ ":00" + " - " +(Integer.parseInt(Places[5])+1)+ ":00";
                                                                                 place6.setText(stressedTime5);
+                                                                                if (Integer.parseInt(Places[5]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[5])+ ":00 - 1:00";
+                                                                                    place6.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime6 = Integer.parseInt(Places[6])+ ":00" + " - " +(Integer.parseInt(Places[6])+1)+ ":00";
                                                                                 place7.setText(stressedTime6);
+                                                                                if (Integer.parseInt(Places[6]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[6])+ ":00 - 1:00";
+                                                                                    place7.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime7 = Integer.parseInt(Places[7])+ ":00" + " - " +(Integer.parseInt(Places[7])+1)+ ":00";
                                                                                 place8.setText(stressedTime7);
+                                                                                if (Integer.parseInt(Places[7]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[7])+ ":00 - 1:00";
+                                                                                    place8.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime8 = Integer.parseInt(Places[8])+ ":00" + " - " +(Integer.parseInt(Places[8])+1)+ ":00";
                                                                                 place9.setText(stressedTime8);
+                                                                                if (Integer.parseInt(Places[8]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[8])+ ":00 - 1:00";
+                                                                                    place9.setText(stressedTime24);
+                                                                                }
                                                                                 String stressedTime9 = Integer.parseInt(Places[9])+ ":00" + " - " +(Integer.parseInt(Places[9])+1)+ ":00";
                                                                                 place10.setText(stressedTime9);
+                                                                                if (Integer.parseInt(Places[9]) == 24){
+                                                                                    String stressedTime24 = Integer.parseInt(Places[9])+ ":00 - 1:00";
+                                                                                    place10.setText(stressedTime24);
+                                                                                }
 
                                                                                 Log.d("------1st freq----", String.valueOf(Collections.frequency(element1, Places[0])));
                                                                                 time1.setText(String.valueOf(Collections.frequency(element1, Places[0])));
