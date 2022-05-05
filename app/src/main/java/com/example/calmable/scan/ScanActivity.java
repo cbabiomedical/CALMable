@@ -128,7 +128,11 @@ public class ScanActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mResultsAdapter.addScanResult(device);
+
+                        if (device.getDevice().getName() != null) {
+                            mResultsAdapter.addScanResult(device);
+                            Log.d(TAG, "run: ");
+                        }
                     }
                 });
             }

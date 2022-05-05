@@ -1,6 +1,7 @@
 package com.example.calmable.scan;
 
 import android.bluetooth.BluetoothDevice;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.crrepa.ble.scan.bean.CRPScanDevice;
+import com.example.calmable.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,7 +74,8 @@ public class ScanResultsAdapter extends RecyclerView.Adapter<ScanResultsAdapter.
 
     @Override
     public ScanResultsAdapter.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        final View itemView = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.two_line_list_item, parent, false);
+        //final View itemView = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.two_line_list_item, parent, false);
+        final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.scan_device_name, parent, false);
         itemView.setOnClickListener(onClickListener);
         return new ViewHolder(itemView);
     }
@@ -82,9 +85,8 @@ public class ScanResultsAdapter extends RecyclerView.Adapter<ScanResultsAdapter.
 
         final CRPScanDevice scanDevice = data.get(position);
         final BluetoothDevice bleDevice = scanDevice.getDevice();
-        holder.line1.setText(String.format("%s (%s)", bleDevice.getAddress(), bleDevice.getName()));
-        holder.line2.setText(String.format("RSSI: %d", scanDevice.getRssi()));
-
+        holder.line1.setText(String.valueOf(bleDevice.getName()));
+        //holder.line2.setText(String.format("RSSI: %d", scanDevice.getRssi()));
     }
 
     @Override
