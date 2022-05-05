@@ -4,7 +4,9 @@ package com.example.calmable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -350,5 +352,25 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             Intent intentg = new Intent(getApplicationContext(), LoginUserActivity.class);
             startActivity(intentg);
         }
+    }
+
+
+    public void infoAutomaticCalming(View view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterUser.this);
+        builder.setCancelable(true);
+        builder.setIcon(android.R.drawable.ic_dialog_info);
+        builder.setTitle("Automatic Calming Option!");
+        builder.setMessage("If you allow this you'll be notified when you're stressed");
+
+        builder.setNegativeButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        builder.show();
+
     }
 }
