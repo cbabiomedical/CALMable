@@ -70,7 +70,7 @@ public class BreathPattern6 extends AppCompatActivity {
                 startAnimation();
 
                 startButton.setVisibility(View.GONE);
-                backButton2.setVisibility(View.GONE);
+                //backButton2.setVisibility(View.GONE);
 
                 new CountDownTimer(121000, 1000){
                     public void onTick(long millisUntilFinished){
