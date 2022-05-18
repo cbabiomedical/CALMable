@@ -123,7 +123,7 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
                 StressedLocationsDB myDB = new StressedLocationsDB(getActivity().getApplicationContext());
                 myDB.addStressedLocation(place,currentTime);
 
-                startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
+                startActivity(new Intent(getActivity(), SuggestionActivity.class));
                 dismiss();
             }
         });
@@ -144,7 +144,7 @@ public class PopUpOne extends AppCompatDialogFragment implements SearchView.OnQu
                 }
 
                 listener.applyText(person,place,reason);
-                startActivity(new Intent(getActivity(), MusicSuggestionActivity.class));
+                startActivity(new Intent(getActivity(), SuggestionActivity.class));
                 Log.d("TAG person-----", person);
                 Log.d("TAG location-----", place);
                 Log.d("TAG reason-----", reason);

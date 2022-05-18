@@ -34,9 +34,12 @@
         android:theme="@style/Theme.CALMable.NoActionBar"
         tools:replace="android:icon,android:theme">
         <activity
-            android:name=".MusicRateWithOutDeviceActivity"
-            android:screenOrientation="portrait"
+            android:name=".SuggestionActivity"
             android:exported="false" />
+        <activity
+            android:name=".MusicRateWithOutDeviceActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ReportTimeSummary"
             android:exported="true"
@@ -47,8 +50,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ReportSummary"
-            android:screenOrientation="portrait"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StressedNotes"
             android:exported="true"
