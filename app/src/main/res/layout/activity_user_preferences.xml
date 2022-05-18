@@ -30,7 +30,7 @@
           android:layout_height="wrap_content"
           android:gravity="center"
           android:layout_marginTop="20dp"
-          android:layout_marginStart="28dp">
+          android:layout_marginStart="24dp">
 
         <ImageView
             android:layout_width="8dp"
@@ -165,8 +165,9 @@
       <Button
           android:id="@+id/done"
           android:layout_width="200dp"
-          android:layout_height="55dp"
+          android:layout_height="wrap_content"
           android:layout_marginTop="18dp"
+          android:layout_marginBottom="24dp"
           android:textColor="@color/white"
           android:text="done"
           android:textSize="20sp"

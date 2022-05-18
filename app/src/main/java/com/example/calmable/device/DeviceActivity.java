@@ -236,7 +236,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
                         startActivity(new Intent(getApplicationContext(), Home.class));
-                        Toast.makeText(getApplicationContext(), "Device successfully connected", Toast.LENGTH_SHORT).show();
+                             Toast.makeText(getApplicationContext(), "Device successfully connected", Toast.LENGTH_SHORT).show();
                         finish();
                         connectStatus = true;
                         break;
