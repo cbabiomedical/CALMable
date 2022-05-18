@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +37,7 @@ public class StressedNotes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stressed_notes);
 
+        NavigationBar();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mUser.getUid();
 
@@ -218,6 +221,45 @@ public class StressedNotes extends AppCompatActivity {
             }
         });
     }
+
+    private void NavigationBar() {
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.relax:
+                        startActivity(new Intent(getApplicationContext(), Relax.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.journal:
+                        startActivity(new Intent(getApplicationContext(), Journal.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.challenge:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(), ProfileMain.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
+    }
+
     public void onBackPressed() {
         finish();
         Intent intent = new Intent(getApplicationContext(), Journal.class);
