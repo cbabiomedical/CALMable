@@ -1209,7 +1209,7 @@ public class DeviceActivity extends AppCompatActivity {
         int avgOfStressedIndex = 0;
 
 
-        if (arrSizeStressedIndex == 4) {
+        if (arrSizeStressedIndex == 10) {
 
             // take sum of arraylist
             for (int num : listOfTxtStressedIndexData) {
@@ -1257,7 +1257,7 @@ public class DeviceActivity extends AppCompatActivity {
 
             });
 
-            if (automaticCalmingOptionIndex == 10 ) {
+            if (automaticCalmingOptionIndex == 1 ) {
 
                 if (stressedIndex - 5 > avgOfStressedIndex) {
 
@@ -1307,7 +1307,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
-        } else if (arrSizeStressedIndex >= 10) {
+        } else if (arrSizeStressedIndex > 10) {
             // clear txt file
             PrintWriter writer;
             try {
