@@ -21,7 +21,7 @@ public class SleepyHome extends AppCompatActivity {
     }
 
     public void btnGoSleepyStories (View view) {
-        startActivity(new Intent(getApplicationContext(), SleepIntro.class));
+        startActivity(new Intent(getApplicationContext(), SleepStoryAudioActivity.class));
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 

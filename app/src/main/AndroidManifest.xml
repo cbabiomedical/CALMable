@@ -35,7 +35,8 @@
         tools:replace="android:icon,android:theme">
         <activity
             android:name=".SuggestionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MusicRateWithOutDeviceActivity"
             android:exported="false"
