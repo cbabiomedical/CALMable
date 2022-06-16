@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.calmable.fragments.DashboardFragment;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -160,7 +160,7 @@ public class ProfileMain extends AppCompatActivity {
 
         });
 
-        openDialog();
+        //openDialog();
     }
     //for testing stressed locations
     private void openDialog() {

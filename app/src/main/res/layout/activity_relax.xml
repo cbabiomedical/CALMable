@@ -18,7 +18,7 @@
         android:paddingEnd="60dp"
         android:text="RELAX"
         android:textColor="@color/white"
-        android:textSize="90dp" />
+        android:textSize="75dp" />
 
     <ScrollView
         android:layout_below="@+id/activityTitle"
